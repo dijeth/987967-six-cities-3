@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Main = (props) => {
-	const {placesCount} = props;
+  // eslint-disable-next-line react/prop-types
+  const {placesCount} = props;
 
-	return (
-	
+  return (
+
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
@@ -262,8 +263,8 @@ const Main = (props) => {
         </div>
       </main>
     </div>
-  
-		);
+
+  );
 };
 
 export default Main;
