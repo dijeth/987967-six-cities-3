@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {placesCount} = props;
 
   return (
@@ -265,6 +265,10 @@ const Main = (props) => {
     </div>
 
   );
+};
+
+Main.propTypes = {
+  placesCount: PropTypes.number.isRequired
 };
 
 export default Main;
