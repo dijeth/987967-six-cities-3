@@ -37,7 +37,7 @@ const Main = ({placesCount, placeCardNames}) => {
           </h2>
           <p className="place-card__type">Apartment</p>
         </div>
-      </article>)
+      </article>);
   });
 
   return (
