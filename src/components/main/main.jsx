@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Main = ({placesCount, placeCardNames}) => {
+const Main = ({placesCount, placeCardNames, placeCardNameClickHandler}) => {
   const placeCards = placeCardNames.map((placeCardName, index) => {
     return (
       <article className="cities__place-card place-card" key={`${placeCardName.replace(/\s/g, `-`)}-${index}`}>
@@ -33,7 +33,7 @@ const Main = ({placesCount, placeCardNames}) => {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{placeCardName}</a>
+            <a href="#" onClick={placeCardNameClickHandler}>{placeCardName}</a>
           </h2>
           <p className="place-card__type">Apartment</p>
         </div>
@@ -138,7 +138,8 @@ const Main = ({placesCount, placeCardNames}) => {
 
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  placeCardNames: PropTypes.arrayOf(PropTypes.string).isRequired
+  placeCardNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placeCardNameClickHandler: PropTypes.func
 };
 
 export default Main;

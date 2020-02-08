@@ -314,6 +314,7 @@ exports[`<App /> should be render correctly 1`] = `
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     placeCardName1
                   </a>
@@ -415,6 +416,7 @@ exports[`<App /> should be render correctly 1`] = `
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     placeCardName2
                   </a>
