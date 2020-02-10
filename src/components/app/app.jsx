@@ -2,12 +2,13 @@ import React from 'react';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
-const App = ({placesCount}) => {
-  return <Main placesCount={placesCount}/>;
+const App = ({placesCount, placeCardNames}) => {
+  return <Main placesCount={placesCount} placeCardNames={placeCardNames} />;
 };
 
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired
+  placesCount: PropTypes.number.isRequired,
+  placeCardNames: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default App;

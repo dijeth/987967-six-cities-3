@@ -4,5 +4,11 @@ import App from './components/app/app.jsx';
 
 const rootElement = document.getElementById(`root`);
 const PLACES_COUNT = 312;
+const placeCardNames = [
+  `Beautiful & luxurious apartment at great location`,
+  `Wood and stone place`,
+  `Canal View Prinsengracht`,
+  `Nice, cozy, warm big bed apartment`,
+  `Wood and stone place`];
 
-ReactDom.render(<App placesCount={PLACES_COUNT} />, rootElement);
+ReactDom.render(<App placesCount={PLACES_COUNT} placeCardNames={placeCardNames} />, rootElement);
