@@ -24,5 +24,5 @@ it(`PlaceCardName should be pressed`, () => {
     it.props().onClick();
   });
 
-  expect(placeCardNameClickHandler.mock.calls.length).toBe(PLACE_CARD_NAMES.length);
+  expect(placeCardNameClickHandler).toHaveBeenCalledTimes(PLACE_CARD_NAMES.length);
 });
