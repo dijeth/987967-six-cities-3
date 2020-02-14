@@ -1,26 +1,32 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { OfferType } from '../../const.js';
-
-const calcRating = (rating) => Math.round();
+import {OfferType} from '../../const.js';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._handleMouseEnter = this._handleMouseEnter.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
   }
 
   render() {
-    const { offer, handleCardClick } = this.props;
-    const { id, title, type, picture, cost, rating, isPremium, isFavorite } = offer;
+    const {offer, handleCardClick} = this.props;
+    const {id, title, type, picture, cost, rating, isPremium, isFavorite} = offer;
 
     const premium = !isPremium ? `` : (
       <div className="place-card__mark">
-          <span>Premium</span>
-        </div>);
+        <span>Premium</span>
+      </div>);
 
     return (
-      <article className="cities__place-card place-card" key={id}>
-				{premium}
+      <article
+        className="cities__place-card place-card"
+        onMouseEnter={this._handleMouseEnter}
+        onMouseLeave={this._handleMouseLeave}
+        key={id}
+      >
+        {premium}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
             <img className="place-card__image" src={picture} width="260" height="200" alt="Place image"/>
@@ -50,9 +56,17 @@ class PlaceCard extends PureComponent {
           </h2>
           <p className="place-card__type">{type}</p>
         </div>
-      </article>)
+      </article>);
   }
-};
+
+  _handleMouseLeave() {
+    this.props.handleCardHover(null);
+  }
+
+  _handleMouseEnter() {
+    this.props.handleCardHover(this.props.offer);
+  }
+}
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
@@ -66,16 +80,8 @@ PlaceCard.propTypes = {
     isFavorite: PropTypes.bool,
     city: PropTypes.string.isRequired
   }).isRequired,
-  handleCardClick: PropTypes.func.isRequired
+  handleCardClick: PropTypes.func.isRequired,
+  handleCardHover: PropTypes.func.isRequired
 };
-
-// PlaceCard.defaultProps = {
-//   offer: {
-//     type: OfferType.APARTMENT,
-//     rating: 0,
-//     isPremium: false,
-//     isFavorite: false
-//   }
-// }
 
 export default PlaceCard;

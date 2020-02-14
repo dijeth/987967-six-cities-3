@@ -1,4 +1,4 @@
-import { OfferType, CITIES } from '../const.js';
+import {OfferType, CITIES} from '../const.js';
 
 const getTitleMock = (id) => `Title Offer ${id}`;
 const getTypeMock = () => Math.random() > 0.5 ? OfferType.APARTMENT : OfferType.PRIVATE_ROOM;
@@ -10,7 +10,6 @@ const getFavoriteMock = () => Math.random() > 0.5;
 const getCity = () => CITIES[Math.round(Math.random() * (CITIES.length - 1))];
 
 const MOCK_COUNT = 4;
-let index = 0;
 
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   return {
@@ -23,9 +22,7 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     isPremium: getPremiumMock(),
     isFavorite: getFavoriteMock(),
     city: getCity()
-  }
+  };
 });
 
-console.log(offerMocks)
-
-export { offerMocks };
+export {offerMocks};

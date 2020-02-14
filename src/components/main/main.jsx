@@ -12,7 +12,7 @@ const Main = ({placesCount, offerList, handleCardClick}) => {
         <a className={`locations__item-link tabs__item${i === ACTIVE_CITY_INDEX ? ` tabs__item--active` : ``}`} href="#">
           <span>{it}</span>
         </a>
-      </li>)
+      </li>);
   });
 
   return (

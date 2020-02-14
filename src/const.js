@@ -10,6 +10,6 @@ const CITIES = [
   `Amsterdam`,
   `Hamburg`,
   `Dusseldorf`
-]
+];
 
-export { OfferType, CITIES }
+export {OfferType, CITIES};
