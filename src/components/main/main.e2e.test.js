@@ -11,12 +11,12 @@ Enzyme.configure({
 });
 
 it(`PlaceCardName should be pressed`, () => {
-  const placeCardNameClickHandler = jest.fn();
+  const handleCardClick = jest.fn();
   const main = shallow(
       <Main
         placesCount={PLACES_COUNT}
         placeCardNames={PLACE_CARD_NAMES}
-        placeCardNameClickHandler={placeCardNameClickHandler}
+        handleCardClick={handleCardClick}
       />);
   const cardNames = main.find(`.place-card__name a`);
 
@@ -24,5 +24,5 @@ it(`PlaceCardName should be pressed`, () => {
     it.props().onClick();
   });
 
-  expect(placeCardNameClickHandler).toHaveBeenCalledTimes(PLACE_CARD_NAMES.length);
+  expect(handleCardClick).toHaveBeenCalledTimes(PLACE_CARD_NAMES.length);
 });
