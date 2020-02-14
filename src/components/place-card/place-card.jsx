@@ -10,14 +10,14 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-  	const {id, title, type, picture, cost, rating, isPremium, isFavorite} = props;
+    const { id, title, type, picture, cost, rating, isPremium, isFavorite, handleCardClick } = props;
 
-  	const premium = !isPremium ? `` : (
-        <div className="place-card__mark">
+    const premium = !isPremium ? `` : (
+      <div className="place-card__mark">
           <span>Premium</span>
         </div>);
 
-  	return (
+    return (
       <article className="cities__place-card place-card" key={id}>
 				{premium}
         <div className="cities__image-wrapper place-card__image-wrapper">
@@ -54,22 +54,26 @@ class PlaceCard extends PureComponent {
 };
 
 PlaceCard.propTypes = {
-	id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
-  picture: PropTypes.string.isRequired,
-  cost: PropTypes.number.isRequired,
-  rating: PropTypes.oneOf([0, 20, 40, 60, 80, 100]),
-  isPremium: PropTypes.bool,
-  isFavorite: PropTypes.bool,
+  offer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
+    picture: PropTypes.string.isRequired,
+    cost: PropTypes.number.isRequired,
+    rating: PropTypes.oneOf([0, 20, 40, 60, 80, 100]),
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
+  }).isRequired,
   handleCardClick: PropTypes.func.isRequired
 };
 
 PlaceCard.defaultProps = {
-  type: OfferType.APARTMENT,
-  rating: 0,
-  isPremium: false,
-  isFavorite: false
+  offer: {
+    type: OfferType.APARTMENT,
+    rating: 0,
+    isPremium: false,
+    isFavorite: false
+  }
 }
 
 export default PlaceCard;
