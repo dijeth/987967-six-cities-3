@@ -10,7 +10,8 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const { id, title, type, picture, cost, rating, isPremium, isFavorite, handleCardClick } = props;
+    const { offer, handleCardClick } = this.props;
+    const { id, title, type, picture, cost, rating, isPremium, isFavorite } = offer;
 
     const premium = !isPremium ? `` : (
       <div className="place-card__mark">
@@ -63,17 +64,18 @@ PlaceCard.propTypes = {
     rating: PropTypes.oneOf([0, 20, 40, 60, 80, 100]),
     isPremium: PropTypes.bool,
     isFavorite: PropTypes.bool,
+    city: PropTypes.string.isRequired
   }).isRequired,
   handleCardClick: PropTypes.func.isRequired
 };
 
-PlaceCard.defaultProps = {
-  offer: {
-    type: OfferType.APARTMENT,
-    rating: 0,
-    isPremium: false,
-    isFavorite: false
-  }
-}
+// PlaceCard.defaultProps = {
+//   offer: {
+//     type: OfferType.APARTMENT,
+//     rating: 0,
+//     isPremium: false,
+//     isFavorite: false
+//   }
+// }
 
 export default PlaceCard;

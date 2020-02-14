@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 const handleCardClick = () => {};
 
-const App = ({placesCount, placeCardNames}) => {
-  return <Main placesCount={placesCount} placeCardNames={placeCardNames} handleCardClick={handleCardClick} />;
+const App = ({placesCount, offerList}) => {
+  return <Main placesCount={placesCount} offerList={offerList} handleCardClick={handleCardClick} />;
 };
 
 App.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  placeCardNames: PropTypes.arrayOf(PropTypes.string).isRequired
+  offerList: PropTypes.array.isRequired
 };
 
 export default App;

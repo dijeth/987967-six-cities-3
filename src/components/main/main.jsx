@@ -1,43 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PlaceCardList from '../place-card-list/place-card-list.jsx';
+import {CITIES} from '../../const.js';
 
-const Main = ({placesCount, placeCardNames, handleCardClick}) => {
-  const placeCards = placeCardNames.map((placeCardName, index) => {
+const ACTIVE_CITY_INDEX = 3;
+
+const Main = ({placesCount, offerList, handleCardClick}) => {
+  const cityList = CITIES.map((it, i) => {
     return (
-      <article className="cities__place-card place-card" key={`${placeCardName.replace(/\s/g, `-`)}-${index}`}>
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-        <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
-            <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image"/>
-          </a>
-        </div>
-        <div className="place-card__info">
-          <div className="place-card__price-wrapper">
-            <div className="place-card__price">
-              <b className="place-card__price-value">&euro;120</b>
-              <span className="place-card__price-text">&#47;&nbsp;night</span>
-            </div>
-            <button className="place-card__bookmark-button button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
-          </div>
-          <div className="place-card__rating rating">
-            <div className="place-card__stars rating__stars">
-              <span style={{width: `80%`}}></span>
-              <span className="visually-hidden">Rating</span>
-            </div>
-          </div>
-          <h2 className="place-card__name">
-            <a href="#" onClick={handleCardClick}>{placeCardName}</a>
-          </h2>
-          <p className="place-card__type">Apartment</p>
-        </div>
-      </article>);
+      <li className="locations__item" key={`${it}-${i}`}>
+        <a className={`locations__item-link tabs__item${i === ACTIVE_CITY_INDEX ? ` tabs__item--active` : ``}`} href="#">
+          <span>{it}</span>
+        </a>
+      </li>)
   });
 
   return (
@@ -70,36 +45,7 @@ const Main = ({placesCount, placeCardNames, handleCardClick}) => {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
+              {cityList}
             </ul>
           </section>
         </div>
@@ -107,7 +53,7 @@ const Main = ({placesCount, placeCardNames, handleCardClick}) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+              <b className="places__found">{placesCount} places to stay in {CITIES[ACTIVE_CITY_INDEX]}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -123,7 +69,7 @@ const Main = ({placesCount, placeCardNames, handleCardClick}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">{placeCards}</div>
+              <PlaceCardList offerList={offerList} handleCardClick={handleCardClick} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -132,13 +78,12 @@ const Main = ({placesCount, placeCardNames, handleCardClick}) => {
         </div>
       </main>
     </div>
-
   );
 };
 
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
-  placeCardNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  offerList: PropTypes.array.isRequired,
   handleCardClick: PropTypes.func
 };
 

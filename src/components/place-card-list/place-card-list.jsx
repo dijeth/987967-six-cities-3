@@ -8,16 +8,15 @@ class PlaceCardList extends PureComponent {
 	}
 
 	render() {
-		const {offerList} = props;
+		const {offerList, handleCardClick} = this.props;
 		const placeCards = offerList.map((it) => {
-
 			return (
 				<PlaceCard offer={it} handleCardClick={handleCardClick} />)
-		})
+		});
 
 		return (
 			<div className="cities__places-list places__list tabs__content">
-				{placeCards}
+				{offerList.map((it) => <PlaceCard offer={it} handleCardClick={handleCardClick} key={it.id} />)}
 			</div>)
 	}
 };
