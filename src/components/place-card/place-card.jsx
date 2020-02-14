@@ -80,8 +80,8 @@ PlaceCard.propTypes = {
     isFavorite: PropTypes.bool,
     city: PropTypes.string.isRequired
   }).isRequired,
-  handleCardClick: PropTypes.func.isRequired,
-  handleCardHover: PropTypes.func.isRequired
+  handleCardClick: PropTypes.func,
+  handleCardHover: PropTypes.func
 };
 
 export default PlaceCard;

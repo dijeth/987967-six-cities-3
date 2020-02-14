@@ -114,6 +114,7 @@ exports[`<App /> should be render correctly 1`] = `
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
+              href="#"
             >
               <span>
                 Amsterdam
@@ -165,7 +166,8 @@ exports[`<App /> should be render correctly 1`] = `
             className="places__found"
           >
             100
-             places to stay in Amsterdam
+             places to stay in 
+            Amsterdam
           </b>
           <form
             action="#"
@@ -226,14 +228,10 @@ exports[`<App /> should be render correctly 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <div
-                className="place-card__mark"
-              >
-                <span>
-                  Premium
-                </span>
-              </div>
+              
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
@@ -244,7 +242,7 @@ exports[`<App /> should be render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="picture-1"
                     width="260"
                   />
                 </a>
@@ -261,7 +259,8 @@ exports[`<App /> should be render correctly 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      123
                     </b>
                     <span
                       className="place-card__price-text"
@@ -270,7 +269,7 @@ exports[`<App /> should be render correctly 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  place-card__bookmark-button--active button"
                     type="button"
                   >
                     <svg
@@ -316,7 +315,7 @@ exports[`<App /> should be render correctly 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    placeCardName1
+                    title-1
                   </a>
                 </h2>
                 <p
@@ -328,6 +327,8 @@ exports[`<App /> should be render correctly 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -346,7 +347,7 @@ exports[`<App /> should be render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="picture-2"
                     width="260"
                   />
                 </a>
@@ -363,7 +364,8 @@ exports[`<App /> should be render correctly 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      456
                     </b>
                     <span
                       className="place-card__price-text"
@@ -372,7 +374,7 @@ exports[`<App /> should be render correctly 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     type="button"
                   >
                     <svg
@@ -400,7 +402,7 @@ exports[`<App /> should be render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "100%",
                         }
                       }
                     />
@@ -418,7 +420,7 @@ exports[`<App /> should be render correctly 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    placeCardName2
+                    title-2
                   </a>
                 </h2>
                 <p

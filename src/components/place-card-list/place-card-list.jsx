@@ -28,7 +28,7 @@ class PlaceCardList extends PureComponent {
 
 PlaceCardList.propTypes = {
   offerList: PropTypes.array.isRequired,
-  handleCardClick: PropTypes.func.isRequired
+  handleCardClick: PropTypes.func
 };
 
 export default PlaceCardList;
