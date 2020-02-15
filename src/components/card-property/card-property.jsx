@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const CardProperty = () => {
-	return (
-		<div className="page">
-		  <header className="header">
+  return (
+    <div className="page">
+      <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
@@ -27,7 +27,7 @@ const CardProperty = () => {
         </div>
       </header>
 
-		  <main className="page__main page__main--property">
+      <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
@@ -323,7 +323,7 @@ const CardProperty = () => {
           </section>
         </div>
       </main>
-    </div>)
+    </div>);
 };
 
 export default CardProperty;

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
 
@@ -14,19 +14,19 @@ class App extends PureComponent {
   render() {
     return (
       <BrowserRouter>
-			  <Switch>
-			    <Route exact path="/">
-			      {this._renderApp()}
-			    </Route>
-			    <Route exact path="/dev-card-property">
-			      <CardProperty />
-			    </Route>
-			  </Switch>
-			</BrowserRouter>)
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-card-property">
+            <CardProperty />
+          </Route>
+        </Switch>
+      </BrowserRouter>);
   }
 
   _renderApp() {
-  	const { placesCount, offerList } = this.props;
+    const {placesCount, offerList} = this.props;
 
     return <Main placesCount={placesCount} offerList={offerList} handleCardClick={handleCardClick} />;
   }

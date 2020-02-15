@@ -12,7 +12,9 @@ class PlaceCard extends PureComponent {
 
   render() {
     const {offer, handleCardClick} = this.props;
-    const {id, title, type, picture, cost, rating, isPremium, isFavorite} = offer;
+    const {id, title, type, pictures, cost, rating: ratingMock, isPremium, isFavorite} = offer;
+    const rating = Math.floor(ratingMock) * 20;
+    const picture = pictures[0];
 
     const premium = !isPremium ? `` : (
       <div className="place-card__mark">
@@ -73,9 +75,9 @@ PlaceCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
-    picture: PropTypes.string.isRequired,
+    pictures: PropTypes.arrayOf(PropTypes.string),
     cost: PropTypes.number.isRequired,
-    rating: PropTypes.oneOf([0, 20, 40, 60, 80, 100]),
+    rating: PropTypes.number,
     isPremium: PropTypes.bool,
     isFavorite: PropTypes.bool,
     city: PropTypes.string.isRequired
