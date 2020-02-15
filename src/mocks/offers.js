@@ -7,13 +7,13 @@ const getRandomNumber = (maxValue, minValue = 0) => {
 const getTitleMock = (id) => `Title Offer ${id}`;
 const getTypeMock = () => Math.random() > 0.5 ? OfferType.APARTMENT : OfferType.PRIVATE_ROOM;
 const getPictureMock = () => `http://picsum.photos/260/200?r=${Math.random()}`;
-const getCostMock = () => getRandomNumber(1000);
+const getCostMock = () => getRandomNumber(1000, 10);
 const getRatingMock = () => getRandomNumber(50) / 10;
 const getPremiumMock = () => Math.random() > 0.5;
 const getFavoriteMock = () => Math.random() > 0.5;
 const getCity = () => CITIES[getRandomNumber(CITIES.length - 1)];
 const getBedroomCount = () => getRandomNumber(5);
-const getAdultCount = () => getRandomNumber(10);
+const getAdultCount = () => getRandomNumber(10, 1);
 
 const getInsediFeatures = () => {
   const features = Object.values(InsideFeature);

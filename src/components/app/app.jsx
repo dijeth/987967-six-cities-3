@@ -19,7 +19,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-card-property">
-            <CardProperty />
+            <CardProperty offer={this.props.offerList[0]} />
           </Route>
         </Switch>
       </BrowserRouter>);
