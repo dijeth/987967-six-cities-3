@@ -8,6 +8,7 @@ class PlaceCard extends PureComponent {
 
     this._handleMouseEnter = this._handleMouseEnter.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    this._handleTitleClick = this._handleTitleClick.bind(this);
   }
 
   render() {
@@ -54,7 +55,7 @@ class PlaceCard extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#" onClick={handleCardClick}>{title}</a>
+            <a href="#" onClick={this._handleTitleClick}>{title}</a>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>
@@ -67,6 +68,10 @@ class PlaceCard extends PureComponent {
 
   _handleMouseEnter() {
     this.props.handleCardHover(this.props.offer);
+  }
+
+  _handleTitleClick() {
+    this.props.handleCardClick(this.props.offer);
   }
 }
 
