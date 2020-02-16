@@ -57,7 +57,7 @@ const getInsediFeatures = () => {
 const getUserName = () => getRandomElement(WORDS);
 const getUserPicture = () => `https://api.adorable.io/avatars/74/${Math.random()}`;
 const getIsUserSuper = () => getRandomBoolean();
-const getDescription = () => `${getRandomElement(PARAGRAPHS)}\n${getRandomElement(PARAGRAPHS)}`;
+const getDescription = () => [getRandomElement(PARAGRAPHS), getRandomElement(PARAGRAPHS)].join(`\n`);
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
 
 const MOCK_COUNT = 4;
@@ -91,6 +91,6 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   };
 });
 
-console.log(offerMocks)
+// console.log(offerMocks)
 
 export { offerMocks };
