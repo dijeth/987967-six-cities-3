@@ -1,10 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {OfferType} from '../../const.js';
-import {ratingToPercent} from '../../util.js';
+import { OfferType, BREAK_STRING } from '../../const.js';
+import { ratingToPercent } from '../../util.js';
 
 const CardProperty = (props) => {
-  const {title, type, pictures, cost, rating, isPremium, isFavorite, bedroomCount, adultsCount, insideFeatures} = props.offer;
+  const {
+    title,
+    type,
+    pictures,
+    cost,
+    rating,
+    isPremium,
+    isFavorite,
+    bedroomCount,
+    adultsCount,
+    insideFeatures,
+    userName,
+    userPicture,
+    isUserSuper,
+    description,
+    descriptionTitle
+  } = props.offer;
 
   const gallery = pictures.map((it, i) => {
     return (
@@ -23,6 +39,10 @@ const CardProperty = (props) => {
         {it}
       </li>);
   });
+
+  const descriptionText = description.split(BREAK_STRING).map((it, i) => {
+    return <p className="property__text" key={`{it}-{i}`}>{it}</p>
+  })
 
   return (
     <div className="page">
@@ -99,13 +119,13 @@ const CardProperty = (props) => {
                 </ul>
               </div>
               <div className="property__host">
-                <h2 className="property__host-title">Meet the host</h2>
+                <h2 className="property__host-title">{descriptionTitle}</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div className={`property__avatar-wrapper ${isUserSuper ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={userPicture} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {userName}
                   </span>
                 </div>
                 <div className="property__description">
@@ -313,7 +333,12 @@ CardProperty.propTypes = {
     city: PropTypes.string.isRequired,
     bedroomCount: PropTypes.number,
     adultsCount: PropTypes.number,
-    insideFeatures: PropTypes.arrayOf(PropTypes.string)
+    insideFeatures: PropTypes.arrayOf(PropTypes.string),
+    userName: PropTypes.string.isRequired,
+    userPicture: PropTypes.string,
+    isUserSuper: PropTypes.bool,
+    descriptionTitle: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
   }).isRequired
 };
 

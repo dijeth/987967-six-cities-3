@@ -25,4 +25,6 @@ const InsideFeature = {
   FRIDGE: `Fridge`
 };
 
-export {OfferType, CITIES, InsideFeature};
+const BREAK_STRING = `\n`;
+
+export {OfferType, CITIES, InsideFeature, BREAK_STRING};
