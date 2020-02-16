@@ -11,7 +11,7 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, handleCardClick} = this.props;
+    const {offer, onCardClick: handleCardClick} = this.props;
     const {id, title, type, picture, cost, rating, isPremium, isFavorite} = offer;
 
     const premium = !isPremium ? `` : (
@@ -60,11 +60,11 @@ class PlaceCard extends PureComponent {
   }
 
   _handleMouseLeave() {
-    this.props.handleCardHover(null);
+    this.props.onCardHover(null);
   }
 
   _handleMouseEnter() {
-    this.props.handleCardHover(this.props.offer);
+    this.props.onCardHover(this.props.offer);
   }
 }
 
@@ -80,8 +80,8 @@ PlaceCard.propTypes = {
     isFavorite: PropTypes.bool,
     city: PropTypes.string.isRequired
   }).isRequired,
-  handleCardClick: PropTypes.func,
-  handleCardHover: PropTypes.func
+  onCardClick: PropTypes.func,
+  onCardHover: PropTypes.func
 };
 
 export default PlaceCard;

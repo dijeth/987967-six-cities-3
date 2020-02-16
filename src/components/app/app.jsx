@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const handleCardClick = () => {};
 
 const App = ({placesCount, offerList}) => {
-  return <Main placesCount={placesCount} offerList={offerList} handleCardClick={handleCardClick} />;
+  return <Main placesCount={placesCount} offerList={offerList} onCardClick={handleCardClick} />;
 };
 
 App.propTypes = {

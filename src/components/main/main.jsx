@@ -5,7 +5,7 @@ import {CITIES} from '../../const.js';
 
 const ACTIVE_CITY_INDEX = 3;
 
-const Main = ({placesCount, offerList, handleCardClick}) => {
+const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
   const cityList = CITIES.map((it, i) => {
     return (
       <li className="locations__item" key={`${it}-${i}`}>
@@ -69,7 +69,7 @@ const Main = ({placesCount, offerList, handleCardClick}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <PlaceCardList offerList={offerList} handleCardClick={handleCardClick} />
+              <PlaceCardList offerList={offerList} onCardClick={handleCardClick} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -84,7 +84,7 @@ const Main = ({placesCount, offerList, handleCardClick}) => {
 Main.propTypes = {
   placesCount: PropTypes.number.isRequired,
   offerList: PropTypes.array.isRequired,
-  handleCardClick: PropTypes.func
+  onCardClick: PropTypes.func
 };
 
 export default Main;
