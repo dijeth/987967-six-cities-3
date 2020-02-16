@@ -22,7 +22,7 @@ const mock = {
 it(`When onMouseEnter to the PlaceCard the callback accepts its offer-object`, () => {
   const handleCardHover = jest.fn();
 
-  const placeCard = shallow(<PlaceCard handleCardHover={handleCardHover} offer={mock} />);
+  const placeCard = shallow(<PlaceCard onCardHover={handleCardHover} offer={mock} />);
   placeCard.simulate(`mouseenter`);
 
   expect(handleCardHover).toHaveBeenCalledTimes(1);

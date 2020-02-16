@@ -13,11 +13,11 @@ class PlaceCardList extends PureComponent {
   }
 
   render() {
-    const {offerList, handleCardClick} = this.props;
+    const {offerList, onCardClick: handleCardClick} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {offerList.map((it) => <PlaceCard offer={it} handleCardClick={handleCardClick} handleCardHover={this.handleCardHover} key={it.id} />)}
+        {offerList.map((it) => <PlaceCard offer={it} onCardClick={handleCardClick} onCardHover={this.handleCardHover} key={it.id} />)}
       </div>);
   }
 
@@ -28,7 +28,7 @@ class PlaceCardList extends PureComponent {
 
 PlaceCardList.propTypes = {
   offerList: PropTypes.array.isRequired,
-  handleCardClick: PropTypes.func
+  onCardClick: PropTypes.func
 };
 
 export default PlaceCardList;

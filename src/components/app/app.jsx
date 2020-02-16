@@ -37,7 +37,7 @@ class App extends PureComponent {
   _renderApp() {
     const { placesCount, offerList } = this.props;
 
-    return <Main placesCount={placesCount} offerList={offerList} handleCardClick={this.handleCardClick} />;
+    return <Main placesCount={placesCount} offerList={offerList} onCardClick={this.handleCardClick} />;
   }
 
   handleCardClick(offer) {

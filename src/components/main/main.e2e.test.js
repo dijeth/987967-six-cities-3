@@ -37,7 +37,7 @@ it(`PlaceCardName should be pressed`, () => {
       <Main
         placesCount={PLACES_COUNT}
         offerList={mocks}
-        handleCardClick={handleCardClick}
+        onCardClick={handleCardClick}
       />);
   const cardNames = main.find(`.place-card__name a`);
 
