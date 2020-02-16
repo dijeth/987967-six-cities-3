@@ -1,4 +1,4 @@
-import { OfferType, CITIES, InsideFeature } from '../const.js';
+import {OfferType, CITIES, InsideFeature} from '../const.js';
 
 const getRandomNumber = (maxValue, minValue = 0) => {
   return Math.round(Math.random() * (maxValue - minValue)) + minValue;
@@ -52,4 +52,4 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   };
 });
 
-export { offerMocks };
+export {offerMocks};

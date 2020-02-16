@@ -4,13 +4,13 @@ import {OfferType} from '../../const.js';
 import {ratingToPercent} from '../../util.js';
 
 const CardProperty = (props) => {
-  const {id, title, type, pictures, cost, rating, isPremium, isFavorite, city, bedroomCount, adultsCount, insideFeatures} = props.offer;
+  const {title, type, pictures, cost, rating, isPremium, isFavorite, bedroomCount, adultsCount, insideFeatures} = props.offer;
 
   const gallery = pictures.map((it, i) => {
     return (
       <div className="property__image-wrapper" key={`${it}-${i}`}>
         <img className="property__image" src={it} alt="Photo studio" />
-      </div>)
+      </div>);
   });
 
   const premium = !isPremium ? `` : <div className="property__mark"><span>Premium</span></div>;
@@ -21,7 +21,7 @@ const CardProperty = (props) => {
     return (
       <li className="property__inside-item" key={`${it}-${i}`}>
         {it}
-      </li>)
+      </li>);
   });
 
   return (

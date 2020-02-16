@@ -13,7 +13,7 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, onCardClick: handleCardClick} = this.props;
+    const {offer} = this.props;
     const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
     const ratingPercent = ratingToPercent(rating);
     const picture = pictures[0];
@@ -72,7 +72,7 @@ class PlaceCard extends PureComponent {
   }
 
   _handleTitleClick() {
-    this.props.handleCardClick(this.props.offer);
+    this.props.onCardClick(this.props.offer);
   }
 }
 

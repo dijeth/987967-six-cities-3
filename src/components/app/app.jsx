@@ -1,10 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
-
-const handleCardClick = () => {};
 
 class App extends PureComponent {
   constructor(props) {
@@ -18,8 +16,8 @@ class App extends PureComponent {
 
   render() {
     if (this.state.cardProperty) {
-      return <CardProperty offer={this.state.cardProperty} />
-    };
+      return <CardProperty offer={this.state.cardProperty} />;
+    }
 
     return (
       <BrowserRouter>
@@ -35,7 +33,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const { placesCount, offerList } = this.props;
+    const {placesCount, offerList} = this.props;
 
     return <Main placesCount={placesCount} offerList={offerList} onCardClick={this.handleCardClick} />;
   }
@@ -43,7 +41,7 @@ class App extends PureComponent {
   handleCardClick(offer) {
     this.setState({
       cardProperty: offer
-    })
+    });
   }
 }
 

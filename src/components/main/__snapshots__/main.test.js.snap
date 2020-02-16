@@ -297,7 +297,7 @@ exports[`<Main /> should be render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "100%",
                         }
                       }
                     />
@@ -313,6 +313,7 @@ exports[`<Main /> should be render correctly 1`] = `
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     title-1
                   </a>
@@ -417,6 +418,7 @@ exports[`<Main /> should be render correctly 1`] = `
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     title-2
                   </a>

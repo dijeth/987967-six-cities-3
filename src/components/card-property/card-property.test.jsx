@@ -27,4 +27,4 @@ const mock = {
 it(`<CardProperty /> should be render correctly`, () => {
   const tree = renderer.create(<CardProperty offer={mock} />).toJSON();
   expect(tree).toMatchSnapshot();
-})
+});
