@@ -21,7 +21,12 @@ const mock = {
   city: `Amsterdam`,
   bedroomCount: 1,
   adultsCount: 2,
-  insideFeatures: [`Feature-1`, `Feature-2`, `Feature-3`, `Feature-4`]
+  insideFeatures: [`Feature-1`, `Feature-2`, `Feature-3`, `Feature-4`],
+  userName: `userName`,
+  userPicture: `userPicture`,
+  isUserSuper: true,
+  descriptionTitle: `descriptionTitle`,
+  description: `description-paragraph-1\ndescription-paragraph-2\ndescription-paragraph-3`
 };
 
 it(`<CardProperty /> should be render correctly`, () => {

@@ -267,7 +267,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
             <h2
               className="property__host-title"
             >
-              Meet the host
+              descriptionTitle
             </h2>
             <div
               className="property__host-user user"
@@ -279,14 +279,14 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="img/avatar-angelina.jpg"
+                  src="userPicture"
                   width="74"
                 />
               </div>
               <span
                 className="property__user-name"
               >
-                Angelina
+                userName
               </span>
             </div>
             <div
@@ -295,12 +295,17 @@ exports[`<CardProperty /> should be render correctly 1`] = `
               <p
                 className="property__text"
               >
-                A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                description-paragraph-1
               </p>
               <p
                 className="property__text"
               >
-                An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                description-paragraph-2
+              </p>
+              <p
+                className="property__text"
+              >
+                description-paragraph-3
               </p>
             </div>
           </div>
