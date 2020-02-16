@@ -1,4 +1,4 @@
-import { OfferType, CITIES, InsideFeature } from '../const.js';
+import {OfferType, CITIES, InsideFeature} from '../const.js';
 
 const WORDS = [`Fusce`, `Risus`, `Magna`, `Rutrum`, `Sit`, `Amet`, `Ex`, `Quis`, `Tincidunt`, `Varius`, `Ligula`];
 
@@ -93,4 +93,4 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
 
 // console.log(offerMocks)
 
-export { offerMocks };
+export {offerMocks};

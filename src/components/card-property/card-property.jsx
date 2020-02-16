@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OfferType, BREAK_STRING } from '../../const.js';
-import { ratingToPercent } from '../../util.js';
+import {OfferType, BREAK_STRING} from '../../const.js';
+import {ratingToPercent} from '../../util.js';
 
 const CardProperty = (props) => {
   const {
@@ -41,8 +41,8 @@ const CardProperty = (props) => {
   });
 
   const descriptionText = description.split(BREAK_STRING).map((it, i) => {
-    return <p className="property__text" key={`${it}-${i}`}>{it}</p>
-  })
+    return <p className="property__text" key={`${it}-${i}`}>{it}</p>;
+  });
 
   return (
     <div className="page">
