@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {OfferType} from '../../const.js';
+import {ratingToPercent} from '../../util.js';
 
 const CardProperty = (props) => {
   const {id, title, type, pictures, cost, rating, isPremium, isFavorite, city, bedroomCount, adultsCount, insideFeatures} = props.offer;
@@ -14,7 +15,7 @@ const CardProperty = (props) => {
 
   const premium = !isPremium ? `` : <div className="property__mark"><span>Premium</span></div>;
 
-  const ratingPercent = Math.floor(rating)*20;
+  const ratingPercent = ratingToPercent(rating);
 
   const features = insideFeatures.map((it, i) => {
     return (

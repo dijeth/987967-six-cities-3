@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {OfferType} from '../../const.js';
+import {ratingToPercent} from '../../util.js';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -13,8 +14,8 @@ class PlaceCard extends PureComponent {
 
   render() {
     const {offer, handleCardClick} = this.props;
-    const {id, title, type, pictures, cost, rating: ratingMock, isPremium, isFavorite} = offer;
-    const rating = Math.floor(ratingMock) * 20;
+    const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
+    const ratingPercent = ratingToPercent(rating);
     const picture = pictures[0];
 
     const premium = !isPremium ? `` : (
@@ -50,7 +51,7 @@ class PlaceCard extends PureComponent {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `${rating}%`}}></span>
+              <span style={{width: `${ratingPercent}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
