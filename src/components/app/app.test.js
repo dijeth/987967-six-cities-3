@@ -13,7 +13,10 @@ const mocks = [{
   rating: 4.8,
   isPremium: false,
   isFavorite: true,
-  city: `Amsterdam`
+  city: `Amsterdam`,
+  userName: `userName-1`,
+  description: `description-1`,
+  descriptionTitle: `descriptionTitle-1`
 },
 {
   id: `id-2`,
@@ -24,7 +27,10 @@ const mocks = [{
   rating: 5,
   isPremium: true,
   isFavorite: false,
-  city: `Brussels`
+  city: `Brussels`,
+  userName: `userName-2`,
+  description: `description-2`,
+  descriptionTitle: `descriptionTitle-2`
 }];
 
 it(`<App /> should be render correctly`, () => {
