@@ -68,20 +68,23 @@ class PlaceCard extends PureComponent {
   }
 }
 
+const offerPropType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
+  picture: PropTypes.string.isRequired,
+  cost: PropTypes.number.isRequired,
+  rating: PropTypes.number,
+  isPremium: PropTypes.bool,
+  isFavorite: PropTypes.bool,
+  city: PropTypes.string.isRequired
+});
+
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
-    picture: PropTypes.string.isRequired,
-    cost: PropTypes.number.isRequired,
-    rating: PropTypes.oneOf([0, 20, 40, 60, 80, 100]),
-    isPremium: PropTypes.bool,
-    isFavorite: PropTypes.bool,
-    city: PropTypes.string.isRequired
-  }).isRequired,
+  offer: offerPropType.isRequired,
   onCardClick: PropTypes.func,
   onCardHover: PropTypes.func
 };
 
 export default PlaceCard;
+export {offerPropType};
