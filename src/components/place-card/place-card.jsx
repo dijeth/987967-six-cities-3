@@ -11,7 +11,7 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, onCardClick: handleCardClick} = this.props;
+    const {offer, onCardClick} = this.props;
     const {id, title, type, picture, cost, rating, isPremium, isFavorite} = offer;
 
     const premium = !isPremium ? `` : (
@@ -52,7 +52,7 @@ class PlaceCard extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#" onClick={handleCardClick}>{title}</a>
+            <a href="#" onClick={onCardClick}>{title}</a>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>

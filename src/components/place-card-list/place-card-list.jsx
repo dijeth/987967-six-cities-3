@@ -13,11 +13,11 @@ class PlaceCardList extends PureComponent {
   }
 
   render() {
-    const {offerList, onCardClick: handleCardClick} = this.props;
+    const {offerList, onCardClick} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {offerList.map((it) => <PlaceCard offer={it} onCardClick={handleCardClick} onCardHover={this.handleCardHover} key={it.id} />)}
+        {offerList.map((it) => <PlaceCard offer={it} onCardClick={onCardClick} onCardHover={this.handleCardHover} key={it.id} />)}
       </div>);
   }
 
