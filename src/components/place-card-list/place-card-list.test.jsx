@@ -1,8 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main.jsx';
+import PlaceCardList from './place-card-list.jsx';
 
-const PLACES_COUNT = 100;
 const mocks = [{
   id: `id-1`,
   title: `title-1`,
@@ -24,9 +23,10 @@ const mocks = [{
   isPremium: true,
   isFavorite: false,
   city: `Brussels`
-}];
+}
+];
 
-it(`<Main /> should be render correctly`, () => {
-  const main = renderer.create(<Main placesCount={PLACES_COUNT} offerList={mocks}/>).toJSON();
-  expect(main).toMatchSnapshot();
+it(`<PlaceCardList /> should be render correctly`, () => {
+  const card = renderer.create(<PlaceCardList offerList={mocks} />).toJSON();
+  expect(card).toMatchSnapshot();
 });

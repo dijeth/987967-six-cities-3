@@ -1,22 +1,43 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from './main.jsx';
 
 const PLACES_COUNT = 100;
-const PLACE_CARD_NAMES = [`placeCardName4`, `placeCardName5`];
+const mocks = [{
+  id: `id-1`,
+  title: `title-1`,
+  type: `Apartment`,
+  picture: `picture-1`,
+  cost: 123,
+  rating: 80,
+  isPremium: false,
+  isFavorite: true,
+  city: `Amsterdam`
+},
+{
+  id: `id-2`,
+  title: `title-2`,
+  type: `Apartment`,
+  picture: `picture-2`,
+  cost: 456,
+  rating: 100,
+  isPremium: true,
+  isFavorite: false,
+  city: `Brussels`
+}];
 
 Enzyme.configure({
   adapter: new Adapter()
 });
 
 it(`PlaceCardName should be pressed`, () => {
-  const placeCardNameClickHandler = jest.fn();
-  const main = shallow(
+  const handleCardClick = jest.fn();
+  const main = mount(
       <Main
         placesCount={PLACES_COUNT}
-        placeCardNames={PLACE_CARD_NAMES}
-        placeCardNameClickHandler={placeCardNameClickHandler}
+        offerList={mocks}
+        onCardClick={handleCardClick}
       />);
   const cardNames = main.find(`.place-card__name a`);
 
@@ -24,5 +45,5 @@ it(`PlaceCardName should be pressed`, () => {
     it.props().onClick();
   });
 
-  expect(placeCardNameClickHandler).toHaveBeenCalledTimes(PLACE_CARD_NAMES.length);
+  expect(handleCardClick).toHaveBeenCalledTimes(mocks.length);
 });
