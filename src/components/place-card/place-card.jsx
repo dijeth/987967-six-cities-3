@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {OfferType} from '../../const.js';
+import {ratingToPercent} from '../../util.js';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -8,11 +9,14 @@ class PlaceCard extends PureComponent {
 
     this._handleMouseEnter = this._handleMouseEnter.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    this._handleTitleClick = this._handleTitleClick.bind(this);
   }
 
   render() {
-    const {offer, onCardClick} = this.props;
-    const {id, title, type, picture, cost, rating, isPremium, isFavorite} = offer;
+    const {offer} = this.props;
+    const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
+    const ratingPercent = ratingToPercent(rating);
+    const picture = pictures[0];
 
     const premium = !isPremium ? `` : (
       <div className="place-card__mark">
@@ -47,12 +51,12 @@ class PlaceCard extends PureComponent {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `${rating}%`}}></span>
+              <span style={{width: `${ratingPercent}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#" onClick={onCardClick}>{title}</a>
+            <a href="#" onClick={this._handleTitleClick}>{title}</a>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>
@@ -66,13 +70,17 @@ class PlaceCard extends PureComponent {
   _handleMouseEnter() {
     this.props.onCardHover(this.props.offer);
   }
+
+  _handleTitleClick() {
+    this.props.onCardClick(this.props.offer);
+  }
 }
 
 const offerPropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
-  picture: PropTypes.string.isRequired,
+  pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
   cost: PropTypes.number.isRequired,
   rating: PropTypes.number,
   isPremium: PropTypes.bool,

@@ -11,9 +11,9 @@ const mock = {
   id: `id-1`,
   title: `title-1`,
   type: `Apartment`,
-  picture: `picture-1`,
+  pictures: [`picture-1`],
   cost: 123,
-  rating: 80,
+  rating: 4.8,
   isPremium: false,
   isFavorite: true,
   city: `Amsterdam`

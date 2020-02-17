@@ -297,7 +297,7 @@ exports[`<App /> should be render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "100%",
                         }
                       }
                     />
