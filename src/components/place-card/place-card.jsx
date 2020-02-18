@@ -18,11 +18,6 @@ class PlaceCard extends PureComponent {
     const ratingPercent = ratingToPercent(rating);
     const picture = pictures[0];
 
-    const premium = !isPremium ? `` : (
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>);
-
     return (
       <article
         className="cities__place-card place-card"
@@ -30,7 +25,7 @@ class PlaceCard extends PureComponent {
         onMouseLeave={this._handleMouseLeave}
         key={id}
       >
-        {premium}
+        {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
             <img className="place-card__image" src={picture} width="260" height="200" alt="Place image"/>
@@ -42,7 +37,7 @@ class PlaceCard extends PureComponent {
               <b className="place-card__price-value">&euro;{cost}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button className={`place-card__bookmark-button ${isFavorite ? ` place-card__bookmark-button--active` : ``} button`} type="button">
+            <button className={`place-card__bookmark-button ${isFavorite && ` place-card__bookmark-button--active`} button`} type="button">
               <svg className="place-card__bookmark-icon" width="18" height="19">
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>

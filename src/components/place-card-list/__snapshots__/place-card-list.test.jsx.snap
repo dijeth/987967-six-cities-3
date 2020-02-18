@@ -9,7 +9,6 @@ exports[`<PlaceCardList /> should be render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    
     <div
       className="cities__image-wrapper place-card__image-wrapper"
     >
@@ -152,7 +151,7 @@ exports[`<PlaceCardList /> should be render correctly 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button  button"
+          className="place-card__bookmark-button false button"
           type="button"
         >
           <svg

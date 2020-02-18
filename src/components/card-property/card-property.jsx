@@ -29,8 +29,6 @@ const CardProperty = (props) => {
       </div>);
   });
 
-  const premium = !isPremium ? `` : <div className="property__mark"><span>Premium</span></div>;
-
   const ratingPercent = ratingToPercent(rating);
 
   const features = insideFeatures.map((it, i) => {
@@ -78,12 +76,12 @@ const CardProperty = (props) => {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {premium}
+              {isPremium && <div className="property__mark"><span>Premium</span></div>}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`} type="button">
+                <button className={`property__bookmark-button ${isFavorite && `property__bookmark-button--active`} button`} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -121,7 +119,7 @@ const CardProperty = (props) => {
               <div className="property__host">
                 <h2 className="property__host-title">{descriptionTitle}</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${isUserSuper ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                  <div className={`property__avatar-wrapper ${isUserSuper && `property__avatar-wrapper--pro`} user__avatar-wrapper`}>
                     <img className="property__avatar user__avatar" src={userPicture} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
