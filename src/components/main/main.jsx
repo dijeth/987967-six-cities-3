@@ -9,7 +9,7 @@ const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
   const cityList = CITIES.map((it, i) => {
     return (
       <li className="locations__item" key={`${it}-${i}`}>
-        <a className={`locations__item-link tabs__item ${i === ACTIVE_CITY_INDEX && `tabs__item--active`}`} href="#">
+        <a className={`locations__item-link tabs__item ${i === ACTIVE_CITY_INDEX ? `tabs__item--active` : ``}`} href="#">
           <span>{it}</span>
         </a>
       </li>);

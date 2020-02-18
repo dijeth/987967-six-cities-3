@@ -46,7 +46,7 @@ exports[`<PlaceCardList /> should be render correctly 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button  place-card__bookmark-button--active button"
+          className="place-card__bookmark-button place-card__bookmark-button--active button"
           type="button"
         >
           <svg
@@ -151,7 +151,7 @@ exports[`<PlaceCardList /> should be render correctly 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button false button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg

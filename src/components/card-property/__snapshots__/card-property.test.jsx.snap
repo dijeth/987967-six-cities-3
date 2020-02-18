@@ -147,7 +147,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
               Title-test
             </h1>
             <button
-              className="property__bookmark-button false button"
+              className="property__bookmark-button  button"
               type="button"
             >
               <svg
