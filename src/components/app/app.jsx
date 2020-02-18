@@ -14,16 +14,16 @@ class App extends PureComponent {
     this.handleCardClick = this.handleCardClick.bind(this);
   }
 
-  _renderApp() {
-    const {placesCount, offerList} = this.props;
-
-    return <Main placesCount={placesCount} offerList={offerList} onCardClick={this.handleCardClick} />;
-  }
-
   handleCardClick(offer) {
     this.setState({
       cardProperty: offer
     });
+  }
+
+  _renderApp() {
+    const {placesCount, offerList} = this.props;
+
+    return <Main placesCount={placesCount} offerList={offerList} onCardClick={this.handleCardClick} />;
   }
 
   render() {
