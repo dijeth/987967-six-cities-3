@@ -12,6 +12,18 @@ class PlaceCard extends PureComponent {
     this._handleTitleClick = this._handleTitleClick.bind(this);
   }
 
+  _handleMouseLeave() {
+    this.props.onCardHover(null);
+  }
+
+  _handleMouseEnter() {
+    this.props.onCardHover(this.props.offer);
+  }
+
+  _handleTitleClick() {
+    this.props.onCardClick(this.props.offer);
+  }
+
   render() {
     const {offer} = this.props;
     const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
@@ -56,18 +68,6 @@ class PlaceCard extends PureComponent {
           <p className="place-card__type">{type}</p>
         </div>
       </article>);
-  }
-
-  _handleMouseLeave() {
-    this.props.onCardHover(null);
-  }
-
-  _handleMouseEnter() {
-    this.props.onCardHover(this.props.offer);
-  }
-
-  _handleTitleClick() {
-    this.props.onCardClick(this.props.offer);
   }
 }
 
