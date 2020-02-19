@@ -90,10 +90,10 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     isUserSuper: getIsUserSuper(),
     descriptionTitle: getDescriptionTitle(),
     description: getDescription(),
-    coords: getCoordinates()
+    coord: getCoordinates()
   };
 });
 
-console.log(offerMocks)
+// console.log(offerMocks)
 
 export {offerMocks};

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {CITIES} from '../../const.js';
+import {CITIES, CityCoord} from '../../const.js';
 import Map from '../map/map.jsx';
 
 const ACTIVE_CITY_INDEX = 3;
@@ -15,6 +15,9 @@ const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
         </a>
       </li>);
   });
+
+  const centerCoord = CityCoord[CITIES[ACTIVE_CITY_INDEX]];
+  const offersCoord = offerList.map((it) => it.coord);
 
   return (
     <div className="page page--gray page--main">
@@ -73,7 +76,7 @@ const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
               <PlaceCardList offerList={offerList} onCardClick={handleCardClick} />
             </section>
             <div className="cities__right-section">
-              <Map centerCoords={[52.38333, 4.9]} currentOffer={[52.38333, 4.9]} nearOffers={[[52.38333, 4.9]]} />
+              <Map centerCoord={centerCoord} offersCoord={offersCoord} />
             </div>
           </div>
         </div>

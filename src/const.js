@@ -12,7 +12,7 @@ const CITIES = [
   `Dusseldorf`
 ];
 
-const CITY_COORDS = {
+const CityCoord = {
   [`Paris`]: [52.38333, 4.9],
   [`Cologne`]: [52.38333, 4.9],
   [`Brussels`]: [52.38333, 4.9],
@@ -36,4 +36,4 @@ const InsideFeature = {
 
 const BREAK_STRING = `\n`;
 
-export {OfferType, CITIES, InsideFeature, BREAK_STRING, CITY_COORDS};
+export {OfferType, CITIES, InsideFeature, BREAK_STRING, CityCoord};
