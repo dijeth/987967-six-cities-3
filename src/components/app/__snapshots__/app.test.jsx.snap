@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Main /> should be render correctly 1`] = `
+exports[`<App /> should be render correctly 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -436,7 +436,21 @@ exports[`<Main /> should be render correctly 1`] = `
         >
           <section
             className="cities__map map"
-          />
+            style={
+              Object {
+                "background": "none",
+              }
+            }
+          >
+            <div
+              id="map"
+              style={
+                Object {
+                  "height": "100%",
+                }
+              }
+            />
+          </section>
         </div>
       </div>
     </div>

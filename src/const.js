@@ -19,7 +19,7 @@ const CityCoord = {
   [`Amsterdam`]: [52.38333, 4.9],
   [`Hamburg`]: [52.38333, 4.9],
   [`Dusseldorf`]: [52.38333, 4.9]
-}
+};
 
 const InsideFeature = {
   WI_FI: `Wi-Fi`,

@@ -13,7 +13,8 @@ const mocks = [{
   rating: 4.8,
   isPremium: false,
   isFavorite: true,
-  city: `Amsterdam`
+  city: `Amsterdam`,
+  coord: [52.372447, 4.882779]
 },
 {
   id: `id-2`,
@@ -24,7 +25,8 @@ const mocks = [{
   rating: 5,
   isPremium: true,
   isFavorite: false,
-  city: `Brussels`
+  city: `Brussels`,
+  coord: [52.372448, 4.882770]
 }];
 
 Enzyme.configure({
