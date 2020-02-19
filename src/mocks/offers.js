@@ -39,7 +39,8 @@ const getCostMock = () => getRandomNumber(1000, 10);
 const getRatingMock = () => getRandomNumber(50) / 10;
 const getPremiumMock = () => getRandomBoolean();
 const getFavoriteMock = () => getRandomBoolean();
-const getCity = () => getRandomElement(CITIES);
+const getCity = () => 'Amsterdam';
+// const getCity = () => getRandomElement(CITIES);
 const getBedroomCount = () => getRandomNumber(5);
 const getAdultCount = () => getRandomNumber(10, 1);
 
@@ -59,6 +60,7 @@ const getUserPicture = () => `https://api.adorable.io/avatars/74/${Math.random()
 const getIsUserSuper = () => getRandomBoolean();
 const getDescription = () => [getRandomElement(PARAGRAPHS), getRandomElement(PARAGRAPHS)].join(`\n`);
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
+const getCoordinates = () => [52.3+getRandomNumber(84491, 52884)/1000000, 4+getRandomNumber(933742, 875206)/1000000];
 
 const MOCK_COUNT = 4;
 
@@ -87,10 +89,11 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     userPicture: getUserPicture(),
     isUserSuper: getIsUserSuper(),
     descriptionTitle: getDescriptionTitle(),
-    description: getDescription()
+    description: getDescription(),
+    coords: getCoordinates()
   };
 });
 
-// console.log(offerMocks)
+console.log(offerMocks)
 
 export {offerMocks};
