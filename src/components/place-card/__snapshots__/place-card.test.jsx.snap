@@ -6,7 +6,6 @@ exports[`<PlaceCard /> should be render correctly 1`] = `
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  
   <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
@@ -44,7 +43,7 @@ exports[`<PlaceCard /> should be render correctly 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button  place-card__bookmark-button--active button"
+        className="place-card__bookmark-button place-card__bookmark-button--active button"
         type="button"
       >
         <svg
@@ -72,7 +71,7 @@ exports[`<PlaceCard /> should be render correctly 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "100%",
             }
           }
         />
@@ -88,6 +87,7 @@ exports[`<PlaceCard /> should be render correctly 1`] = `
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         title-1
       </a>
