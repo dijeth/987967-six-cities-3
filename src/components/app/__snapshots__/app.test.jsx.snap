@@ -436,11 +436,6 @@ exports[`<App /> should be render correctly 1`] = `
         >
           <section
             className="cities__map map"
-            style={
-              Object {
-                "background": "none",
-              }
-            }
           >
             <div
               id="map"

@@ -6,7 +6,7 @@ import Map from '../map/map.jsx';
 
 const ACTIVE_CITY_INDEX = 3;
 
-const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
+const Main = ({placesCount, offerList, onCardClick}) => {
   const cityList = CITIES.map((it, i) => {
     return (
       <li className="locations__item" key={`${it}-${i}`}>
@@ -73,7 +73,7 @@ const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <PlaceCardList offerList={offerList} onCardClick={handleCardClick} />
+              <PlaceCardList offerList={offerList} onCardClick={onCardClick} />
             </section>
             <div className="cities__right-section">
               <Map centerCoord={centerCoord} offersCoord={offersCoord} />
