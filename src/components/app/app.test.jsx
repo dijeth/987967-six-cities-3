@@ -16,7 +16,8 @@ const mocks = [{
   city: `Amsterdam`,
   userName: `userName-1`,
   description: `description-1`,
-  descriptionTitle: `descriptionTitle-1`
+  descriptionTitle: `descriptionTitle-1`,
+  coord: [52.372447, 4.882779]
 },
 {
   id: `id-2`,
@@ -30,10 +31,13 @@ const mocks = [{
   city: `Brussels`,
   userName: `userName-2`,
   description: `description-2`,
-  descriptionTitle: `descriptionTitle-2`
+  descriptionTitle: `descriptionTitle-2`,
+  coord: [52.372448, 4.882770]
 }];
 
 it(`<App /> should be render correctly`, () => {
-  const app = renderer.create(<App placesCount={PLACES_COUNT} offerList={mocks}/>).toJSON();
+  const app = renderer.create(<App placesCount={PLACES_COUNT} offerList={mocks}/>, {
+    createNodeMock: () => document.createElement(`div`)
+  }).toJSON();
   expect(app).toMatchSnapshot();
 });
