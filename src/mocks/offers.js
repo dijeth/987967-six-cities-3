@@ -1,7 +1,5 @@
 import {OfferType, /* CITIES,*/ InsideFeature} from '../const.js';
 
-const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
-
 const WORDS = [`Fusce`, `Risus`, `Magna`, `Rutrum`, `Sit`, `Amet`, `Ex`, `Quis`, `Tincidunt`, `Varius`, `Ligula`];
 
 const PARAGRAPHS = [
@@ -58,30 +56,29 @@ const getInsediFeatures = () => {
 };
 
 const getUserName = () => getRandomElement(WORDS);
-const getUserPicture = () => `https://api.adorable.io/avatars/74/${Math.random()}`;
+const getUserPicture = (size = 74) => `https://api.adorable.io/avatars/${size}/${Math.random()}`;
 const getIsUserSuper = () => getRandomBoolean();
-const getDescription = () => [getRandomElement(PARAGRAPHS), getRandomElement(PARAGRAPHS)].join(`\n`);
+const getDescription = (paragraphCount = 2) => Array(paragraphCount).fill(` `).map(() => getRandomElement(PARAGRAPHS)).join(`\n`);
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
 const getCoordinates = () => [52.3 + getRandomNumber(84491, 52884) / 1000000, 4 + getRandomNumber(933742, 875206) / 1000000];
 
 const getDate = () => {
   const dateValue = getRandomNumber(new Date().valueOf());
   const date = new Date(dateValue);
-
-  return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`
+  return date.toISOString();
 };
 
-const getReviews = () => Array(getRandomNumber(5)).fill(` `).map((it, i) => getReview(i));
+const getReviews = () => Array(getRandomNumber(5, 1)).fill(` `).map((it, i) => getReview(i));
 const getReview = (id) => {
   return {
-    id,
+    id: String(id),
     userName: getRandomElement(WORDS),
-    userPicture: getUserPicture(),
+    userPicture: getUserPicture(54),
     rating: getRatingMock(),
-    description: getDescription(),
+    description: getDescription(1),
     date: getDate()
-  }
-}
+  };
+};
 
 const MOCK_COUNT = 4;
 
@@ -107,7 +104,7 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     adultsCount: getAdultCount(),
     insideFeatures: getInsediFeatures(),
     userName: getUserName(),
-    userPicture: getUserPicture(),
+    userPicture: getUserPicture(74),
     isUserSuper: getIsUserSuper(),
     descriptionTitle: getDescriptionTitle(),
     description: getDescription(),
@@ -116,6 +113,6 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   };
 });
 
-console.log(offerMocks);
+// console.log(offerMocks);
 
 export {offerMocks};

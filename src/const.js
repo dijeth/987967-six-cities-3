@@ -1,9 +1,9 @@
-const OfferType = {
+export const OfferType = {
   APARTMENT: `Apartment`,
   PRIVATE_ROOM: `Private room`
 };
 
-const CITIES = [
+export const CITIES = [
   `Paris`,
   `Cologne`,
   `Brussels`,
@@ -12,7 +12,7 @@ const CITIES = [
   `Dusseldorf`
 ];
 
-const CityCoord = {
+export const CityCoord = {
   [`Paris`]: [52.38333, 4.9],
   [`Cologne`]: [52.38333, 4.9],
   [`Brussels`]: [52.38333, 4.9],
@@ -21,7 +21,7 @@ const CityCoord = {
   [`Dusseldorf`]: [52.38333, 4.9]
 };
 
-const InsideFeature = {
+export const InsideFeature = {
   WI_FI: `Wi-Fi`,
   WASHING_MACHINE: `Washing machine`,
   TOWELS: `Towels`,
@@ -34,6 +34,6 @@ const InsideFeature = {
   FRIDGE: `Fridge`
 };
 
-const BREAK_STRING = `\n`;
+export const BREAK_STRING = `\n`;
 
-export {OfferType, CITIES, InsideFeature, BREAK_STRING, CityCoord};
+export const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
