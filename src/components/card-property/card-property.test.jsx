@@ -26,7 +26,24 @@ const mock = {
   userPicture: `userPicture`,
   isUserSuper: true,
   descriptionTitle: `descriptionTitle`,
-  description: `description-paragraph-1\ndescription-paragraph-2\ndescription-paragraph-3`
+  description: `description-paragraph-1\ndescription-paragraph-2\ndescription-paragraph-3`,
+  reviews: [{
+    id: `id-1`,
+    userName: `userName-1`,
+    userPicture: `userPicture-1`,
+    rating: 4.8,
+    description: `description-1`,
+    date: new Date(1582194976548).toISOString()
+  },
+  {
+    id: `id-2`,
+    userName: `userName-2`,
+    userPicture: `userPicture-2`,
+    rating: 3.8,
+    description: `description-2`,
+    date: new Date(1583000000000).toISOString()
+  },
+  ]
 };
 
 it(`<CardProperty /> should be render correctly`, () => {
