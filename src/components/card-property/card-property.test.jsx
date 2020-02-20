@@ -42,11 +42,51 @@ const mock = {
     rating: 3.8,
     description: `description-2`,
     date: new Date(1583000000000).toISOString()
-  },
+  }
   ]
 };
 
+const neighbourhoods = [{
+  id: `near-id-1`,
+  title: `near-title-1`,
+  type: `Apartment`,
+  pictures: `near-pictures-1`,
+  cost: 123,
+  rating: 1.7,
+  isPremium: true,
+  isFavorite: true,
+  city: `Amsterdam`,
+  coord: [52.359385, 4.879898]
+},
+{
+  id: `near-id-2`,
+  title: `near-title-2`,
+  type: `Apartment`,
+  pictures: `near-pictures-2`,
+  cost: 456,
+  rating: 2.7,
+  isPremium: false,
+  isFavorite: false,
+  city: `Amsterdam`,
+  coord: [52.353995, 4.911789]
+},
+{
+  id: `near-id-3`,
+  title: `near-title-3`,
+  type: `Apartment`,
+  pictures: `near-pictures-3`,
+  cost: 789,
+  rating: 3.7,
+  isPremium: true,
+  isFavorite: false,
+  city: `Amsterdam`,
+  coord: [52.377303, 4.903075]
+}
+];
+
 it(`<CardProperty /> should be render correctly`, () => {
-  const tree = renderer.create(<CardProperty offer={mock} />).toJSON();
+  const tree = renderer.create(<CardProperty offer={mock} neighbourhoods={neighbourhoods} />, {
+    createNodeMock: () => document.createElement(`div`)
+  }).toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -1,4 +1,4 @@
-import { OfferType, /* CITIES,*/ InsideFeature } from '../const.js';
+import {OfferType, /* CITIES,*/ InsideFeature} from '../const.js';
 
 const WORDS = [`Fusce`, `Risus`, `Magna`, `Rutrum`, `Sit`, `Amet`, `Ex`, `Quis`, `Tincidunt`, `Varius`, `Ligula`];
 
@@ -24,9 +24,9 @@ const SHORT_PARAGRAPHS = [
 
 const getRandomNumber = (maxValue, minValue = 0, exclude) => {
   const get = () => Math.round(Math.random() * (maxValue - minValue)) + minValue;
-  if (! Number(exclude).isNaN) {
+  if (!Number(exclude).isNaN) {
     return get();
-  };
+  }
 
   let number;
   do {
@@ -136,4 +136,4 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
 
 console.log(offerMocks);
 
-export { offerMocks, getNeighbourhoods };
+export {offerMocks, getNeighbourhoods};

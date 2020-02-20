@@ -53,7 +53,7 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <div id='map' style={{height: `100%`}} ref={this._mapWrapper}></div>
+    return <div id='map' style={{height: `100%`}} ref={this._mapWrapper}></div>;
   }
 }
 

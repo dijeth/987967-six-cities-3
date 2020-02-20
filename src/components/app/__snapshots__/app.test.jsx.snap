@@ -446,6 +446,7 @@ exports[`<App /> should be render correctly 1`] = `
               }
             />
           </section>
+          );
         </div>
       </div>
     </div>

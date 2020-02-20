@@ -303,7 +303,6 @@ const CardProperty = (props) => {
 };
 
 
-
 CardProperty.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
