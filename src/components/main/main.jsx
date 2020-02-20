@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {CITIES} from '../../const.js';
+import {CITIES, CityCoord} from '../../const.js';
+import Map from '../map/map.jsx';
 
 const ACTIVE_CITY_INDEX = 3;
 
-const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
+const Main = ({placesCount, offerList, onCardClick}) => {
   const cityList = CITIES.map((it, i) => {
     return (
       <li className="locations__item" key={`${it}-${i}`}>
@@ -14,6 +15,9 @@ const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
         </a>
       </li>);
   });
+
+  const centerCoord = CityCoord[CITIES[ACTIVE_CITY_INDEX]];
+  const offersCoord = offerList.map((it) => it.coord);
 
   return (
     <div className="page page--gray page--main">
@@ -69,10 +73,10 @@ const Main = ({placesCount, offerList, onCardClick: handleCardClick}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <PlaceCardList offerList={offerList} onCardClick={handleCardClick} />
+              <PlaceCardList offerList={offerList} onCardClick={onCardClick} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map centerCoord={centerCoord} offersCoord={offersCoord} />
             </div>
           </div>
         </div>
