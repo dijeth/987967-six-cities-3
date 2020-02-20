@@ -1,5 +1,7 @@
 import {OfferType, /* CITIES,*/ InsideFeature} from '../const.js';
 
+const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+
 const WORDS = [`Fusce`, `Risus`, `Magna`, `Rutrum`, `Sit`, `Amet`, `Ex`, `Quis`, `Tincidunt`, `Varius`, `Ligula`];
 
 const PARAGRAPHS = [
@@ -62,6 +64,25 @@ const getDescription = () => [getRandomElement(PARAGRAPHS), getRandomElement(PAR
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
 const getCoordinates = () => [52.3 + getRandomNumber(84491, 52884) / 1000000, 4 + getRandomNumber(933742, 875206) / 1000000];
 
+const getDate = () => {
+  const dateValue = getRandomNumber(new Date().valueOf());
+  const date = new Date(dateValue);
+
+  return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`
+};
+
+const getReviews = () => Array(getRandomNumber(5)).fill(` `).map((it, i) => getReview(i));
+const getReview = (id) => {
+  return {
+    id,
+    userName: getRandomElement(WORDS),
+    userPicture: getUserPicture(),
+    rating: getRatingMock(),
+    description: getDescription(),
+    date: getDate()
+  }
+}
+
 const MOCK_COUNT = 4;
 
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
@@ -90,10 +111,11 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     isUserSuper: getIsUserSuper(),
     descriptionTitle: getDescriptionTitle(),
     description: getDescription(),
-    coord: getCoordinates()
+    coord: getCoordinates(),
+    reviews: getReviews()
   };
 });
 
-// console.log(offerMocks);
+console.log(offerMocks);
 
 export {offerMocks};
