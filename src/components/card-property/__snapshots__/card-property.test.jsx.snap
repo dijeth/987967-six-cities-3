@@ -612,11 +612,6 @@ exports[`<CardProperty /> should be render correctly 1`] = `
       >
         <div
           id="map"
-          style={
-            Object {
-              "height": "100%",
-            }
-          }
         />
       </section>
     </section>
@@ -659,7 +654,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="n"
+                    src="near-pictures-1"
                     width="260"
                   />
                 </a>
@@ -757,7 +752,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="n"
+                    src="near-pictures-2"
                     width="260"
                   />
                 </a>

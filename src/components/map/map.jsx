@@ -20,6 +20,8 @@ class Map extends PureComponent {
   componentDidMount() {
     const {centerCoord, offersCoord} = this.props;
 
+    this._mapWrapper.current.style.height = `100%`;
+
     this._map = leaflet.map(this._mapWrapper.current, {
       center: centerCoord,
       zoom: ZOOM,
@@ -53,7 +55,7 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <div id='map' style={{height: `100%`}} ref={this._mapWrapper}></div>;
+    return <div id='map' ref={this._mapWrapper}></div>;
   }
 }
 

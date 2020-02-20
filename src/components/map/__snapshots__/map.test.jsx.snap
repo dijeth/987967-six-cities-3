@@ -3,10 +3,5 @@
 exports[`<Map /> should be render correctly 1`] = `
 <div
   id="map"
-  style={
-    Object {
-      "height": "100%",
-    }
-  }
 />
 `;
