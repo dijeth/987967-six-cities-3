@@ -80,7 +80,8 @@ const offerPropType = PropTypes.shape({
   rating: PropTypes.number,
   isPremium: PropTypes.bool,
   isFavorite: PropTypes.bool,
-  city: PropTypes.string.isRequired
+  city: PropTypes.string.isRequired,
+  coord: PropTypes.arrayOf(PropTypes.number)
 });
 
 PlaceCard.propTypes = {

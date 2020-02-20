@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import {OfferType, BREAK_STRING} from '../../const.js';
 import {ratingToPercent} from '../../util.js';
 import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
+import PlaceCard, {offerPropType} from '../place-card/place-card.jsx';
+import Map from '../map/map.jsx';
+import {CityCoord} from '../../const.js';
 
 const CardProperty = (props) => {
   const {
@@ -21,8 +24,11 @@ const CardProperty = (props) => {
     isUserSuper,
     description,
     descriptionTitle,
-    reviews
+    reviews,
+    city
   } = props.offer;
+
+  const neighbourhoods = props.neighbourhoods;
 
   const gallery = pictures.map((it, i) => {
     return (
@@ -43,6 +49,9 @@ const CardProperty = (props) => {
   const descriptionText = description.split(BREAK_STRING).map((it, i) => {
     return <p className="property__text" key={`${it}-${i}`}>{it}</p>;
   });
+
+  const centerCoord = CityCoord[city];
+  const offersCoord = neighbourhoods.map((it) => it.coord);
 
   return (
     <div className="page">
@@ -183,7 +192,9 @@ const CardProperty = (props) => {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map centerCoord={centerCoord} offersCoord={offersCoord} />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -291,6 +302,8 @@ const CardProperty = (props) => {
     </div>);
 };
 
+
+
 CardProperty.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -311,7 +324,8 @@ CardProperty.propTypes = {
     descriptionTitle: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     reviews: reviewListPropTypes
-  }).isRequired
+  }).isRequired,
+  neighbourhoods: PropTypes.arrayOf(offerPropType)
 };
 
 

@@ -1,4 +1,4 @@
-import {OfferType, /* CITIES,*/ InsideFeature} from '../const.js';
+import { OfferType, /* CITIES,*/ InsideFeature } from '../const.js';
 
 const WORDS = [`Fusce`, `Risus`, `Magna`, `Rutrum`, `Sit`, `Amet`, `Ex`, `Quis`, `Tincidunt`, `Varius`, `Ligula`];
 
@@ -22,8 +22,18 @@ const SHORT_PARAGRAPHS = [
   `Mauris et imperdiet nulla, nec mattis sapien`
 ];
 
-const getRandomNumber = (maxValue, minValue = 0) => {
-  return Math.round(Math.random() * (maxValue - minValue)) + minValue;
+const getRandomNumber = (maxValue, minValue = 0, exclude) => {
+  const get = () => Math.round(Math.random() * (maxValue - minValue)) + minValue;
+  if (! Number(exclude).isNaN) {
+    return get();
+  };
+
+  let number;
+  do {
+    number = get();
+  } while (number === exclude);
+
+  return number;
 };
 
 const getRandomElement = (array) => {
@@ -80,7 +90,18 @@ const getReview = (id) => {
   };
 };
 
-const MOCK_COUNT = 4;
+const getNeighbourhoods = (exclude) => {
+  const numberExclude = Number(exclude).isNaN ? MOCK_COUNT : Number(exclude);
+  const uniqueID = new Set([
+    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
+    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
+    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude)
+  ]);
+
+  return Array.from(uniqueID.values()).map((it) => offerMocks[it]);
+};
+
+const MOCK_COUNT = 10;
 
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   return {
@@ -113,6 +134,6 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   };
 });
 
-// console.log(offerMocks);
+console.log(offerMocks);
 
-export {offerMocks};
+export { offerMocks, getNeighbourhoods };
