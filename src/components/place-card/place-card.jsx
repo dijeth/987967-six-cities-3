@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {OfferType} from '../../const.js';
+import {OfferType, CardRenderType} from '../../const.js';
 import {ratingToPercent} from '../../util.js';
 
 class PlaceCard extends PureComponent {
@@ -13,32 +13,38 @@ class PlaceCard extends PureComponent {
   }
 
   _handleMouseLeave() {
-    this.props.onCardHover(null);
+    if (this.props.onCardHover) {
+      this.props.onCardHover(null);
+    }
   }
 
   _handleMouseEnter() {
-    this.props.onCardHover(this.props.offer);
+    if (this.props.onCardHover) {
+      this.props.onCardHover(this.props.offer);
+    }
   }
 
   _handleTitleClick() {
-    this.props.onCardClick(this.props.offer);
+    if (this.props.onCardClick) {
+      this.props.onCardClick(this.props.offer);
+    }
   }
 
   render() {
-    const {offer} = this.props;
+    const {offer, renderType} = this.props;
     const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
     const ratingPercent = ratingToPercent(rating);
     const picture = pictures[0];
 
     return (
       <article
-        className="cities__place-card place-card"
+        className={`${renderType}__place-card place-card`}
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         key={id}
       >
         {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={`${renderType}__image-wrapper place-card__image-wrapper`}>
           <a href="#">
             <img className="place-card__image" src={picture} width="260" height="200" alt="Place image"/>
           </a>
@@ -86,8 +92,13 @@ const offerPropType = PropTypes.shape({
 
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
+  renderType: PropTypes.oneOf([CardRenderType.CITIES, CardRenderType.NEAR_PLACES]),
   onCardClick: PropTypes.func,
   onCardHover: PropTypes.func
+};
+
+PlaceCard.defaultProps = {
+  renderType: CardRenderType.CITIES
 };
 
 export default PlaceCard;

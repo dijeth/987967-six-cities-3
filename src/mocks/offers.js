@@ -134,6 +134,6 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   };
 });
 
-console.log(offerMocks);
+// console.log(offerMocks);
 
 export {offerMocks, getNeighbourhoods};
