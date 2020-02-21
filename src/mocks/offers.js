@@ -22,8 +22,18 @@ const SHORT_PARAGRAPHS = [
   `Mauris et imperdiet nulla, nec mattis sapien`
 ];
 
-const getRandomNumber = (maxValue, minValue = 0) => {
-  return Math.round(Math.random() * (maxValue - minValue)) + minValue;
+const getRandomNumber = (maxValue, minValue = 0, exclude) => {
+  const get = () => Math.round(Math.random() * (maxValue - minValue)) + minValue;
+  if (!Number(exclude).isNaN) {
+    return get();
+  }
+
+  let number;
+  do {
+    number = get();
+  } while (number === exclude);
+
+  return number;
 };
 
 const getRandomElement = (array) => {
@@ -56,13 +66,42 @@ const getInsediFeatures = () => {
 };
 
 const getUserName = () => getRandomElement(WORDS);
-const getUserPicture = () => `https://api.adorable.io/avatars/74/${Math.random()}`;
+const getUserPicture = (size = 74) => `https://api.adorable.io/avatars/${size}/${Math.random()}`;
 const getIsUserSuper = () => getRandomBoolean();
-const getDescription = () => [getRandomElement(PARAGRAPHS), getRandomElement(PARAGRAPHS)].join(`\n`);
+const getDescription = (paragraphCount = 2) => Array(paragraphCount).fill(` `).map(() => getRandomElement(PARAGRAPHS)).join(`\n`);
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
 const getCoordinates = () => [52.3 + getRandomNumber(84491, 52884) / 1000000, 4 + getRandomNumber(933742, 875206) / 1000000];
 
-const MOCK_COUNT = 4;
+const getDate = () => {
+  const dateValue = getRandomNumber(new Date().valueOf());
+  const date = new Date(dateValue);
+  return date.toISOString();
+};
+
+const getReviews = () => Array(getRandomNumber(5, 1)).fill(` `).map((it, i) => getReview(i));
+const getReview = (id) => {
+  return {
+    id: String(id),
+    userName: getRandomElement(WORDS),
+    userPicture: getUserPicture(54),
+    rating: getRatingMock(),
+    description: getDescription(1),
+    date: getDate()
+  };
+};
+
+const getNeighbourhoods = (exclude) => {
+  const numberExclude = Number(exclude).isNaN ? MOCK_COUNT : Number(exclude);
+  const uniqueID = new Set([
+    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
+    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
+    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude)
+  ]);
+
+  return Array.from(uniqueID.values()).map((it) => offerMocks[it]);
+};
+
+const MOCK_COUNT = 10;
 
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   return {
@@ -86,14 +125,15 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     adultsCount: getAdultCount(),
     insideFeatures: getInsediFeatures(),
     userName: getUserName(),
-    userPicture: getUserPicture(),
+    userPicture: getUserPicture(74),
     isUserSuper: getIsUserSuper(),
     descriptionTitle: getDescriptionTitle(),
     description: getDescription(),
-    coord: getCoordinates()
+    coord: getCoordinates(),
+    reviews: getReviews()
   };
 });
 
 // console.log(offerMocks);
 
-export {offerMocks};
+export {offerMocks, getNeighbourhoods};

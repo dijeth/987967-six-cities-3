@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
+import {getNeighbourhoods} from '../../mocks/offers.js';
 
 class App extends PureComponent {
   constructor(props) {
@@ -28,7 +29,8 @@ class App extends PureComponent {
 
   render() {
     if (this.state.cardProperty) {
-      return <CardProperty offer={this.state.cardProperty} />;
+      const neighbourhoods = getNeighbourhoods(this.state.cardProperty.id);
+      return <CardProperty offer={this.state.cardProperty} neighbourhoods={neighbourhoods} />;
     }
 
     return (
@@ -38,7 +40,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-card-property">
-            <CardProperty offer={this.props.offerList[0]} />
+            <CardProperty offer={this.props.offerList[0]} neighbourhoods={getNeighbourhoods(`0`)} />
           </Route>
         </Switch>
       </BrowserRouter>);

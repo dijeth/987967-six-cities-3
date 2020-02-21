@@ -76,7 +76,9 @@ const Main = ({placesCount, offerList, onCardClick}) => {
               <PlaceCardList offerList={offerList} onCardClick={onCardClick} />
             </section>
             <div className="cities__right-section">
-              <Map centerCoord={centerCoord} offersCoord={offersCoord} />
+              <section className='cities__map map'>
+                <Map centerCoord={centerCoord} offersCoord={offersCoord} />
+              </section>);
             </div>
           </div>
         </div>

@@ -439,13 +439,9 @@ exports[`<Main /> should be render correctly 1`] = `
           >
             <div
               id="map"
-              style={
-                Object {
-                  "height": "100%",
-                }
-              }
             />
           </section>
+          );
         </div>
       </div>
     </div>
