@@ -8,7 +8,7 @@ import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import Map from '../map/map.jsx';
 import {CityCoord, CardRenderType} from '../../const.js';
 
-const CardProperty = (props) => {
+const CardProperty = ({offer, neighbourhoods}) => {
   const {
     title,
     type,
@@ -27,9 +27,7 @@ const CardProperty = (props) => {
     descriptionTitle,
     reviews,
     city
-  } = props.offer;
-
-  const neighbourhoods = props.neighbourhoods;
+  } = offer;
 
   const gallery = pictures.map((it, i) => {
     return (
