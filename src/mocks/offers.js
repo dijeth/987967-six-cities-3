@@ -1,4 +1,6 @@
-import {OfferType, /* CITIES,*/ InsideFeature} from '../const.js';
+import {OfferType, CITIES, InsideFeature} from '../const.js';
+
+const MOCK_COUNT = 30;
 
 const WORDS = [`Fusce`, `Risus`, `Magna`, `Rutrum`, `Sit`, `Amet`, `Ex`, `Quis`, `Tincidunt`, `Varius`, `Ligula`];
 
@@ -49,8 +51,8 @@ const getCostMock = () => getRandomNumber(1000, 10);
 const getRatingMock = () => getRandomNumber(50) / 10;
 const getPremiumMock = () => getRandomBoolean();
 const getFavoriteMock = () => getRandomBoolean();
-const getCity = () => `Amsterdam`;
-// const getCity = () => getRandomElement(CITIES);
+// const getCity = () => `Amsterdam`;
+const getCity = () => getRandomElement(CITIES);
 const getBedroomCount = () => getRandomNumber(5);
 const getAdultCount = () => getRandomNumber(10, 1);
 
@@ -101,8 +103,6 @@ const getNeighbourhoods = (exclude) => {
   return Array.from(uniqueID.values()).map((it) => offerMocks[it]);
 };
 
-const MOCK_COUNT = 10;
-
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   return {
     id: String(i),
@@ -134,6 +134,6 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   };
 });
 
-// console.log(offerMocks);
+console.log(offerMocks);
 
 export {offerMocks, getNeighbourhoods};

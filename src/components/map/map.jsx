@@ -44,6 +44,11 @@ class Map extends PureComponent {
     this._map.remove();
   }
 
+  componentDidUpdate() {
+    const {offersCoord} = this.props;
+    this._addOffers(offersCoord);
+  }
+
   _setView(coords) {
     this._map.setView(coords, ZOOM);
   }

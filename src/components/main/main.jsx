@@ -1,23 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {CITIES, CityCoord} from '../../const.js';
+import { CITIES, CityCoord } from '../../const.js';
 import Map from '../map/map.jsx';
+import CityList from '../city-list/city-list.jsx';
 
 const ACTIVE_CITY_INDEX = 3;
 
-const Main = ({placesCount, offerList, onCardClick}) => {
-  const cityList = CITIES.map((it, i) => {
-    return (
-      <li className="locations__item" key={`${it}-${i}`}>
-        <a className={`locations__item-link tabs__item ${i === ACTIVE_CITY_INDEX ? `tabs__item--active` : ``}`} href="#">
-          <span>{it}</span>
-        </a>
-      </li>);
-  });
-
-  const centerCoord = CityCoord[CITIES[ACTIVE_CITY_INDEX]];
+const Main = ({ offerList, cities, activeCity }) => {
+  const city = cities[activeCity];
+  const centerCoord = CityCoord[city];
   const offersCoord = offerList.map((it) => it.coord);
+  const placesCount = offerList.length;
 
   return (
     <div className="page page--gray page--main">
@@ -48,16 +42,14 @@ const Main = ({placesCount, offerList, onCardClick}) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {cityList}
-            </ul>
+            <CityList cities={cities} activeCity={activeCity} />
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {CITIES[ACTIVE_CITY_INDEX]}</b>
+              <b className="places__found">{placesCount} places to stay in {city}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -73,7 +65,7 @@ const Main = ({placesCount, offerList, onCardClick}) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <PlaceCardList offerList={offerList} onCardClick={onCardClick} />
+              <PlaceCardList offerList={offerList} onCardClick={()=>{}} />
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
@@ -88,9 +80,9 @@ const Main = ({placesCount, offerList, onCardClick}) => {
 };
 
 Main.propTypes = {
-  placesCount: PropTypes.number.isRequired,
   offerList: PropTypes.array.isRequired,
-  onCardClick: PropTypes.func
+  cities: PropTypes.array,
+  activeCity: PropTypes.number
 };
 
 export default Main;

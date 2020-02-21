@@ -1,36 +1,23 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
-import {getNeighbourhoods} from '../../mocks/offers.js';
+import { getNeighbourhoods } from '../../mocks/offers.js';
+import { connect } from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cardProperty: null
-    };
-
-    this.handleCardClick = this.handleCardClick.bind(this);
-  }
-
-  handleCardClick(offer) {
-    this.setState({
-      cardProperty: offer
-    });
-  }
-
   _renderApp() {
-    const {placesCount, offerList} = this.props;
+    const { offerList, cities, activeCity } = this.props;
 
-    return <Main placesCount={placesCount} offerList={offerList} onCardClick={this.handleCardClick} />;
+    return <Main cities={cities} activeCity={activeCity} offerList={offerList} />;
   }
 
   render() {
-    if (this.state.cardProperty) {
-      const neighbourhoods = getNeighbourhoods(this.state.cardProperty.id);
-      return <CardProperty offer={this.state.cardProperty} neighbourhoods={neighbourhoods} />;
+    if (this.props.cardProperty) {
+      const neighbourhoods = getNeighbourhoods(this.props.cardProperty.id);
+      return <CardProperty offer={this.props.cardProperty} neighbourhoods={neighbourhoods} />;
     }
 
     return (
@@ -48,8 +35,18 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired,
-  offerList: PropTypes.array.isRequired
+  offerList: PropTypes.array.isRequired,
+  cardProperty: PropTypes.object,
+  cities: PropTypes.arrayOf(PropTypes.string),
+  activeCity: PropTypes.number
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offerList: state.selectedOffers,
+  cardProperty: state.activeCard,
+  cities: state.cities,
+  activeCity: state.activeCity
+});
+
+export { App };
+export default connect(mapStateToProps)(App);
