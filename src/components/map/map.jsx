@@ -29,7 +29,7 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const { centerCoord, offersCoord } = this.props;
+    const { centerCoord, offersCoord, activeCoord } = this.props;
 
     this._mapWrapper.current.style.height = `100%`;
 
@@ -51,6 +51,7 @@ class Map extends PureComponent {
 
     this._centerCoord = centerCoord;
     this._offerLayers = this._addOffers(offersCoord);
+    this._updateActiveCoord(activeCoord);
   }
 
   componentWillUnmount() {
@@ -67,7 +68,7 @@ class Map extends PureComponent {
       this._updateOffers(offersCoord);
     };
 
-    // if (activeCoord) this._addActiveCoord(activeCoord);
+    this._updateActiveCoord(activeCoord);
   }
 
   _setView(coords) {
@@ -75,7 +76,7 @@ class Map extends PureComponent {
   }
 
   _addOffers(offersCoord) {
-    return offersCoord.map((coord) => leaflet.marker(coord, { ICON }).addTo(this._map));
+    return offersCoord.map((coord) => leaflet.marker(coord, { icon: ICON }).addTo(this._map));
   }
 
   _updateOffers(offersCoord) {
@@ -84,9 +85,14 @@ class Map extends PureComponent {
     this._offerLayers = this._addOffers(offersCoord);
   }
 
-  _addActiveCoord(coord) {
+  _updateActiveCoord(coord) {
+    if (this._activeLayer) {
+      this._map.removeLayer(this._activeLayer);
+      this._activeLayer = null;
+    };
+
     if (coord) {
-      leaflet.marker(coord, { ICON_ACTIVE }).addTo(this._map)
+      this._activeLayer = leaflet.marker(coord, {icon: ICON_ACTIVE}).addTo(this._map);
     };
   }
 

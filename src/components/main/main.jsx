@@ -69,7 +69,7 @@ const Main = ({ offerList, cities, activeCity, activeCard }) => {
             <div className="cities__right-section">
               <section className='cities__map map'>
                 <Map centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={activeCoord} />
-              </section>);
+              </section>
             </div>
           </div>
         </div>

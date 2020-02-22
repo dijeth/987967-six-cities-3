@@ -16,10 +16,10 @@ class App extends PureComponent {
   }
 
   render() {
-    const {screenType, activeCard} = this.props;
+    const {screenType, activeCard, offerList} = this.props;
 
     if (screenType === ScreenType.PROPERTY) {
-      const neighbourhoods = getNeighbourhoods(activeCard.id);
+      const neighbourhoods = getNeighbourhoods(activeCard, offerList);
       return <CardProperty offer={activeCard} neighbourhoods={neighbourhoods} />;
     }
 
@@ -30,7 +30,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-card-property">
-            <CardProperty offer={this.props.offerList[0]} neighbourhoods={getNeighbourhoods(`0`)} />
+            <CardProperty offer={this.props.offerList[0]} neighbourhoods={getNeighbourhoods(offerList[0], offerList)} />
           </Route>
         </Switch>
       </BrowserRouter>);

@@ -26,7 +26,8 @@ const CardProperty = ({offer, neighbourhoods}) => {
     description,
     descriptionTitle,
     reviews,
-    city
+    city,
+    coord
   } = offer;
 
   const gallery = pictures.map((it, i) => {
@@ -192,7 +193,7 @@ const CardProperty = ({offer, neighbourhoods}) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map centerCoord={centerCoord} offersCoord={offersCoord} />
+            <Map centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={coord} />
           </section>
         </section>
         <div className="container">
