@@ -199,7 +199,7 @@ const CardProperty = ({offer, neighbourhoods}) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList offerList={neighbourhoods} renderType={CardRenderType.NEAR_PLACES} />
+              <PlaceCardList offerList={neighbourhoods} isNearPlaces={true} />
             </div>
           </section>
         </div>

@@ -4,7 +4,6 @@ import { ScreenType } from './const.js';
 
 const cities = getCities(offerMocks);
 
-// Вынести offers из story???
 // А если офферов нет и список городов пуст activeCity = 0 --- ???
 
 const initialState = {

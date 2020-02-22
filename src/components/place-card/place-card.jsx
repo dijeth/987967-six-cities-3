@@ -1,7 +1,9 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {OfferType, CardRenderType} from '../../const.js';
+import {OfferType, CardRenderType, ScreenType} from '../../const.js';
 import {ratingToPercent} from '../../util.js';
+import {ActionCreator} from '../../reducer.js';
+import {connect} from 'react-redux';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -13,13 +15,13 @@ class PlaceCard extends PureComponent {
   }
 
   _handleMouseLeave() {
-    if (this.props.onCardHover) {
+    if (!this.props.isNearPlaces) {
       this.props.onCardHover(null);
     }
   }
 
   _handleMouseEnter() {
-    if (this.props.onCardHover) {
+    if (!this.props.isNearPlaces) {
       this.props.onCardHover(this.props.offer);
     }
   }
@@ -31,10 +33,11 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, renderType} = this.props;
+    const {offer, isNearPlaces} = this.props;
     const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
     const ratingPercent = ratingToPercent(rating);
     const picture = pictures[0];
+    const renderType = isNearPlaces ? `near-places` : `cities`;
 
     return (
       <article
@@ -92,14 +95,20 @@ const offerPropType = PropTypes.shape({
 
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
-  renderType: PropTypes.oneOf([CardRenderType.CITIES, CardRenderType.NEAR_PLACES]),
   onCardClick: PropTypes.func,
-  onCardHover: PropTypes.func
+  onCardHover: PropTypes.func,
+  isNearPlaces: PropTypes.bool
 };
 
-PlaceCard.defaultProps = {
-  renderType: CardRenderType.CITIES
-};
+const mapDispatchToProps = (dispatch) => ({
+  onCardClick(activeOffer) {
+    dispatch(ActionCreator.changeActiveCard(activeOffer));
+    dispatch(ActionCreator.changeScreenType(ScreenType.PROPERTY))
+  },
+  onCardHover(activeOffer) {
+    dispatch(ActionCreator.changeActiveCard(activeOffer))
+  }
+});
 
-export default PlaceCard;
+export default connect(null, mapDispatchToProps)(PlaceCard);
 export {offerPropType};
