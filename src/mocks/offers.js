@@ -98,15 +98,23 @@ const getReview = (id) => {
   };
 };
 
-const getNeighbourhoods = (exclude) => {
-  const numberExclude = Number(exclude).isNaN ? MOCK_COUNT : Number(exclude);
-  const uniqueID = new Set([
-    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
-    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
-    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude)
-  ]);
+const getNeighbourhoods = (offer, offers) => {
+  const neighbourhoods = new Set();
+  let i = 0;
+  const LIMIT = 10;
+  const NEIGHBOURHOODS_COUNT = 3;
 
-  return Array.from(uniqueID.values()).map((it) => offerMocks[it]);
+  do {
+    const neighbourhood = getRandomElement(offers);
+    if (neighbourhood.id !== offer.id) {
+      neighbourhoods.add(neighbourhood);
+    };
+
+    i += 1;
+
+  } while (neighbourhoods.size < NEIGHBOURHOODS_COUNT && i < LIMIT);
+
+  return Array.from(neighbourhoods.values())
 };
 
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
@@ -142,6 +150,6 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
   };
 });
 
-console.log(offerMocks.map((it) => [it.city, it.coord.join(`,`)]));
+// console.log(offerMocks.map((it) => [it.city, it.coord.join(`,`)]));
 
 export { offerMocks, getNeighbourhoods };
