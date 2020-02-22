@@ -22,6 +22,7 @@ class Map extends PureComponent {
 
     this._centerCoord = null;
     this._activeCoord = null;
+    this._offersCoord = [];
     this._activeLayer = null;
     this._offerLayers = null;
 
@@ -61,7 +62,7 @@ class Map extends PureComponent {
   componentDidUpdate() {
     const { centerCoord, offersCoord, activeCoord } = this.props;
 
-    if (!isEqualCoords(centerCoord, this._centerCoord)) {
+    if (this._shouldOfferMarkersBeChanged(centerCoord, offersCoord)) {
       this._centerCoord = centerCoord;
 
       this._setView(centerCoord);
@@ -71,11 +72,28 @@ class Map extends PureComponent {
     this._updateActiveCoord(activeCoord);
   }
 
+  _shouldOfferMarkersBeChanged(centerCoord, offersCoord) {
+    if (!isEqualCoords(centerCoord, this._centerCoord)) {
+      return true
+    };
+
+    if (offersCoord.length !== this._offersCoord.length) {
+      return true
+    };
+
+    if (offersCoord.filter((it, i) => !isEqualCoords(it, this._offersCoord[i])).length) {
+      return true
+    };
+
+    return false;
+  }
+
   _setView(coords) {
     this._map.setView(coords, ZOOM);
   }
 
   _addOffers(offersCoord) {
+    this._offersCoord = offersCoord;
     return offersCoord.map((coord) => leaflet.marker(coord, { icon: ICON }).addTo(this._map));
   }
 
@@ -92,7 +110,7 @@ class Map extends PureComponent {
     };
 
     if (coord) {
-      this._activeLayer = leaflet.marker(coord, {icon: ICON_ACTIVE}).addTo(this._map);
+      this._activeLayer = leaflet.marker(coord, { icon: ICON_ACTIVE }).addTo(this._map);
     };
   }
 
