@@ -10,9 +10,9 @@ import { ScreenType } from '../../const.js';
 
 class App extends PureComponent {
   _renderApp() {
-    const { offerList, cities, activeCity } = this.props;
+    const { offerList, cities, activeCity, activeCard } = this.props;
 
-    return <Main cities={cities} activeCity={activeCity} offerList={offerList} />;
+    return <Main cities={cities} activeCity={activeCity} offerList={offerList} activeCard={activeCard} />;
   }
 
   render() {

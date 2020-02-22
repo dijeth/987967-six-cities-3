@@ -1,8 +1,9 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import { isEqualCoords } from '../../util.js';
 
-const ZOOM = 13;
+const ZOOM = 12;
 const ICON_SIZE = [27, 39];
 
 const ICON = leaflet.icon({
@@ -19,11 +20,16 @@ class Map extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._centerCoord = null;
+    this._activeCoord = null;
+    this._activeLayer = null;
+    this._offerLayers = null;
+
     this._mapWrapper = React.createRef();
   }
 
   componentDidMount() {
-    const {centerCoord, offersCoord} = this.props;
+    const { centerCoord, offersCoord } = this.props;
 
     this._mapWrapper.current.style.height = `100%`;
 
@@ -36,13 +42,15 @@ class Map extends PureComponent {
 
     leaflet
       .tileLayer(
-          `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-          })
+        `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        })
       .addTo(this._map);
 
     this._setView(centerCoord);
-    this._addOffers(offersCoord);
+
+    this._centerCoord = centerCoord;
+    this._offerLayers = this._addOffers(offersCoord);
   }
 
   componentWillUnmount() {
@@ -50,19 +58,36 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {centerCoord, offersCoord} = this.props;
-    this._setView(centerCoord);
-    this._addOffers(offersCoord);
+    const { centerCoord, offersCoord, activeCoord } = this.props;
+
+    if (!isEqualCoords(centerCoord, this._centerCoord)) {
+      this._centerCoord = centerCoord;
+
+      this._setView(centerCoord);
+      this._updateOffers(offersCoord);
+    };
+
+    // if (activeCoord) this._addActiveCoord(activeCoord);
   }
 
   _setView(coords) {
     this._map.setView(coords, ZOOM);
   }
 
-  _addOffers(offersCoords) {
-    offersCoords.forEach((offerCoords) => {
-      leaflet.marker(offerCoords, {ICON}).addTo(this._map);
-    });
+  _addOffers(offersCoord) {
+    return offersCoord.map((coord) => leaflet.marker(coord, { ICON }).addTo(this._map));
+  }
+
+  _updateOffers(offersCoord) {
+    this._offerLayers.forEach((it) => this._map.removeLayer(it));
+    this._offerLayers = null;
+    this._offerLayers = this._addOffers(offersCoord);
+  }
+
+  _addActiveCoord(coord) {
+    if (coord) {
+      leaflet.marker(coord, { ICON_ACTIVE }).addTo(this._map)
+    };
   }
 
   render() {
@@ -71,8 +96,9 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  centerCoord: PropTypes.arrayOf(PropTypes.number),
-  offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+  centerCoord: PropTypes.arrayOf(PropTypes.number).isRequired,
+  offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+  activeCoord: PropTypes.arrayOf(PropTypes.number)
 };
 
 export default Map;

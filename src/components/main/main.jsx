@@ -5,11 +5,12 @@ import { CityCoord } from '../../const.js';
 import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
-const Main = ({ offerList, cities, activeCity }) => {
+const Main = ({ offerList, cities, activeCity, activeCard }) => {
   const city = cities[activeCity];
   const centerCoord = CityCoord[city];
   const offersCoord = offerList.map((it) => it.coord);
   const placesCount = offerList.length;
+  const activeCoord = activeCard ? activeCard.coord : null;
 
   return (
     <div className="page page--gray page--main">
@@ -67,7 +68,7 @@ const Main = ({ offerList, cities, activeCity }) => {
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
-                <Map centerCoord={centerCoord} offersCoord={offersCoord} />
+                <Map centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={activeCoord} />
               </section>);
             </div>
           </div>
@@ -80,7 +81,8 @@ const Main = ({ offerList, cities, activeCity }) => {
 Main.propTypes = {
   offerList: PropTypes.array.isRequired,
   cities: PropTypes.array,
-  activeCity: PropTypes.number
+  activeCity: PropTypes.number,
+  activeCard: PropTypes.object
 };
 
 export default Main;

@@ -72,7 +72,6 @@ const getUserPicture = (size = 74) => `https://api.adorable.io/avatars/${size}/$
 const getIsUserSuper = () => getRandomBoolean();
 const getDescription = (paragraphCount = 2) => Array(paragraphCount).fill(` `).map(() => getRandomElement(PARAGRAPHS)).join(`\n`);
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
-// const getCoordinates = () => [52.3 + getRandomNumber(84491, 52884) / 1000000, 4 + getRandomNumber(933742, 875206) / 1000000];
 const getCoordinates = (city) => {
   const [longitude, latitude] = CityCoord[city];
   const longitudeDelta = getRandomNumber(4000)/1000000*(getRandomBoolean() ? 1 : -1);

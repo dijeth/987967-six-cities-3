@@ -25,3 +25,5 @@ export const getOffers = (city, offers) => {
 
   return selectedOffers
 };
+
+export const isEqualCoords = (coord1, coord2) => coord1[0] === coord2[0] && coord1[1] === coord2[1];
