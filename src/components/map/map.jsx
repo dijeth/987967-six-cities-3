@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
 const ZOOM = 13;
-const ICON_SIZE = [30, 30];
+const ICON_SIZE = [27, 39];
 
 const ICON = leaflet.icon({
   iconUrl: `img/pin.svg`,
+  iconSize: ICON_SIZE
+});
+
+const ICON_ACTIVE = leaflet.icon({
+  iconUrl: `img/pin-active.svg`,
   iconSize: ICON_SIZE
 });
 
