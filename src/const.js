@@ -43,4 +43,9 @@ export const CardRenderType = {
   NEAR_PLACES: `near-places`
 };
 
+export const ScreenType = {
+  MAIN: `MAIN`,
+  PROPERTY: `PROPERTY`
+};
+
 export const MAX_CITY_COUNT = 6;

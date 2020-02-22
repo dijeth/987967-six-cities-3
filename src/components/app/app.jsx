@@ -6,6 +6,7 @@ import CardProperty from '../card-property/card-property.jsx';
 import { getNeighbourhoods } from '../../mocks/offers.js';
 import { connect } from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
+import { ScreenType } from '../../const.js';
 
 class App extends PureComponent {
   _renderApp() {
@@ -15,9 +16,11 @@ class App extends PureComponent {
   }
 
   render() {
-    if (this.props.cardProperty) {
-      const neighbourhoods = getNeighbourhoods(this.props.cardProperty.id);
-      return <CardProperty offer={this.props.cardProperty} neighbourhoods={neighbourhoods} />;
+    const {screenType, activeCard} = this.props;
+
+    if (screenType === ScreenType.PROPERTY) {
+      const neighbourhoods = getNeighbourhoods(activeCard.id);
+      return <CardProperty offer={activeCard} neighbourhoods={neighbourhoods} />;
     }
 
     return (
@@ -36,16 +39,18 @@ class App extends PureComponent {
 
 App.propTypes = {
   offerList: PropTypes.array.isRequired,
-  cardProperty: PropTypes.object,
+  screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]),
   cities: PropTypes.arrayOf(PropTypes.string),
-  activeCity: PropTypes.number
+  activeCity: PropTypes.number,
+  activeCard: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
   offerList: state.selectedOffers,
-  cardProperty: state.activeCard,
+  screenType: state.screenType,
   cities: state.cities,
-  activeCity: state.activeCity
+  activeCity: state.activeCity,
+  activeCard: state.activeCard
 });
 
 export { App };
