@@ -1,9 +1,9 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {OfferType, CardRenderType, ScreenType} from '../../const.js';
-import {ratingToPercent} from '../../util.js';
-import {ActionCreator} from '../../reducer.js';
-import {connect} from 'react-redux';
+import { OfferType, CardRenderType, ScreenType } from '../../const.js';
+import { ratingToPercent } from '../../util.js';
+import { ActionCreator } from '../../reducer.js';
+import { connect } from 'react-redux';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -15,15 +15,11 @@ class PlaceCard extends PureComponent {
   }
 
   _handleMouseLeave() {
-    if (!this.props.isNearPlaces) {
-      this.props.onCardHover(null);
-    }
+    this.props.onCardHover(null);
   }
 
   _handleMouseEnter() {
-    if (!this.props.isNearPlaces) {
-      this.props.onCardHover(this.props.offer);
-    }
+    this.props.onCardHover(this.props.offer);
   }
 
   _handleTitleClick() {
@@ -33,8 +29,8 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, isNearPlaces} = this.props;
-    const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
+    const { offer, isNearPlaces } = this.props;
+    const { id, title, type, pictures, cost, rating, isPremium, isFavorite } = offer;
     const ratingPercent = ratingToPercent(rating);
     const picture = pictures[0];
     const renderType = isNearPlaces ? `near-places` : `cities`;
@@ -42,8 +38,8 @@ class PlaceCard extends PureComponent {
     return (
       <article
         className={`${renderType}__place-card place-card`}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={isNearPlaces ? null : this._handleMouseEnter}
+        onMouseLeave={isNearPlaces ? null : this._handleMouseLeave}
         key={id}
       >
         {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
@@ -111,4 +107,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(PlaceCard);
-export {offerPropType};
+export { offerPropType };

@@ -50,8 +50,9 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    // const {offersCoord} = this.props;
-    // this._addOffers(offersCoord);
+    const {centerCoord, offersCoord} = this.props;
+    this._setView(centerCoord);
+    this._addOffers(offersCoord);
   }
 
   _setView(coords) {
