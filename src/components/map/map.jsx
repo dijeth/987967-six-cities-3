@@ -121,7 +121,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   centerCoord: PropTypes.arrayOf(PropTypes.number).isRequired,
-  offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+  offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   activeCoord: PropTypes.arrayOf(PropTypes.number)
 };
 
