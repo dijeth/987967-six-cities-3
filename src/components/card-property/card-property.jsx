@@ -5,7 +5,7 @@ import {ratingToPercent} from '../../util.js';
 import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
 import {offerPropType} from '../place-card/place-card.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import Map from '../map/map.jsx';
+import OffersMap from '../offers-map/offers-map.jsx';
 import {CityCoord, CardRenderType} from '../../const.js';
 
 const CardProperty = ({offer, neighbourhoods}) => {
@@ -193,7 +193,7 @@ const CardProperty = ({offer, neighbourhoods}) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={coord} />
+            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={coord} />
           </section>
         </section>
         <div className="container">

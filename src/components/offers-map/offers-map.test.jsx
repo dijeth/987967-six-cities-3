@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount, render} from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
-import Map from './map.jsx';
+import OffersMap from './offers-map.jsx';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -18,26 +18,22 @@ const props = {
   activeCoord: [52.377304, 4.903076]
 };
 
-it(`<Map /> should be render correctly with activeCoord`, () => {
+it(`<OffersMap /> should be render correctly with activeCoord`, () => {
   const div = global.document.createElement(`div`);
   global.document.body.appendChild(div);
 
-  const map = mount(<Map {...props} />, {attachTo: div});
-
-
-// console.log(map.find(`.leaflet-marker-icon`))
-// expect(map.find(`.leaflet-marker-icon`)).toHaveLength(4)
-  expect(toJson(map, {mode: `shallow`})).toMatchSnapshot();
+  const map = mount(<OffersMap {...props} />, {attachTo: div});
+  expect(map.debug()).toMatchSnapshot();
 });
 
 
 // props.activeCoord = null;
 
-// it(`<Map /> should be render correctly without activeCoord`, () => {
+// it(`<OffersMap /> should be render correctly without activeCoord`, () => {
 //   const div = global.document.createElement(`div`);
 //   global.document.body.appendChild(div);
 
-//   const map = mount(<Map {...props} />, {attachTo: div});
+//   const map = mount(<OffersMap {...props} />, {attachTo: div});
 
 //   expect(toJson(map)).toMatchSnapshot();
 // });

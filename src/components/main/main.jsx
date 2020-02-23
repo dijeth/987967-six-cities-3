@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import { CityCoord } from '../../const.js';
-import Map from '../map/map.jsx';
+import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
 const Main = ({ offerList, cities, activeCity, activeCard }) => {
@@ -68,7 +68,7 @@ const Main = ({ offerList, cities, activeCity, activeCard }) => {
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
-                <Map centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={activeCoord} />
+                <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={activeCoord} />
               </section>
             </div>
           </div>

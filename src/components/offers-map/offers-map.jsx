@@ -16,7 +16,7 @@ const ICON_ACTIVE = leaflet.icon({
   iconSize: ICON_SIZE
 });
 
-class Map extends PureComponent {
+class OffersMap extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -125,4 +125,4 @@ Map.propTypes = {
   activeCoord: PropTypes.arrayOf(PropTypes.number)
 };
 
-export default Map;
+export default OffersMap;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OffersMap /> should be render correctly with activeCoord 1`] = `
+"<OffersMap centerCoord={{...}} offersCoord={{...}} activeCoord={{...}}>
+  <div id=\\"map\\" />
+</OffersMap>"
+`;
