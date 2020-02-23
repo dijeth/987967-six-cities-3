@@ -79,21 +79,21 @@ class PlaceCard extends PureComponent {
 const offerPropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
+  type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]).isRequired,
   pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
   cost: PropTypes.number.isRequired,
-  rating: PropTypes.number,
-  isPremium: PropTypes.bool,
-  isFavorite: PropTypes.bool,
+  rating: PropTypes.number.isRequired,
+  isPremium: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   city: PropTypes.string.isRequired,
-  coord: PropTypes.arrayOf(PropTypes.number)
+  coord: PropTypes.arrayOf(PropTypes.number).isRequired
 });
 
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onCardClick: PropTypes.func,
   onCardHover: PropTypes.func,
-  isNearPlaces: PropTypes.bool
+  isNearPlaces: PropTypes.bool.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -106,5 +106,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export { PlaceCard, offerPropType };
 export default connect(null, mapDispatchToProps)(PlaceCard);
-export { offerPropType };
