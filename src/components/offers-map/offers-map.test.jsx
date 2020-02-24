@@ -23,7 +23,7 @@ it(`<OffersMap /> should be render correctly with activeCoord`, () => {
   global.document.body.appendChild(div);
 
   const map = mount(<OffersMap {...props} />, {attachTo: div});
-  expect(toJson(map, {mode: 'shallow'})).toMatchSnapshot();
+  expect(toJson(map, {mode: `shallow`})).toMatchSnapshot();
 });
 
 

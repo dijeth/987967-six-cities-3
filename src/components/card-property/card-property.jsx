@@ -6,7 +6,7 @@ import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
 import {offerPropType} from '../place-card/place-card.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import {CityCoord, CardRenderType} from '../../const.js';
+import {CityCoord} from '../../const.js';
 
 const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
   const {
@@ -228,7 +228,8 @@ CardProperty.propTypes = {
     isUserSuper: PropTypes.bool,
     descriptionTitle: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    reviews: reviewListPropTypes
+    reviews: reviewListPropTypes,
+    coord: PropTypes.arrayOf(PropTypes.number)
   }).isRequired,
   neighbourhoods: PropTypes.arrayOf(offerPropType),
   isNearPlaces: PropTypes.bool.isRequired

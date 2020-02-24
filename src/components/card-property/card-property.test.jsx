@@ -92,15 +92,15 @@ const neighbourhoods = [{
 
 it(`<CardProperty /> should be render correctly`, () => {
   const tree = renderer.create(
-    <Provider store={store}>
-      <CardProperty
-        offer={offer}
-        neighbourhoods={neighbourhoods}
-        isNearPlaces={true}
-      />
-    </Provider>, {
-    createNodeMock: () => document.createElement(`div`)
-  }).toJSON();
+      <Provider store={store}>
+        <CardProperty
+          offer={offer}
+          neighbourhoods={neighbourhoods}
+          isNearPlaces={true}
+        />
+      </Provider>, {
+        createNodeMock: () => document.createElement(`div`)
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

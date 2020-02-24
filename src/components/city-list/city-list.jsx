@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js'; 
+import {ActionCreator} from '../../reducer.js';
 
 const handleClick = (evt, handleActiveCityChange) => {
   const index = evt.target.dataset.index;
@@ -19,12 +19,12 @@ const CityList = ({cities, activeCity, onChangeActiveCity}) => {
       </li>);
   });
 
-	return <ul className="locations__list tabs__list" onClick={(evt) => handleClick(evt, onChangeActiveCity)}>{cityList}</ul>
+  return <ul className="locations__list tabs__list" onClick={(evt) => handleClick(evt, onChangeActiveCity)}>{cityList}</ul>;
 };
 
 CityList.propTypes = {
-	cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-	activeCity: PropTypes.number.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeCity: PropTypes.number.isRequired,
   onChangeActiveCity: PropTypes.func.isRequired
 };
 

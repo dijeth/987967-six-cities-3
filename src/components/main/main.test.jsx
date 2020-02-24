@@ -33,7 +33,7 @@ const offerList = [{
 ];
 
 const isNearPlaces = false;
-const cities = [`city1`, `city2`, `city3`, `city4`];
+const cities = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`];
 const activeCity = 0;
 const activeCard = null;
 
@@ -41,16 +41,16 @@ it(`<Main /> should be render correctly`, () => {
   const store = mockStore({});
 
   const main = renderer.create(
-    <Provider store={store}>
-      <Main
-        offerList={offerList}
-        isNearPlaces={isNearPlaces}
-        cities={cities}
-        activeCity={activeCity}
-        activeCard={activeCard}
-      />
-    </Provider>, {
-    createNodeMock: () => document.createElement(`div`)
-  }).toJSON();
+      <Provider store={store}>
+        <Main
+          offerList={offerList}
+          isNearPlaces={isNearPlaces}
+          cities={cities}
+          activeCity={activeCity}
+          activeCard={activeCard}
+        />
+      </Provider>, {
+        createNodeMock: () => document.createElement(`div`)
+      }).toJSON();
   expect(main).toMatchSnapshot();
 });

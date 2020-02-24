@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import { CityCoord } from '../../const.js';
+import {CityCoord} from '../../const.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
-const Main = ({ offerList, cities, activeCity, activeCard, isNearPlaces }) => {
+const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
   const city = cities[activeCity];
   const centerCoord = CityCoord[city];
   const offersCoord = offerList.map((it) => it.coord);

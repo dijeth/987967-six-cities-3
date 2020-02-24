@@ -11,6 +11,6 @@ const placesCount = offerMocks.length;
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
 
 ReactDom.render(
-		<Provider store={store}>
-			<App placesCount={placesCount} offerList={offerMocks} />
-		</Provider>, rootElement);
+    <Provider store={store}>
+      <App placesCount={placesCount} offerList={offerMocks} />
+    </Provider>, rootElement);

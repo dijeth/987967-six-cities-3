@@ -1,4 +1,4 @@
-import { OfferType, CITIES, InsideFeature, CityCoord } from '../const.js';
+import {OfferType, CITIES, InsideFeature, CityCoord} from '../const.js';
 
 const MOCK_COUNT = 30;
 
@@ -74,10 +74,10 @@ const getDescription = (paragraphCount = 2) => Array(paragraphCount).fill(` `).m
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
 const getCoordinates = (city) => {
   const [longitude, latitude] = CityCoord[city];
-  const longitudeDelta = getRandomNumber(4000)/1000000*(getRandomBoolean() ? 1 : -1);
-  const latitudeDelta = getRandomNumber(55000)/1000000*(getRandomBoolean() ? 1 : -1);
+  const longitudeDelta = getRandomNumber(4000) / 1000000 * (getRandomBoolean() ? 1 : -1);
+  const latitudeDelta = getRandomNumber(55000) / 1000000 * (getRandomBoolean() ? 1 : -1);
 
-  return [longitude+longitudeDelta, latitude+latitudeDelta]
+  return [longitude + longitudeDelta, latitude + latitudeDelta];
 };
 
 const getDate = () => {
@@ -108,13 +108,13 @@ const getNeighbourhoods = (offer, offers) => {
     const neighbourhood = getRandomElement(offers);
     if (neighbourhood.id !== offer.id) {
       neighbourhoods.add(neighbourhood);
-    };
+    }
 
     i += 1;
 
   } while (neighbourhoods.size < NEIGHBOURHOODS_COUNT && i < LIMIT);
 
-  return Array.from(neighbourhoods.values())
+  return Array.from(neighbourhoods.values());
 };
 
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
@@ -152,4 +152,4 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
 
 // console.log(offerMocks.map((it) => [it.city, it.coord.join(`,`)]));
 
-export { offerMocks, getNeighbourhoods };
+export {offerMocks, getNeighbourhoods};

@@ -1,25 +1,24 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
-import { getNeighbourhoods } from '../../mocks/offers.js';
-import { connect } from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
-import { ScreenType } from '../../const.js';
+import {getNeighbourhoods} from '../../mocks/offers.js';
+import {connect} from 'react-redux';
+import {ScreenType} from '../../const.js';
 import {offerPropType} from '../place-card/place-card.jsx';
 
 class App extends PureComponent {
   _renderApp() {
-    const { offerList, cities, activeCity, activeCard, screenType } = this.props;
+    const {offerList, cities, activeCity, activeCard, screenType} = this.props;
 
     return <Main
-        cities={cities}
-        activeCity={activeCity}
-        offerList={offerList}
-        activeCard={activeCard}
-        isNearPlaces={screenType === ScreenType.PROPERTY}
-      />;
+      cities={cities}
+      activeCity={activeCity}
+      offerList={offerList}
+      activeCard={activeCard}
+      isNearPlaces={screenType === ScreenType.PROPERTY}
+    />;
   }
 
   render() {
@@ -69,5 +68,5 @@ const mapStateToProps = (state) => ({
   activeCard: state.activeCard
 });
 
-export { App };
+export {App};
 export default connect(mapStateToProps)(App);

@@ -10,7 +10,7 @@ const props = {
 
 it(`<CityList /> should be render correctly`, () => {
   const cityList = renderer.create(
-    <CityList {...props}/>).toJSON();
+      <CityList {...props}/>).toJSON();
 
   expect(cityList).toMatchSnapshot();
 });

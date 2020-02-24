@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { OfferType, CardRenderType, ScreenType } from '../../const.js';
-import { ratingToPercent } from '../../util.js';
-import { ActionCreator } from '../../reducer.js';
-import { connect } from 'react-redux';
+import {OfferType, ScreenType} from '../../const.js';
+import {ratingToPercent} from '../../util.js';
+import {ActionCreator} from '../../reducer.js';
+import {connect} from 'react-redux';
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -29,8 +29,8 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const { offer, isNearPlaces } = this.props;
-    const { id, title, type, pictures, cost, rating, isPremium, isFavorite } = offer;
+    const {offer, isNearPlaces} = this.props;
+    const {id, title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
     const ratingPercent = ratingToPercent(rating);
     const picture = pictures[0];
     const renderType = isNearPlaces ? `near-places` : `cities`;
@@ -99,12 +99,12 @@ PlaceCard.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   onCardClick(activeOffer) {
     dispatch(ActionCreator.changeActiveCard(activeOffer));
-    dispatch(ActionCreator.changeScreenType(ScreenType.PROPERTY))
+    dispatch(ActionCreator.changeScreenType(ScreenType.PROPERTY));
   },
   onCardHover(activeOffer) {
-    dispatch(ActionCreator.changeActiveCard(activeOffer))
+    dispatch(ActionCreator.changeActiveCard(activeOffer));
   }
 });
 
-export { PlaceCard, offerPropType };
+export {PlaceCard, offerPropType};
 export default connect(null, mapDispatchToProps)(PlaceCard);

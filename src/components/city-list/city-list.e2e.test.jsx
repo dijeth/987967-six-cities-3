@@ -1,7 +1,7 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { CityList } from './city-list.jsx';
+import {CityList} from './city-list.jsx';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -20,4 +20,4 @@ it(`should pass activeCity index when on mouse click`, () => {
 
   expect(props.onChangeActiveCity).toHaveBeenCalledTimes(1);
   expect(props.onChangeActiveCity).toHaveBeenCalledWith(3);
-})
+});

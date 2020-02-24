@@ -1,32 +1,32 @@
-'use strict';
 
-const leaflet = jest.genMockFromModule('leaflet');
+
+const leaflet = jest.genMockFromModule(`leaflet`);
 
 leaflet.fn = {
-    addLayer: jest.fn(),
-    removeLayer: jest.fn()
+  addLayer: jest.fn(),
+  removeLayer: jest.fn()
 };
 
 leaflet.icon = () => {};
 
 leaflet.map = () => {
-    return {
-        setView: () => {},
-        remove: () => {},
-        removeLayer: leaflet.fn.removeLayer,
-    };
+  return {
+    setView: () => {},
+    remove: () => {},
+    removeLayer: leaflet.fn.removeLayer,
+  };
 };
 
 leaflet.marker = () => {
-    return {
-        addTo: leaflet.fn.addLayer,
-    };
+  return {
+    addTo: leaflet.fn.addLayer,
+  };
 };
 
 leaflet.tileLayer = () => {
-    return {
-        addTo: () => {},
-    };
+  return {
+    addTo: () => {},
+  };
 };
 
 module.exports = leaflet;

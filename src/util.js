@@ -1,5 +1,5 @@
 import {MONTHS} from './const.js';
-import { MAX_CITY_COUNT} from './const.js';
+import {MAX_CITY_COUNT} from './const.js';
 
 const PERCENT_STEP = 20;
 export const ratingToPercent = (rating) => Math.round(rating) * PERCENT_STEP;
@@ -23,7 +23,7 @@ export const getOffers = (city, offers) => {
     }
   });
 
-  return selectedOffers
+  return selectedOffers;
 };
 
 export const isEqualCoords = (coord1, coord2) => coord1[0] === coord2[0] && coord1[1] === coord2[1];

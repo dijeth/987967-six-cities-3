@@ -1,8 +1,7 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { PlaceCard } from './place-card.jsx';
-import { ScreenType } from '../../const.js';
+import {PlaceCard} from './place-card.jsx';
 
 configure({
   adapter: new Adapter()
@@ -51,7 +50,7 @@ describe(`When isNearPlaces === false`, () => {
 
     expect(onCardClick).toHaveBeenCalledTimes(1);
     expect(onCardClick).toHaveBeenCalledWith(mock);
-  })
+  });
 });
 
 describe(`When isNearPlaces === true`, () => {
@@ -73,5 +72,5 @@ describe(`When isNearPlaces === true`, () => {
 
     expect(onCardClick).toHaveBeenCalledTimes(1);
     expect(onCardClick).toHaveBeenCalledWith(mock);
-  })
+  });
 });

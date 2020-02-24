@@ -84,7 +84,7 @@ exports[`<Main /> should be render correctly 1`] = `
               <span
                 data-index={0}
               >
-                city1
+                Paris
               </span>
             </a>
           </li>
@@ -98,7 +98,7 @@ exports[`<Main /> should be render correctly 1`] = `
               <span
                 data-index={1}
               >
-                city2
+                Cologne
               </span>
             </a>
           </li>
@@ -112,7 +112,7 @@ exports[`<Main /> should be render correctly 1`] = `
               <span
                 data-index={2}
               >
-                city3
+                Brussels
               </span>
             </a>
           </li>
@@ -126,7 +126,7 @@ exports[`<Main /> should be render correctly 1`] = `
               <span
                 data-index={3}
               >
-                city4
+                Amsterdam
               </span>
             </a>
           </li>
@@ -152,7 +152,7 @@ exports[`<Main /> should be render correctly 1`] = `
           >
             2
              places to stay in 
-            city1
+            Paris
           </b>
           <form
             action="#"
