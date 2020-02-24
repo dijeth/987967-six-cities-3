@@ -1,31 +1,14 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard, { offerPropType } from '../place-card/place-card.jsx';
 
-class PlaceCardList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeOffer: null
-    };
+const PlaceCardList = ({ offerList, isNearPlaces }) => {
+  const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
 
-    this.handleCardHover = this.handleCardHover.bind(this);
-  }
-
-  handleCardHover(activeOffer) {
-    this.setState({ activeOffer });
-  }
-
-  render() {
-    const { offerList, onCardClick, onCardHover, isNearPlaces} = this.props;
-
-    const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
-
-    return (
-      <div className={classList}>
+  return (
+    <div className={classList}>
         {offerList.map((it) => <PlaceCard offer={it} isNearPlaces={isNearPlaces} key={it.id} />)}
-      </div>);
-  }
+    </div>);
 }
 
 PlaceCardList.propTypes = {
