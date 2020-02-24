@@ -4,10 +4,9 @@ import { ScreenType } from './const.js';
 
 const cities = getCities(offerMocks);
 
-// А если офферов нет и список городов пуст activeCity = 0 --- ???
-
 const initialState = {
 	cities: cities,
+  offers: offerMocks,
   activeCity: 0,
   selectedOffers: getOffers(cities[0], offerMocks),
   activeCard: null,
@@ -34,7 +33,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { activeCity: action.payload })
 
     case ActionType.SELECT_OFFERS:
-      return Object.assign({}, state, { selectedOffers: getOffers(state.cities[state.activeCity], offerMocks) })
+      return Object.assign({}, state, { selectedOffers: getOffers(state.cities[state.activeCity], state.offers) })
 
     case ActionType.CHANGE_ACTIVE_CARD:
       return Object.assign({}, state, { activeCard: action.payload })
@@ -46,4 +45,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator};
+export {reducer, ActionCreator, ActionType, initialState};
