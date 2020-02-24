@@ -4,12 +4,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import { PlaceCard } from './place-card.jsx';
 import { ScreenType } from '../../const.js';
 
-
 configure({
   adapter: new Adapter()
 });
-
-const mockStore = configureStore([]);
 
 const mock = {
   id: `id-1`,
