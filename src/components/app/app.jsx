@@ -23,7 +23,7 @@ class App extends PureComponent {
 
   render() {
     const {screenType, activeCard, offerList} = this.props;
-    const isNearPlaces = ScreenType === ScreenType.PROPERTY;
+    const isNearPlaces = screenType === ScreenType.PROPERTY;
 
     if (screenType === ScreenType.PROPERTY) {
       const neighbourhoods = getNeighbourhoods(activeCard, offerList);
