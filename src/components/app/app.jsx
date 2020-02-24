@@ -7,6 +7,7 @@ import { getNeighbourhoods } from '../../mocks/offers.js';
 import { connect } from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 import { ScreenType } from '../../const.js';
+import {offerPropType} from '../place-card/place-card.jsx';
 
 class App extends PureComponent {
   _renderApp() {
@@ -53,11 +54,11 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offerList: PropTypes.array.isRequired,
-  screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]),
-  cities: PropTypes.arrayOf(PropTypes.string),
-  activeCity: PropTypes.number,
-  activeCard: PropTypes.object
+  offerList: PropTypes.arrayOf(offerPropType).isRequired,
+  screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeCity: PropTypes.number.isRequired,
+  activeCard: offerPropType
 };
 
 const mapStateToProps = (state) => ({
