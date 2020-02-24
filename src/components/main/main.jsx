@@ -5,7 +5,7 @@ import { CityCoord } from '../../const.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
-const Main = ({ offerList, cities, activeCity, activeCard }) => {
+const Main = ({ offerList, cities, activeCity, activeCard, isNearPlaces }) => {
   const city = cities[activeCity];
   const centerCoord = CityCoord[city];
   const offersCoord = offerList.map((it) => it.coord);
@@ -64,7 +64,7 @@ const Main = ({ offerList, cities, activeCity, activeCard }) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <PlaceCardList offerList={offerList} isNearPlaces={false} />
+              <PlaceCardList offerList={offerList} isNearPlaces={isNearPlaces} />
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
@@ -80,6 +80,7 @@ const Main = ({ offerList, cities, activeCity, activeCard }) => {
 
 Main.propTypes = {
   offerList: PropTypes.array.isRequired,
+  isNearPlaces: PropTypes.bool.isRequired,
   cities: PropTypes.array,
   activeCity: PropTypes.number,
   activeCard: PropTypes.object

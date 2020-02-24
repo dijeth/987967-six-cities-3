@@ -10,17 +10,28 @@ import { ScreenType } from '../../const.js';
 
 class App extends PureComponent {
   _renderApp() {
-    const { offerList, cities, activeCity, activeCard } = this.props;
+    const { offerList, cities, activeCity, activeCard, screenType } = this.props;
 
-    return <Main cities={cities} activeCity={activeCity} offerList={offerList} activeCard={activeCard} />;
+    return <Main
+        cities={cities}
+        activeCity={activeCity}
+        offerList={offerList}
+        activeCard={activeCard}
+        isNearPlaces={screenType === ScreenType.PROPERTY}
+      />;
   }
 
   render() {
     const {screenType, activeCard, offerList} = this.props;
+    const isNearPlaces = ScreenType === ScreenType.PROPERTY;
 
     if (screenType === ScreenType.PROPERTY) {
       const neighbourhoods = getNeighbourhoods(activeCard, offerList);
-      return <CardProperty offer={activeCard} neighbourhoods={neighbourhoods} />;
+      return <CardProperty
+        offer={activeCard}
+        neighbourhoods={neighbourhoods}
+        isNearPlaces={isNearPlaces}
+      />;
     }
 
     return (
@@ -30,7 +41,11 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-card-property">
-            <CardProperty offer={this.props.offerList[0]} neighbourhoods={getNeighbourhoods(offerList[0], offerList)} />
+            <CardProperty
+              offer={this.props.offerList[0]}
+              neighbourhoods={getNeighbourhoods(offerList[0], offerList)}
+              isNearPlaces={isNearPlaces}
+            />
           </Route>
         </Switch>
       </BrowserRouter>);

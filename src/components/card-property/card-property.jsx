@@ -8,7 +8,7 @@ import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
 import {CityCoord, CardRenderType} from '../../const.js';
 
-const CardProperty = ({offer, neighbourhoods}) => {
+const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
   const {
     title,
     type,
@@ -200,7 +200,7 @@ const CardProperty = ({offer, neighbourhoods}) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList offerList={neighbourhoods} isNearPlaces={true} />
+              <PlaceCardList offerList={neighbourhoods} isNearPlaces={isNearPlaces} />
             </div>
           </section>
         </div>
@@ -230,7 +230,8 @@ CardProperty.propTypes = {
     description: PropTypes.string.isRequired,
     reviews: reviewListPropTypes
   }).isRequired,
-  neighbourhoods: PropTypes.arrayOf(offerPropType)
+  neighbourhoods: PropTypes.arrayOf(offerPropType),
+  isNearPlaces: PropTypes.bool.isRequired
 };
 
 
