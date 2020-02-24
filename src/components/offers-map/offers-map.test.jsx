@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, {mount, render} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import OffersMap from './offers-map.jsx';
@@ -23,19 +23,7 @@ it(`<OffersMap /> should be render correctly with activeCoord`, () => {
   global.document.body.appendChild(div);
 
   const map = mount(<OffersMap {...props} />, {attachTo: div});
-  expect(map.debug()).toMatchSnapshot();
+  expect(toJson(map, {mode: 'shallow'})).toMatchSnapshot();
 });
-
-
-// props.activeCoord = null;
-
-// it(`<OffersMap /> should be render correctly without activeCoord`, () => {
-//   const div = global.document.createElement(`div`);
-//   global.document.body.appendChild(div);
-
-//   const map = mount(<OffersMap {...props} />, {attachTo: div});
-
-//   expect(toJson(map)).toMatchSnapshot();
-// });
 
 

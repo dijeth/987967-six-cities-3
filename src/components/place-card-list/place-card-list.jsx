@@ -30,7 +30,7 @@ class PlaceCardList extends PureComponent {
 
 PlaceCardList.propTypes = {
   offerList: PropTypes.arrayOf(offerPropType).isRequired,
-  isNearPlaces: PropTypes.bool
+  isNearPlaces: PropTypes.bool.isRequired
 };
 
 export default PlaceCardList;

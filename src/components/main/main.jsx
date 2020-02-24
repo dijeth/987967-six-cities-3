@@ -64,7 +64,7 @@ const Main = ({ offerList, cities, activeCity, activeCard }) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <PlaceCardList offerList={offerList} />
+              <PlaceCardList offerList={offerList} isNearPlaces={false} />
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>

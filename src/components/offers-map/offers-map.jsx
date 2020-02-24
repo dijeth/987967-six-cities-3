@@ -24,7 +24,7 @@ class OffersMap extends PureComponent {
     this._activeCoord = null;
     this._offersCoord = [];
     this._activeLayer = null;
-    this._offerLayers = null;
+    this._offerLayers = [];
 
     this._mapWrapper = React.createRef();
   }
@@ -51,7 +51,7 @@ class OffersMap extends PureComponent {
     this._setView(centerCoord);
 
     this._centerCoord = centerCoord;
-    this._offerLayers = this._addOffers(offersCoord);
+    this._updateOffers(offersCoord);
     this._updateActiveCoord(activeCoord);
   }
 
@@ -98,13 +98,16 @@ class OffersMap extends PureComponent {
   }
 
   _updateOffers(offersCoord) {
-    this._offerLayers.forEach((it) => this._map.removeLayer(it));
+    this._offerLayers.forEach((it) => {
+      this._map.removeLayer(it)
+    });
+
     this._offerLayers = null;
     this._offerLayers = this._addOffers(offersCoord);
   }
 
   _updateActiveCoord(coord) {
-    if (this._activeLayer) {
+    if (this._activeLayer !== null) {
       this._map.removeLayer(this._activeLayer);
       this._activeLayer = null;
     };
