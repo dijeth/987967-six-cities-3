@@ -633,9 +633,9 @@ exports[`<CardProperty /> should be render correctly 1`] = `
             className="near-places__list places__list"
           >
             <article
-              className="cities__place-card place-card"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
+              className="near-places__place-card place-card"
+              onMouseEnter={null}
+              onMouseLeave={null}
             >
               <div
                 className="place-card__mark"
@@ -645,7 +645,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
@@ -738,12 +738,12 @@ exports[`<CardProperty /> should be render correctly 1`] = `
               </div>
             </article>
             <article
-              className="cities__place-card place-card"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
+              className="near-places__place-card place-card"
+              onMouseEnter={null}
+              onMouseLeave={null}
             >
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
@@ -836,9 +836,9 @@ exports[`<CardProperty /> should be render correctly 1`] = `
               </div>
             </article>
             <article
-              className="cities__place-card place-card"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
+              className="near-places__place-card place-card"
+              onMouseEnter={null}
+              onMouseLeave={null}
             >
               <div
                 className="place-card__mark"
@@ -848,7 +848,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
@@ -857,7 +857,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="n"
+                    src="near-pictures-3"
                     width="260"
                   />
                 </a>
