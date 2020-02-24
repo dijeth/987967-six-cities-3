@@ -81,8 +81,8 @@ const Main = ({ offerList, cities, activeCity, activeCard, isNearPlaces }) => {
 Main.propTypes = {
   offerList: PropTypes.array.isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
-  cities: PropTypes.array,
-  activeCity: PropTypes.number,
+  cities: PropTypes.array.isRequired,
+  activeCity: PropTypes.number.isRequired,
   activeCard: PropTypes.object
 };
 
