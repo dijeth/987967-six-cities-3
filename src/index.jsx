@@ -4,7 +4,7 @@ import App from './components/app/app.jsx';
 import {offerMocks} from './mocks/offers.js';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import {reducer} from './reducer.js';
+import reducer from './reducer.js';
 
 const rootElement = document.getElementById(`root`);
 const placesCount = offerMocks.length;

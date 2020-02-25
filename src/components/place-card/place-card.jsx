@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {OfferType, ScreenType} from '../../const.js';
 import {ratingToPercent} from '../../util.js';
-import {ActionCreator} from '../../reducer.js';
+import ActionCreator from '../../action-creator.js';
 import {connect} from 'react-redux';
 
 class PlaceCard extends PureComponent {

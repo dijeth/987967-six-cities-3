@@ -8,14 +8,10 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-let coord = 0;
-const getCoord = () => [coord++, coord++];
-const getCoords = (length) => Array(length).fill(``).map(() => getCoord());
-
 const props = {
-  centerCoord: getCoord(),
+  centerCoord: [1, 2],
   activeCoord: null,
-  offersCoord: getCoords(3)
+  offersCoord: [[3, 4], [5, 6], [7, 8]]
 };
 
 describe(`Changes pins on the map when user changes city/activeOffer`, () => {
@@ -29,25 +25,25 @@ describe(`Changes pins on the map when user changes city/activeOffer`, () => {
   });
 
   it(`should add 1 more pin and not remove any pins (mouse enter in activeOffer)`, () => {
-    offersMap.setProps({activeCoord: getCoord()});
+    offersMap.setProps({activeCoord: [9, 10]});
     expect(leaflet.fn.addLayer).toHaveBeenCalledTimes(4);
     expect(leaflet.fn.removeLayer).toHaveBeenCalledTimes(0);
   });
 
   it(`should add 3 more pins (3 offers) and remove old 4 pins (city have been changed)	`, () => {
-    offersMap.setProps({centerCoord: getCoord(), activeCoord: null});
+    offersMap.setProps({centerCoord: [11, 12], activeCoord: null});
     expect(leaflet.fn.addLayer).toHaveBeenCalledTimes(7);
     expect(leaflet.fn.removeLayer).toHaveBeenCalledTimes(4);
   });
 
   it(`should add 1 more pin and not remove any pins (mouse enter in activeOffer)`, () => {
-    offersMap.setProps({activeCoord: getCoord()});
+    offersMap.setProps({activeCoord: [13, 14]});
     expect(leaflet.fn.addLayer).toHaveBeenCalledTimes(8);
     expect(leaflet.fn.removeLayer).toHaveBeenCalledTimes(4);
   });
 
   it(`should not add any pins and remove 4 pins (city have been changed and offerList is empty)`, () => {
-    offersMap.setProps({centerCoord: getCoord(), activeCoord: null, offersCoord: []});
+    offersMap.setProps({centerCoord: [15, 16], activeCoord: null, offersCoord: []});
     expect(leaflet.fn.addLayer).toHaveBeenCalledTimes(8);
     expect(leaflet.fn.removeLayer).toHaveBeenCalledTimes(8);
   });

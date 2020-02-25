@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import ActionCreator from '../../action-creator.js';
 
 const handleClick = (evt, handleActiveCityChange) => {
   const index = evt.target.dataset.index;
