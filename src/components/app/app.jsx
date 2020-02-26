@@ -4,33 +4,34 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
 import {getNeighbourhoods} from '../../mocks/offers.js';
+import {connect} from 'react-redux';
+import {ScreenType} from '../../const.js';
+import {offerPropType} from '../place-card/place-card.jsx';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cardProperty: null
-    };
-
-    this.handleCardClick = this.handleCardClick.bind(this);
-  }
-
-  handleCardClick(offer) {
-    this.setState({
-      cardProperty: offer
-    });
-  }
-
   _renderApp() {
-    const {placesCount, offerList} = this.props;
+    const {offerList, cities, activeCity, activeCard, screenType} = this.props;
 
-    return <Main placesCount={placesCount} offerList={offerList} onCardClick={this.handleCardClick} />;
+    return <Main
+      cities={cities}
+      activeCity={activeCity}
+      offerList={offerList}
+      activeCard={activeCard}
+      isNearPlaces={screenType === ScreenType.PROPERTY}
+    />;
   }
 
   render() {
-    if (this.state.cardProperty) {
-      const neighbourhoods = getNeighbourhoods(this.state.cardProperty.id);
-      return <CardProperty offer={this.state.cardProperty} neighbourhoods={neighbourhoods} />;
+    const {screenType, activeCard, offerList} = this.props;
+    const isNearPlaces = screenType === ScreenType.PROPERTY;
+
+    if (screenType === ScreenType.PROPERTY) {
+      const neighbourhoods = getNeighbourhoods(activeCard, offerList);
+      return <CardProperty
+        offer={activeCard}
+        neighbourhoods={neighbourhoods}
+        isNearPlaces={isNearPlaces}
+      />;
     }
 
     return (
@@ -40,7 +41,11 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-card-property">
-            <CardProperty offer={this.props.offerList[0]} neighbourhoods={getNeighbourhoods(`0`)} />
+            <CardProperty
+              offer={this.props.offerList[0]}
+              neighbourhoods={getNeighbourhoods(offerList[0], offerList)}
+              isNearPlaces={isNearPlaces}
+            />
           </Route>
         </Switch>
       </BrowserRouter>);
@@ -48,8 +53,20 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired,
-  offerList: PropTypes.array.isRequired
+  offerList: PropTypes.arrayOf(offerPropType).isRequired,
+  screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeCity: PropTypes.number.isRequired,
+  activeCard: offerPropType
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offerList: state.selectedOffers,
+  screenType: state.screenType,
+  cities: state.cities,
+  activeCity: state.activeCity,
+  activeCard: state.activeCard
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

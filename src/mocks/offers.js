@@ -1,4 +1,6 @@
-import {OfferType, /* CITIES,*/ InsideFeature} from '../const.js';
+import {OfferType, CITIES, InsideFeature, CityCoord} from '../const.js';
+
+const MOCK_COUNT = 30;
 
 const WORDS = [`Fusce`, `Risus`, `Magna`, `Rutrum`, `Sit`, `Amet`, `Ex`, `Quis`, `Tincidunt`, `Varius`, `Ligula`];
 
@@ -49,8 +51,8 @@ const getCostMock = () => getRandomNumber(1000, 10);
 const getRatingMock = () => getRandomNumber(50) / 10;
 const getPremiumMock = () => getRandomBoolean();
 const getFavoriteMock = () => getRandomBoolean();
-const getCity = () => `Amsterdam`;
-// const getCity = () => getRandomElement(CITIES);
+// const getCity = () => `Amsterdam`;
+const getCity = () => getRandomElement(CITIES);
 const getBedroomCount = () => getRandomNumber(5);
 const getAdultCount = () => getRandomNumber(10, 1);
 
@@ -70,7 +72,13 @@ const getUserPicture = (size = 74) => `https://api.adorable.io/avatars/${size}/$
 const getIsUserSuper = () => getRandomBoolean();
 const getDescription = (paragraphCount = 2) => Array(paragraphCount).fill(` `).map(() => getRandomElement(PARAGRAPHS)).join(`\n`);
 const getDescriptionTitle = () => getRandomElement(SHORT_PARAGRAPHS);
-const getCoordinates = () => [52.3 + getRandomNumber(84491, 52884) / 1000000, 4 + getRandomNumber(933742, 875206) / 1000000];
+const getCoordinates = (city) => {
+  const [longitude, latitude] = CityCoord[city];
+  const longitudeDelta = getRandomNumber(4000) / 1000000 * (getRandomBoolean() ? 1 : -1);
+  const latitudeDelta = getRandomNumber(55000) / 1000000 * (getRandomBoolean() ? 1 : -1);
+
+  return [longitude + longitudeDelta, latitude + latitudeDelta];
+};
 
 const getDate = () => {
   const dateValue = getRandomNumber(new Date().valueOf());
@@ -90,20 +98,28 @@ const getReview = (id) => {
   };
 };
 
-const getNeighbourhoods = (exclude) => {
-  const numberExclude = Number(exclude).isNaN ? MOCK_COUNT : Number(exclude);
-  const uniqueID = new Set([
-    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
-    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude),
-    getRandomNumber(MOCK_COUNT - 1, 0, numberExclude)
-  ]);
+const getNeighbourhoods = (offer, offers) => {
+  const neighbourhoods = new Set();
+  let i = 0;
+  const LIMIT = 10;
+  const NEIGHBOURHOODS_COUNT = 3;
 
-  return Array.from(uniqueID.values()).map((it) => offerMocks[it]);
+  do {
+    const neighbourhood = getRandomElement(offers);
+    if (neighbourhood.id !== offer.id) {
+      neighbourhoods.add(neighbourhood);
+    }
+
+    i += 1;
+
+  } while (neighbourhoods.size < NEIGHBOURHOODS_COUNT && i < LIMIT);
+
+  return Array.from(neighbourhoods.values());
 };
 
-const MOCK_COUNT = 10;
-
 const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
+  const city = getCity();
+
   return {
     id: String(i),
     title: getTitleMock(i),
@@ -120,7 +136,7 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     rating: getRatingMock(),
     isPremium: getPremiumMock(),
     isFavorite: getFavoriteMock(),
-    city: getCity(),
+    city,
     bedroomCount: getBedroomCount(),
     adultsCount: getAdultCount(),
     insideFeatures: getInsediFeatures(),
@@ -129,11 +145,11 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     isUserSuper: getIsUserSuper(),
     descriptionTitle: getDescriptionTitle(),
     description: getDescription(),
-    coord: getCoordinates(),
+    coord: getCoordinates(city),
     reviews: getReviews()
   };
 });
 
-// console.log(offerMocks);
+// console.log(offerMocks.map((it) => [it.city, it.coord.join(`,`)]));
 
 export {offerMocks, getNeighbourhoods};

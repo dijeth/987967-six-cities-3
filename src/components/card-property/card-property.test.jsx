@@ -1,8 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 import CardProperty from './card-property.jsx';
 
-const mock = {
+const mockStore = configureStore([]);
+
+const store = mockStore({});
+
+const offer = {
   id: `1`,
   title: `Title-test`,
   type: `Apartment`,
@@ -74,7 +80,7 @@ const neighbourhoods = [{
   id: `near-id-3`,
   title: `near-title-3`,
   type: `Apartment`,
-  pictures: `near-pictures-3`,
+  pictures: [`near-pictures-3`],
   cost: 789,
   rating: 3.7,
   isPremium: true,
@@ -85,8 +91,16 @@ const neighbourhoods = [{
 ];
 
 it(`<CardProperty /> should be render correctly`, () => {
-  const tree = renderer.create(<CardProperty offer={mock} neighbourhoods={neighbourhoods} />, {
-    createNodeMock: () => document.createElement(`div`)
-  }).toJSON();
+  const tree = renderer.create(
+      <Provider store={store}>
+        <CardProperty
+          offer={offer}
+          neighbourhoods={neighbourhoods}
+          isNearPlaces={true}
+        />
+      </Provider>, {
+        createNodeMock: () => document.createElement(`div`)
+      }).toJSON();
+
   expect(tree).toMatchSnapshot();
 });

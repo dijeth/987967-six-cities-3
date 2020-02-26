@@ -1,7 +1,7 @@
 import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import PlaceCard from './place-card.jsx';
+import {PlaceCard} from './place-card.jsx';
 
 configure({
   adapter: new Adapter()
@@ -16,15 +16,61 @@ const mock = {
   rating: 4.8,
   isPremium: false,
   isFavorite: true,
-  city: `Amsterdam`
+  city: `Amsterdam`,
+  coord: [123, 456]
 };
 
-it(`When onMouseEnter to the PlaceCard the callback accepts its offer-object`, () => {
-  const handleCardHover = jest.fn();
+describe(`When isNearPlaces === false`, () => {
+  it(`should call onCardHover once with its offer-object`, () => {
+    const onCardHover = jest.fn();
 
-  const placeCard = shallow(<PlaceCard onCardHover={handleCardHover} offer={mock} />);
-  placeCard.simulate(`mouseenter`);
+    const placeCard = shallow(<PlaceCard onCardHover={onCardHover} offer={mock} isNearPlaces={false}/>);
+    placeCard.simulate(`mouseenter`);
 
-  expect(handleCardHover).toHaveBeenCalledTimes(1);
-  expect(handleCardHover).toHaveBeenCalledWith(mock);
+    expect(onCardHover).toHaveBeenCalledTimes(1);
+    expect(onCardHover).toHaveBeenCalledWith(mock);
+  });
+
+  it(`should call onCardHover once with null`, () => {
+    const onCardHover = jest.fn();
+
+    const placeCard = shallow(<PlaceCard onCardHover={onCardHover} offer={mock} isNearPlaces={false}/>);
+    placeCard.simulate(`mouseleave`);
+
+    expect(onCardHover).toHaveBeenCalledTimes(1);
+    expect(onCardHover).toHaveBeenCalledWith(null);
+  });
+
+  it(`should call onCardClick once with its offer-object`, () => {
+    const onCardClick = jest.fn();
+
+    const placeCard = shallow(<PlaceCard onCardClick={onCardClick} offer={mock} isNearPlaces={false}/>);
+    const title = placeCard.find(`.place-card__name a`);
+    title.simulate(`click`);
+
+    expect(onCardClick).toHaveBeenCalledTimes(1);
+    expect(onCardClick).toHaveBeenCalledWith(mock);
+  });
+});
+
+describe(`When isNearPlaces === true`, () => {
+  it(`should not call onCardHover`, () => {
+    const onCardHover = jest.fn();
+
+    const placeCard = shallow(<PlaceCard onCardHover={onCardHover} offer={mock} isNearPlaces={true}/>);
+    placeCard.simulate(`mouseenter`);
+
+    expect(onCardHover).toHaveBeenCalledTimes(0);
+  });
+
+  it(`should call onCardClick once with its offer-object`, () => {
+    const onCardClick = jest.fn();
+
+    const placeCard = shallow(<PlaceCard onCardClick={onCardClick} offer={mock} isNearPlaces={true}/>);
+    const title = placeCard.find(`.place-card__name a`);
+    title.simulate(`click`);
+
+    expect(onCardClick).toHaveBeenCalledTimes(1);
+    expect(onCardClick).toHaveBeenCalledWith(mock);
+  });
 });

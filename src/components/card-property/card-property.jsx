@@ -5,10 +5,10 @@ import {ratingToPercent} from '../../util.js';
 import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
 import {offerPropType} from '../place-card/place-card.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import Map from '../map/map.jsx';
-import {CityCoord, CardRenderType} from '../../const.js';
+import OffersMap from '../offers-map/offers-map.jsx';
+import {CityCoord} from '../../const.js';
 
-const CardProperty = ({offer, neighbourhoods}) => {
+const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
   const {
     title,
     type,
@@ -26,7 +26,8 @@ const CardProperty = ({offer, neighbourhoods}) => {
     description,
     descriptionTitle,
     reviews,
-    city
+    city,
+    coord
   } = offer;
 
   const gallery = pictures.map((it, i) => {
@@ -192,14 +193,14 @@ const CardProperty = ({offer, neighbourhoods}) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map centerCoord={centerCoord} offersCoord={offersCoord} />
+            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={coord} />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList offerList={neighbourhoods} renderType={CardRenderType.NEAR_PLACES} />
+              <PlaceCardList offerList={neighbourhoods} isNearPlaces={isNearPlaces} />
             </div>
           </section>
         </div>
@@ -227,9 +228,11 @@ CardProperty.propTypes = {
     isUserSuper: PropTypes.bool,
     descriptionTitle: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    reviews: reviewListPropTypes
+    reviews: reviewListPropTypes,
+    coord: PropTypes.arrayOf(PropTypes.number)
   }).isRequired,
-  neighbourhoods: PropTypes.arrayOf(offerPropType)
+  neighbourhoods: PropTypes.arrayOf(offerPropType),
+  isNearPlaces: PropTypes.bool.isRequired
 };
 
 

@@ -13,12 +13,12 @@ export const CITIES = [
 ];
 
 export const CityCoord = {
-  [`Paris`]: [52.38333, 4.9],
-  [`Cologne`]: [52.38333, 4.9],
-  [`Brussels`]: [52.38333, 4.9],
+  [`Paris`]: [48.860758, 2.343110],
+  [`Cologne`]: [50.937286, 6.952897],
+  [`Brussels`]: [50.859072, 4.352043],
   [`Amsterdam`]: [52.38333, 4.9],
-  [`Hamburg`]: [52.38333, 4.9],
-  [`Dusseldorf`]: [52.38333, 4.9]
+  [`Hamburg`]: [53.540595, 9.995822],
+  [`Dusseldorf`]: [51.249977, 6.793917]
 };
 
 export const InsideFeature = {
@@ -38,7 +38,9 @@ export const BREAK_STRING = `\n`;
 
 export const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
-export const CardRenderType = {
-  CITIES: `cities`,
-  NEAR_PLACES: `near-places`
+export const ScreenType = {
+  MAIN: `MAIN`,
+  PROPERTY: `PROPERTY`
 };
+
+export const MAX_CITY_COUNT = 6;
