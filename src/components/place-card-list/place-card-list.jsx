@@ -31,7 +31,7 @@ class PlaceCardList extends PureComponent {
   	const offsetIndex = this._getOfferIndex(evt.target, evt.currentTarget);
 
   	if (offsetIndex === null) {
-  		return
+  		return;
   	};
 
   	const offer = this.props.offerList[offsetIndex];
