@@ -64,8 +64,8 @@ class PlaceCardList extends PureComponent {
 PlaceCardList.propTypes = {
   offerList: PropTypes.arrayOf(offerPropType).isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
-  onOfferHover: PropTypes.func,
-  onOfferClick: PropTypes.func
+  onOfferHover: PropTypes.func.isRequired,
+  onOfferClick: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -79,4 +79,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {PlaceCardList};
 export default connect(null, mapDispatchToProps)(PlaceCardList);

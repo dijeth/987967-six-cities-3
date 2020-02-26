@@ -3,9 +3,11 @@
 exports[`<PlaceCardList /> should be render correctly when isNearPlaces === false 1`] = `
 <div
   className="cities__places-list places__list tabs__content"
+  onClick={[Function]}
 >
   <article
     className="cities__place-card place-card"
+    data-index={0}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -90,7 +92,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
       >
         <a
           href="#"
-          onClick={[Function]}
         >
           title-1
         </a>
@@ -104,6 +105,7 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
   </article>
   <article
     className="cities__place-card place-card"
+    data-index={1}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -195,7 +197,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
       >
         <a
           href="#"
-          onClick={[Function]}
         >
           title-2
         </a>
@@ -213,9 +214,11 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
 exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true 1`] = `
 <div
   className="near-places__list places__list"
+  onClick={[Function]}
 >
   <article
     className="near-places__place-card place-card"
+    data-index={0}
     onMouseEnter={null}
     onMouseLeave={null}
   >
@@ -300,7 +303,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true
       >
         <a
           href="#"
-          onClick={[Function]}
         >
           title-1
         </a>
@@ -314,6 +316,7 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true
   </article>
   <article
     className="near-places__place-card place-card"
+    data-index={1}
     onMouseEnter={null}
     onMouseLeave={null}
   >
@@ -405,7 +408,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true
       >
         <a
           href="#"
-          onClick={[Function]}
         >
           title-2
         </a>
