@@ -210,9 +210,11 @@ exports[`<Main /> should be render correctly 1`] = `
           </form>
           <div
             className="cities__places-list places__list tabs__content"
+            onClick={[Function]}
           >
             <article
               className="cities__place-card place-card"
+              data-index={0}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -297,7 +299,6 @@ exports[`<Main /> should be render correctly 1`] = `
                 >
                   <a
                     href="#"
-                    onClick={[Function]}
                   >
                     title-1
                   </a>
@@ -311,6 +312,7 @@ exports[`<Main /> should be render correctly 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              data-index={1}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -402,7 +404,6 @@ exports[`<Main /> should be render correctly 1`] = `
                 >
                   <a
                     href="#"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>
