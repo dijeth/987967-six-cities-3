@@ -8,28 +8,35 @@ import {ScreenType} from '../../const.js';
 class PlaceCardList extends PureComponent {
   constructor(props) {
     super(props);
-
 		this._handleClick = this._handleClick.bind(this);
-		this._handleMouseEnter = this._handleMouseEnter.bind(this);
-		this._handleMouseLeave = this._handleMouseLeave.bind(this);
   }
 
-  _getOfferIndex(element) {
+  _getOfferIndex(element, currentElement) {
+  	while (element !== currentElement && element.dataset.index === undefined) {
+  		element = element.parentElement
+  	};
+
+  	if (element === currentElement) {
+  		return null
+  	};
+
+  	if (element.dataset.index === undefined) {
+  		return null
+  	};
+
   	return Number(element.dataset.index)
   }
 
   _handleClick(evt) {
-  	const offer = this.props.offerList[this._getOfferIndex(evt.target)];
+  	const offsetIndex = this._getOfferIndex(evt.target, evt.currentTarget);
+
+  	if (offsetIndex === null) {
+  		return
+  	};
+
+  	const offer = this.props.offerList[offsetIndex];
+
   	this.props.onOfferClick(offer);
-  }
-
-  _handleMouseEnter(evt) {
-  	const offer = this.props.offerList[this._getOfferIndex(evt.target)];
-  	this.props.onOfferHover(offer);
-  }
-
-  _handleMouseLeave() {
-  	this.props.onOfferHover(null);
   }
 
   render() {
@@ -41,14 +48,13 @@ class PlaceCardList extends PureComponent {
 	    	isNearPlaces={isNearPlaces}
 	    	key={it.id}
 	    	offsetIndex={i}
+	    	onHover={isNearPlaces ? null : onOfferHover}
     	/>));
 
     return (
       <div
       	className={classList}
-      	onClick={onOfferClick ? this._handleClick : null}
-				onMouseEnter={onOfferHover ? this._handleMouseEnter : null}
-        onMouseLeave={onOfferHover ? this._handleMouseLeave : null}
+      	onClick={this._handleClick}
       >
 	      {placeCardList}
 	    </div>);
@@ -67,10 +73,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeActiveCard(activeOffer));
     dispatch(ActionCreator.changeScreenType(ScreenType.PROPERTY));
   },
-  
+
   onOfferHover(activeOffer) {
     dispatch(ActionCreator.changeActiveCard(activeOffer));
   }
 });
 
-export default connect(null, mapDispacthToProps)(PlaceCardList);
+export default connect(null, mapDispatchToProps)(PlaceCardList);
