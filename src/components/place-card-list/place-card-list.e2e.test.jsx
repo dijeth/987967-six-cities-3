@@ -45,6 +45,7 @@ describe(`When isNearPlaces === false>`, () => {
 		/>);
 
 	const card = tree.find('article').at(0);
+	const cardTitle = card.find('.place-card__name a').at(0);
 
 	it(`should not call onOfferHover`, () => {
 		tree.simulate('mouseenter');
@@ -69,7 +70,7 @@ describe(`When isNearPlaces === false>`, () => {
 	});
 
 	it(`should call onOfferClick with mocks[0]`, () => {
-		card.simulate('click');
+		cardTitle.simulate('click');
 		expect(handleOfferClick).toHaveBeenCalledTimes(1);
 		expect(handleOfferClick).toHaveBeenCalledWith(mocks[0]);
 	})
@@ -87,6 +88,7 @@ describe(`When isNearPlaces === true>`, () => {
 		/>);
 
 	const card = tree.find('article').at(0);
+	const cardTitle = card.find('.place-card__name a').at(0);
 
 	it(`should not call onOfferHover`, () => {
 		tree.simulate('mouseenter');
@@ -104,7 +106,7 @@ describe(`When isNearPlaces === true>`, () => {
 	});
 
 	it(`should call onOfferClick with mocks[0]`, () => {
-		card.simulate('click');
+		cardTitle.simulate('click');
 		expect(handleOfferClick).toHaveBeenCalledTimes(1);
 		expect(handleOfferClick).toHaveBeenCalledWith(mocks[0]);
 	})

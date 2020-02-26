@@ -14,7 +14,6 @@ const PlaceCard = ({ offer, isNearPlaces, offsetIndex, onHover }) => {
   return (
     <article
       className={`${renderType}__place-card place-card`}
-      data-index={offsetIndex}
       onMouseEnter={onHover ? handleMouseEnter : null}
       onMouseLeave={onHover ? handleMouseLeave : null}
     >
@@ -44,7 +43,7 @@ const PlaceCard = ({ offer, isNearPlaces, offsetIndex, onHover }) => {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{title}</a>
+            <a href="#" data-index={offsetIndex}>{title}</a>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>

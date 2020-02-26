@@ -214,7 +214,6 @@ exports[`<Main /> should be render correctly 1`] = `
           >
             <article
               className="cities__place-card place-card"
-              data-index={0}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -298,6 +297,7 @@ exports[`<Main /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={0}
                     href="#"
                   >
                     title-1
@@ -312,7 +312,6 @@ exports[`<Main /> should be render correctly 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
-              data-index={1}
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -403,6 +402,7 @@ exports[`<Main /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={1}
                     href="#"
                   >
                     title-2
