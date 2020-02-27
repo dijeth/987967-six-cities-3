@@ -47,7 +47,7 @@ SortList.propTypes = {
     SortType.PRICE_HIGH_TO_LOW,
     SortType.TOP_RATED_FIRST
   ]).isRequired,
-  onSortTypeChange: PropTypes.func,
+  onSortTypeChange: PropTypes.func.isRequired,
   onViewChange: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired
 };
@@ -67,5 +67,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export {SortList};
+export {SortList, SORT_LIST};
 export default connect(mapStateToProps, mapDispatchToProps)(SortList);
