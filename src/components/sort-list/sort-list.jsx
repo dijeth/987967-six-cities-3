@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SortType } from '../../const.js';
-import { connect } from 'react-redux';
+import {SortType} from '../../const.js';
+import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator.js';
 
 const SORT_LIST = [
@@ -11,7 +11,7 @@ const SORT_LIST = [
   SortType.TOP_RATED_FIRST
 ];
 
-const SortList = ({ activeType, onSortTypeChange, isOpen, onViewChange }) => {
+const SortList = ({activeType, onSortTypeChange, isOpen, onViewChange}) => {
   const sortList = SORT_LIST.map((it, i) => {
     const className = `places__option ${it === activeType ? `places__option--active` : ``}`;
     const handler = () => {
@@ -19,7 +19,7 @@ const SortList = ({ activeType, onSortTypeChange, isOpen, onViewChange }) => {
       onViewChange();
     };
 
-    return <li className={className} tabIndex="0" onClick={handler} key={`${it}-${i}`}>{it}</li>
+    return <li className={className} tabIndex="0" onClick={handler} key={`${it}-${i}`}>{it}</li>;
   });
 
   const listClassName = `places__options places__options--custom ${isOpen ? `places__options--opened` : ``}`;
@@ -37,7 +37,7 @@ const SortList = ({ activeType, onSortTypeChange, isOpen, onViewChange }) => {
         {sortList}
       </ul>
     </form>
-  )
+  );
 };
 
 SortList.propTypes = {
@@ -63,9 +63,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSortTypeChange(activeType) {
     dispatch(ActionCreator.changeSortType(activeType));
-    dispatch(ActionCreator.SortOffers());
+    dispatch(ActionCreator.sortOffers());
   }
-})
+});
 
-export { SortList };
+export {SortList};
 export default connect(mapStateToProps, mapDispatchToProps)(SortList);

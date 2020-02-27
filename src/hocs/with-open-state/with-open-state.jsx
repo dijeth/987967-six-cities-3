@@ -14,15 +14,15 @@ const withOpenState = (Component) => {
     _handleViewChange() {
       this.setState((state) => ({
         isOpen: !state.isOpen
-      }))
+      }));
     }
 
     render() {
-      return <Component isOpen={this.state.isOpen} onViewChange={this._handleViewChange} {...this.props} />
+      return <Component isOpen={this.state.isOpen} onViewChange={this._handleViewChange} {...this.props} />;
     }
-  };
+  }
 
-  return WithOpenState
+  return WithOpenState;
 };
 
 export default withOpenState;
