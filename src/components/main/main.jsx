@@ -5,6 +5,9 @@ import {CityCoord} from '../../const.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
+import withActiveItem from '../../hocs/with-active-item.jsx';
+
+const CityListWithActiveItem = withActiveItem(CityListWithActiveItem);
 
 const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
   const city = cities[activeCity];
@@ -42,7 +45,7 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityList cities={cities} activeCity={activeCity} />
+            <CityListWithActiveItem cities={cities} activeCity={activeCity} />
           </section>
         </div>
         <div className="cities">
