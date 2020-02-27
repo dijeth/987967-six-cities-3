@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator.js';
+import WithActiveItem from '../../hocs/with-active-item.jsx';
 
 const handleClick = (evt, handleActiveCityChange) => {
   const index = evt.target.dataset.index;
@@ -36,4 +37,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {CityList};
-export default connect(null, mapDispatchToProps)(CityList);
+export default WithActiveItem(CityList);
+// export default connect(null, mapDispatchToProps)(CityList);
