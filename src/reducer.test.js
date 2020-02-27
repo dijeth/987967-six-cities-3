@@ -179,7 +179,7 @@ describe(`Test reducer`, () => {
 
   it(`should sort offers`, () => {
     expect(reducer({
-      cities:[`city1`],
+      cities: [`city1`],
       activeCity: 0,
       sortType: SortType.PRICE_LOW_TO_HIGH,
       selectedOffers: [{city: `city1`, cost: 4}, {city: `city1`, cost: 3}, {city: `city1`, cost: 2}, {city: `city1`, cost: 1}],
@@ -187,7 +187,7 @@ describe(`Test reducer`, () => {
     }, {
       type: ActionType.SORT_OFFERS
     })).toEqual({
-      cities:[`city1`],
+      cities: [`city1`],
       activeCity: 0,
       sortType: SortType.PRICE_LOW_TO_HIGH,
       selectedOffers: [{city: `city1`, cost: 1}, {city: `city1`, cost: 2}, {city: `city1`, cost: 3}, {city: `city1`, cost: 4}],

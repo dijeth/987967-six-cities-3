@@ -5,39 +5,39 @@ import {SortList, SORT_LIST} from './sort-list.jsx';
 import {SortType} from '../../const.js';
 
 Enzyme.configure({
-	adapter: new Adapter()
+  adapter: new Adapter()
 });
 
 it(`should call onSortTypeChange and pass a sortType`, () => {
-	const handleTypeChange = jest.fn();
+  const handleTypeChange = jest.fn();
 
-	const tree = Enzyme.shallow(
-		<SortList 
-			activeType={SortType.POPULAR}
-			onSortTypeChange={handleTypeChange}
-			onViewChange={() => {}}
-			isOpen={true}
-		/>);
+  const tree = Enzyme.shallow(
+      <SortList
+        activeType={SortType.POPULAR}
+        onSortTypeChange={handleTypeChange}
+        onViewChange={() => {}}
+        isOpen={true}
+      />);
 
-	const secondItem = tree.find(`li`).at(1);
-	secondItem.simulate(`click`);
+  const secondItem = tree.find(`li`).at(1);
+  secondItem.simulate(`click`);
 
-	expect(handleTypeChange).toHaveBeenCalledTimes(1);
-	expect(handleTypeChange).toHaveBeenCalledWith(SORT_LIST[1]);
+  expect(handleTypeChange).toHaveBeenCalledTimes(1);
+  expect(handleTypeChange).toHaveBeenCalledWith(SORT_LIST[1]);
 });
 
 it(`should call onViewChange`, () => {
-	const handleViewChange = jest.fn();
+  const handleViewChange = jest.fn();
 
-	const tree = Enzyme.shallow(
-		<SortList 
-			activeType={SortType.POPULAR}
-			onSortTypeChange={() => {}}
-			onViewChange={handleViewChange}
-			isOpen={true}
-		/>);
+  const tree = Enzyme.shallow(
+      <SortList
+        activeType={SortType.POPULAR}
+        onSortTypeChange={() => {}}
+        onViewChange={handleViewChange}
+        isOpen={true}
+      />);
 
-	tree.find(`.places__sorting-type`).simulate(`click`);
+  tree.find(`.places__sorting-type`).simulate(`click`);
 
-	expect(handleViewChange).toHaveBeenCalledTimes(1);
+  expect(handleViewChange).toHaveBeenCalledTimes(1);
 });
