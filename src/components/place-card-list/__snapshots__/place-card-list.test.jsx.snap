@@ -3,7 +3,6 @@
 exports[`<PlaceCardList /> should be render correctly when isNearPlaces === false 1`] = `
 <div
   className="cities__places-list places__list tabs__content"
-  onClick={[Function]}
 >
   <article
     className="cities__place-card place-card"
@@ -90,7 +89,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
         className="place-card__name"
       >
         <a
-          data-index={0}
           href="#"
         >
           title-1
@@ -195,7 +193,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
         className="place-card__name"
       >
         <a
-          data-index={1}
           href="#"
         >
           title-2
@@ -214,7 +211,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
 exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true 1`] = `
 <div
   className="near-places__list places__list"
-  onClick={[Function]}
 >
   <article
     className="near-places__place-card place-card"
@@ -301,7 +297,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true
         className="place-card__name"
       >
         <a
-          data-index={0}
           href="#"
         >
           title-1
@@ -406,7 +401,6 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true
         className="place-card__name"
       >
         <a
-          data-index={1}
           href="#"
         >
           title-2

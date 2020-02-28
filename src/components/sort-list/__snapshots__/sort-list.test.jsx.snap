@@ -29,31 +29,28 @@ exports[`<SortList /> should be correctly rendered when closed 1`] = `
   </span>
   <ul
     className="places__options places__options--custom "
+    onClick={[Function]}
   >
     <li
       className="places__option places__option--active"
-      onClick={[Function]}
       tabIndex="0"
     >
       Popular
     </li>
     <li
       className="places__option "
-      onClick={[Function]}
       tabIndex="0"
     >
       Price: low to high
     </li>
     <li
       className="places__option "
-      onClick={[Function]}
       tabIndex="0"
     >
       Price: high to low
     </li>
     <li
       className="places__option "
-      onClick={[Function]}
       tabIndex="0"
     >
       Top rated first
@@ -91,31 +88,28 @@ exports[`<SortList /> should be correctly rendered when opened 1`] = `
   </span>
   <ul
     className="places__options places__options--custom places__options--opened"
+    onClick={[Function]}
   >
     <li
       className="places__option places__option--active"
-      onClick={[Function]}
       tabIndex="0"
     >
       Popular
     </li>
     <li
       className="places__option "
-      onClick={[Function]}
       tabIndex="0"
     >
       Price: low to high
     </li>
     <li
       className="places__option "
-      onClick={[Function]}
       tabIndex="0"
     >
       Price: high to low
     </li>
     <li
       className="places__option "
-      onClick={[Function]}
       tabIndex="0"
     >
       Top rated first

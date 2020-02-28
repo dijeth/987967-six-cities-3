@@ -182,31 +182,28 @@ exports[`<Main /> should be render correctly 1`] = `
             </span>
             <ul
               className="places__options places__options--custom "
+              onClick={[Function]}
             >
               <li
                 className="places__option places__option--active"
-                onClick={[Function]}
                 tabIndex="0"
               >
                 Popular
               </li>
               <li
                 className="places__option "
-                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: low to high
               </li>
               <li
                 className="places__option "
-                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: high to low
               </li>
               <li
                 className="places__option "
-                onClick={[Function]}
                 tabIndex="0"
               >
                 Top rated first
@@ -302,7 +299,6 @@ exports[`<Main /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    data-index={0}
                     href="#"
                   >
                     title-1
@@ -407,7 +403,6 @@ exports[`<Main /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    data-index={1}
                     href="#"
                   >
                     title-2

@@ -93,7 +93,6 @@ exports[`<PlaceCard /> should be render correctly with isFavorite === false 1`] 
       className="place-card__name"
     >
       <a
-        data-index={0}
         href="#"
       >
         title-1
@@ -194,7 +193,6 @@ exports[`<PlaceCard /> should be render correctly with isNearPlaces === false 1`
       className="place-card__name"
     >
       <a
-        data-index={0}
         href="#"
       >
         title-1
@@ -295,7 +293,6 @@ exports[`<PlaceCard /> should be render correctly with isNearPlaces === true 1`]
       className="place-card__name"
     >
       <a
-        data-index={0}
         href="#"
       >
         title-1
@@ -403,7 +400,6 @@ exports[`<PlaceCard /> should be render correctly with isPremium === true 1`] = 
       className="place-card__name"
     >
       <a
-        data-index={0}
         href="#"
       >
         title-1

@@ -30,7 +30,7 @@ PlaceCardList.propTypes = {
   offerList: PropTypes.arrayOf(offerPropType).isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
   onOfferHover: PropTypes.func.isRequired,
-  onActiveItemChange: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func,
   activeItem: PropTypes.number
 };

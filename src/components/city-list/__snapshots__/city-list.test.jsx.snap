@@ -3,7 +3,7 @@
 exports[`<CityList /> should be render correctly 1`] = `
 <ul
   className="locations__list tabs__list"
-  onClick={[Function]}
+  onClick={null}
 >
   <li
     className="locations__item"
@@ -23,7 +23,7 @@ exports[`<CityList /> should be render correctly 1`] = `
     className="locations__item"
   >
     <a
-      className="locations__item-link tabs__item tabs__item--active"
+      className="locations__item-link tabs__item "
       href="#"
     >
       <span
