@@ -5,9 +5,9 @@ import {CityCoord} from '../../const.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
-import withActiveItem from '../../hocs/with-active-item.jsx';
+import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 
-const CityListWithActiveItem = withActiveItem(CityListWithActiveItem);
+const SortListWithOpenState = withOpenState(SortList);
 
 const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
   const city = cities[activeCity];
@@ -53,7 +53,7 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{placesCount} places to stay in {city}</b>
-              <SortList />
+              <SortListWithOpenState />
               <PlaceCardList offerList={offerList} isNearPlaces={isNearPlaces} />
             </section>
             <div className="cities__right-section">

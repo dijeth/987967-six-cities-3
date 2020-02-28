@@ -1,6 +1,6 @@
-import { offerMocks } from './mocks/offers.js';
-import { getCities, getOffers, sortOffers } from './util.js';
-import { ScreenType, SortType } from './const.js';
+import {offerMocks} from './mocks/offers.js';
+import {getCities, getOffers, sortOffers} from './util.js';
+import {ScreenType, SortType} from './const.js';
 import ActionType from './action-type.js';
 
 const cities = getCities(offerMocks);
@@ -18,7 +18,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_CITY:
-      return Object.assign({}, state, { activeCity: action.payload });
+      return Object.assign({}, state, {activeCity: action.payload});
 
     case ActionType.SELECT_OFFERS:
       return Object.assign({}, state, {
@@ -26,23 +26,23 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_ACTIVE_CARD:
-      return Object.assign({}, state, { activeCard: action.payload });
+      return Object.assign({}, state, {activeCard: action.payload});
 
     case ActionType.CHANGE_SCREEN_TYPE:
-      return Object.assign({}, state, { screenType: action.payload });
+      return Object.assign({}, state, {screenType: action.payload});
 
     case ActionType.CHANGE_SORT_TYPE:
-      return Object.assign({}, state, { sortType: action.payload });
+      return Object.assign({}, state, {sortType: action.payload});
 
     case ActionType.SORT_OFFERS:
       const offers = getOffers(state.cities[state.activeCity], state.offers);
       return Object.assign({}, state, {
         selectedOffers: sortOffers(offers, state.sortType)
       });
-  };
+  }
 
   return state;
 };
 
 export default reducer;
-export { initialState };
+export {initialState};
