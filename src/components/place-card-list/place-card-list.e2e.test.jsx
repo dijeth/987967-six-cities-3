@@ -137,9 +137,14 @@ describe(`When place-card-list with-active-item`, () => {
   const card = tree.find(`article`).at(2);
   const cardTitle = card.find(`.place-card__name a`);
 
-  it(`should call onActiveItemChange`, () => {
-    card.simulate(`click`);
+  it(`should call onActiveItemChange once with 2`, () => {
+    cardTitle.simulate(`click`);
     expect(handleActiveItemChange).toHaveBeenCalledTimes(1);
     expect(handleActiveItemChange).toHaveBeenCalledWith(2);
+  });
+
+  it(`should not call onActiveItemChange`, () => {
+    card.simulate(`click`);
+    expect(handleActiveItemChange).toHaveBeenCalledTimes(0);
   });
 });
