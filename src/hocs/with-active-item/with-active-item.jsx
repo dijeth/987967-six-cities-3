@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const isChild = (element, parentElement) => {
 	 return element.parentElement === parentElement;
@@ -23,37 +24,43 @@ const getChildIndex = (targetElement, parentElement) => {
 		return null
 	};
 
-	return Array.from(parentElement.children).inedxOf(child);
+	return Array.from(parentElement.children).indexOf(child);
 }
 
-const withActiveItem = (ListComponent, clickHandlerName) => {
-	return class extends React.PureComponent {
+const withActiveItem = (ListComponent) => {
+	class WithActiveItem extends React.PureComponent {
 		constructor(props) {
 			super(props);
 
 			this.state = {
-				activeIndex: null
+				activeIndex: props.activeItem
 			};
 
 			this._handleClick = this._handleClick.bind(this);
 		}
 
 		_handleClick(evt) {
-			console.log(123)
 			const parentElement = evt.currentTarget;
 			const element = evt.target;
+			const activeIndex = getChildIndex(element, parentElement);
 
-			this.setState({
-				activeIndex: getChildIndex(element, parentElement)
-			});
+			this.setState({activeIndex});
+
+			if (activeIndex !== null && this.props.onActiveItemChange) {
+				this.props.onActiveItemChange(activeIndex)
+			};
 		}
 
 		render() {
-			const {[clickHandlerName]: clickHandler, ...props} = this.props;
+			const {onListClick, activeItem, ...props} = this.props;
 
-			return <ListComponent activeItem={this.state.activeIndex} clickHandlerName={this._handleClick}/>
+			return <ListComponent activeItem={this.state.activeIndex} onListClick={this._handleClick} {...props} />
 		}
-	}
+	};
+
+	return WithActiveItem;
+
+	WithActiveItem.propTypes = {};
 };
 
 export default withActiveItem;

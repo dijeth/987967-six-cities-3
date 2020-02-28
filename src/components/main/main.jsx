@@ -8,6 +8,7 @@ import SortList from '../sort-list/sort-list.jsx';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
+// const CityListWithActiveItem = withActiveItem(CityList);
 
 const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
   const city = cities[activeCity];
@@ -45,7 +46,7 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityListWithActiveItem cities={cities} activeCity={activeCity} />
+            <CityList cities={cities} activeItem={activeCity} />
           </section>
         </div>
         <div className="cities">
