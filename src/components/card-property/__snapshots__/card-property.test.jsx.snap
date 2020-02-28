@@ -725,7 +725,6 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    data-index={0}
                     href="#"
                   >
                     near-title-1
@@ -823,7 +822,6 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    data-index={1}
                     href="#"
                   >
                     near-title-2
@@ -928,7 +926,6 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    data-index={2}
                     href="#"
                   >
                     near-title-3

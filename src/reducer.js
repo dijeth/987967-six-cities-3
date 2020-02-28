@@ -1,6 +1,6 @@
 import {offerMocks} from './mocks/offers.js';
 import {getCities, getOffers, sortOffers} from './util.js';
-import {ScreenType, SortType} from './const.js';
+import {ScreenType, SortType, SORT_LIST} from './const.js';
 import ActionType from './action-type.js';
 
 const cities = getCities(offerMocks);
@@ -26,13 +26,13 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_ACTIVE_CARD:
-      return Object.assign({}, state, {activeCard: action.payload});
+      return Object.assign({}, state, {activeCard: state.selectedOffers[action.payload]});
 
     case ActionType.CHANGE_SCREEN_TYPE:
       return Object.assign({}, state, {screenType: action.payload});
 
     case ActionType.CHANGE_SORT_TYPE:
-      return Object.assign({}, state, {sortType: action.payload});
+      return Object.assign({}, state, {sortType: SORT_LIST[action.payload]});
 
     case ActionType.SORT_OFFERS:
       const offers = getOffers(state.cities[state.activeCity], state.offers);

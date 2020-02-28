@@ -45,7 +45,7 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityList cities={cities} activeCity={activeCity} />
+            <CityList cities={cities} activeItem={activeCity} />
           </section>
         </div>
         <div className="cities">
