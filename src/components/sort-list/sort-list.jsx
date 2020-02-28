@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SortType, SORT_LIST } from '../../const.js';
-import { connect } from 'react-redux';
+import {SORT_LIST} from '../../const.js';
+import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
-const SortList = ({ activeItem, onListClick, onViewChange, isOpen }) => {
+const SortList = ({activeItem, onListClick, onViewChange, isOpen}) => {
   const sortList = SORT_LIST.map((it, i) => {
     const className = `places__option ${i === activeItem ? `places__option--active` : ``}`;
     return <li className={className} tabIndex="0" key={`${it}-${i}`}>{it}</li>;
@@ -24,7 +24,7 @@ const SortList = ({ activeItem, onListClick, onViewChange, isOpen }) => {
       </span>
       <ul className={listClassName} onClick={(evt) => {
         onListClick(evt);
-        onViewChange()
+        onViewChange();
       }}>
         {sortList}
       </ul>
@@ -56,5 +56,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export { SortList };
+export {SortList};
 export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(SortList));

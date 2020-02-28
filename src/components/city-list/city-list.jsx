@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
-const CityList = ({cities, activeItem, onActiveItemChange, onListClick}) => {
+const CityList = ({cities, activeItem, onListClick}) => {
   const cityList = cities.map((it, i) => {
     return (
       <li className="locations__item" key={`${it}-${i}`}>
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const connectedCityList = connect(null, mapDispatchToProps)(withActiveItem(CityList))
+const connectedCityList = connect(null, mapDispatchToProps)(withActiveItem(CityList));
 
 export {CityList};
 export default connectedCityList;
