@@ -51,3 +51,10 @@ export const SortType = {
   PRICE_HIGH_TO_LOW: `Price: high to low`,
   TOP_RATED_FIRST: `Top rated first`
 };
+
+export const SORT_LIST = [
+  SortType.POPULAR,
+  SortType.PRICE_LOW_TO_HIGH,
+  SortType.PRICE_HIGH_TO_LOW,
+  SortType.TOP_RATED_FIRST
+];
