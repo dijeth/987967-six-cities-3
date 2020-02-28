@@ -2,6 +2,7 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {PlaceCardList} from './place-card-list.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -31,17 +32,43 @@ const mocks = [{
   city: `Amsterdam`,
   coord: [3, 4]
 }
+,
+{
+  id: `id-3`,
+  title: `title-3`,
+  type: `Apartment`,
+  pictures: [`picture-3`],
+  cost: 456,
+  rating: 5,
+  isPremium: true,
+  isFavorite: false,
+  city: `Amsterdam`,
+  coord: [3, 4]
+}
+,
+{
+  id: `id-4`,
+  title: `title-4`,
+  type: `Apartment`,
+  pictures: [`picture-4`],
+  cost: 456,
+  rating: 5,
+  isPremium: true,
+  isFavorite: false,
+  city: `Amsterdam`,
+  coord: [3, 4]
+}
 ];
 
 describe(`When isNearPlaces === false>`, () => {
   const handleOfferHover = jest.fn();
-  const handleOfferClick = jest.fn();
+  const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <PlaceCardList
         offerList={mocks}
         isNearPlaces={false}
         onOfferHover={handleOfferHover}
-        onOfferClick={handleOfferClick}
+        onListClick={handleListClick}
       />);
 
   const card = tree.find(`article`).at(0);
@@ -52,10 +79,10 @@ describe(`When isNearPlaces === false>`, () => {
     expect(handleOfferHover).toHaveBeenCalledTimes(0);
   });
 
-  it(`should call onOfferHover with mocks[0]`, () => {
+  it(`should call onOfferHover with 0`, () => {
     card.simulate(`mouseenter`);
     expect(handleOfferHover).toHaveBeenCalledTimes(1);
-    expect(handleOfferHover).toHaveBeenCalledWith(mocks[0]);
+    expect(handleOfferHover).toHaveBeenCalledWith(0);
   });
 
   it(`should call onOfferHover with null`, () => {
@@ -64,50 +91,55 @@ describe(`When isNearPlaces === false>`, () => {
     expect(handleOfferHover).toHaveBeenCalledWith(null);
   });
 
-  it(`should call onOfferClick with null`, () => {
+  it(`should call onListClick`, () => {
     tree.simulate(`click`);
-    expect(handleOfferClick).toHaveBeenCalledTimes(0);
-  });
-
-  it(`should call onOfferClick with mocks[0]`, () => {
-    cardTitle.simulate(`click`);
-    expect(handleOfferClick).toHaveBeenCalledTimes(1);
-    expect(handleOfferClick).toHaveBeenCalledWith(mocks[0]);
+    expect(handleListClick).toHaveBeenCalledTimes(1);
   });
 });
 
 describe(`When isNearPlaces === true>`, () => {
   const handleOfferHover = jest.fn();
-  const handleOfferClick = jest.fn();
+  const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <PlaceCardList
         offerList={mocks}
         isNearPlaces={true}
         onOfferHover={handleOfferHover}
-        onOfferClick={handleOfferClick}
+        onListClick={handleListClick}
       />);
 
   const card = tree.find(`article`).at(0);
   const cardTitle = card.find(`.place-card__name a`).at(0);
 
   it(`should not call onOfferHover`, () => {
-    tree.simulate(`mouseenter`);
-    expect(handleOfferHover).toHaveBeenCalledTimes(0);
-  });
-
-  it(`should call onOfferHover with mocks[0]`, () => {
     card.simulate(`mouseenter`);
     expect(handleOfferHover).toHaveBeenCalledTimes(0);
   });
 
-  it(`should call onOfferClick with null`, () => {
+  it(`should call onListClick`, () => {
     tree.simulate(`click`);
-    expect(handleOfferClick).toHaveBeenCalledTimes(0);
+    expect(handleListClick).toHaveBeenCalledTimes(1);
   });
+});
 
-  it(`should call onOfferClick with mocks[0]`, () => {
-    cardTitle.simulate(`click`);
-    expect(handleOfferClick).toHaveBeenCalledTimes(1);
-    expect(handleOfferClick).toHaveBeenCalledWith(mocks[0]);
+describe(`When place-card-list with-active-item`, () => {
+  const handleActiveItemChange = jest.fn();
+  const PlaceCardListWithActiveItem = withActiveItem(PlaceCardList)
+
+  const tree = Enzyme.mount(
+      <PlaceCardListWithActiveItem
+        offerList={mocks}
+        isNearPlaces={false}
+        onOfferHover={() => {}}
+        onActiveItemChange={handleActiveItemChange}
+      />);
+
+  const card = tree.find(`article`).at(2);
+  const cardTitle = card.find(`.place-card__name a`);
+
+  it(`should call onActiveItemChange`, () => {
+    card.simulate(`click`);
+    expect(handleActiveItemChange).toHaveBeenCalledTimes(1);
+    expect(handleActiveItemChange).toHaveBeenCalledWith(2);
   });
 });

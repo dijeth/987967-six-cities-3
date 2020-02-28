@@ -46,7 +46,7 @@ SortList.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  activeType: state.sortType
+  activeItem: state.sortType
 });
 
 const mapDispatchToProps = (dispatch) => ({

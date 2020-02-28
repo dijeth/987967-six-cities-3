@@ -12,7 +12,7 @@ const initialState = {
   selectedOffers: getOffers(cities[0], offerMocks),
   activeCard: null,
   screenType: ScreenType.MAIN,
-  sortType: SortType.POPULAR
+  sortType: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,12 +32,12 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {screenType: action.payload});
 
     case ActionType.CHANGE_SORT_TYPE:
-      return Object.assign({}, state, {sortType: SORT_LIST[action.payload]});
+      return Object.assign({}, state, {sortType: action.payload});
 
     case ActionType.SORT_OFFERS:
       const offers = getOffers(state.cities[state.activeCity], state.offers);
       return Object.assign({}, state, {
-        selectedOffers: sortOffers(offers, state.sortType)
+        selectedOffers: sortOffers(offers, SORT_LIST[state.sortType])
       });
   }
 

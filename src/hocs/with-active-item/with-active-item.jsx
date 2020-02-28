@@ -75,7 +75,7 @@ const withActiveItem = (ListComponent) => {
 
   WithActiveItem.propTypes = {
     activeItem: PropTypes.number,
-    onListClick: PropTypes.func.isRequired,
+    onListClick: PropTypes.func,
     onActiveItemChange: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.arrayOf(PropTypes.func)
