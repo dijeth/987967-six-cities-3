@@ -8,7 +8,6 @@ import SortList from '../sort-list/sort-list.jsx';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
-// const CityListWithActiveItem = withActiveItem(CityList);
 
 const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
   const city = cities[activeCity];

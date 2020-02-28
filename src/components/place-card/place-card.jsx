@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {OfferType} from '../../const.js';
 import {ratingToPercent} from '../../util.js';
 
-const PlaceCard = ({offer, isNearPlaces, offsetIndex, onHover}) => {
+const PlaceCard = ({offer, isNearPlaces, onHover, offsetIndex}) => {
   const {title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
   const renderType = isNearPlaces ? `near-places` : `cities`;
   const handleMouseEnter = () => {
-    onHover(offer);
+    onHover(offsetIndex);
   };
   const handleMouseLeave = () => {
     onHover(null);
@@ -47,7 +47,7 @@ const PlaceCard = ({offer, isNearPlaces, offsetIndex, onHover}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" data-index={offsetIndex}>{title}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -69,9 +69,9 @@ const offerPropType = PropTypes.shape({
 
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
-  offsetIndex: PropTypes.number.isRequired,
   onHover: PropTypes.func,
-  isNearPlaces: PropTypes.bool.isRequired
+  isNearPlaces: PropTypes.bool.isRequired,
+  offsetIndex: PropTypes.number
 };
 
 export {offerPropType};

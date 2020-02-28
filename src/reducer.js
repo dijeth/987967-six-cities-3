@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_ACTIVE_CARD:
-      return Object.assign({}, state, {activeCard: action.payload});
+      return Object.assign({}, state, {activeCard: state.selectedOffers[action.payload]});
 
     case ActionType.CHANGE_SCREEN_TYPE:
       return Object.assign({}, state, {screenType: action.payload});
