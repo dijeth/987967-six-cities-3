@@ -124,7 +124,9 @@ describe(`When isNearPlaces === true>`, () => {
 
 describe(`When place-card-list with-active-item`, () => {
   const handleActiveItemChange = jest.fn();
-  const PlaceCardListWithActiveItem = withActiveItem(PlaceCardList)
+  const PlaceCardListWithActiveItem = withActiveItem(PlaceCardList, `.place-card__name`);
+  const div = global.document.createElement(`div`);
+  global.document.body.appendChild(div);
 
   const tree = Enzyme.mount(
       <PlaceCardListWithActiveItem
@@ -132,7 +134,7 @@ describe(`When place-card-list with-active-item`, () => {
         isNearPlaces={false}
         onOfferHover={() => {}}
         onActiveItemChange={handleActiveItemChange}
-      />);
+      />, {attachTo: div});
 
   const card = tree.find(`article`).at(2);
   const cardTitle = card.find(`.place-card__name a`);
@@ -145,6 +147,6 @@ describe(`When place-card-list with-active-item`, () => {
 
   it(`should not call onActiveItemChange`, () => {
     card.simulate(`click`);
-    expect(handleActiveItemChange).toHaveBeenCalledTimes(0);
+    expect(handleActiveItemChange).toHaveBeenCalledTimes(1);
   });
 });
