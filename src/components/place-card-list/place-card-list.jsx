@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import PropTypes from 'prop-types';
 import PlaceCard, {offerPropType} from '../place-card/place-card.jsx';
 import ActionCreator from '../../action-creator.js';
@@ -47,4 +47,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {PlaceCardList};
-export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList));
+export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList, `.place-card__name`));

@@ -1,12 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const isChild = (element, parentElement) => {
+const isChildOf = (element, parentElement) => {
   return element.parentElement === parentElement;
 };
 
+const isChild = (element, parentElement) => {
+  if (element === parentElement) {
+    return true
+  };
+
+  while (element !== document.body && element !== parentElement) {
+    element = element.parentElement
+  };
+
+  return element !== document.body
+}
+
 const getChild = (targetElement, parentElement) => {
-  while (targetElement !== document.body && targetElement !== parentElement && !isChild(targetElement, parentElement)) {
+  while (targetElement !== document.body && targetElement !== parentElement && !isChildOf(targetElement, parentElement)) {
     targetElement = targetElement.parentElement;
   }
 
@@ -39,7 +51,7 @@ const normalizeHandlerProp = (handlerProp) => {
   return handlerProp;
 };
 
-const withActiveItem = (ListComponent) => {
+const withActiveItem = (ListComponent, clickTargetSelector) => {
   class WithActiveItem extends React.PureComponent {
     constructor(props) {
       super(props);
@@ -56,11 +68,19 @@ const withActiveItem = (ListComponent) => {
       const element = evt.target;
       const activeIndex = getChildIndex(element, parentElement);
 
-      this.setState({activeIndex});
+      if (activeIndex === null) {
+        return
+      };
+
+      if (clickTargetSelector && !isChild(element, parentElement.children[activeIndex].querySelector(clickTargetSelector))) {
+        return
+      }
+
+      this.setState({ activeIndex });
 
       const handlers = normalizeHandlerProp(this.props.onActiveItemChange);
 
-      if (activeIndex !== null && handlers !== null) {
+      if (handlers !== null) {
         handlers.forEach((it) => {
           it(activeIndex);
         });
