@@ -1,5 +1,4 @@
-import {MONTHS} from './const.js';
-import {MAX_CITY_COUNT} from './const.js';
+import {MONTHS, MAX_CITY_COUNT, SortType} from './const.js';
 
 const PERCENT_STEP = 20;
 export const ratingToPercent = (rating) => Math.round(rating) * PERCENT_STEP;
@@ -27,3 +26,24 @@ export const getOffers = (city, offers) => {
 };
 
 export const isEqualCoords = (coord1, coord2) => coord1[0] === coord2[0] && coord1[1] === coord2[1];
+
+export const indexOf = (element) => {
+  return Array.from(element.parentElement.children).indexOf(element);
+};
+
+export const sortOffers = (offers, sortType) => {
+  switch (sortType) {
+    case SortType.PRICE_LOW_TO_HIGH:
+      return offers.sort((a, b) => a.cost - b.cost);
+
+    case SortType.PRICE_HIGH_TO_LOW:
+      return offers.sort((a, b) => b.cost - a.cost);
+
+    case SortType.TOP_RATED_FIRST:
+      return offers.sort((a, b) => b.rating - a.rating);
+
+    case SortType.POPULAR:
+    default:
+      return offers;
+  }
+};

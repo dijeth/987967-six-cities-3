@@ -631,6 +631,7 @@ exports[`<CardProperty /> should be render correctly 1`] = `
         >
           <div
             className="near-places__list places__list"
+            onClick={[Function]}
           >
             <article
               className="near-places__place-card place-card"
@@ -724,8 +725,8 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={0}
                     href="#"
-                    onClick={[Function]}
                   >
                     near-title-1
                   </a>
@@ -822,8 +823,8 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={1}
                     href="#"
-                    onClick={[Function]}
                   >
                     near-title-2
                   </a>
@@ -927,8 +928,8 @@ exports[`<CardProperty /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={2}
                     href="#"
-                    onClick={[Function]}
                   >
                     near-title-3
                   </a>

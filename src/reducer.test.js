@@ -1,6 +1,6 @@
 import reducer, {initialState} from './reducer.js';
 import ActionType from './action-type.js';
-import {ScreenType} from './const.js';
+import {ScreenType, SortType} from './const.js';
 
 describe(`Test reducer`, () => {
   it(`should return initialState when called with an unknown action`, () => {
@@ -163,6 +163,35 @@ describe(`Test reducer`, () => {
       selectedOffers: [`offer`],
       activeCard: null,
       screenType: ScreenType.PROPERTY
+    });
+  });
+
+  it(`should change a sortType by payload`, () => {
+    expect(reducer({
+      sortType: SortType.POPULAR
+    }, {
+      type: ActionType.CHANGE_SORT_TYPE,
+      payload: SortType.PRICE_LOW_TO_HIGH
+    })).toEqual({
+      sortType: SortType.PRICE_LOW_TO_HIGH
+    });
+  });
+
+  it(`should sort offers`, () => {
+    expect(reducer({
+      cities: [`city1`],
+      activeCity: 0,
+      sortType: SortType.PRICE_LOW_TO_HIGH,
+      selectedOffers: [{city: `city1`, cost: 4}, {city: `city1`, cost: 3}, {city: `city1`, cost: 2}, {city: `city1`, cost: 1}],
+      offers: [{city: `city1`, cost: 4}, {city: `city1`, cost: 3}, {city: `city1`, cost: 2}, {city: `city1`, cost: 1}]
+    }, {
+      type: ActionType.SORT_OFFERS
+    })).toEqual({
+      cities: [`city1`],
+      activeCity: 0,
+      sortType: SortType.PRICE_LOW_TO_HIGH,
+      selectedOffers: [{city: `city1`, cost: 1}, {city: `city1`, cost: 2}, {city: `city1`, cost: 3}, {city: `city1`, cost: 4}],
+      offers: [{city: `city1`, cost: 4}, {city: `city1`, cost: 3}, {city: `city1`, cost: 2}, {city: `city1`, cost: 1}]
     });
   });
 });

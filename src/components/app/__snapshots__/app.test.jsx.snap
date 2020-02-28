@@ -124,6 +124,7 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex="0"
             >
               Popular
@@ -138,28 +139,32 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
             >
               <li
                 className="places__option places__option--active"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Popular
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: low to high
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: high to low
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Top rated first
@@ -168,6 +173,7 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
           </form>
           <div
             className="cities__places-list places__list tabs__content"
+            onClick={[Function]}
           >
             <article
               className="cities__place-card place-card"
@@ -254,8 +260,8 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={0}
                     href="#"
-                    onClick={[Function]}
                   >
                     title-1
                   </a>
@@ -359,8 +365,8 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={1}
                     href="#"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>
@@ -464,8 +470,8 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={2}
                     href="#"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>
@@ -569,8 +575,8 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={3}
                     href="#"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>
@@ -674,8 +680,8 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={4}
                     href="#"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>
@@ -779,8 +785,8 @@ exports[`should render <Main /> when screenType === ScreenType.MAIN 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    data-index={5}
                     href="#"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>

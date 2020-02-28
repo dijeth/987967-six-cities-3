@@ -1,10 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import PlaceCardList from './place-card-list.jsx';
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-
-const mockStore = configureStore([]);
+import {PlaceCardList} from './place-card-list.jsx';
 
 const mocks = [{
   id: `id-1`,
@@ -33,23 +29,15 @@ const mocks = [{
 ];
 
 describe(`<PlaceCardList /> should be render correctly`, () => {
-  const store = mockStore({});
-
   it(`when isNearPlaces === false`, () => {
-    const card = renderer.create(
-        <Provider store={store}>
-          <PlaceCardList offerList={mocks} isNearPlaces={false} />
-        </Provider>).toJSON();
+    const tree = renderer.create(<PlaceCardList offerList={mocks} isNearPlaces={false} onOfferHover={()=>{}} onOfferClick={()=>{}} />);
 
-    expect(card).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it(`when isNearPlaces === true`, () => {
-    const card = renderer.create(
-        <Provider store={store}>
-          <PlaceCardList offerList={mocks} isNearPlaces={true} />
-        </Provider>).toJSON();
+    const tree = renderer.create(<PlaceCardList offerList={mocks} isNearPlaces={true} onOfferHover={()=>{}} onOfferClick={()=>{}} />);
 
-    expect(card).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 });
