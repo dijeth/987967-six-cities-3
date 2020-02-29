@@ -30,13 +30,13 @@ const mocks = [{
 
 describe(`<PlaceCardList /> should be render correctly`, () => {
   it(`when isNearPlaces === false`, () => {
-    const tree = renderer.create(<PlaceCardList offerList={mocks} isNearPlaces={false} onOfferHover={()=>{}} onOfferClick={()=>{}} />);
+    const tree = renderer.create(<PlaceCardList offers={mocks} isNearPlaces={false} onOfferHover={()=>{}} onOfferClick={()=>{}} />);
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`when isNearPlaces === true`, () => {
-    const tree = renderer.create(<PlaceCardList offerList={mocks} isNearPlaces={true} onOfferHover={()=>{}} onOfferClick={()=>{}} />);
+    const tree = renderer.create(<PlaceCardList offers={mocks} isNearPlaces={true} onOfferHover={()=>{}} onOfferClick={()=>{}} />);
 
     expect(tree).toMatchSnapshot();
   });

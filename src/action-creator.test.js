@@ -11,8 +11,8 @@ describe(`Test ActionCreator`, () => {
     expect(ActionCreator.selectOffers()).toEqual({type: ActionType.SELECT_OFFERS});
   });
 
-  it(`ActionCreator.changeActiveCard should return a right action`, () => {
-    expect(ActionCreator.changeActiveCard(`offer`)).toEqual({type: ActionType.CHANGE_ACTIVE_CARD, payload: `offer`});
+  it(`ActionCreator.changeActiveOffer should return a right action`, () => {
+    expect(ActionCreator.changeActiveOffer(`offer`)).toEqual({type: ActionType.CHANGE_ACTIVE_CARD, payload: `offer`});
   });
 
   it(`ActionCreator.changeScreenType should return a right action`, () => {

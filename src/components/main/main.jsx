@@ -9,12 +9,12 @@ import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
+const Main = ({offers, cities, activeCity, activeOffer, isNearPlaces}) => {
   const city = cities[activeCity];
   const centerCoord = CityCoord[city];
-  const offersCoord = offerList.map((it) => it.coord);
-  const placesCount = offerList.length;
-  const activeCoord = activeCard ? activeCard.coord : null;
+  const offersCoord = offers.map((it) => it.coord);
+  const placesCount = offers.length;
+  const activeCoord = activeOffer ? activeOffer.coord : null;
 
   return (
     <div className="page page--gray page--main">
@@ -54,7 +54,7 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{placesCount} places to stay in {city}</b>
               <SortListWithOpenState />
-              <PlaceCardList offerList={offerList} isNearPlaces={isNearPlaces} />
+              <PlaceCardList offers={offers} isNearPlaces={isNearPlaces} />
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
@@ -69,11 +69,11 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
 };
 
 Main.propTypes = {
-  offerList: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
   cities: PropTypes.array.isRequired,
   activeCity: PropTypes.number.isRequired,
-  activeCard: PropTypes.object
+  activeOffer: PropTypes.object
 };
 
 export default Main;

@@ -7,7 +7,7 @@ import {ScreenType} from '../../const.js';
 
 const mockStore = configureStore([]);
 
-const offerList = [{
+const offers = [{
   id: `1`,
   title: `title-1`,
   type: `Apartment`,
@@ -106,11 +106,11 @@ it(`should render <Main /> when screenType === ScreenType.MAIN`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <App
-          offerList = {offerList}
+          offers = {offers}
           screenType = {ScreenType.MAIN}
           cities = {[`Amsterdam`]}
           activeCity = {0}
-          activeCard = {null}
+          activeOffer = {null}
         />
       </Provider>, {createNodeMock: () => document.createElement(`div`)}
   ).toJSON();

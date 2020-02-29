@@ -10,25 +10,25 @@ import {offerPropType} from '../place-card/place-card.jsx';
 
 class App extends PureComponent {
   _renderApp() {
-    const {offerList, cities, activeCity, activeCard, screenType} = this.props;
+    const {offers, cities, activeCity, activeOffer, screenType} = this.props;
 
     return <Main
       cities={cities}
       activeCity={activeCity}
-      offerList={offerList}
-      activeCard={activeCard}
+      offers={offers}
+      activeOffer={activeOffer}
       isNearPlaces={screenType === ScreenType.PROPERTY}
     />;
   }
 
   render() {
-    const {screenType, activeCard, offerList} = this.props;
+    const {screenType, activeOffer, offers} = this.props;
     const isNearPlaces = screenType === ScreenType.PROPERTY;
 
     if (screenType === ScreenType.PROPERTY) {
-      const neighbourhoods = getNeighbourhoods(activeCard, offerList);
+      const neighbourhoods = getNeighbourhoods(activeOffer, offers);
       return <CardProperty
-        offer={activeCard}
+        offer={activeOffer}
         neighbourhoods={neighbourhoods}
         isNearPlaces={isNearPlaces}
       />;
@@ -42,8 +42,8 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-card-property">
             <CardProperty
-              offer={this.props.offerList[0]}
-              neighbourhoods={getNeighbourhoods(offerList[0], offerList)}
+              offer={this.props.offers[0]}
+              neighbourhoods={getNeighbourhoods(offers[0], offers)}
               isNearPlaces={isNearPlaces}
             />
           </Route>
@@ -53,19 +53,19 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offerList: PropTypes.arrayOf(offerPropType).isRequired,
+  offers: PropTypes.arrayOf(offerPropType).isRequired,
   screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]).isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeCity: PropTypes.number.isRequired,
-  activeCard: offerPropType
+  activeOffer: offerPropType
 };
 
 const mapStateToProps = (state) => ({
-  offerList: state.selectedOffers,
+  offers: state.selectedOffers,
   screenType: state.screenType,
   cities: state.cities,
   activeCity: state.activeCity,
-  activeCard: state.activeCard
+  activeOffer: state.activeOffer
 });
 
 export {App};

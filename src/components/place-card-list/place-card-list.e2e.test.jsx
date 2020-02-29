@@ -65,7 +65,7 @@ describe(`When isNearPlaces === false>`, () => {
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <PlaceCardList
-        offerList={mocks}
+        offers={mocks}
         isNearPlaces={false}
         onOfferHover={handleOfferHover}
         onListClick={handleListClick}
@@ -102,7 +102,7 @@ describe(`When isNearPlaces === true>`, () => {
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <PlaceCardList
-        offerList={mocks}
+        offers={mocks}
         isNearPlaces={true}
         onOfferHover={handleOfferHover}
         onListClick={handleListClick}
@@ -130,7 +130,7 @@ describe(`When place-card-list with-active-item`, () => {
 
   const tree = Enzyme.mount(
       <PlaceCardListWithActiveItem
-        offerList={mocks}
+        offers={mocks}
         isNearPlaces={false}
         onOfferHover={() => {}}
         onActiveItemChange={handleActiveItemChange}

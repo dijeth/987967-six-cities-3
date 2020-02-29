@@ -13,7 +13,7 @@ describe(`Test reducer`, () => {
       offers: [`offer`],
       activeCity: 0,
       selectedOffers: [`offer`],
-      activeCard: null,
+      activeOffer: null,
       screenType: ScreenType.MAIN
     }, {
       type: ActionType.CHANGE_CITY,
@@ -23,18 +23,18 @@ describe(`Test reducer`, () => {
       offers: [`offer`],
       activeCity: 1,
       selectedOffers: [`offer`],
-      activeCard: null,
+      activeOffer: null,
       screenType: ScreenType.MAIN
     });
   });
 
-  it(`should change an activeCard by payload`, () => {
+  it(`should change an activeOffer by payload`, () => {
     expect(reducer({
       cities: [`city`],
       offers: [`offer`],
       activeCity: 0,
       selectedOffers: [`offer`],
-      activeCard: null,
+      activeOffer: null,
       screenType: ScreenType.MAIN
     }, {
       type: ActionType.CHANGE_ACTIVE_CARD,
@@ -44,7 +44,7 @@ describe(`Test reducer`, () => {
       offers: [`offer`],
       activeCity: 0,
       selectedOffers: [`offer`],
-      activeCard: `offer2`,
+      activeOffer: `offer2`,
       screenType: ScreenType.MAIN
     });
   });
@@ -87,7 +87,7 @@ describe(`Test reducer`, () => {
       ],
       activeCity: 1,
       selectedOffers: [`offer`],
-      activeCard: null,
+      activeOffer: null,
       screenType: ScreenType.MAIN
     }, {
       type: ActionType.SELECT_OFFERS
@@ -140,7 +140,7 @@ describe(`Test reducer`, () => {
         city: `city2`
       }
       ],
-      activeCard: null,
+      activeOffer: null,
       screenType: ScreenType.MAIN
     });
   });
@@ -151,7 +151,7 @@ describe(`Test reducer`, () => {
       offers: [`offer`],
       activeCity: 0,
       selectedOffers: [`offer`],
-      activeCard: null,
+      activeOffer: null,
       screenType: ScreenType.MAIN
     }, {
       type: ActionType.CHANGE_SCREEN_TYPE,
@@ -161,7 +161,7 @@ describe(`Test reducer`, () => {
       offers: [`offer`],
       activeCity: 0,
       selectedOffers: [`offer`],
-      activeCard: null,
+      activeOffer: null,
       screenType: ScreenType.PROPERTY
     });
   });

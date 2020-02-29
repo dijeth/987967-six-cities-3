@@ -10,7 +10,7 @@ const initialState = {
   offers: offerMocks,
   activeCity: 0,
   selectedOffers: getOffers(cities[0], offerMocks),
-  activeCard: null,
+  activeOffer: null,
   screenType: ScreenType.MAIN,
   sortType: 0
 };
@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_ACTIVE_CARD:
-      return Object.assign({}, state, {activeCard: state.selectedOffers[action.payload]});
+      return Object.assign({}, state, {activeOffer: state.selectedOffers[action.payload]});
 
     case ActionType.CHANGE_SCREEN_TYPE:
       return Object.assign({}, state, {screenType: action.payload});
