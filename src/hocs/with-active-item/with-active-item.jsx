@@ -57,7 +57,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
       super(props);
 
       this.state = {
-        activeIndex: props.activeItem
+        activeIndex: props.activeItem ? props.items.findIndex((it) => it === props.activeItem) : null
       };
 
       this._handleClick = this._handleClick.bind(this);
@@ -82,20 +82,22 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
 
       if (handlers !== null) {
         handlers.forEach((it) => {
-          it(activeIndex);
+          it(this.props.items[activeIndex]);
         });
       }
     }
 
     render() {
-      // const { onListClick, activeItem, ...props } = this.props;
-      return <ListComponent {...this.props} activeItem={this.state.activeIndex} onListClick={this._handleClick} />;
+      const { items } = this.props;
+      const activeItem = this.state.activeIndex ? items[this.state.activeIndex] : null;
+
+      return <ListComponent {...this.props} activeItem={activeItem} onListClick={this._handleClick} />;
     }
   }
 
   WithActiveItem.propTypes = {
-    activeItem: PropTypes.number,
-    // onListClick: PropTypes.func,
+    activeItem: PropTypes.any,
+    items: PropTypes.array,
     onActiveItemChange: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.arrayOf(PropTypes.func)

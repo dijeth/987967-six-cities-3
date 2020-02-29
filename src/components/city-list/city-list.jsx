@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
-const CityList = ({cities, activeItem, onListClick}) => {
-  const cityList = cities.map((it, i) => {
+const CityList = ({items, activeItem, onListClick}) => {
+  const cityList = items.map((it, i) => {
     return (
       <li className="locations__item" key={`${it}-${i}`}>
-        <a className={`locations__item-link tabs__item ${i === activeItem ? `tabs__item--active` : ``}`} href="#">
+        <a className={`locations__item-link tabs__item ${it === activeItem ? `tabs__item--active` : ``}`} href="#">
           <span data-index={i}>{it}</span>
         </a>
       </li>);
@@ -18,8 +18,8 @@ const CityList = ({cities, activeItem, onListClick}) => {
 };
 
 CityList.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeItem: PropTypes.number,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeItem: PropTypes.string,
   onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func
 };
@@ -27,7 +27,6 @@ CityList.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeCity) {
     dispatch(ActionCreator.changeCity(activeCity));
-    dispatch(ActionCreator.selectOffers());
   }
 });
 

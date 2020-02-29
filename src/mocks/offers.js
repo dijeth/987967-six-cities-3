@@ -44,7 +44,7 @@ const getRandomElement = (array) => {
 
 const getRandomBoolean = () => Math.random() > 0.5;
 
-const getTitleMock = (id) => `Title Offer ${id}`;
+const getTitleMock = (id, city) => `Offer in ${city} ${id}`;
 const getTypeMock = () => getRandomBoolean() ? OfferType.APARTMENT : OfferType.PRIVATE_ROOM;
 const getPictureMock = () => `http://picsum.photos/260/200?r=${Math.random()}`;
 const getCostMock = () => getRandomNumber(1000, 10);
@@ -101,12 +101,12 @@ const getReview = (id) => {
 const getNeighbourhoods = (offer, offers) => {
   const neighbourhoods = new Set();
   let i = 0;
-  const LIMIT = 10;
+  const LIMIT = 20;
   const NEIGHBOURHOODS_COUNT = 3;
 
   do {
     const neighbourhood = getRandomElement(offers);
-    if (neighbourhood.id !== offer.id) {
+    if (neighbourhood.id !== offer.id && neighbourhood.city === offer.city) {
       neighbourhoods.add(neighbourhood);
     }
 
@@ -122,7 +122,7 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
 
   return {
     id: String(i),
-    title: getTitleMock(i),
+    title: getTitleMock(i, city),
     type: getTypeMock(),
     pictures: [
       getPictureMock(),

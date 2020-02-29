@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
-const SortList = ({activeItem, onListClick, onViewChange, isOpen}) => {
-  const sortList = SORT_LIST.map((it, i) => {
-    const className = `places__option ${i === activeItem ? `places__option--active` : ``}`;
+const SortList = ({activeItem, onListClick, onViewChange, isOpen, items}) => {
+  const sortList = items.map((it, i) => {
+    const className = `places__option ${it === activeItem ? `places__option--active` : ``}`;
     return <li className={className} tabIndex="0" key={`${it}-${i}`}>{it}</li>;
   });
 
@@ -17,7 +17,7 @@ const SortList = ({activeItem, onListClick, onViewChange, isOpen}) => {
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex="0" onClick={onViewChange}>
-        {SORT_LIST[activeItem]}
+        {activeItem}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -33,7 +33,8 @@ const SortList = ({activeItem, onListClick, onViewChange, isOpen}) => {
 };
 
 SortList.propTypes = {
-  activeItem: PropTypes.number,
+  items: PropTypes.arrayOf(PropTypes.oneOf(SORT_LIST)),
+  activeItem: PropTypes.oneOf(SORT_LIST),
   onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func,
   onViewChange: PropTypes.func,

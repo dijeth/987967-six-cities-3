@@ -6,16 +6,18 @@ import {connect} from 'react-redux';
 import {ScreenType} from '../../const.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
-const PlaceCardList = ({offers, isNearPlaces, onOfferHover, onListClick}) => {
+const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick}) => {
   const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
-  const placeCardList = offers.map((it, i) => (
-    <PlaceCard
-      offer={it}
-      isNearPlaces={isNearPlaces}
-      key={it.id}
-      onHover={isNearPlaces ? null : onOfferHover}
-      offsetIndex={i}
-    />));
+
+  const placeCardList = items.map((offer, i) => {
+    return(
+      <PlaceCard
+        offer={offer}
+        isNearPlaces={isNearPlaces}
+        key={offer.id}
+        onHover={isNearPlaces ? null : onOfferHover}
+        offsetIndex={i}
+      />)});
 
   return (
     <div
@@ -27,12 +29,12 @@ const PlaceCardList = ({offers, isNearPlaces, onOfferHover, onListClick}) => {
 };
 
 PlaceCardList.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType).isRequired,
+  items: PropTypes.arrayOf(offerPropType).isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
   onOfferHover: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func,
-  activeItem: PropTypes.number
+  activeItem: offerPropType
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -41,8 +43,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeScreenType(ScreenType.PROPERTY));
   },
 
-  onOfferHover(activeItem) {
-    dispatch(ActionCreator.changeActiveOffer(activeItem));
+  onOfferHover(offer) {
+    dispatch(ActionCreator.changeActiveOffer(offer));
   }
 });
 

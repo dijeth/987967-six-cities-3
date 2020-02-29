@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {isEqualCoords} from '../../util.js';
+import {connect} from 'react-redux';
 
 const ZOOM = 12;
 const ICON_SIZE = [27, 39];
@@ -120,7 +121,11 @@ class OffersMap extends PureComponent {
   render() {
     return <div id='map' ref={this._mapWrapper}></div>;
   }
-}
+};
+
+const mapStateToProps = (state) => ({
+  activeCoord: state.activeOffer ? state.activeOffer.coord : null
+})
 
 OffersMap.propTypes = {
   centerCoord: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -128,4 +133,4 @@ OffersMap.propTypes = {
   activeCoord: PropTypes.arrayOf(PropTypes.number)
 };
 
-export default OffersMap;
+export default connect(mapStateToProps)(OffersMap);

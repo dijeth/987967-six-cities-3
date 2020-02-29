@@ -8,8 +8,11 @@ import { connect } from 'react-redux';
 import { ScreenType, SORT_LIST } from '../../const.js';
 import { sortOffers } from '../../util.js';
 import { offerPropType } from '../place-card/place-card.jsx';
+import withSort from '../../hocs/with-sort/with-sort.jsx';
 
-const App = ({ screenType, activeOffer, offers, cities, activeCity, sortType }) => {
+const MainWithSort = withSort(Main);
+
+const App = ({ screenType, activeOffer, offers }) => {
   const isNearPlaces = screenType === ScreenType.PROPERTY;
 
   if (screenType === ScreenType.PROPERTY) {
@@ -21,19 +24,12 @@ const App = ({ screenType, activeOffer, offers, cities, activeCity, sortType }) 
       />;
   };
 
-  const sortedOffer = sortOffers(offers, SORT_LIST[sortType]);
-
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main
-            cities={cities}
-            activeCity={activeCity}
-            offers={sortedOffer}
-            activeOffer={activeOffer}
+          <MainWithSort
             isNearPlaces={screenType === ScreenType.PROPERTY}
-            sortType={sortType}
           />
         </Route>
         <Route exact path="/dev-card-property">
@@ -48,21 +44,15 @@ const App = ({ screenType, activeOffer, offers, cities, activeCity, sortType }) 
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType).isRequired,
   screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]).isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeCity: PropTypes.number.isRequired,
   activeOffer: offerPropType,
-  sortType: PropTypes.number
+  offers: PropTypes.arrayOf(offerPropType)
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.selectedOffers,
   screenType: state.screenType,
-  cities: state.cities,
-  activeCity: state.activeCity,
   activeOffer: state.activeOffer,
-  sortType: state.sortType
+  offers: state.offers
 });
 
 export { App };

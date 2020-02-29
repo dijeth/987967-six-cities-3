@@ -14,17 +14,6 @@ export const getCities = (offers) => {
   return Array.from(citySet.values()).slice(0, MAX_CITY_COUNT).sort();
 };
 
-export const getOffers = (city, offers) => {
-  const selectedOffers = [];
-  offers.forEach((it) => {
-    if (it.city === city) {
-      selectedOffers.push(it);
-    }
-  });
-
-  return selectedOffers;
-};
-
 export const isEqualCoords = (coord1, coord2) => coord1[0] === coord2[0] && coord1[1] === coord2[1];
 
 export const indexOf = (element) => {

@@ -9,7 +9,7 @@ const PlaceCard = ({offer, isNearPlaces, onHover, offsetIndex}) => {
   const picture = pictures[0];
   const renderType = isNearPlaces ? `near-places` : `cities`;
   const handleMouseEnter = () => {
-    onHover(offsetIndex);
+    onHover(offer);
   };
   const handleMouseLeave = () => {
     onHover(null);
