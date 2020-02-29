@@ -27,7 +27,6 @@ CityList.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeCity) {
     dispatch(ActionCreator.changeCity(activeCity));
-    dispatch(ActionCreator.selectOffers());
   }
 });
 

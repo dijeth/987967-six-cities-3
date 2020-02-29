@@ -6,6 +6,9 @@ import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
+import withSort from '../../hocs/with-sort/with-sort.jsx';
+
+const PlaceCardListWithSort = withSort(PlaceCardList);
 
 const SortListWithOpenState = withOpenState(SortList);
 
@@ -54,7 +57,7 @@ const Main = ({offers, cities, activeCity, activeOffer, isNearPlaces, sortType})
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{placesCount} places to stay in {city}</b>
               <SortListWithOpenState activeItem={sortType} />
-              <PlaceCardList offers={offers} isNearPlaces={isNearPlaces} />
+              <PlaceCardListWithSort offers={offers} isNearPlaces={isNearPlaces} />
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>

@@ -21,8 +21,6 @@ const App = ({ screenType, activeOffer, offers, cities, activeCity, sortType }) 
       />;
   };
 
-  const sortedOffer = sortOffers(offers, SORT_LIST[sortType]);
-
   return (
     <BrowserRouter>
       <Switch>
@@ -30,7 +28,7 @@ const App = ({ screenType, activeOffer, offers, cities, activeCity, sortType }) 
           <Main
             cities={cities}
             activeCity={activeCity}
-            offers={sortedOffer}
+            offers={offers}
             activeOffer={activeOffer}
             isNearPlaces={screenType === ScreenType.PROPERTY}
             sortType={sortType}
@@ -57,7 +55,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.selectedOffers,
+  offers: state.offers,
   screenType: state.screenType,
   cities: state.cities,
   activeCity: state.activeCity,

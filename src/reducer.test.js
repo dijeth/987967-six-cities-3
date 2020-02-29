@@ -37,7 +37,7 @@ describe(`Test reducer`, () => {
       activeOffer: null,
       screenType: ScreenType.MAIN
     }, {
-      type: ActionType.CHANGE_ACTIVE_CARD,
+      type: ActionType.CHANGE_ACTIVE_OFFER,
       payload: `offer2`
     })).toEqual({
       cities: [`city`],
