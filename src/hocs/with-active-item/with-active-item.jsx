@@ -95,7 +95,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
 
   WithActiveItem.propTypes = {
     activeItem: PropTypes.number,
-    onListClick: PropTypes.func,
+    // onListClick: PropTypes.func,
     onActiveItemChange: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.arrayOf(PropTypes.func)

@@ -24,11 +24,11 @@ describe(`When onHover was passed`, () => {
   it(`should call onHover once with its offer-object`, () => {
     const onHover = jest.fn();
 
-    const placeCard = shallow(<PlaceCard onHover={onHover} offer={mock} isNearPlaces={false} offsetIndex={0}/>);
+    const placeCard = shallow(<PlaceCard onHover={onHover} offer={mock} isNearPlaces={false} offsetIndex={5}/>);
     placeCard.simulate(`mouseenter`);
 
     expect(onHover).toHaveBeenCalledTimes(1);
-    expect(onHover).toHaveBeenCalledWith(mock);
+    expect(onHover).toHaveBeenCalledWith(5);
   });
 
   it(`should call onHover once with null`, () => {

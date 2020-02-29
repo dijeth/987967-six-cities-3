@@ -20,7 +20,9 @@ const withOpenState = (Component) => {
     render() {
       return <Component isOpen={this.state.isOpen} onViewChange={this._handleViewChange} {...this.props} />;
     }
-  }
+  };
+
+  WithOpenState.propTypes = {};
 
   return WithOpenState;
 };
