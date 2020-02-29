@@ -34,13 +34,13 @@ export const indexOf = (element) => {
 export const sortOffers = (offers, sortType) => {
   switch (sortType) {
     case SortType.PRICE_LOW_TO_HIGH:
-      return offers.sort((a, b) => a.cost - b.cost);
+      return offers.slice().sort((a, b) => a.cost - b.cost);
 
     case SortType.PRICE_HIGH_TO_LOW:
-      return offers.sort((a, b) => b.cost - a.cost);
+      return offers.slice().sort((a, b) => b.cost - a.cost);
 
     case SortType.TOP_RATED_FIRST:
-      return offers.sort((a, b) => b.rating - a.rating);
+      return offers.slice().sort((a, b) => b.rating - a.rating);
 
     case SortType.POPULAR:
     default:

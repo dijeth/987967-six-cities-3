@@ -41,20 +41,14 @@ SortList.propTypes = {
 };
 
 SortList.defaultProps = {
-  activeItem: 0,
   isOpen: false
 };
-
-const mapStateToProps = (state) => ({
-  activeItem: state.sortType
-});
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeItem) {
     dispatch(ActionCreator.changeSortType(activeItem));
-    dispatch(ActionCreator.sortOffers());
   }
 });
 
 export {SortList};
-export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(SortList));
+export default connect(null, mapDispatchToProps)(withActiveItem(SortList));

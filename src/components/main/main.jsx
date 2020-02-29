@@ -9,7 +9,7 @@ import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({offers, cities, activeCity, activeOffer, isNearPlaces}) => {
+const Main = ({offers, cities, activeCity, activeOffer, isNearPlaces, sortType}) => {
   const city = cities[activeCity];
   const centerCoord = CityCoord[city];
   const offersCoord = offers.map((it) => it.coord);
@@ -53,7 +53,7 @@ const Main = ({offers, cities, activeCity, activeOffer, isNearPlaces}) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{placesCount} places to stay in {city}</b>
-              <SortListWithOpenState />
+              <SortListWithOpenState activeItem={sortType} />
               <PlaceCardList offers={offers} isNearPlaces={isNearPlaces} />
             </section>
             <div className="cities__right-section">

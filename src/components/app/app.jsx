@@ -5,10 +5,11 @@ import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
 import { getNeighbourhoods } from '../../mocks/offers.js';
 import { connect } from 'react-redux';
-import { ScreenType } from '../../const.js';
+import { ScreenType, SORT_LIST } from '../../const.js';
+import { sortOffers } from '../../util.js';
 import { offerPropType } from '../place-card/place-card.jsx';
 
-const App = ({ screenType, activeOffer, offers, cities, activeCity }) => {
+const App = ({ screenType, activeOffer, offers, cities, activeCity, sortType }) => {
   const isNearPlaces = screenType === ScreenType.PROPERTY;
 
   if (screenType === ScreenType.PROPERTY) {
@@ -18,7 +19,9 @@ const App = ({ screenType, activeOffer, offers, cities, activeCity }) => {
         neighbourhoods={neighbourhoods}
         isNearPlaces={isNearPlaces}
       />;
-  }
+  };
+
+  const sortedOffer = sortOffers(offers, SORT_LIST[sortType]);
 
   return (
     <BrowserRouter>
@@ -27,9 +30,10 @@ const App = ({ screenType, activeOffer, offers, cities, activeCity }) => {
           <Main
             cities={cities}
             activeCity={activeCity}
-            offers={offers}
+            offers={sortedOffer}
             activeOffer={activeOffer}
             isNearPlaces={screenType === ScreenType.PROPERTY}
+            sortType={sortType}
           />
         </Route>
         <Route exact path="/dev-card-property">
@@ -48,7 +52,8 @@ App.propTypes = {
   screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]).isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeCity: PropTypes.number.isRequired,
-  activeOffer: offerPropType
+  activeOffer: offerPropType,
+  sortType: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
@@ -56,7 +61,8 @@ const mapStateToProps = (state) => ({
   screenType: state.screenType,
   cities: state.cities,
   activeCity: state.activeCity,
-  activeOffer: state.activeOffer
+  activeOffer: state.activeOffer,
+  sortType: state.sortType
 });
 
 export { App };
