@@ -57,7 +57,7 @@ exports[`<Main /> should be render correctly 1`] = `
     </div>
   </header>
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index "
   >
     <h1
       className="visually-hidden"
@@ -78,7 +78,7 @@ exports[`<Main /> should be render correctly 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item tabs__item--active"
+              className="locations__item-link tabs__item "
               href="#"
             >
               <span
@@ -152,7 +152,7 @@ exports[`<Main /> should be render correctly 1`] = `
           >
             2
              places to stay in 
-            Paris
+            0
           </b>
           <form
             action="#"
@@ -169,7 +169,6 @@ exports[`<Main /> should be render correctly 1`] = `
               onClick={[Function]}
               tabIndex="0"
             >
-              Popular
               <svg
                 className="places__sorting-arrow"
                 height="4"
@@ -185,7 +184,7 @@ exports[`<Main /> should be render correctly 1`] = `
               onClick={[Function]}
             >
               <li
-                className="places__option places__option--active"
+                className="places__option "
                 tabIndex="0"
               >
                 Popular

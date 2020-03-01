@@ -16,7 +16,6 @@ exports[`<SortList /> should be correctly rendered when closed 1`] = `
     onClick={[Function]}
     tabIndex="0"
   >
-    Popular
     <svg
       className="places__sorting-arrow"
       height="4"
@@ -32,7 +31,7 @@ exports[`<SortList /> should be correctly rendered when closed 1`] = `
     onClick={[Function]}
   >
     <li
-      className="places__option places__option--active"
+      className="places__option "
       tabIndex="0"
     >
       Popular
@@ -75,7 +74,6 @@ exports[`<SortList /> should be correctly rendered when opened 1`] = `
     onClick={[Function]}
     tabIndex="0"
   >
-    Popular
     <svg
       className="places__sorting-arrow"
       height="4"
@@ -91,7 +89,7 @@ exports[`<SortList /> should be correctly rendered when opened 1`] = `
     onClick={[Function]}
   >
     <li
-      className="places__option places__option--active"
+      className="places__option "
       tabIndex="0"
     >
       Popular

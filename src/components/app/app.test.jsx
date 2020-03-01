@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {App} from './app.jsx';
-import {ScreenType} from '../../const.js';
+import {ScreenType, SortType} from '../../const.js';
 
 const mockStore = configureStore([]);
 
@@ -100,7 +100,14 @@ const offers = [{
 ];
 
 
-const store = mockStore({});
+const store = mockStore({
+  offers,
+  activeOffer: null,
+  activeCity: `Amsterdam`,
+  screenType: ScreenType.MAIN,
+  sortType: SortType.POPULAR,
+  cities: [`Amsterdam`]
+});
 
 it(`should render <Main /> when screenType === ScreenType.MAIN`, () => {
   const tree = renderer.create(
@@ -108,8 +115,6 @@ it(`should render <Main /> when screenType === ScreenType.MAIN`, () => {
         <App
           offers = {offers}
           screenType = {ScreenType.MAIN}
-          cities = {[`Amsterdam`]}
-          activeCity = {0}
           activeOffer = {null}
         />
       </Provider>, {createNodeMock: () => document.createElement(`div`)}

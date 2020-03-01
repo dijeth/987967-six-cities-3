@@ -1,8 +1,8 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {SortList, SORT_LIST} from './sort-list.jsx';
-import {SortType} from '../../const.js';
+import {SortList} from './sort-list.jsx';
+import {SortType, SORT_LIST} from '../../const.js';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -14,7 +14,8 @@ it(`should call onListClick and onViewChange`, () => {
 
   const tree = Enzyme.shallow(
       <SortList
-        activeItem={0}
+        items={SORT_LIST}
+        activeItem={SortType.POPULAR}
         onListClick={handleTypeChange}
         onViewChange={handleViewChange}
         isOpen={true}
@@ -31,7 +32,8 @@ it(`should call onViewChange`, () => {
 
   const tree = Enzyme.shallow(
       <SortList
-        activeItem={0}
+        items={SORT_LIST}
+        activeItem={SortType.POPULAR}
         onViewChange={handleViewChange}
         isOpen={true}
       />);

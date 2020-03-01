@@ -1,11 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {SortList} from './sort-list.jsx';
-import {SortType} from '../../const.js';
+import {SortType, SORT_LIST} from '../../const.js';
 
 it(`<SortList /> should be correctly rendered when opened`, () => {
   const tree = renderer.create(
       <SortList
+        items={SORT_LIST}
         activeType={SortType.POPULAR}
         onSortTypeChange={() => {}}
         onViewChange={() => {}}
@@ -17,6 +18,7 @@ it(`<SortList /> should be correctly rendered when opened`, () => {
 it(`<SortList /> should be correctly rendered when closed`, () => {
   const tree = renderer.create(
       <SortList
+        items={SORT_LIST}
         activeType={SortType.POPULAR}
         onSortTypeChange={() => {}}
         onViewChange={() => {}}

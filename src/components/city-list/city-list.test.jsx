@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {CityList} from './city-list.jsx';
 
 const props = {
-  cities: [`city1`, `city2`, `city3`, `city4`, `city5`],
+  items: [`city1`, `city2`, `city3`, `city4`, `city5`],
   activeCity: 1,
   onChangeActiveCity: () => {}
 };

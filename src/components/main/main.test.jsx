@@ -48,6 +48,7 @@ it(`<Main /> should be render correctly`, () => {
           cities={cities}
           activeCity={activeCity}
           activeOffer={activeOffer}
+          sortedIDs={[`id-1`, `id-2`]}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)

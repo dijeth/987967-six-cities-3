@@ -63,24 +63,23 @@ describe(`When isNearPlaces === false>`, () => {
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <PlaceCardList
-        offers={mocks}
+        items={mocks}
         isNearPlaces={false}
         onOfferHover={handleOfferHover}
         onListClick={handleListClick}
       />);
 
   const card = tree.find(`article`).at(0);
-  const cardTitle = card.find(`.place-card__name a`).at(0);
 
   it(`should not call onOfferHover`, () => {
     tree.simulate(`mouseenter`);
     expect(handleOfferHover).toHaveBeenCalledTimes(0);
   });
 
-  it(`should call onOfferHover with 0`, () => {
+  it(`should call onOfferHover with mocks[0]`, () => {
     card.simulate(`mouseenter`);
     expect(handleOfferHover).toHaveBeenCalledTimes(1);
-    expect(handleOfferHover).toHaveBeenCalledWith(0);
+    expect(handleOfferHover).toHaveBeenCalledWith(mocks[0]);
   });
 
   it(`should call onOfferHover with null`, () => {
@@ -100,14 +99,13 @@ describe(`When isNearPlaces === true>`, () => {
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <PlaceCardList
-        offers={mocks}
+        items={mocks}
         isNearPlaces={true}
         onOfferHover={handleOfferHover}
         onListClick={handleListClick}
       />);
 
   const card = tree.find(`article`).at(0);
-  const cardTitle = card.find(`.place-card__name a`).at(0);
 
   it(`should not call onOfferHover`, () => {
     card.simulate(`mouseenter`);
@@ -128,7 +126,7 @@ describe(`When place-card-list with-active-item`, () => {
 
   const tree = Enzyme.mount(
       <PlaceCardListWithActiveItem
-        offers={mocks}
+        items={mocks}
         isNearPlaces={false}
         onOfferHover={() => {}}
         onActiveItemChange={handleActiveItemChange}
@@ -137,10 +135,10 @@ describe(`When place-card-list with-active-item`, () => {
   const card = tree.find(`article`).at(2);
   const cardTitle = card.find(`.place-card__name a`);
 
-  it(`should call onActiveItemChange once with 2`, () => {
+  it(`should call onActiveItemChange once with mocks[2]`, () => {
     cardTitle.simulate(`click`);
     expect(handleActiveItemChange).toHaveBeenCalledTimes(1);
-    expect(handleActiveItemChange).toHaveBeenCalledWith(2);
+    expect(handleActiveItemChange).toHaveBeenCalledWith(mocks[2]);
   });
 
   it(`should not call onActiveItemChange`, () => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import withOpenState from './with-open-state.jsx';
@@ -8,6 +9,11 @@ Enzyme.configure({
 });
 
 const Component = ({onViewChange}) => (<div onClick={onViewChange}></div>);
+
+Component.propTypes = {
+  onViewChange: PropTypes.func
+};
+
 const ComponentWithOpenState = withOpenState(Component);
 
 const tree = Enzyme.mount(<ComponentWithOpenState />);

@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import withActiveItem from './with-active-item.jsx';
-import toJSON from 'enzyme-to-json';
 
 Enzyme.configure({
   adapter: new Adapter()
 });
 
-const ListComponent = ({onListClick, onActiveItemChange, items}) => (
+const ListComponent = ({onListClick, items}) => (
   <ul onClick={onListClick}>
     <li><header>{items[0]}</header><p>Text-0</p></li>
     <li><header>{items[1]}</header><p>Text-1</p></li>
@@ -16,6 +16,12 @@ const ListComponent = ({onListClick, onActiveItemChange, items}) => (
     <li><header>{items[3]}</header><p>Text-3</p></li>
     <li><header>{items[4]}</header><p>Text-4</p></li>
   </ul>);
+
+ListComponent.propTypes = {
+  onListClick: PropTypes.func,
+  onActiveItemChange: PropTypes.func,
+  items: PropTypes.array
+};
 
 const items = [
   `header-0`,

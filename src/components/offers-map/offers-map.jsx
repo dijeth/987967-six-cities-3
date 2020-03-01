@@ -133,4 +133,5 @@ OffersMap.propTypes = {
   activeCoord: PropTypes.arrayOf(PropTypes.number)
 };
 
+export {OffersMap};
 export default connect(mapStateToProps)(OffersMap);
