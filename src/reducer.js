@@ -8,7 +8,7 @@ const cities = getCities(offerMocks);
 const initialState = {
   cities,
   offers: offerMocks,
-  activeCity: `111`,//cities[0],
+  activeCity: cities[0],
   activeOffer: null,
   screenType: ScreenType.MAIN,
   sortType: SortType.POPULAR
