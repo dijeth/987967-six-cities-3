@@ -6,6 +6,9 @@ import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
+import withSort from '../../hocs/with-sort/with-sort.jsx';
+
+const PlaceCardListWithSort = withSort(PlaceCardList);
 
 const SortListWithOpenState = withOpenState(SortList);
 
