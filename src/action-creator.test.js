@@ -4,11 +4,7 @@ import {ScreenType, SortType} from './const.js';
 
 describe(`Test ActionCreator`, () => {
   it(`ActionCreator.changeCity should return a right action`, () => {
-    expect(ActionCreator.changeCity(1)).toEqual({type: ActionType.CHANGE_CITY, payload: 1});
-  });
-
-  it(`ActionCreator.selectOffers should return a right action`, () => {
-    expect(ActionCreator.selectOffers()).toEqual({type: ActionType.SELECT_OFFERS});
+    expect(ActionCreator.changeCity(`Amsterdam`)).toEqual({type: ActionType.CHANGE_CITY, payload: `Amsterdam`});
   });
 
   it(`ActionCreator.changeActiveOffer should return a right action`, () => {
@@ -26,12 +22,6 @@ describe(`Test ActionCreator`, () => {
     expect(ActionCreator.changeSortType(SortType.POPULAR)).toEqual({
       type: ActionType.CHANGE_SORT_TYPE,
       payload: SortType.POPULAR
-    });
-  });
-
-  it(`ActionCreator.sortOffers should return a right action`, () => {
-    expect(ActionCreator.sortOffers()).toEqual({
-      type: ActionType.SORT_OFFERS
     });
   });
 });
