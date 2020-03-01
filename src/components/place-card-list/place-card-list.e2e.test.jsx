@@ -31,8 +31,7 @@ const mocks = [{
   isFavorite: false,
   city: `Amsterdam`,
   coord: [3, 4]
-}
-,
+},
 {
   id: `id-3`,
   title: `title-3`,
@@ -44,8 +43,7 @@ const mocks = [{
   isFavorite: false,
   city: `Amsterdam`,
   coord: [3, 4]
-}
-,
+},
 {
   id: `id-4`,
   title: `title-4`,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {OfferType} from '../../const.js';
 import {ratingToPercent} from '../../util.js';
 
-const PlaceCard = ({offer, isNearPlaces, onHover, offsetIndex}) => {
+const PlaceCard = ({offer, isNearPlaces, onHover}) => {
   const {title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
@@ -70,8 +70,7 @@ const offerPropType = PropTypes.shape({
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onHover: PropTypes.func,
-  isNearPlaces: PropTypes.bool.isRequired,
-  offsetIndex: PropTypes.number
+  isNearPlaces: PropTypes.bool.isRequired
 };
 
 export {offerPropType};

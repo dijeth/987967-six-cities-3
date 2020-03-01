@@ -1,6 +1,6 @@
 import {offerMocks} from './mocks/offers.js';
-import {getCities, getOffers, sortOffers} from './util.js';
-import {ScreenType, SortType, SORT_LIST} from './const.js';
+import {getCities} from './util.js';
+import {ScreenType, SortType} from './const.js';
 import ActionType from './action-type.js';
 
 const cities = getCities(offerMocks);
@@ -8,7 +8,7 @@ const cities = getCities(offerMocks);
 const initialState = {
   cities,
   offers: offerMocks,
-  activeCity: cities[0],
+  activeCity: `111`,//cities[0],
   activeOffer: null,
   screenType: ScreenType.MAIN,
   sortType: SortType.POPULAR

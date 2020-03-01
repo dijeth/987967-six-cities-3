@@ -121,11 +121,11 @@ class OffersMap extends PureComponent {
   render() {
     return <div id='map' ref={this._mapWrapper}></div>;
   }
-};
+}
 
 const mapStateToProps = (state) => ({
   activeCoord: state.activeOffer ? state.activeOffer.coord : null
-})
+});
 
 OffersMap.propTypes = {
   centerCoord: PropTypes.arrayOf(PropTypes.number).isRequired,

@@ -6,9 +6,7 @@ import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
-import withSort from '../../hocs/with-sort/with-sort.jsx';
-
-const PlaceCardListWithSort = withSort(PlaceCardList);
+import MainEmpty from '../main-empty/main-empty.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
@@ -17,6 +15,22 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, sortedIDs}) =
   const offersCoord = offers.map((it) => it.coord);
   const placesCount = sortedIDs.length;
   const sortedOffers = sortedIDs.map((it) => offers.find((offer) => offer.id === it));
+
+  const cityBlock = (
+          <div className="cities__places-container container">
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+              <b className="places__found">{placesCount} places to stay in {activeCity}</b>
+              <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
+              <PlaceCardList items={ sortedOffers } isNearPlaces={isNearPlaces} />
+            </section>
+            <div className="cities__right-section">
+              <section className='cities__map map'>
+                <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
+              </section>
+            </div>
+          </div>
+);
 
   return (
     <div className="page page--gray page--main">
@@ -51,19 +65,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, sortedIDs}) =
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {activeCity}</b>
-              <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
-              <PlaceCardList items={ sortedOffers } isNearPlaces={isNearPlaces} />
-            </section>
-            <div className="cities__right-section">
-              <section className='cities__map map'>
-                <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
-              </section>
-            </div>
-          </div>
+          {sortedOffers.length === 0 ? <MainEmpty city={activeCity} /> : cityBlock}
         </div>
       </main>
     </div>
@@ -75,7 +77,7 @@ Main.propTypes = {
   isNearPlaces: PropTypes.bool.isRequired,
   cities: PropTypes.array.isRequired,
   activeCity: PropTypes.string.isRequired,
-  sotrType: PropTypes.string,
+  sortType: PropTypes.string,
   sortedIDs: PropTypes.arrayOf(PropTypes.string)
 };
 

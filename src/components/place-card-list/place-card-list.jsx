@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard, {offerPropType} from '../place-card/place-card.jsx';
 import ActionCreator from '../../action-creator.js';
@@ -10,14 +10,15 @@ const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick}) => {
   const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
 
   const placeCardList = items.map((offer, i) => {
-    return(
+    return (
       <PlaceCard
         offer={offer}
         isNearPlaces={isNearPlaces}
         key={offer.id}
         onHover={isNearPlaces ? null : onOfferHover}
         offsetIndex={i}
-      />)});
+      />);
+  });
 
   return (
     <div

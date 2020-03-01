@@ -26,8 +26,7 @@ const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
     description,
     descriptionTitle,
     reviews,
-    city,
-    coord
+    city
   } = offer;
 
   const gallery = pictures.map((it, i) => {

@@ -7,15 +7,15 @@ const isChildOf = (element, parentElement) => {
 
 const isChild = (element, parentElement) => {
   if (element === parentElement) {
-    return true
-  };
+    return true;
+  }
 
   while (element !== document.body && element !== parentElement) {
-    element = element.parentElement
-  };
+    element = element.parentElement;
+  }
 
-  return element !== document.body
-}
+  return element !== document.body;
+};
 
 const getChild = (targetElement, parentElement) => {
   while (targetElement !== document.body && targetElement !== parentElement && !isChildOf(targetElement, parentElement)) {
@@ -69,14 +69,14 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
       const activeIndex = getChildIndex(element, parentElement);
 
       if (activeIndex === null) {
-        return
-      };
-
-      if (clickTargetSelector && !isChild(element, parentElement.children[activeIndex].querySelector(clickTargetSelector))) {
-        return
+        return;
       }
 
-      this.setState({ activeIndex });
+      if (clickTargetSelector && !isChild(element, parentElement.children[activeIndex].querySelector(clickTargetSelector))) {
+        return;
+      }
+
+      this.setState({activeIndex});
 
       const handlers = normalizeHandlerProp(this.props.onActiveItemChange);
 
@@ -88,7 +88,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
     }
 
     render() {
-      const { items } = this.props;
+      const {items} = this.props;
       const activeItem = this.state.activeIndex !== null ? items[this.state.activeIndex] : null;
 
       return <ListComponent {...this.props} activeItem={activeItem} onListClick={this._handleClick} />;
