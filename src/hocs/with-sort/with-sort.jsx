@@ -7,7 +7,7 @@ const withSort = (Component) => {
   const WithSort = (props) => {
     const { sortType, offers, activeCity, cities } = props;
     const filteredOffers = offers.filter((it) => it.city === activeCity);
-    const sortedIDs = sortOffers(filteredOffers, SORT_LIST[sortType]).map((it) => it.id);
+    const sortedIDs = sortOffers(filteredOffers, sortType ).map((it) => it.id);
 
     return <Component {...props} sortedIDs={sortedIDs} />
   };

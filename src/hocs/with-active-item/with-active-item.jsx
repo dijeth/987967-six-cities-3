@@ -89,7 +89,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
 
     render() {
       const { items } = this.props;
-      const activeItem = this.state.activeIndex ? items[this.state.activeIndex] : null;
+      const activeItem = this.state.activeIndex !== null ? items[this.state.activeIndex] : null;
 
       return <ListComponent {...this.props} activeItem={activeItem} onListClick={this._handleClick} />;
     }
