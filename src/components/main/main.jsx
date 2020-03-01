@@ -17,20 +17,20 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, sortedIDs}) =
   const sortedOffers = sortedIDs.map((it) => offers.find((offer) => offer.id === it));
 
   const cityBlock = (
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {activeCity}</b>
-              <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
-              <PlaceCardList items={ sortedOffers } isNearPlaces={isNearPlaces} />
-            </section>
-            <div className="cities__right-section">
-              <section className='cities__map map'>
-                <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
-              </section>
-            </div>
-          </div>
-);
+    <div className="cities__places-container container">
+      <section className="cities__places places">
+        <h2 className="visually-hidden">Places</h2>
+        <b className="places__found">{placesCount} places to stay in {activeCity}</b>
+        <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
+        <PlaceCardList items={ sortedOffers } isNearPlaces={isNearPlaces} />
+      </section>
+      <div className="cities__right-section">
+        <section className='cities__map map'>
+          <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
+        </section>
+      </div>
+    </div>
+  );
 
   return (
     <div className="page page--gray page--main">

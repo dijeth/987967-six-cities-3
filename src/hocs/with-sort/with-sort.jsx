@@ -30,4 +30,5 @@ const withSort = (Component) => {
   return connect(mapStateToProps)(WithSort);
 };
 
+export {withSort};
 export default withSort;
