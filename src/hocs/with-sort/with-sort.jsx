@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {sortOffers} from '../../util.js';
 import {SORT_LIST} from '../../const.js';
-import {offerPropType} from '../../components/place-card/place-card.jsx';
 
 const withSort = (Component) => {
   const WithSort = (props) => {
