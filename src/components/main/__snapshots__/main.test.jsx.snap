@@ -78,55 +78,13 @@ exports[`<Main /> should be render correctly 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item "
+              className="locations__item-link tabs__item tabs__item--active"
               href="#"
             >
               <span
                 data-index={0}
               >
                 Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-            >
-              <span
-                data-index={1}
-              >
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-            >
-              <span
-                data-index={2}
-              >
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-            >
-              <span
-                data-index={3}
-              >
-                Amsterdam
               </span>
             </a>
           </li>
@@ -152,7 +110,7 @@ exports[`<Main /> should be render correctly 1`] = `
           >
             2
              places to stay in 
-            0
+            Paris
           </b>
           <form
             action="#"

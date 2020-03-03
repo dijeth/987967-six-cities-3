@@ -15,7 +15,7 @@ const offers = [{
   rating: 4.8,
   isPremium: false,
   isFavorite: true,
-  city: `city1`,
+  city: `Paris`,
   coord: [52.372447, 4.882779]
 },
 {
@@ -27,14 +27,14 @@ const offers = [{
   rating: 5,
   isPremium: true,
   isFavorite: false,
-  city: `city1`,
+  city: `Paris`,
   coord: [52.372448, 4.882770]
 }
 ];
 
 const isNearPlaces = false;
-const cities = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`];
-const activeCity = 0;
+const cities = [`Paris`];
+const activeCity = `Paris`;
 const activeOffer = null;
 
 it(`<Main /> should be render correctly`, () => {
@@ -48,7 +48,6 @@ it(`<Main /> should be render correctly`, () => {
           cities={cities}
           activeCity={activeCity}
           activeOffer={activeOffer}
-          sortedIDs={[`id-1`, `id-2`]}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)

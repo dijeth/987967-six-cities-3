@@ -10,11 +10,10 @@ import MainEmpty from '../main-empty/main-empty.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({offers, cities, activeCity, isNearPlaces, sortType, sortedIDs}) => {
+const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
   const centerCoord = CityCoord[activeCity];
   const offersCoord = offers.map((it) => it.coord);
-  const placesCount = sortedIDs.length;
-  const sortedOffers = sortedIDs.map((it) => offers.find((offer) => offer.id === it));
+  const placesCount = offers.length;
 
   const cityBlock = (
     <div className="cities__places-container container">
@@ -22,7 +21,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, sortedIDs}) =
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{placesCount} places to stay in {activeCity}</b>
         <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
-        <PlaceCardList items={ sortedOffers } isNearPlaces={isNearPlaces} />
+        <PlaceCardList items={ offers } isNearPlaces={isNearPlaces} />
       </section>
       <div className="cities__right-section">
         <section className='cities__map map'>
@@ -57,7 +56,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, sortedIDs}) =
         </div>
       </header>
 
-      <main className={`page__main page__main--index ${sortedOffers.length === 0 ? `page__main--index-empty` : ``}`}>
+      <main className={`page__main page__main--index ${offers.length === 0 ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -65,7 +64,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, sortedIDs}) =
           </section>
         </div>
         <div className="cities">
-          {sortedOffers.length === 0 ? <MainEmpty city={activeCity} /> : cityBlock}
+          {offers.length === 0 ? <MainEmpty city={activeCity} /> : cityBlock}
         </div>
       </main>
     </div>
@@ -77,8 +76,7 @@ Main.propTypes = {
   isNearPlaces: PropTypes.bool.isRequired,
   cities: PropTypes.array.isRequired,
   activeCity: PropTypes.string.isRequired,
-  sortType: PropTypes.string,
-  sortedIDs: PropTypes.arrayOf(PropTypes.string)
+  sortType: PropTypes.string
 };
 
 export default Main;

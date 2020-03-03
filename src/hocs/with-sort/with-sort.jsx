@@ -9,9 +9,9 @@ const withSort = (Component) => {
   const WithSort = (props) => {
     const {sortType, offers, activeCity} = props;
     const filteredOffers = offers.filter((it) => it.city === activeCity);
-    const sortedIDs = sortOffers(filteredOffers, sortType).map((it) => it.id);
+    const sortedOffers = sortOffers(filteredOffers, sortType);
 
-    return <Component {...props} sortedIDs={sortedIDs} />;
+    return <Component {...props} offers={sortedOffers} />;
   };
 
   const mapStateToProps = (state) => ({
@@ -23,7 +23,7 @@ const withSort = (Component) => {
 
   WithSort.propTypes = {
     sortType: PropTypes.oneOf(SORT_LIST).isRequired,
-    offers: PropTypes.arrayOf(offerPropType).isRequired,
+    offers: PropTypes.array.isRequired,
     activeCity: PropTypes.string.isRequired
   };
 
