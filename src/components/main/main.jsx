@@ -1,20 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {CityCoord} from '../../const.js';
+import {CityCoord, SORT_LIST} from '../../const.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
+import MainEmpty from '../main-empty/main-empty.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
-  const city = cities[activeCity];
-  const centerCoord = CityCoord[city];
-  const offersCoord = offerList.map((it) => it.coord);
-  const placesCount = offerList.length;
-  const activeCoord = activeCard ? activeCard.coord : null;
+const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
+  const centerCoord = CityCoord[activeCity];
+  const offersCoord = offers.map((it) => it.coord);
+  const placesCount = offers.length;
+
+  const cityBlock = (
+    <div className="cities__places-container container">
+      <section className="cities__places places">
+        <h2 className="visually-hidden">Places</h2>
+        <b className="places__found">{placesCount} places to stay in {activeCity}</b>
+        <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
+        <PlaceCardList items={ offers } isNearPlaces={isNearPlaces} />
+      </section>
+      <div className="cities__right-section">
+        <section className='cities__map map'>
+          <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
+        </section>
+      </div>
+    </div>
+  );
 
   return (
     <div className="page page--gray page--main">
@@ -41,27 +56,15 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${offers.length === 0 ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityList cities={cities} activeCity={activeCity} />
+            <CityList items={cities} activeItem={activeCity} />
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {city}</b>
-              <SortListWithOpenState />
-              <PlaceCardList offerList={offerList} isNearPlaces={isNearPlaces} />
-            </section>
-            <div className="cities__right-section">
-              <section className='cities__map map'>
-                <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={activeCoord} />
-              </section>
-            </div>
-          </div>
+          {offers.length === 0 ? <MainEmpty city={activeCity} /> : cityBlock}
         </div>
       </main>
     </div>
@@ -69,11 +72,11 @@ const Main = ({offerList, cities, activeCity, activeCard, isNearPlaces}) => {
 };
 
 Main.propTypes = {
-  offerList: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
   cities: PropTypes.array.isRequired,
-  activeCity: PropTypes.number.isRequired,
-  activeCard: PropTypes.object
+  activeCity: PropTypes.string.isRequired,
+  sortType: PropTypes.string
 };
 
 export default Main;

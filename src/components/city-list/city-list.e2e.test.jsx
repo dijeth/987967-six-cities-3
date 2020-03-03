@@ -8,16 +8,15 @@ Enzyme.configure({
 });
 
 const props = {
-  cities: [`city1`, `city2`, `city3`, `city4`, `city5`],
-  activeCity: 1,
-  onChangeActiveCity: jest.fn()
+  items: [`city1`, `city2`, `city3`, `city4`, `city5`],
+  activeItem: `city1`,
+  onListClick: jest.fn()
 };
 
-it(`should pass activeCity index when on mouse click`, () => {
+it(`should call onListClick when mouse click`, () => {
   const cityList = mount(<CityList {...props} />);
   const item = cityList.find(`span`).at(3);
   item.simulate(`click`, {preventDefault: () => {}});
 
-  expect(props.onChangeActiveCity).toHaveBeenCalledTimes(1);
-  expect(props.onChangeActiveCity).toHaveBeenCalledWith(3);
+  expect(props.onListClick).toHaveBeenCalledTimes(1);
 });

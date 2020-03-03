@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import OffersMap from './offers-map.jsx';
+import {OffersMap} from './offers-map.jsx';
 import leaflet from 'leaflet';
 
 Enzyme.configure({
@@ -42,7 +42,7 @@ describe(`Changes pins on the map when user changes city/activeOffer`, () => {
     expect(leaflet.fn.removeLayer).toHaveBeenCalledTimes(4);
   });
 
-  it(`should not add any pins and remove 4 pins (city have been changed and offerList is empty)`, () => {
+  it(`should not add any pins and remove 4 pins (city have been changed and offers is empty)`, () => {
     offersMap.setProps({centerCoord: [15, 16], activeCoord: null, offersCoord: []});
     expect(leaflet.fn.addLayer).toHaveBeenCalledTimes(8);
     expect(leaflet.fn.removeLayer).toHaveBeenCalledTimes(8);

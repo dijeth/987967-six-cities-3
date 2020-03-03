@@ -1,29 +1,30 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {SortList, SORT_LIST} from './sort-list.jsx';
-import {SortType} from '../../const.js';
+import {SortList} from './sort-list.jsx';
+import {SortType, SORT_LIST} from '../../const.js';
 
 Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`should call onSortTypeChange and pass a sortType`, () => {
+it(`should call onListClick and onViewChange`, () => {
   const handleTypeChange = jest.fn();
+  const handleViewChange = jest.fn();
 
   const tree = Enzyme.shallow(
       <SortList
-        activeType={SortType.POPULAR}
-        onSortTypeChange={handleTypeChange}
-        onViewChange={() => {}}
+        items={SORT_LIST}
+        activeItem={SortType.POPULAR}
+        onListClick={handleTypeChange}
+        onViewChange={handleViewChange}
         isOpen={true}
       />);
 
-  const secondItem = tree.find(`li`).at(1);
-  secondItem.simulate(`click`);
+  tree.find(`ul`).simulate(`click`);
 
   expect(handleTypeChange).toHaveBeenCalledTimes(1);
-  expect(handleTypeChange).toHaveBeenCalledWith(SORT_LIST[1]);
+  expect(handleViewChange).toHaveBeenCalledTimes(1);
 });
 
 it(`should call onViewChange`, () => {
@@ -31,8 +32,8 @@ it(`should call onViewChange`, () => {
 
   const tree = Enzyme.shallow(
       <SortList
-        activeType={SortType.POPULAR}
-        onSortTypeChange={() => {}}
+        items={SORT_LIST}
+        activeItem={SortType.POPULAR}
         onViewChange={handleViewChange}
         isOpen={true}
       />);

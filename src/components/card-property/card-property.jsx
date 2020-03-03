@@ -26,8 +26,7 @@ const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
     description,
     descriptionTitle,
     reviews,
-    city,
-    coord
+    city
   } = offer;
 
   const gallery = pictures.map((it, i) => {
@@ -193,14 +192,14 @@ const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
             </div>
           </div>
           <section className="property__map map">
-            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} activeCoord={coord} />
+            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList offerList={neighbourhoods} isNearPlaces={isNearPlaces} />
+              <PlaceCardList items={neighbourhoods} isNearPlaces={isNearPlaces} />
             </div>
           </section>
         </div>

@@ -57,7 +57,7 @@ exports[`<Main /> should be render correctly 1`] = `
     </div>
   </header>
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index "
   >
     <h1
       className="visually-hidden"
@@ -85,48 +85,6 @@ exports[`<Main /> should be render correctly 1`] = `
                 data-index={0}
               >
                 Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-            >
-              <span
-                data-index={1}
-              >
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-            >
-              <span
-                data-index={2}
-              >
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-            >
-              <span
-                data-index={3}
-              >
-                Amsterdam
               </span>
             </a>
           </li>
@@ -169,7 +127,6 @@ exports[`<Main /> should be render correctly 1`] = `
               onClick={[Function]}
               tabIndex="0"
             >
-              Popular
               <svg
                 className="places__sorting-arrow"
                 height="4"
@@ -182,31 +139,28 @@ exports[`<Main /> should be render correctly 1`] = `
             </span>
             <ul
               className="places__options places__options--custom "
+              onClick={[Function]}
             >
               <li
-                className="places__option places__option--active"
-                onClick={[Function]}
+                className="places__option "
                 tabIndex="0"
               >
                 Popular
               </li>
               <li
                 className="places__option "
-                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: low to high
               </li>
               <li
                 className="places__option "
-                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: high to low
               </li>
               <li
                 className="places__option "
-                onClick={[Function]}
                 tabIndex="0"
               >
                 Top rated first
@@ -302,7 +256,6 @@ exports[`<Main /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    data-index={0}
                     href="#"
                   >
                     title-1
@@ -407,7 +360,6 @@ exports[`<Main /> should be render correctly 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    data-index={1}
                     href="#"
                   >
                     title-2

@@ -22,6 +22,8 @@ const withOpenState = (Component) => {
     }
   }
 
+  WithOpenState.propTypes = {};
+
   return WithOpenState;
 };
 

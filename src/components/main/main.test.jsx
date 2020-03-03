@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 
 const mockStore = configureStore([]);
 
-const offerList = [{
+const offers = [{
   id: `id-1`,
   title: `title-1`,
   type: `Apartment`,
@@ -15,7 +15,7 @@ const offerList = [{
   rating: 4.8,
   isPremium: false,
   isFavorite: true,
-  city: `city1`,
+  city: `Paris`,
   coord: [52.372447, 4.882779]
 },
 {
@@ -27,15 +27,15 @@ const offerList = [{
   rating: 5,
   isPremium: true,
   isFavorite: false,
-  city: `city1`,
+  city: `Paris`,
   coord: [52.372448, 4.882770]
 }
 ];
 
 const isNearPlaces = false;
-const cities = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`];
-const activeCity = 0;
-const activeCard = null;
+const cities = [`Paris`];
+const activeCity = `Paris`;
+const activeOffer = null;
 
 it(`<Main /> should be render correctly`, () => {
   const store = mockStore({});
@@ -43,11 +43,11 @@ it(`<Main /> should be render correctly`, () => {
   const main = renderer.create(
       <Provider store={store}>
         <Main
-          offerList={offerList}
+          offers={offers}
           isNearPlaces={isNearPlaces}
           cities={cities}
           activeCity={activeCity}
-          activeCard={activeCard}
+          activeOffer={activeOffer}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)

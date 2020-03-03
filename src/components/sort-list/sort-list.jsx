@@ -1,25 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {SortType} from '../../const.js';
+import {SORT_LIST} from '../../const.js';
 import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
-const SORT_LIST = [
-  SortType.POPULAR,
-  SortType.PRICE_LOW_TO_HIGH,
-  SortType.PRICE_HIGH_TO_LOW,
-  SortType.TOP_RATED_FIRST
-];
-
-const SortList = ({activeType, onSortTypeChange, isOpen, onViewChange}) => {
-  const sortList = SORT_LIST.map((it, i) => {
-    const className = `places__option ${it === activeType ? `places__option--active` : ``}`;
-    const handler = () => {
-      onSortTypeChange(it);
-      onViewChange();
-    };
-
-    return <li className={className} tabIndex="0" onClick={handler} key={`${it}-${i}`}>{it}</li>;
+const SortList = ({activeItem, onListClick, onViewChange, isOpen, items}) => {
+  const sortList = items.map((it, i) => {
+    const className = `places__option ${it === activeItem ? `places__option--active` : ``}`;
+    return <li className={className} tabIndex="0" key={`${it}-${i}`}>{it}</li>;
   });
 
   const listClassName = `places__options places__options--custom ${isOpen ? `places__options--opened` : ``}`;
@@ -28,12 +17,15 @@ const SortList = ({activeType, onSortTypeChange, isOpen, onViewChange}) => {
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex="0" onClick={onViewChange}>
-        {activeType}
+        {activeItem}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className={listClassName}>
+      <ul className={listClassName} onClick={(evt) => {
+        onListClick(evt);
+        onViewChange();
+      }}>
         {sortList}
       </ul>
     </form>
@@ -41,31 +33,23 @@ const SortList = ({activeType, onSortTypeChange, isOpen, onViewChange}) => {
 };
 
 SortList.propTypes = {
-  activeType: PropTypes.oneOf([
-    SortType.POPULAR,
-    SortType.PRICE_LOW_TO_HIGH,
-    SortType.PRICE_HIGH_TO_LOW,
-    SortType.TOP_RATED_FIRST
-  ]).isRequired,
-  onSortTypeChange: PropTypes.func.isRequired,
-  onViewChange: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired
+  items: PropTypes.arrayOf(PropTypes.oneOf(SORT_LIST)),
+  activeItem: PropTypes.oneOf(SORT_LIST),
+  onActiveItemChange: PropTypes.func,
+  onListClick: PropTypes.func,
+  onViewChange: PropTypes.func,
+  isOpen: PropTypes.bool
 };
 
 SortList.defaultProps = {
-  activeType: SortType.POPULAR
+  isOpen: false
 };
 
-const mapStateToProps = (state) => ({
-  activeType: state.sortType
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  onSortTypeChange(activeType) {
-    dispatch(ActionCreator.changeSortType(activeType));
-    dispatch(ActionCreator.sortOffers());
+  onActiveItemChange(activeItem) {
+    dispatch(ActionCreator.changeSortType(activeItem));
   }
 });
 
-export {SortList, SORT_LIST};
-export default connect(mapStateToProps, mapDispatchToProps)(SortList);
+export {SortList};
+export default connect(null, mapDispatchToProps)(withActiveItem(SortList));
