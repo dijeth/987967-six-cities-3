@@ -1,42 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const isChildOf = (element, parentElement) => {
-  return element.parentElement === parentElement;
-};
-
-const isChild = (element, parentElement) => {
-  if (element === parentElement) {
-    return true;
-  }
-
-  while (element !== document.body && element !== parentElement) {
-    element = element.parentElement;
-  }
-
-  return element !== document.body;
-};
-
-const getChild = (targetElement, parentElement) => {
-  while (targetElement !== document.body && targetElement !== parentElement && !isChildOf(targetElement, parentElement)) {
-    targetElement = targetElement.parentElement;
-  }
-
-  if (targetElement === parentElement || targetElement === document.body) {
-    return null;
-  }
-
-  return targetElement;
-};
-
 const getChildIndex = (targetElement, parentElement) => {
-  const child = getChild(targetElement, parentElement);
+  const index = Array.from(parentElement.children).findIndex((it) => it.contains(targetElement));
 
-  if (child === null) {
-    return null;
-  }
-
-  return Array.from(parentElement.children).indexOf(child);
+  return index === -1 ? null : index;
 };
 
 const normalizeHandlerProp = (handlerProp) => {
@@ -72,7 +40,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
         return;
       }
 
-      if (clickTargetSelector && !isChild(element, parentElement.children[activeIndex].querySelector(clickTargetSelector))) {
+      if (clickTargetSelector && !parentElement.children[activeIndex].querySelector(clickTargetSelector).contains(element)) {
         return;
       }
 
