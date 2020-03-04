@@ -7,6 +7,11 @@ import {SORT_LIST} from '../../const.js';
 const withSort = (Component) => {
   const WithSort = (props) => {
     const {sortType, offers, activeCity} = props;
+
+    if (!activeCity) {
+      return null
+    }
+
     const {name: cityName} = activeCity;
     const filteredOffers = offers.filter((it) => it.city === cityName);
     const sortedOffers = sortOffers(filteredOffers, sortType);

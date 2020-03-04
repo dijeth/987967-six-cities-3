@@ -9,7 +9,7 @@ const initialState = {
   cities: [],
   offers: [],
   // offers: offerMocks,
-  activeCity: '',
+  activeCity: null,
   activeOffer: null,
   screenType: ScreenType.MAIN,
   sortType: SortType.POPULAR

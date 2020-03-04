@@ -85,9 +85,9 @@ const rawAdapter = {
   },
 
   location: (rawObj) => {
-    const obj = {};
-    obj.coord = rawObj.location;
-    return obj;
+    const {latitude, longitude} = rawObj.location;
+    const coord = [latitude, longitude];
+    return {coord};
   },
 
   id: (rawObj) => {

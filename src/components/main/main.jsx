@@ -26,7 +26,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
       </section>
       <div className="cities__right-section">
         <section className='cities__map map'>
-          {/*<OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />*/}
+          <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />
         </section>
       </div>
     </div>
@@ -61,7 +61,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityList items={cityNames} activeItem={cityName} />
+            <CityList items={cities} activeItem={activeCity} />
           </section>
         </div>
         <div className="cities">
