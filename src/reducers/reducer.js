@@ -3,12 +3,13 @@ import {getCities} from '../util.js';
 import {ScreenType, SortType} from '../const.js';
 import ActionType from './action-type.js';
 
-const cities = getCities(offerMocks);
+// const cities = getCities(offerMocks);
 
 const initialState = {
-  cities,
-  offers: offerMocks,
-  activeCity: cities[0],
+  cities: [],
+  offers: [],
+  // offers: offerMocks,
+  activeCity: '',
   activeOffer: null,
   screenType: ScreenType.MAIN,
   sortType: SortType.POPULAR
@@ -27,6 +28,12 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.CHANGE_SORT_TYPE:
       return Object.assign({}, state, {sortType: action.payload});
+
+    case ActionType.LOAD_OFFERS:
+      return Object.assign({}, state, {offers: action.payload});
+
+    case ActionType.LOAD_CITIES:
+      return Object.assign({}, state, {cities: action.payload});
   }
 
   return state;
