@@ -99,7 +99,6 @@ const getReview = (id) => {
 };
 
 const getNeighbourhoods = (offer, offers) => {
-  debugger;
   const neighbourhoods = new Set();
   let i = 0;
   const LIMIT = 20;
@@ -107,7 +106,7 @@ const getNeighbourhoods = (offer, offers) => {
 
   do {
     const neighbourhood = getRandomElement(offers);
-    if (neighbourhood.id !== offer.id && neighbourhood.city === offer.city) {
+    if (neighbourhood.id !== offer.id && neighbourhood.city.name === offer.city.name) {
       neighbourhoods.add(neighbourhood);
     }
 

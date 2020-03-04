@@ -141,7 +141,7 @@ const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewList reviews={reviews} />
+                {reviews && <ReviewList reviews={reviews} />}
                 <form className="reviews__form form" action="#" method="post">
                   <label className="reviews__label form__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-form form__rating">
