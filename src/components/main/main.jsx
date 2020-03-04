@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {CityCoord, SORT_LIST} from '../../const.js';
+import {SORT_LIST} from '../../const.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
@@ -11,7 +11,8 @@ import MainEmpty from '../main-empty/main-empty.jsx';
 const SortListWithOpenState = withOpenState(SortList);
 
 const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
-  const centerCoord = CityCoord[activeCity];
+  const cityNames = cities.map((it) => it.name);
+  const {name: cityName, centerCoord, zoom} = activeCity;
   const offersCoord = offers.map((it) => it.coord);
   const placesCount = offers.length;
 
@@ -19,13 +20,13 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{placesCount} places to stay in {activeCity}</b>
+        <b className="places__found">{placesCount} places to stay in {cityName}</b>
         <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
         <PlaceCardList items={ offers } isNearPlaces={isNearPlaces} />
       </section>
       <div className="cities__right-section">
         <section className='cities__map map'>
-          <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
+          {/*<OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />*/}
         </section>
       </div>
     </div>
@@ -60,11 +61,11 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityList items={cities} activeItem={activeCity} />
+            <CityList items={cityNames} activeItem={cityName} />
           </section>
         </div>
         <div className="cities">
-          {offers.length === 0 ? <MainEmpty city={activeCity} /> : cityBlock}
+          {offers.length === 0 ? <MainEmpty city={cityName} /> : cityBlock}
         </div>
       </main>
     </div>
@@ -75,7 +76,7 @@ Main.propTypes = {
   offers: PropTypes.array.isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
   cities: PropTypes.array.isRequired,
-  activeCity: PropTypes.string.isRequired,
+  activeCity: PropTypes.object.isRequired,
   sortType: PropTypes.string
 };
 

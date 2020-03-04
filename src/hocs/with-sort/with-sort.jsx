@@ -7,7 +7,8 @@ import {SORT_LIST} from '../../const.js';
 const withSort = (Component) => {
   const WithSort = (props) => {
     const {sortType, offers, activeCity} = props;
-    const filteredOffers = offers.filter((it) => it.city === activeCity);
+    const {name: cityName} = activeCity;
+    const filteredOffers = offers.filter((it) => it.city === cityName);
     const sortedOffers = sortOffers(filteredOffers, sortType);
 
     return <Component {...props} offers={sortedOffers} />;
@@ -23,7 +24,7 @@ const withSort = (Component) => {
   WithSort.propTypes = {
     sortType: PropTypes.oneOf(SORT_LIST).isRequired,
     offers: PropTypes.array.isRequired,
-    activeCity: PropTypes.string.isRequired
+    activeCity: PropTypes.object.isRequired
   };
 
   return connect(mapStateToProps)(WithSort);

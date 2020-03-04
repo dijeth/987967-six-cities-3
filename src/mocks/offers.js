@@ -99,6 +99,7 @@ const getReview = (id) => {
 };
 
 const getNeighbourhoods = (offer, offers) => {
+  debugger;
   const neighbourhoods = new Set();
   let i = 0;
   const LIMIT = 20;
