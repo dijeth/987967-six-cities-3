@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {OfferType, BREAK_STRING} from '../../const.js';
+import {OfferType, BREAK_STRING} from '../../const/const.js';
 import {ratingToPercent} from '../../util.js';
 import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
 import {offerPropType} from '../place-card/place-card.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import {CityCoord} from '../../const.js';
+import {CityCoord} from '../../const/const.js';
 
 const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
   const {

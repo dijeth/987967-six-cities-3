@@ -1,6 +1,6 @@
 import {offerMocks} from '../mocks/offers.js';
 import {getCities} from '../util.js';
-import {ScreenType, SortType} from '../const.js';
+import {ScreenType, SortType} from '../const/const.js';
 import ActionType from './action-type.js';
 
 // const cities = getCities(offerMocks);

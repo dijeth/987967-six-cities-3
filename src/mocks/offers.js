@@ -1,4 +1,4 @@
-import {OfferType, CITIES, InsideFeature, CityCoord} from '../const.js';
+import {OfferType, CITIES, InsideFeature, CityCoord} from '../const/const.js';
 
 const MOCK_COUNT = 30;
 

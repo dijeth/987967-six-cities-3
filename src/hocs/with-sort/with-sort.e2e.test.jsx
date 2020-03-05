@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {withSort} from './with-sort.jsx';
-import {SortType} from '../../const.js';
+import {SortType} from '../../const/const.js';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import PropTypes from 'prop-types';

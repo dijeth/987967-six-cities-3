@@ -5,7 +5,7 @@ import Main from '../main/main.jsx';
 import CardProperty from '../card-property/card-property.jsx';
 import { getNeighbourhoods } from '../../mocks/offers.js';
 import { connect } from 'react-redux';
-import { ScreenType } from '../../const.js';
+import { ScreenType } from '../../const/const.js';
 import { offerPropType } from '../place-card/place-card.jsx';
 import withSort from '../../hocs/with-sort/with-sort.jsx';
 

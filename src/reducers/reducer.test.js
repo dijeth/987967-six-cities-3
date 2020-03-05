@@ -1,6 +1,6 @@
 import reducer, {initialState} from './reducer.js';
 import ActionType from './action-type.js';
-import {ScreenType, SortType} from './const.js';
+import {ScreenType, SortType} from './const/const.js';
 
 describe(`Test reducer`, () => {
   it(`should return initialState when called with an unknown action`, () => {

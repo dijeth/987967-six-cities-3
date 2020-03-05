@@ -1,6 +1,6 @@
 import ActionCreator from './action-creator.js';
 import ActionType from './action-type.js';
-import {ScreenType, SortType} from './const.js';
+import {ScreenType, SortType} from './const/const.js';
 
 describe(`Test ActionCreator`, () => {
   it(`ActionCreator.changeCity should return a right action`, () => {

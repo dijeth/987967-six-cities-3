@@ -1,4 +1,4 @@
-import {MONTHS, /* MAX_CITY_COUNT, */SortType, CITIES} from './const.js';
+import {MONTHS, /* MAX_CITY_COUNT, */SortType, CITIES} from './const/const.js';
 
 const PERCENT_STEP = 20;
 export const ratingToPercent = (rating) => Math.round(rating) * PERCENT_STEP;

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {SortList} from './sort-list.jsx';
-import {SortType, SORT_LIST} from '../../const.js';
+import {SortType, SORT_LIST} from '../../const/const.js';
 
 it(`<SortList /> should be correctly rendered when opened`, () => {
   const tree = renderer.create(

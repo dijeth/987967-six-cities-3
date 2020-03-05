@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {App} from './app.jsx';
-import {ScreenType, SortType} from '../../const.js';
+import {ScreenType, SortType} from '../../const/const.js';
 
 const mockStore = configureStore([]);
 
