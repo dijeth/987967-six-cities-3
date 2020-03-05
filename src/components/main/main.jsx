@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import {SORT_LIST} from '../../const/const.js';
+import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
@@ -75,8 +76,8 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
 Main.propTypes = {
   offers: PropTypes.array.isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
-  cities: PropTypes.array.isRequired,
-  activeCity: PropTypes.object.isRequired,
+  cities: PropTypes.arrayOf(cityPropType).isRequired,
+  activeCity: cityPropType.isRequired,
   sortType: PropTypes.string
 };
 

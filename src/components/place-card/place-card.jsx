@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {OfferType} from '../../const/const.js';
+import {offerPropType} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
 
 const PlaceCard = ({offer, isNearPlaces, onHover}) => {
@@ -54,24 +55,10 @@ const PlaceCard = ({offer, isNearPlaces, onHover}) => {
     </article>);
 };
 
-const offerPropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-  cost: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  isPremium: PropTypes.bool.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  city: PropTypes.string.isRequired,
-  coord: PropTypes.arrayOf(PropTypes.number).isRequired
-});
-
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onHover: PropTypes.func,
   isNearPlaces: PropTypes.bool.isRequired
 };
 
-export {offerPropType};
 export default PlaceCard;

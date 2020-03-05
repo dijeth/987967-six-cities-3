@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard, {offerPropType} from '../place-card/place-card.jsx';
+import PlaceCard from '../place-card/place-card.jsx';
 import ActionCreator from '../../reducers/action-creator.js';
 import {connect} from 'react-redux';
 import {ScreenType} from '../../const/const.js';
+import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
 const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick}) => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import {cityPropType} from '../../const/props.js';
 
 const CityList = ({items, activeItem, onListClick}) => {
   if (!items.length) {
@@ -22,11 +23,9 @@ const CityList = ({items, activeItem, onListClick}) => {
   return <ul className="locations__list tabs__list" onClick={onListClick ? onListClick : null}>{cityList}</ul>;
 };
 
-// const 
-
 CityList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  activeItem: PropTypes.object,
+  items: PropTypes.arrayOf(cityPropType).isRequired,
+  activeItem: cityPropType,
   onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func
 };

@@ -6,7 +6,7 @@ import CardProperty from '../card-property/card-property.jsx';
 import { getNeighbourhoods } from '../../mocks/offers.js';
 import { connect } from 'react-redux';
 import { ScreenType } from '../../const/const.js';
-import { offerPropType } from '../place-card/place-card.jsx';
+import { offerPropType } from '../../const/props.js';
 import withSort from '../../hocs/with-sort/with-sort.jsx';
 
 const MainWithSort = withSort(Main);

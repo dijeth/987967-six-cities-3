@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {sortOffers} from '../../util.js';
 import {SORT_LIST} from '../../const/const.js';
+import {cityPropType} from '../../const/props.js';
 
 const withSort = (Component) => {
   const WithSort = (props) => {
@@ -29,7 +30,7 @@ const withSort = (Component) => {
   WithSort.propTypes = {
     sortType: PropTypes.oneOf(SORT_LIST).isRequired,
     offers: PropTypes.array.isRequired,
-    activeCity: PropTypes.object
+    activeCity: cityPropType
   };
 
   return connect(mapStateToProps)(WithSort);
