@@ -12,7 +12,7 @@ const rawAdapter = {
   },
 
   title: (rawObj) => {
-    return { title: rawObj.title };
+    return { title: rawObj.title, descriptionTitle: rawObj.title };
   },
 
   [`is_favorite`]: (rawObj) => {

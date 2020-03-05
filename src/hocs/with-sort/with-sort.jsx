@@ -29,7 +29,7 @@ const withSort = (Component) => {
   WithSort.propTypes = {
     sortType: PropTypes.oneOf(SORT_LIST).isRequired,
     offers: PropTypes.array.isRequired,
-    activeCity: PropTypes.object.isRequired
+    activeCity: PropTypes.object
   };
 
   return connect(mapStateToProps)(WithSort);

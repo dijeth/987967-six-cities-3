@@ -57,7 +57,7 @@ const PlaceCard = ({offer, isNearPlaces, onHover}) => {
 const offerPropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]).isRequired,
+  type: PropTypes.string.isRequired,
   pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
   cost: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,

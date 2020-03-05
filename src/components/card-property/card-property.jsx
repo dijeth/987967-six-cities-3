@@ -29,7 +29,7 @@ const CardProperty = ({offer, neighbourhoods, isNearPlaces}) => {
     city
   } = offer;
 
-  const gallery = pictures.map((it, i) => {
+  const gallery = pictures.slice(1, 7).map((it, i) => {
     return (
       <div className="property__image-wrapper" key={`${it}-${i}`}>
         <img className="property__image" src={it} alt="Photo studio" />
@@ -212,7 +212,7 @@ CardProperty.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]),
+    type: PropTypes.string.isRequired,
     pictures: PropTypes.arrayOf(PropTypes.string),
     cost: PropTypes.number.isRequired,
     rating: PropTypes.number,

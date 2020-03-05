@@ -7,11 +7,9 @@ export const Operation = {
 			.then((response) => {
 				const data = Adapter.rawToData(response.data);
 
-				dispatch(ActionCreator.loadOffers(data.data));
 				dispatch(ActionCreator.loadCities(data.cities));
 				dispatch(ActionCreator.changeCity(data.cities[0]));
-
-				console.log(data.data[0])
+				dispatch(ActionCreator.loadOffers(data.data));
 			})
 	}
 }

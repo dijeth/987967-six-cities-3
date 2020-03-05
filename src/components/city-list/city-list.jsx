@@ -22,6 +22,8 @@ const CityList = ({items, activeItem, onListClick}) => {
   return <ul className="locations__list tabs__list" onClick={onListClick ? onListClick : null}>{cityList}</ul>;
 };
 
+// const 
+
 CityList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeItem: PropTypes.object,
