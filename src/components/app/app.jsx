@@ -11,24 +11,21 @@ import withSort from '../../hocs/with-sort/with-sort.jsx';
 
 const MainWithSort = withSort(Main);
 
-class App extends React.PureComponent {
-  render() {
-    const { screenType, activeOffer, offers } = this.props;
+const App = ({ screenType, activeOffer, offers }) => {
+  const isNearPlaces = screenType === ScreenType.PROPERTY;
 
-    const isNearPlaces = screenType === ScreenType.PROPERTY;
-
-    if (screenType === ScreenType.PROPERTY) {
-      const neighbourhoods = getNeighbourhoods(activeOffer, offers);
-      return (
-        <CardProperty
+  if (screenType === ScreenType.PROPERTY) {
+    const neighbourhoods = getNeighbourhoods(activeOffer, offers);
+    return (
+      <CardProperty
           offer={activeOffer}
           neighbourhoods={neighbourhoods}
           isNearPlaces={isNearPlaces}
         />);
-    }
+  }
 
-    return (
-      <BrowserRouter>
+  return (
+    <BrowserRouter>
       <Switch>
         <Route exact path="/">
           <MainWithSort
@@ -40,8 +37,7 @@ class App extends React.PureComponent {
         </Route>
       </Switch>
     </BrowserRouter>);
-  }
-}
+};
 
 App.propTypes = {
   screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]).isRequired,
