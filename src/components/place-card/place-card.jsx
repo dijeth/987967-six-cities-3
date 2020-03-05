@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {OfferType} from '../../const/const.js';
 import {offerPropType} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
 

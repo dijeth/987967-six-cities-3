@@ -10,7 +10,7 @@ const withSort = (Component) => {
     const {sortType, offers, activeCity} = props;
 
     if (!activeCity) {
-      return null
+      return null;
     }
 
     const {name: cityName} = activeCity;

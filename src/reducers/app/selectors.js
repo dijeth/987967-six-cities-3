@@ -1,6 +1,5 @@
-import { SortType, ScreenType } from '../../const/const.js';
+import {SortType, ScreenType} from '../../const/const.js';
 import NameSpace from '../name-space.js';
-import { getCities } from '../data/selectors.js';
 
 export const getSortType = (state) => state[NameSpace.APP].sortType || SortType.POPULAR;
 export const getScreenType = (state) => state[NameSpace.APP].screenType || ScreenType.MAIN;
@@ -13,7 +12,7 @@ export const getActiveOfferCoord = (state) => {
 
 export const getActiveCityName = (state) => {
   const activeCity = getActiveCity(state);
-  return activeCity ? activeCity.name : null
+  return activeCity ? activeCity.name : null;
 };
 
 const AppSelector = {

@@ -1,5 +1,5 @@
 export default {
-	DATA: `DATA`,
-	APP: `APP`,
-	USER: `USER`
-}
+  DATA: `DATA`,
+  APP: `APP`,
+  USER: `USER`
+};

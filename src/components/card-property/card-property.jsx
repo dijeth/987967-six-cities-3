@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {OfferType, BREAK_STRING} from '../../const/const.js';
+import {BREAK_STRING} from '../../const/const.js';
 import {ratingToPercent} from '../../util.js';
 import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';

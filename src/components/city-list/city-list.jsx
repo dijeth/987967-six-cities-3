@@ -7,8 +7,8 @@ import {cityPropType} from '../../const/props.js';
 
 const CityList = ({items, activeItem, onListClick}) => {
   if (!items.length) {
-    return null
-  };
+    return null;
+  }
 
   const cityName = activeItem !== null ? activeItem.name : null;
   const cityList = items.map((it, i) => {

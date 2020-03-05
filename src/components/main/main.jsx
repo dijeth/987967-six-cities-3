@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import { SORT_LIST } from '../../const/const.js';
-import { cityPropType } from '../../const/props.js';
+import {SORT_LIST} from '../../const/const.js';
+import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
@@ -16,13 +16,12 @@ import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({ offers, cities, activeCity, isNearPlaces, sortType }) => {
+const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
   if (offers.length === 0 || activeCity === null) {
     return null;
-  };
+  }
 
-  const cityNames = cities.map((it) => it.name);
-  const { name: cityName, centerCoord, zoom } = activeCity;
+  const {name: cityName, centerCoord, zoom} = activeCity;
   const offersCoord = offers.map((it) => it.coord);
   const placesCount = offers.length;
 

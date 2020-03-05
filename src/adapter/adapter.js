@@ -1,75 +1,47 @@
 const rawAdapter = {
-  city: (rawObj) => {
-    return { city: rawObj.city.name };
-  },
+  city: (rawObj) => ({city: rawObj.city.name}),
 
-  [`preview_image`]: (rawObj) => {
-    return {};
-  },
+  [`preview_image`]: () => ({}),
 
-  images: (rawObj) => {
-    return { pictures: [rawObj.preview_image].concat(rawObj.images) };
-  },
+  images: (rawObj) => ({pictures: [rawObj.preview_image].concat(rawObj.images)}),
 
-  title: (rawObj) => {
-    return { title: rawObj.title, descriptionTitle: rawObj.title };
-  },
+  title: (rawObj) => ({title: rawObj.title, descriptionTitle: rawObj.title}),
 
-  [`is_favorite`]: (rawObj) => {
-    return { isFavorite: rawObj.is_favorite };
-  },
+  [`is_favorite`]: (rawObj) => ({isFavorite: rawObj.is_favorite}),
 
-  [`is_premium`]: (rawObj) => {
-    return { isPremium: rawObj.is_premium };
-  },
+  [`is_premium`]: (rawObj) => ({isPremium: rawObj.is_premium}),
 
-  rating: (rawObj) => {
-    return { rating: rawObj.rating };
-  },
+  rating: (rawObj) => ({rating: rawObj.rating}),
 
-  type: (rawObj) => {
-    return { type: rawObj.type };
-  },
+  type: (rawObj) => ({type: rawObj.type}),
 
-  bedrooms: (rawObj) => {
-    return { bedroomCount: rawObj.bedrooms };
-  },
+  bedrooms: (rawObj) => ({bedroomCount: rawObj.bedrooms}),
 
-  [`max_adults`]: (rawObj) => {
-    return { adultsCount: rawObj.max_adults };
-  },
+  [`max_adults`]: (rawObj) => ({adultsCount: rawObj.max_adults}),
 
-  price: (rawObj) => {
-    return { cost: rawObj.price };
-  },
+  price: (rawObj) => ({cost: rawObj.price}),
 
-  goods: (rawObj) => {
-    return { insideFeatures: rawObj.goods };
-  },
+  goods: (rawObj) => ({insideFeatures: rawObj.goods}),
 
   host: (rawObj) => {
-    const { id, name, is_pro, avatar_url } = rawObj.host;
+    const {id, name, is_pro: isPro, avatar_url: avatarUrl} = rawObj.host;
     return {
       userName: name,
-      userPicture: avatar_url,
-      isUserSuper: is_pro,
-      id: id
+      userPicture: avatarUrl,
+      isUserSuper: isPro,
+      id
     };
   },
 
-  description: (rawObj) => {
-    return { description: rawObj.description };
-  },
+  description: (rawObj) => ({description: rawObj.description}),
 
   location: (rawObj) => {
-    const { latitude, longitude } = rawObj.location;
+    const {latitude, longitude} = rawObj.location;
     const coord = [latitude, longitude];
-    return { coord };
+    return {coord};
   },
 
-  id: (rawObj) => {
-    return { id: String(rawObj.id) };
-  }
+  id: (rawObj) => ({id: String(rawObj.id)})
 };
 
 const rawToObject = (rawObject) => {
@@ -80,14 +52,14 @@ const rawToObject = (rawObject) => {
   });
 
   return data;
-}
+};
 
 const Adapter = {
   rawToData: (raw) => {
     const cities = {};
     const data = raw.map((rawObject) => {
-      const { name, location } = rawObject.city;
-      const { zoom, latitude, longitude } = location;
+      const {name, location} = rawObject.city;
+      const {zoom, latitude, longitude} = location;
 
       cities[name] = {
         name,
@@ -98,13 +70,13 @@ const Adapter = {
         ]
       };
 
-      return rawToObject(rawObject)
+      return rawToObject(rawObject);
     });
 
     return {
       data,
       cities: Array.from(Object.values(cities))
-    }
+    };
   },
 
   dataToRaw: () => {}
