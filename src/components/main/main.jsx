@@ -1,19 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {SORT_LIST} from '../../const/const.js';
-import {cityPropType} from '../../const/props.js';
+import { SORT_LIST } from '../../const/const.js';
+import { cityPropType } from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 import MainEmpty from '../main-empty/main-empty.jsx';
+import {getSortedOffers} from '../../reducers/selector.js';
+import {connect} from 'react-redux';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
+const Main = ({ offers, cities, activeCity, isNearPlaces, sortType }) => {
+  if (offers === null || activeCity === null) {
+    return null;
+  };
+
   const cityNames = cities.map((it) => it.name);
-  const {name: cityName, centerCoord, zoom} = activeCity;
+  const { name: cityName, centerCoord, zoom } = activeCity;
   const offersCoord = offers.map((it) => it.coord);
   const placesCount = offers.length;
 
@@ -74,11 +80,18 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.array.isRequired,
-  isNearPlaces: PropTypes.bool.isRequired,
+  activeCity: cityPropType,
   cities: PropTypes.arrayOf(cityPropType).isRequired,
-  activeCity: cityPropType.isRequired,
+  isNearPlaces: PropTypes.bool.isRequired,
+  offers: PropTypes.array.isRequired,
   sortType: PropTypes.string
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  activeCity: state.activeCity,
+  cities: state.cities,
+  offers: getSortedOffers(state),
+  sortType: state.sortType,
+});
+
+export default connect(mapStateToProps)(Main);

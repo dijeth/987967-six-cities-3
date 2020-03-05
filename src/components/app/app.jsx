@@ -7,9 +7,6 @@ import { getNeighbourhoods } from '../../mocks/offers.js';
 import { connect } from 'react-redux';
 import { ScreenType } from '../../const/const.js';
 import { offerPropType } from '../../const/props.js';
-import withSort from '../../hocs/with-sort/with-sort.jsx';
-
-const MainWithSort = withSort(Main);
 
 const App = ({ screenType, activeOffer, offers }) => {
   const isNearPlaces = screenType === ScreenType.PROPERTY;
@@ -28,9 +25,7 @@ const App = ({ screenType, activeOffer, offers }) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainWithSort
-            isNearPlaces={screenType === ScreenType.PROPERTY}
-          />
+          <Main isNearPlaces={screenType === ScreenType.PROPERTY} />
         </Route>
         <Route exact path="/dev-card-property">
           
