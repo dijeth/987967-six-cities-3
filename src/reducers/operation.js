@@ -1,4 +1,5 @@
-import ActionCreator from './action-creator.js';
+import DataActionCreator from './data/action-creator.js';
+import AppActionCreator from './app/action-creator.js';
 import Adapter from '../adapter/adapter.js';
 
 export const Operation = {
@@ -7,9 +8,9 @@ export const Operation = {
 			.then((response) => {
 				const data = Adapter.rawToData(response.data);
 
-				dispatch(ActionCreator.loadCities(data.cities));
-				dispatch(ActionCreator.changeCity(data.cities[0]));
-				dispatch(ActionCreator.loadOffers(data.data));
+				dispatch(DataActionCreator.loadCities(data.cities));
+				dispatch(AppActionCreator.changeCity(data.cities[0]));
+				dispatch(DataActionCreator.loadOffers(data.data));
 			})
 	}
 }
