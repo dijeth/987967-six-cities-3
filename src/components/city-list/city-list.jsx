@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ActionCreator from '../../reducers/action-creator.js';
+import ActionCreator from '../../reducers/app/action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import {cityPropType} from '../../const/props.js';
 

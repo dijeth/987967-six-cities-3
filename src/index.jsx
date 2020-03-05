@@ -8,6 +8,9 @@ import reducer from './reducers/reducer.js';
 import {Operation} from './reducers/operation.js';
 import { createAPI } from './api.js';
 
+import DataSelector from './reducers/data/selectors.js';
+import AppSelector from './reducers/app/selectors.js';
+
 const onUnauthorized = () => {};
 const api = createAPI(onUnauthorized);
 

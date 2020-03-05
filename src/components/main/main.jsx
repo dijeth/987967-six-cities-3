@@ -6,15 +6,18 @@ import { cityPropType } from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
-import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 import MainEmpty from '../main-empty/main-empty.jsx';
-import {getSortedOffers} from '../../reducers/selector.js';
 import {connect} from 'react-redux';
+import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';
+import {getCities} from '../../reducers/data/selectors.js';
+import {getSortedOffers} from '../../reducers/selectors.js';
+import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
+
 
 const SortListWithOpenState = withOpenState(SortList);
 
 const Main = ({ offers, cities, activeCity, isNearPlaces, sortType }) => {
-  if (offers === null || activeCity === null) {
+  if (offers.length === 0 || activeCity === null) {
     return null;
   };
 
@@ -88,10 +91,10 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  activeCity: state.activeCity,
-  cities: state.cities,
+  sortType: getSortType(state),
+  activeCity: getActiveCity(state),
+  cities: getCities(state),
   offers: getSortedOffers(state),
-  sortType: state.sortType,
 });
 
 export default connect(mapStateToProps)(Main);

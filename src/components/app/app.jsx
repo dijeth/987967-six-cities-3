@@ -7,6 +7,8 @@ import { getNeighbourhoods } from '../../mocks/offers.js';
 import { connect } from 'react-redux';
 import { ScreenType } from '../../const/const.js';
 import { offerPropType } from '../../const/props.js';
+import {getScreenType, getActiveOffer} from '../../reducers/app/selectors.js';
+import {getOffers} from '../../reducers/data/selectors.js';
 
 const App = ({ screenType, activeOffer, offers }) => {
   const isNearPlaces = screenType === ScreenType.PROPERTY;
@@ -41,9 +43,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  screenType: state.screenType,
-  activeOffer: state.activeOffer,
-  offers: state.offers
+  screenType: getScreenType(state),
+  activeOffer: getActiveOffer(state),
+  offers: getOffers(state)
 });
 
 export { App };
