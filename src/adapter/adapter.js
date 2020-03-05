@@ -1,8 +1,6 @@
 const rawAdapter = {
   city: (rawObj) => {
-    const obj = {};
-    obj.city = rawObj.city.name;
-    return obj;
+    return { city: rawObj.city.name };
   },
 
   [`preview_image`]: (rawObj) => {
@@ -10,90 +8,67 @@ const rawAdapter = {
   },
 
   images: (rawObj) => {
-    const pictures = [rawObj.preview_image].concat(rawObj.images);
-    return {pictures};
+    return { pictures: [rawObj.preview_image].concat(rawObj.images) };
   },
 
   title: (rawObj) => {
-    const obj = {};
-    obj.title = rawObj.title;
-    return obj;
+    return { title: rawObj.title };
   },
 
   [`is_favorite`]: (rawObj) => {
-    const obj = {};
-    obj.isFavorite = rawObj.is_favorite;
-    return obj;
+    return { isFavorite: rawObj.is_favorite };
   },
 
   [`is_premium`]: (rawObj) => {
-    const obj = {};
-    obj.isPremium = rawObj.is_premium;
-    return obj;
+    return { isPremium: rawObj.is_premium };
   },
 
   rating: (rawObj) => {
-    const obj = {};
-    obj.rating = rawObj.rating;
-    return obj;
+    return { rating: rawObj.rating };
   },
 
   type: (rawObj) => {
-    const obj = {};
-    obj.type = rawObj.type;
-    return obj;
+    return { type: rawObj.type };
   },
 
   bedrooms: (rawObj) => {
-    const obj = {};
-    obj.bedroomCount = rawObj.bedrooms;
-    return obj;
+    return { bedroomCount: rawObj.bedrooms };
   },
 
   [`max_adults`]: (rawObj) => {
-    const obj = {};
-    obj.adultsCount = rawObj.max_adults;
-    return obj;
+    return { adultsCount: rawObj.max_adults };
   },
 
   price: (rawObj) => {
-    const obj = {};
-    obj.cost = rawObj.price;
-    return obj;
+    return { cost: rawObj.price };
   },
 
   goods: (rawObj) => {
-    const obj = {};
-    obj.insideFeatures = rawObj.goods;
-    return obj;
+    return { insideFeatures: rawObj.goods };
   },
 
   host: (rawObj) => {
-    const obj = {};
     const { id, name, is_pro, avatar_url } = rawObj.host;
-    obj.userName = name;
-    obj.userPicture = avatar_url;
-    obj.isUserSuper = is_pro;
-    obj.id = id;
-    return obj;
+    return {
+      userName: name,
+      userPicture: avatar_url,
+      isUserSuper: is_pro,
+      id: id
+    };
   },
 
   description: (rawObj) => {
-    const obj = {};
-    obj.description = rawObj.description;
-    return obj;
+    return { description: rawObj.description };
   },
 
   location: (rawObj) => {
-    const {latitude, longitude} = rawObj.location;
+    const { latitude, longitude } = rawObj.location;
     const coord = [latitude, longitude];
-    return {coord};
+    return { coord };
   },
 
   id: (rawObj) => {
-    const obj = {};
-    obj.id = String(rawObj.id);
-    return obj;
+    return { id: String(rawObj.id) };
   }
 };
 
