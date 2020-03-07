@@ -6,17 +6,19 @@ import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
+import User from '../user/user.jsx';
 import MainEmpty from '../main-empty/main-empty.jsx';
 import {connect} from 'react-redux';
 import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';
 import {getCities} from '../../reducers/data/selectors.js';
 import {getSortedOffers} from '../../reducers/selectors.js';
+import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
+const Main = ({offers, cities, activeCity, isNearPlaces, sortType, isAuthorized}) => {
   if (offers.length === 0 || activeCity === null) {
     return null;
   }
@@ -51,17 +53,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType}) => {
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
               </a>
             </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <User isAuthorized={isAuthorized} />
           </div>
         </div>
       </header>
@@ -86,7 +78,8 @@ Main.propTypes = {
   cities: PropTypes.arrayOf(cityPropType).isRequired,
   isNearPlaces: PropTypes.bool.isRequired,
   offers: PropTypes.array.isRequired,
-  sortType: PropTypes.string
+  sortType: PropTypes.string,
+  isAuthorized: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -94,6 +87,7 @@ const mapStateToProps = (state) => ({
   activeCity: getActiveCity(state),
   cities: getCities(state),
   offers: getSortedOffers(state),
+  isAuthorized: getAuthorizationStatus(state)
 });
 
 export {Main};
