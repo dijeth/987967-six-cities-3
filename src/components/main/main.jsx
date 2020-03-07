@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {SORT_LIST} from '../../const/const.js';
+import {SORT_LIST, MainScreenType} from '../../const/const.js';
 import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
@@ -14,11 +14,13 @@ import {getCities} from '../../reducers/data/selectors.js';
 import {getSortedOffers} from '../../reducers/selectors.js';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const Main = ({offers, cities, activeCity, isNearPlaces, sortType, isAuthorized}) => {
+const Main = ({offers, cities, activeCity, isNearPlaces, sortType, isAuthorized, type}) => {
+
   if (offers.length === 0 || activeCity === null) {
     return null;
   }
@@ -43,8 +45,25 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, isAuthorized}
     </div>
   );
 
+  const mainBlock = (
+    <main className={`page__main page__main--index ${offers.length === 0 ? `page__main--index-empty` : ``}`}>
+      <h1 className="visually-hidden">Cities</h1>
+      <div className="tabs">
+        <section className="locations container">
+          <CityList items={cities} activeItem={activeCity} />
+        </section>
+      </div>
+      <div className="cities">
+        {offers.length === 0 ? <MainEmpty city={cityName} /> : cityBlock}
+      </div>
+    </main>);
+
+  const main = type === MainScreenType.SIGN_IN ? <SignIn /> : mainBlock;
+
+  const pageClass = `page page--gray ${type === MainScreenType.SIGN_IN ? `page--login` : `page--main`}`;
+
   return (
-    <div className="page page--gray page--main">
+    <div className={pageClass}>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -57,18 +76,7 @@ const Main = ({offers, cities, activeCity, isNearPlaces, sortType, isAuthorized}
           </div>
         </div>
       </header>
-
-      <main className={`page__main page__main--index ${offers.length === 0 ? `page__main--index-empty` : ``}`}>
-        <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <CityList items={cities} activeItem={activeCity} />
-          </section>
-        </div>
-        <div className="cities">
-          {offers.length === 0 ? <MainEmpty city={cityName} /> : cityBlock}
-        </div>
-      </main>
+      {main}
     </div>
   );
 };
@@ -79,8 +87,13 @@ Main.propTypes = {
   isNearPlaces: PropTypes.bool.isRequired,
   offers: PropTypes.array.isRequired,
   sortType: PropTypes.string,
-  isAuthorized: PropTypes.bool.isRequired
+  isAuthorized: PropTypes.bool.isRequired,
+  type: PropTypes.oneOf(Object.values(MainScreenType))
 };
+
+Main.defaultProps = {
+  type: MainScreenType.DEFAULT
+}
 
 const mapStateToProps = (state) => ({
   sortType: getSortType(state),

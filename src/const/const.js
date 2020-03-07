@@ -62,4 +62,10 @@ export const SORT_LIST = [
 export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
   AUTH: `AUTH`,
+};
+
+export const MainScreenType = {
+  SIGN_IN: `SIGN_IN`,
+  FAVORITES: `FAVORITES`,
+  DEFAULT: `DEFAULT`,
 }
