@@ -1,8 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main.jsx';
+import {Main} from './main.jsx';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import NameSpace from '../../reducers/name-space.js';
 
 const mockStore = configureStore([]);
 
@@ -33,12 +34,17 @@ const offers = [{
 ];
 
 const isNearPlaces = false;
-const cities = [`Paris`];
-const activeCity = `Paris`;
+const cities = [{name: `Paris`, centerCoord: [1, 2]}];
+const activeCity = {name: `Paris`, centerCoord: [1, 2]};
 const activeOffer = null;
 
 it(`<Main /> should be render correctly`, () => {
-  const store = mockStore({});
+  const store = mockStore({
+    [NameSpace.APP]: {
+      activeOffer: null
+    },
+    [NameSpace.DATA]: {}
+  });
 
   const main = renderer.create(
       <Provider store={store}>

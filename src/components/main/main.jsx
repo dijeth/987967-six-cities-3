@@ -96,4 +96,5 @@ const mapStateToProps = (state) => ({
   offers: getSortedOffers(state),
 });
 
+export {Main};
 export default connect(mapStateToProps)(Main);

@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {sortOffers} from '../../util.js';
 import {SORT_LIST} from '../../const/const.js';
 import {cityPropType} from '../../const/props.js';
+import {getOffers, getCities} from '../../reducers/data/selectors.js';
+import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';
 
 const withSort = (Component) => {
   const WithSort = (props) => {
@@ -21,10 +23,10 @@ const withSort = (Component) => {
   };
 
   const mapStateToProps = (state) => ({
-    offers: state.offers,
-    sortType: state.sortType,
-    activeCity: state.activeCity,
-    cities: state.cities
+    offers: getOffers(state),
+    sortType: getSortType(state),
+    activeCity: getActiveCity(state),
+    cities: getCities(state)
   });
 
   WithSort.propTypes = {

@@ -3,10 +3,9 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import CardProperty from './card-property.jsx';
+import NameSpace from '../../reducers/name-space.js';
 
 const mockStore = configureStore([]);
-
-const store = mockStore({});
 
 const offer = {
   id: `1`,
@@ -51,6 +50,12 @@ const offer = {
   }
   ]
 };
+
+const store = mockStore({
+  [NameSpace.APP]: {
+    activeOffer: offer
+  }
+});
 
 const neighbourhoods = [{
   id: `near-id-1`,

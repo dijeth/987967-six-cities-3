@@ -8,8 +8,14 @@ Enzyme.configure({
 });
 
 const props = {
-  items: [`city1`, `city2`, `city3`, `city4`, `city5`],
-  activeItem: `city1`,
+  items: [
+    {name: `city1`, centerCoord: [1, 2]},
+    {name: `city2`, centerCoord: [1, 2]},
+    {name: `city3`, centerCoord: [1, 2]},
+    {name: `city4`, centerCoord: [1, 2]},
+    {name: `city5`, centerCoord: [1, 2]}
+  ],
+  activeItem: {name: `city1`, centerCoord: [1, 2]},
   onListClick: jest.fn()
 };
 

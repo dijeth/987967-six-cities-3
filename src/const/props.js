@@ -15,6 +15,6 @@ export const offerPropType = PropTypes.shape({
 
 export const cityPropType = PropTypes.shape({
   name: PropTypes.string.isRequired,
-  zoom: PropTypes.number.isRequired,
+  zoom: PropTypes.number,
   centerCoord: PropTypes.arrayOf(PropTypes.number)
 });

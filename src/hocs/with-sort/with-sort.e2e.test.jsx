@@ -6,6 +6,7 @@ import {SortType} from '../../const/const.js';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import PropTypes from 'prop-types';
+import NameSpace from '../../reducers/name-space.js';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -17,7 +18,7 @@ const Component = () => <div></div>;
 Component.propTypes = {
   sortType: PropTypes.string,
   offers: PropTypes.array,
-  activeCity: PropTypes.string
+  activeCity: PropTypes.object
 };
 
 const ComponentWithSort = withSort(Component);
@@ -34,9 +35,11 @@ const offers = [
 ];
 
 const store = mockStore({
-  offers,
-  sortType: SortType.TOP_RATED_FIRST,
-  activeCity: `city1`
+  [NameSpace.DATA]: {offers},
+  [NameSpace.APP]: {
+    sortType: SortType.TOP_RATED_FIRST,
+    activeCity: {name: `city1`}
+  }
 });
 
 it(`should select and sort elements using values from store `, () => {

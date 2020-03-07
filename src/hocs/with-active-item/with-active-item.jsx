@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {compareObjects} from '../../util.js';
+
+const NO_ACTIVE_INDEX = -1;
 
 const getChildIndex = (targetElement, parentElement) => {
   const index = Array.from(parentElement.children).findIndex((it) => it.contains(targetElement));
 
-  return index === -1 ? null : index;
+  return index === -1 ? NO_ACTIVE_INDEX : index;
 };
 
 const normalizeHandlerProp = (handlerProp) => {
@@ -25,7 +28,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
       super(props);
 
       this.state = {
-        activeIndex: props.activeItem ? props.items.findIndex((it) => it === props.activeItem) : null
+        activeIndex: props.activeItem ? props.items.findIndex((it) => compareObjects(it, props.activeItem)) : NO_ACTIVE_INDEX
       };
 
       this._handleClick = this._handleClick.bind(this);
@@ -36,7 +39,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
       const element = evt.target;
       const activeIndex = getChildIndex(element, parentElement);
 
-      if (activeIndex === null) {
+      if (activeIndex === NO_ACTIVE_INDEX) {
         return;
       }
 
@@ -57,7 +60,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
 
     render() {
       const {items} = this.props;
-      const activeItem = this.state.activeIndex !== null ? items[this.state.activeIndex] : null;
+      const activeItem = this.state.activeIndex !== NO_ACTIVE_INDEX ? items[this.state.activeIndex] : null;
 
       return <ListComponent {...this.props} activeItem={activeItem} onListClick={this._handleClick} />;
     }

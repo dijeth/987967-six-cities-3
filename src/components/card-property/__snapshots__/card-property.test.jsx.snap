@@ -75,15 +75,6 @@ exports[`<CardProperty /> should be render correctly 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="picture-src-test-1"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
               src="picture-src-test-2"
             />
           </div>

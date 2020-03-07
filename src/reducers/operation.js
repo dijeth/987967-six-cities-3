@@ -4,7 +4,7 @@ import Adapter from '../adapter/adapter.js';
 
 export const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
-    api.get(`/hotels`)
+    return api.get(`/hotels`)
       .then((response) => {
         const data = Adapter.rawToData(response.data);
 

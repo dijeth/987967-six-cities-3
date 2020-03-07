@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {App} from './app.jsx';
 import {ScreenType, SortType} from '../../const/const.js';
+import NameSpace from '../../reducers/name-space.js';
 
 const mockStore = configureStore([]);
 
@@ -99,14 +100,18 @@ const offers = [{
 }
 ];
 
-
 const store = mockStore({
-  offers,
-  activeOffer: null,
-  activeCity: `Amsterdam`,
-  screenType: ScreenType.MAIN,
-  sortType: SortType.POPULAR,
-  cities: [`Amsterdam`]
+  [NameSpace.DATA]: {
+    offers,
+    cities: [{name: `Amsterdam`, centerCoord: [1, 2]}]
+  },
+
+  [NameSpace.APP]: {
+    activeOffer: null,
+    activeCity: {name: `Amsterdam`, centerCoord: [1, 2]},
+    screenType: ScreenType.MAIN,
+    sortType: SortType.POPULAR
+  }
 });
 
 it(`should render <Main /> when screenType === ScreenType.MAIN`, () => {
