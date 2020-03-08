@@ -2,17 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header.jsx';
 
-const PageSignIn = () => {
+class PageSignIn extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.form = React.createRef();
+    this._handleSubmit = this._handleSubmit.bind(this);
+  };
 
-	return (    
-		<div className="page page--gray page--login">
+  _handleSubmit(evt) {
+    evt.preventDefault();
+    console.log(new FormData(this.form.current).get(`email`))
+  }
+
+  render() {
+    return (
+      <div className="page page--gray page--login">
       <Header isActiveLogo={false} isAuthorized={false} />
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form className="login__form form" action="#" method="post" ref={this.form} onSubmit={this._handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input className="login__input form__input" type="email" name="email" placeholder="Email" required="" />
@@ -34,6 +45,7 @@ const PageSignIn = () => {
         </div>
       </main>
     </div>);
+  }
 };
 
 export default PageSignIn;

@@ -10,7 +10,14 @@ module.exports = {
     contentBase: path.join(__dirname, `public`),
     open: true,
     port: 1338,
-    historyApiFallback: true
+    historyApiFallback: true,
+    publicPath: `/`,
+    proxy: {
+      '/offer': {
+        target: `http://localhost:1338/`,
+        pathRewrite: {'^/offer': ``}
+      }
+    }
   },
   module: {
     rules: [

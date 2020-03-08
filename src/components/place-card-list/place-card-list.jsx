@@ -41,14 +41,14 @@ PlaceCardList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeItem) {
-    dispatch(ActionCreator.changeActiveOffer(activeItem));
-    dispatch(ActionCreator.changeScreenType(ScreenType.PROPERTY));
+    dispatch(ActionCreator.changeActiveOffer(activeItem.id));
   },
 
   onOfferHover(offer) {
-    dispatch(ActionCreator.changeActiveOffer(offer));
+    dispatch(ActionCreator.changeActiveOffer(offer ? offer.id : null));
   }
 });
 
 export {PlaceCardList};
+// export default connect(null, mapDispatchToProps)(PlaceCardList);
 export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList, `.place-card__name`));

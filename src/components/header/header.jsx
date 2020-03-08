@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {AppRoute} from '../../const/const.js';
+import {Link} from 'react-router-dom';
 
 const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo }) => {
   const userNameBlock = isAuthorized ? <span className="header__user-name user__name">{email}</span> : <span className="header__login">Sign in</span>
@@ -9,19 +11,25 @@ const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo })
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className={`header__logo-link ${isActiveLogo ? `header__logo-link--active` : ``}`}>
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-            </a>
+            {!isActiveLogo && (
+              <Link to={AppRoute.getRoot()} className="header__logo-link">
+                <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              </Link>)}
+
+            {isActiveLogo && (
+              <a className="header__logo-link header__logo-link--active">
+                <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              </a>)}
           </div>
           <nav className="header__nav">
 			      <ul className="header__nav-list">
 			        <li className="header__nav-item user">
-			          <a className="header__nav-link header__nav-link--profile" href="#">
+			          <Link to={isAuthorized ? AppRoute.getFavorites() : AppRoute.getLogin()} className="header__nav-link header__nav-link--profile" href="#">
 			            <div className={`header__avatar-wrapper ${isUserSuper ? `header__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
 			              {userPicture !== `` && <img className="header__avatar user__avatar" src={userPicture} width="74" height="74" alt="User avatar" />}
 			            </div>
 			            {userNameBlock}
-			          </a>
+			          </Link>
 			        </li>
 			      </ul>
 			    </nav>
@@ -44,4 +52,4 @@ Header.defaultProps = {
   isActiveLogo: false
 };
 
-export default Header;
+export default React.memo(Header);

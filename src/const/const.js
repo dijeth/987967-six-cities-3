@@ -71,8 +71,10 @@ export const MainScreenType = {
 };
 
 export const AppRoute = {
-  LOGIN: `/login`,
-  LOSE: `/lose`,
-  RESULT: `/result`,
-  ROOT: `/`,
+  getLogin: () => `/login`,
+  getOffer: (id) => `/offer/${id}`,
+  getFavorites: () => `/result`,
+  getRoot: () => `/`,
 };
+
+export const MAX_IMAGE_COUNT = 6;

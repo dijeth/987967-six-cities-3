@@ -4,10 +4,10 @@ import NameSpace from '../name-space.js';
 export const getSortType = (state) => state[NameSpace.APP].sortType || SortType.POPULAR;
 export const getScreenType = (state) => state[NameSpace.APP].screenType || ScreenType.MAIN;
 export const getActiveCity = (state) => state[NameSpace.APP].activeCity;
-export const getActiveOffer = (state) => state[NameSpace.APP].activeOffer;
+export const getActiveOffer = (state) => state[NameSpace.DATA].offers.find((it) => it.id === state[NameSpace.APP].activeOffer);
 export const getActiveOfferCoord = (state) => {
   const activeOffer = getActiveOffer(state);
-  return activeOffer !== null ? activeOffer.coord : null;
+  return activeOffer ? activeOffer.coord : null;
 };
 
 export const getActiveCityName = (state) => {

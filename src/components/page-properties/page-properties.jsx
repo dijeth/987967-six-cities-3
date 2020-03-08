@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BREAK_STRING } from '../../const/const.js';
+import { BREAK_STRING, MAX_IMAGE_COUNT } from '../../const/const.js';
 import { ratingToPercent } from '../../util.js';
 import ReviewList, { reviewListPropTypes } from '../review-list/review-list.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
@@ -38,7 +38,7 @@ const PageProperties = ({ offer, isAuthorized, neighbourhoods }) => {
     city
   } = offer;
 
-  const gallery = pictures.slice(1, 7).map((it, i) => {
+  const gallery = pictures.slice(1, 1+MAX_IMAGE_COUNT).map((it, i) => {
     return (
       <div className="property__image-wrapper" key={`${it}-${i}`}>
         <img className="property__image" src={it} alt="Photo studio" />
@@ -117,7 +117,7 @@ const PageProperties = ({ offer, isAuthorized, neighbourhoods }) => {
                 <h2 className="property__host-title">{descriptionTitle}</h2>
                 <div className="property__host-user user">
                   <div className={`property__avatar-wrapper ${isUserSuper ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={userPicture} width="74" height="74" alt="Host avatar" />
+                    <img className="property__avatar user__avatar" src={`/${userPicture}`} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
                     {userName}
@@ -224,11 +224,7 @@ PageProperties.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offer: ((state) => {
-    const offers = getOffers(state);
-    return offers.length ? offers[0] : null 
-  })(state),
-  //offer: getActiveOffer(state),
+  offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
 
   neighbourhoods: ((state) => {

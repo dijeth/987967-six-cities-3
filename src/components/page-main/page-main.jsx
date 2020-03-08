@@ -48,7 +48,7 @@ const PageMain = ({offers, cities, activeCity, sortType}) => {
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
-                <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />
+              {<OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />}
               </section>
             </div>
           </div>
