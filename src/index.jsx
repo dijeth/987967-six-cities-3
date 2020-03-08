@@ -9,7 +9,7 @@ import {Operation as DataOperation} from './reducers/operation.js';
 import {Operation as UserOperation} from './reducers/user/operation.js';
 import {createAPI} from './api.js';
 import {AuthorizationStatus} from './const/const.js';
-import ActionCreator from './reducers/user/action-creator.js'
+import ActionCreator from './reducers/user/action-creator.js';
 
 const onUnauthorized = () => {
 	store.dispatch(ActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH))

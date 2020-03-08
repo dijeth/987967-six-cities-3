@@ -68,4 +68,11 @@ export const MainScreenType = {
   SIGN_IN: `SIGN_IN`,
   FAVORITES: `FAVORITES`,
   DEFAULT: `DEFAULT`,
-}
+};
+
+export const AppRoute = {
+  LOGIN: `/login`,
+  LOSE: `/lose`,
+  RESULT: `/result`,
+  ROOT: `/`,
+};
