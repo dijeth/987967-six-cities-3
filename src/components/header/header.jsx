@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 
 const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo }) => {
   const userNameBlock = isAuthorized ? <span className="header__user-name user__name">{email}</span> : <span className="header__login">Sign in</span>
+  const link = isAuthorized ? AppRoute.getFavorites() : AppRoute.getLogin();
 
   return (
     <header className="header">
@@ -24,7 +25,7 @@ const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo })
           <nav className="header__nav">
 			      <ul className="header__nav-list">
 			        <li className="header__nav-item user">
-			          <Link to={isAuthorized ? AppRoute.getFavorites() : AppRoute.getLogin()} className="header__nav-link header__nav-link--profile" href="#">
+			          <Link to={link} className="header__nav-link header__nav-link--profile" href="#">
 			            <div className={`header__avatar-wrapper ${isUserSuper ? `header__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
 			              {userPicture !== `` && <img className="header__avatar user__avatar" src={userPicture} width="74" height="74" alt="User avatar" />}
 			            </div>

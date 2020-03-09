@@ -62,7 +62,7 @@ const PageProperties = ({ offer, isAuthorized, neighbourhoods }) => {
   const offersCoord = neighbourhoods.map((it) => it.coord);
 
   return (
-    <div className="page__main page__main--property">
+    <div className="page">
       <Header isActiveLogo={false} isAuthorized={isAuthorized} />
       <main className="page__main page__main--property">
         <section className="property">

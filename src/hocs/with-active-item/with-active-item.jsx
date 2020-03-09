@@ -45,7 +45,9 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
 
       if (clickTargetSelector && !parentElement.children[activeIndex].querySelector(clickTargetSelector).contains(element)) {
         return;
-      }
+      };
+
+      evt.preventDefault();
 
       this.setState({activeIndex});
 
