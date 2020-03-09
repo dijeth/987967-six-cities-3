@@ -65,7 +65,7 @@ const PageProperties = ({ offer, isAuthorized, neighbourhoods }) => {
 
   return (
     <div className="page">
-      <Header isActiveLogo={false} isAuthorized={isAuthorized} />
+      <Header isActiveLogo={false} />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">

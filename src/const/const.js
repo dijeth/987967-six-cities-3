@@ -73,7 +73,7 @@ export const MainScreenType = {
 export const AppRoute = {
   getLogin: () => `/login`,
   getOffer: (id) => `/offer/${id}`,
-  getFavorites: () => `/result`,
+  getFavorites: () => `/favorites`,
   getRoot: () => `/`,
 };
 

@@ -79,6 +79,13 @@ const Adapter = {
     };
   },
 
+  rawUserToData: (raw) => ({
+    id: raw.id,
+    userPic: raw[`avatar_url`],
+    email: raw.email,
+    isSuperUser: raw[`is_pro`]
+  }),
+
   dataToRaw: () => {}
 };
 

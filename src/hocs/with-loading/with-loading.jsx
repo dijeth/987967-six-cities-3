@@ -4,7 +4,6 @@ import {getLoadingStatus} from '../../reducers/app/selectors.js';
 
 const withLoading = (Component) => {
 	const WithLoading = (props) => {
-console.log(props.isLoading)		
 		if (props.isLoading) {
 			return <h1>Loading...</h1>
 		};

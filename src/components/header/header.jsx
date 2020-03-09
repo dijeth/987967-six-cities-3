@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../const/const.js';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getUserPicture, getEmail, getIsUserSuper, getAuthorizationStatus} from '../../reducers/user/selectors.js';
 
 const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo }) => {
-  const userNameBlock = isAuthorized ? <span className="header__user-name user__name">{email}</span> : <span className="header__login">Sign in</span>
+  const userNameBlock = isAuthorized ? 
+    <span className="header__user-name user__name">{email}</span> 
+    : <span className="header__login">Sign in</span>
+  
   const link = isAuthorized ? AppRoute.getFavorites() : AppRoute.getLogin();
 
   return (
@@ -27,7 +32,7 @@ const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo })
 			        <li className="header__nav-item user">
 			          <Link to={link} className="header__nav-link header__nav-link--profile" href="#">
 			            <div className={`header__avatar-wrapper ${isUserSuper ? `header__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-			              {userPicture !== `` && <img className="header__avatar user__avatar" src={userPicture} width="74" height="74" alt="User avatar" />}
+			              {userPicture && <img className="header__avatar user__avatar" src={userPicture} width="74" height="74" alt="User avatar" />}
 			            </div>
 			            {userNameBlock}
 			          </Link>
@@ -47,10 +52,11 @@ Header.propTypes = {
   isActiveLogo: PropTypes.bool
 };
 
-Header.defaultProps = {
-  userPicture: ``,
-  isUserSuper: false,
-  isActiveLogo: false
-};
+const mapStateToProps = (state) => ({
+  userPicture: getUserPicture(state),
+  email: getEmail(state),
+  isUserSuper: getIsUserSuper(state),
+  isAuthorized: getAuthorizationStatus(state)
+})
 
-export default React.memo(Header);
+export default connect(mapStateToProps)(Header);

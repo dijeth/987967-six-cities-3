@@ -31,7 +31,7 @@ const PageMain = ({offers, cities, activeCity, sortType}) => {
 
   return (
     <div className="page page--gray page--main">
-      <Header isActiveLogo={true} isAuthorized={false} />
+      <Header isActiveLogo={true} />
       <main className={`page__main page__main--index ${offers.length === 0 ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -71,7 +71,6 @@ const mapStateToProps = (state) => ({
   activeCity: getActiveCity(state),
   cities: getCities(state),
   offers: getSortedOffers(state),
-  isAuthorized: getAuthorizationStatus(state)
 });
 
 export {PageMain};

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import Header from '../header/header.jsx';
+import {Operation} from '../../reducers/user/operation.js';
+import {AppRoute} from '../../const/const.js';  
 
 class PageSignIn extends React.PureComponent {
   constructor(props) {
@@ -11,7 +14,15 @@ class PageSignIn extends React.PureComponent {
 
   _handleSubmit(evt) {
     evt.preventDefault();
-    console.log(new FormData(this.form.current).get(`email`))
+
+    const formData = new FormData(this.form.current);
+
+    const userData = {
+      email: formData.get(`email`),
+      password: formData.get(`password`)
+    };
+
+    this.props.onSubmit(userData)
   }
 
   render() {
@@ -48,4 +59,14 @@ class PageSignIn extends React.PureComponent {
   }
 };
 
-export default PageSignIn;
+PageSignIn.propTypes = {
+  onSubmit: PropTypes.func
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(userData) {
+    dispatch(Operation.authorizeUser(userData, AppRoute.getRoot()))
+  }
+})
+
+export default connect(null, mapDispatchToProps)(PageSignIn);
