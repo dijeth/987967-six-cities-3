@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getOffers} from '../../reducers/data/selectors.js';
 import {getActiveOffer} from '../../reducers/app/selectors.js';
+import withLoading from '../../hocs/with-loading/with-loading.jsx';
 
 import {Link} from 'react-router-dom';
 import {getNeighbourhoods} from '../../mocks/offers.js';
@@ -234,4 +235,4 @@ const mapStateToProps = (state) => ({
   })(state)
 });
 
-export default connect(mapStateToProps)(PageProperties);
+export default withLoading(connect(mapStateToProps)(PageProperties));

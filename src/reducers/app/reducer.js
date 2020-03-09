@@ -5,7 +5,8 @@ const initialState = {
   activeCity: null,
   activeOffer: null,
   screenType: ScreenType.MAIN,
-  sortType: SortType.POPULAR
+  sortType: SortType.POPULAR,
+  isLoading: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +22,9 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.CHANGE_SORT_TYPE:
       return Object.assign({}, state, {sortType: action.payload});
+
+    case ActionType.CHANGE_LOADING_STATUS:
+      return Object.assign({}, state, {isLoading: action.payload});
   }
 
   return state;

@@ -1,6 +1,7 @@
 import { SortType, ScreenType } from '../../const/const.js';
 import NameSpace from '../name-space.js';
 
+export const getLoadingStatus = (state) => state[NameSpace.APP].isLoading;
 export const getSortType = (state) => state[NameSpace.APP].sortType || SortType.POPULAR;
 export const getScreenType = (state) => state[NameSpace.APP].screenType || ScreenType.MAIN;
 export const getActiveCity = (state) => state[NameSpace.APP].activeCity;

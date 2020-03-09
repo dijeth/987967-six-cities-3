@@ -14,6 +14,7 @@ import {getCities} from '../../reducers/data/selectors.js';
 import {getSortedOffers} from '../../reducers/selectors.js';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
+import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
@@ -74,4 +75,4 @@ const mapStateToProps = (state) => ({
 });
 
 export {PageMain};
-export default connect(mapStateToProps)(PageMain);
+export default withLoading(connect(mapStateToProps)(PageMain));
