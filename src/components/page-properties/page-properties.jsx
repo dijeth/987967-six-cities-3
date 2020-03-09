@@ -5,7 +5,7 @@ import { ratingToPercent } from '../../util.js';
 import ReviewList, { reviewListPropTypes } from '../review-list/review-list.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import { CityCoord } from '../../const/const.js';
+import { CityCoord, AppRoute } from '../../const/const.js';
 import { offerPropType } from '../../const/props.js';
 import Header from '../header/header.jsx';
 import { connect } from 'react-redux';
@@ -13,10 +13,11 @@ import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getOffers} from '../../reducers/data/selectors.js';
 import {getActiveOffer} from '../../reducers/app/selectors.js';
 
+import {Link} from 'react-router-dom';
 import {getNeighbourhoods} from '../../mocks/offers.js';
 
 const PageProperties = ({ offer, isAuthorized, neighbourhoods }) => {
-  if (offer === null) return null;
+  if (offer === null) return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
 
   const {
     title,
@@ -217,7 +218,7 @@ PageProperties.propTypes = {
     description: PropTypes.string.isRequired,
     reviews: reviewListPropTypes,
     coord: PropTypes.arrayOf(PropTypes.number)
-  }).isRequired,
+  }),
   isAuthorized: PropTypes.bool.isRequired,
 
   neighbourhoods: PropTypes.arrayOf(offerPropType)

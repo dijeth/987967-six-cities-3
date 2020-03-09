@@ -6,13 +6,15 @@ import {ratingToPercent} from '../../util.js';
 import {Link} from 'react-router-dom';
 
 const PlaceCard = ({offer, isNearPlaces, onHover}) => {
-  const {title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
+  const {title, type, pictures, cost, rating, isPremium, isFavorite, id} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
   const renderType = isNearPlaces ? `near-places` : `cities`;
+  const link = AppRoute.getOffer(id);
   const handleMouseEnter = () => {
     onHover(offer);
   };
+
   const handleMouseLeave = () => {
     onHover(null);
   };
@@ -49,7 +51,7 @@ const PlaceCard = ({offer, isNearPlaces, onHover}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.getOffer(offer.id)}>{title}</Link>
+          <Link to={link}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
