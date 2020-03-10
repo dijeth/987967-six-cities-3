@@ -1,12 +1,12 @@
 import reducer from './reducer.js';
 import ActionType from '../action-type.js';
-import {ScreenType, SortType} from '../../const/const.js';
+import {SortType} from '../../const/const.js';
 
 const initialState = {
   activeCity: null,
   activeOffer: null,
-  screenType: ScreenType.MAIN,
-  sortType: SortType.POPULAR
+  sortType: SortType.POPULAR,
+  isLoading: false
 };
 
 describe(`Test App reducer`, () => {
@@ -19,7 +19,7 @@ describe(`Test App reducer`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      screenType: ScreenType.MAIN,
+      isLoading: false,
       sortType: SortType.POPULAR
     }, {
       type: ActionType.CHANGE_CITY,
@@ -27,7 +27,7 @@ describe(`Test App reducer`, () => {
     })).toEqual({
       activeCity: `London`,
       activeOffer: null,
-      screenType: ScreenType.MAIN,
+      isLoading: false,
       sortType: SortType.POPULAR
     });
   });
@@ -36,7 +36,7 @@ describe(`Test App reducer`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      screenType: ScreenType.MAIN,
+      isLoading: false,
       sortType: SortType.POPULAR
     }, {
       type: ActionType.CHANGE_ACTIVE_OFFER,
@@ -44,24 +44,24 @@ describe(`Test App reducer`, () => {
     })).toEqual({
       activeCity: null,
       activeOffer: `A new offer`,
-      screenType: ScreenType.MAIN,
+      isLoading: false,
       sortType: SortType.POPULAR
     });
   });
 
-  it(`should change a screenType by payload`, () => {
+  it(`should change a isLoading by payload`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      screenType: ScreenType.MAIN,
+      isLoading: false,
       sortType: SortType.POPULAR
     }, {
-      type: ActionType.CHANGE_SCREEN_TYPE,
-      payload: ScreenType.PROPERTY
+      type: ActionType.CHANGE_LOADING_STATUS,
+      payload: true
     })).toEqual({
       activeCity: null,
       activeOffer: null,
-      screenType: ScreenType.PROPERTY,
+      isLoading: true,
       sortType: SortType.POPULAR
     });
   });
@@ -70,7 +70,7 @@ describe(`Test App reducer`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      screenType: ScreenType.MAIN,
+      isLoading: false,
       sortType: SortType.POPULAR
     }, {
       type: ActionType.CHANGE_SORT_TYPE,
@@ -78,7 +78,7 @@ describe(`Test App reducer`, () => {
     })).toEqual({
       activeCity: null,
       activeOffer: null,
-      screenType: ScreenType.MAIN,
+      isLoading: false,
       sortType: SortType.PRICE_LOW_TO_HIGH
     });
   });

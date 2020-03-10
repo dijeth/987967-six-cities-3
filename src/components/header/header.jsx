@@ -5,11 +5,11 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUserPicture, getEmail, getIsUserSuper, getAuthorizationStatus} from '../../reducers/user/selectors.js';
 
-const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo }) => {
-  const userNameBlock = isAuthorized ? 
-    <span className="header__user-name user__name">{email}</span> 
-    : <span className="header__login">Sign in</span>
-  
+const Header = ({isAuthorized, userPicture, email, isUserSuper, isActiveLogo}) => {
+  const userNameBlock = isAuthorized ?
+    <span className="header__user-name user__name">{email}</span> :
+    <span className="header__login">Sign in</span>;
+
   const link = isAuthorized ? AppRoute.getFavorites() : AppRoute.getLogin();
 
   return (
@@ -28,20 +28,20 @@ const Header = ({ isAuthorized, userPicture, email, isUserSuper, isActiveLogo })
               </a>)}
           </div>
           <nav className="header__nav">
-			      <ul className="header__nav-list">
-			        <li className="header__nav-item user">
-			          <Link to={link} className="header__nav-link header__nav-link--profile" href="#">
-			            <div className={`header__avatar-wrapper ${isUserSuper ? `header__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-			              {userPicture && <img className="header__avatar user__avatar" src={`https://htmlacademy-react-3.appspot.com/six-cities${userPicture}`} width="74" height="74" alt="User avatar" />}
-			            </div>
-			            {userNameBlock}
-			          </Link>
-			        </li>
-			      </ul>
-			    </nav>
+            <ul className="header__nav-list">
+              <li className="header__nav-item user">
+                <Link to={link} className="header__nav-link header__nav-link--profile" href="#">
+                  <div className={`header__avatar-wrapper ${isUserSuper ? `header__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    {userPicture && <img className="header__avatar user__avatar" src={`https://htmlacademy-react-3.appspot.com/six-cities${userPicture}`} width="74" height="74" alt="User avatar" />}
+                  </div>
+                  {userNameBlock}
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
-    </header>)
+    </header>);
 };
 
 Header.propTypes = {
@@ -57,6 +57,6 @@ const mapStateToProps = (state) => ({
   email: getEmail(state),
   isUserSuper: getIsUserSuper(state),
   isAuthorized: getAuthorizationStatus(state)
-})
+});
 
 export default connect(mapStateToProps)(Header);

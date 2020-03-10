@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
-import {SORT_LIST, MainScreenType} from '../../const/const.js';
+import {SORT_LIST} from '../../const/const.js';
 import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
 import Header from '../header/header.jsx';
-import MainEmpty from '../main-empty/main-empty.jsx';
 import {connect} from 'react-redux';
 import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';
 import {getCities} from '../../reducers/data/selectors.js';
 import {getSortedOffers} from '../../reducers/selectors.js';
-import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
-import SignIn from '../sign-in/sign-in.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
@@ -49,7 +46,7 @@ const PageMain = ({offers, cities, activeCity, sortType}) => {
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
-              {<OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />}
+                {<OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />}
               </section>
             </div>
           </div>

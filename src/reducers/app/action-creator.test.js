@@ -17,17 +17,17 @@ describe(`App ActionCreator Test`, () => {
     });
   });
 
-  it(`should return a correct action for changeScreenType`, () => {
-    expect(ActionCreator.changeScreenType(`screenType`)).toEqual({
-      type: ActionType.CHANGE_SCREEN_TYPE,
-      payload: `screenType`
-    });
-  });
-
   it(`should return a correct action for changeSortType`, () => {
     expect(ActionCreator.changeSortType(`sortType`)).toEqual({
       type: ActionType.CHANGE_SORT_TYPE,
       payload: `sortType`
+    });
+  });
+
+  it(`should return a correct action for changeLoadingStatus`, () => {
+    expect(ActionCreator.changeLoadingStatus(`isLoading`)).toEqual({
+      type: ActionType.CHANGE_LOADING_STATUS,
+      payload: `isLoading`
     });
   });
 });

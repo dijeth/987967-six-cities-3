@@ -1,4 +1,4 @@
-import { SortType, ScreenType } from '../../const/const.js';
+import {SortType} from '../../const/const.js';
 import NameSpace from '../name-space.js';
 
 export const getLoadingStatus = (state) => state[NameSpace.APP].isLoading;

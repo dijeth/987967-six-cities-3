@@ -15,7 +15,7 @@ const normalizeHandlerProp = (handlerProp) => {
     return null;
   }
 
-  if (handlerProp.constructor.name) {
+  if (handlerProp.constructor.name === `Function`) {
     return [handlerProp];
   }
 
@@ -43,9 +43,12 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
         return;
       }
 
-      if (clickTargetSelector && !parentElement.children[activeIndex].querySelector(clickTargetSelector).contains(element)) {
+      const activeItem = parentElement.children[activeIndex];
+
+
+      if (clickTargetSelector && !activeItem.querySelector(clickTargetSelector).contains(element)) {
         return;
-      };
+      }
 
       evt.preventDefault();
 

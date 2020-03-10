@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import {connect} from 'react-redux';
-import {ScreenType} from '../../const/const.js';
 import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
@@ -50,5 +49,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {PlaceCardList};
-// export default connect(null, mapDispatchToProps)(PlaceCardList);
 export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList, `.place-card__name`));

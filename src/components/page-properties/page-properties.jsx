@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BREAK_STRING, MAX_IMAGE_COUNT } from '../../const/const.js';
-import { ratingToPercent } from '../../util.js';
-import ReviewList, { reviewListPropTypes } from '../review-list/review-list.jsx';
+import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const.js';
+import {ratingToPercent} from '../../util.js';
+import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import { CityCoord, AppRoute } from '../../const/const.js';
-import { offerPropType } from '../../const/props.js';
+import {CityCoord, AppRoute} from '../../const/const.js';
+import {offerPropType} from '../../const/props.js';
 import Header from '../header/header.jsx';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getOffers} from '../../reducers/data/selectors.js';
 import {getActiveOffer} from '../../reducers/app/selectors.js';
@@ -17,8 +17,10 @@ import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import {Link} from 'react-router-dom';
 import {getNeighbourhoods} from '../../mocks/offers.js';
 
-const PageProperties = ({ offer, isAuthorized, neighbourhoods }) => {
-  if (offer === null) return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
+const PageProperties = ({offer, isAuthorized, neighbourhoods}) => {
+  if (offer === null) {
+    return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
+  }
 
   const {
     title,
@@ -40,7 +42,7 @@ const PageProperties = ({ offer, isAuthorized, neighbourhoods }) => {
     city
   } = offer;
 
-  const gallery = pictures.slice(1, 1+MAX_IMAGE_COUNT).map((it, i) => {
+  const gallery = pictures.slice(1, 1 + MAX_IMAGE_COUNT).map((it, i) => {
     return (
       <div className="property__image-wrapper" key={`${it}-${i}`}>
         <img className="property__image" src={it} alt="Photo studio" />
@@ -229,8 +231,8 @@ const mapStateToProps = (state) => ({
   offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
 
-  neighbourhoods: ((state) => {
-    const offers = getOffers(state);
+  neighbourhoods: ((storeState) => {
+    const offers = getOffers(storeState);
     return offers.length ? getNeighbourhoods(offers[0], offers) : [];
   })(state)
 });

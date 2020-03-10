@@ -12,7 +12,7 @@ describe(`Test App reducer`, () => {
       .toEqual(initialState);
   });
 
-  it(`should change an cities by payload`, () => {
+  it(`should change cities by payload`, () => {
     expect(reducer({
       cities: [],
       offers: [],
@@ -25,7 +25,7 @@ describe(`Test App reducer`, () => {
     });
   });
 
-  it(`should change an offers by payload`, () => {
+  it(`should change offers by payload`, () => {
     expect(reducer({
       cities: [],
       offers: [],

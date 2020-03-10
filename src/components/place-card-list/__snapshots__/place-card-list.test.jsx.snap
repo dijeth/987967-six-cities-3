@@ -89,7 +89,8 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/id-1"
+          onClick={[Function]}
         >
           title-1
         </a>
@@ -193,7 +194,8 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === fals
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/id-2"
+          onClick={[Function]}
         >
           title-2
         </a>
@@ -297,7 +299,8 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/id-1"
+          onClick={[Function]}
         >
           title-1
         </a>
@@ -401,7 +404,8 @@ exports[`<PlaceCardList /> should be render correctly when isNearPlaces === true
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/id-2"
+          onClick={[Function]}
         >
           title-2
         </a>
