@@ -59,4 +59,5 @@ const mapStateToProps = (state) => ({
   isAuthorized: getAuthorizationStatus(state)
 });
 
+export {Header};
 export default connect(mapStateToProps)(Header);

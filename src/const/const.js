@@ -34,14 +34,14 @@ export const InsideFeature = {
   FRIDGE: `Fridge`
 };
 
-export const BREAK_STRING = `\n`;
-
-export const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
-
 export const ScreenType = {
   MAIN: `MAIN`,
   PROPERTY: `PROPERTY`
 };
+
+export const BREAK_STRING = `\n`;
+
+export const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
 export const MAX_CITY_COUNT = 6;
 
@@ -62,12 +62,6 @@ export const SORT_LIST = [
 export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
   AUTH: `AUTH`,
-};
-
-export const MainScreenType = {
-  SIGN_IN: `SIGN_IN`,
-  FAVORITES: `FAVORITES`,
-  DEFAULT: `DEFAULT`,
 };
 
 export const AppRoute = {

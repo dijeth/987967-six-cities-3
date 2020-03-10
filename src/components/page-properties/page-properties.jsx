@@ -5,19 +5,19 @@ import {ratingToPercent} from '../../util.js';
 import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import {CityCoord, AppRoute} from '../../const/const.js';
+import {AppRoute} from '../../const/const.js';
 import {offerPropType} from '../../const/props.js';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getOffers} from '../../reducers/data/selectors.js';
-import {getActiveOffer} from '../../reducers/app/selectors.js';
+import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 
 import {Link} from 'react-router-dom';
 import {getNeighbourhoods} from '../../mocks/offers.js';
 
-const PageProperties = ({offer, isAuthorized, neighbourhoods}) => {
+const PageProperties = ({offer, isAuthorized, neighbourhoods, activeCityCoord}) => {
   if (offer === null) {
     return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
   }
@@ -38,8 +38,7 @@ const PageProperties = ({offer, isAuthorized, neighbourhoods}) => {
     isUserSuper,
     description,
     descriptionTitle,
-    reviews,
-    city
+    reviews
   } = offer;
 
   const gallery = pictures.slice(1, 1 + MAX_IMAGE_COUNT).map((it, i) => {
@@ -62,7 +61,7 @@ const PageProperties = ({offer, isAuthorized, neighbourhoods}) => {
     return <p className="property__text" key={`${it}-${i}`}>{it}</p>;
   });
 
-  const centerCoord = CityCoord[city];
+  const centerCoord = activeCityCoord;
   const offersCoord = neighbourhoods.map((it) => it.coord);
 
   return (
@@ -199,7 +198,6 @@ const PageProperties = ({offer, isAuthorized, neighbourhoods}) => {
     </div>);
 };
 
-
 PageProperties.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -223,6 +221,7 @@ PageProperties.propTypes = {
     coord: PropTypes.arrayOf(PropTypes.number)
   }),
   isAuthorized: PropTypes.bool.isRequired,
+  activeCityCoord: PropTypes.arrayOf(PropTypes.number),
 
   neighbourhoods: PropTypes.arrayOf(offerPropType)
 };
@@ -230,6 +229,7 @@ PageProperties.propTypes = {
 const mapStateToProps = (state) => ({
   offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
+  activeCityCoord: getActiveOfferCoord(state),
 
   neighbourhoods: ((storeState) => {
     const offers = getOffers(storeState);
@@ -237,4 +237,5 @@ const mapStateToProps = (state) => ({
   })(state)
 });
 
+export {PageProperties};
 export default withLoading(connect(mapStateToProps)(PageProperties));

@@ -28,7 +28,7 @@ class PageSignIn extends React.PureComponent {
   render() {
     return (
       <div className="page page--gray page--login">
-        <Header isActiveLogo={false} isAuthorized={false} />
+        <Header isActiveLogo={false} />
 
         <main className="page__main page__main--login">
           <div className="page__login-container container">
@@ -69,4 +69,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {PageSignIn};
 export default connect(null, mapDispatchToProps)(PageSignIn);
