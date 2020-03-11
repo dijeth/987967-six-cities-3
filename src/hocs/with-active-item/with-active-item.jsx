@@ -10,18 +10,6 @@ const getChildIndex = (targetElement, parentElement) => {
   return index === -1 ? NO_ACTIVE_INDEX : index;
 };
 
-const normalizeHandlerProp = (handlerProp) => {
-  if (handlerProp === undefined || handlerProp === null) {
-    return null;
-  }
-
-  if (handlerProp.constructor.name === `Function`) {
-    return [handlerProp];
-  }
-
-  return handlerProp;
-};
-
 const withActiveItem = (ListComponent, clickTargetSelector) => {
   class WithActiveItem extends React.PureComponent {
     constructor(props) {
@@ -54,12 +42,10 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
 
       this.setState({activeIndex});
 
-      const handlers = normalizeHandlerProp(this.props.onActiveItemChange);
+      const handler = this.props.onActiveItemChange;
 
-      if (handlers !== null) {
-        handlers.forEach((it) => {
-          it(this.props.items[activeIndex]);
-        });
+      if (handler !== null) {
+        handler(this.props.items[activeIndex]);
       }
     }
 
