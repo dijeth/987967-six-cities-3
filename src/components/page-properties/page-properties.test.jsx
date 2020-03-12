@@ -111,7 +111,7 @@ const activeOffer = {
   insideFeatures: [`insideFeatures`],
   userName: `userName`,
   userPicture: `userPicture`,
-  isUserSuper: true,
+  isSuperUser: true,
   descriptionTitle: `descriptionTitle`,
   description: `description`,
   reviews: [],

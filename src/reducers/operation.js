@@ -13,9 +13,9 @@ export const Operation = {
 
     return api.get(`/hotels`)
       .then((response) => {
-        const data = Adapter.rawToData(response.data);
+        const data = Adapter.getData(response.data);
 
-        dispatch(DataActionCreator.loadOffers(data.data));
+        dispatch(DataActionCreator.loadOffers(data.offers));
         dispatch(DataActionCreator.loadCities(data.cities));
         dispatch(AppActionCreator.changeCity(data.cities[0]));
 
@@ -28,10 +28,10 @@ export const Operation = {
 
     axios.all([getNearby(id, api), getComments(id, api)])
       .then(axios.spread((nearbyList, commentList) => {
-        const nearbyData = Adapter.rawToData(nearbyList.data);
-        const commentData = Adapter.rawCommentToData(nearbyList.data);
+        const nearbyData = Adapter.getData(nearbyList.data).offers;
+        const commentData = Adapter.getComments(commentList.data);
 
-        dispatch(DataActionCreator.loadNearby(nearbyData.data));
+        dispatch(DataActionCreator.loadNearby(nearbyData));
         dispatch(DataActionCreator.loadComments(commentData));
 
         dispatch(AppActionCreator.changeLoadingStatus(false))

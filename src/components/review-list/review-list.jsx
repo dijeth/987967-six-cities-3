@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Review, {reviewPropTypes} from '../review/review.jsx';
+import Review from '../review/review.jsx';
+import {reviewPropTypes} from '../../const/props.js';
 
 const ReviewList = ({reviews}) => {
   const reviewList = reviews.map((it) => {
@@ -28,10 +29,7 @@ const ReviewList = ({reviews}) => {
 };
 
 ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes))
+  reviews: PropTypes.arrayOf(reviewPropTypes)
 };
 
-const reviewListPropTypes = ReviewList.propTypes.reviews;
-
 export default ReviewList;
-export {reviewListPropTypes};

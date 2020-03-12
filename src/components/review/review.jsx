@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ratingToPercent, getReviewDate, getDateTime} from '../../util.js';
+import {reviewPropTypes} from '../../const/props.js';
 
 const Review = ({userName, userPicture, rating, description, date: isoDate}) => {
   const date = new Date(Date.parse(isoDate));
@@ -30,16 +31,6 @@ const Review = ({userName, userPicture, rating, description, date: isoDate}) => 
     </React.Fragment>);
 };
 
-Review.propTypes = {
-  id: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  userPicture: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired
-};
-
-const reviewPropTypes = Review.propTypes;
+Review.propTypes = reviewPropTypes;
 
 export default Review;
-export {reviewPropTypes};

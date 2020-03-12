@@ -142,7 +142,7 @@ const offerMocks = Array(MOCK_COUNT).fill(` `).map((it, i) => {
     insideFeatures: getInsediFeatures(),
     userName: getUserName(),
     userPicture: getUserPicture(74),
-    isUserSuper: getIsUserSuper(),
+    isSuperUser: getIsUserSuper(),
     descriptionTitle: getDescriptionTitle(),
     description: getDescription(),
     coord: getCoordinates(city),

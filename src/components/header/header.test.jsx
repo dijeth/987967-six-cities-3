@@ -22,7 +22,7 @@ describe(`<Header /> snapshot test`, () => {
           <Header
             userPicture="img/user.jpg"
             email="aaa@ee.ee"
-            isUserSuper={true}
+            isSuperUser={true}
             isAuthorized={true}
           />
         </BrowserRouter>
