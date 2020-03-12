@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {OfferType} from '../../const.js';
+import {offerPropType} from '../../const/props.js';
+import {AppRoute} from '../../const/const.js';
 import {ratingToPercent} from '../../util.js';
+import {Link} from 'react-router-dom';
 
 const PlaceCard = ({offer, isNearPlaces, onHover}) => {
-  const {title, type, pictures, cost, rating, isPremium, isFavorite} = offer;
+  const {title, type, pictures, cost, rating, isPremium, isFavorite, id} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
   const renderType = isNearPlaces ? `near-places` : `cities`;
+  const link = AppRoute.getOffer(id);
   const handleMouseEnter = () => {
     onHover(offer);
   };
+
   const handleMouseLeave = () => {
     onHover(null);
   };
@@ -47,25 +51,12 @@ const PlaceCard = ({offer, isNearPlaces, onHover}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={link}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
     </article>);
 };
-
-const offerPropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf([OfferType.APARTMENT, OfferType.PRIVATE_ROOM]).isRequired,
-  pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-  cost: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  isPremium: PropTypes.bool.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  city: PropTypes.string.isRequired,
-  coord: PropTypes.arrayOf(PropTypes.number).isRequired
-});
 
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
@@ -73,5 +64,4 @@ PlaceCard.propTypes = {
   isNearPlaces: PropTypes.bool.isRequired
 };
 
-export {offerPropType};
 export default PlaceCard;

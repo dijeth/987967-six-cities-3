@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard, {offerPropType} from '../place-card/place-card.jsx';
-import ActionCreator from '../../action-creator.js';
+import PlaceCard from '../place-card/place-card.jsx';
+import ActionCreator from '../../reducers/app/action-creator.js';
 import {connect} from 'react-redux';
-import {ScreenType} from '../../const.js';
+import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
 const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick}) => {
@@ -40,12 +40,11 @@ PlaceCardList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeItem) {
-    dispatch(ActionCreator.changeActiveOffer(activeItem));
-    dispatch(ActionCreator.changeScreenType(ScreenType.PROPERTY));
+    dispatch(ActionCreator.changeActiveOffer(activeItem.id));
   },
 
   onOfferHover(offer) {
-    dispatch(ActionCreator.changeActiveOffer(offer));
+    dispatch(ActionCreator.changeActiveOffer(offer ? offer.id : null));
   }
 });
 

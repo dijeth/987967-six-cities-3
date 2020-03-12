@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {isEqualCoords} from '../../util.js';
 import {connect} from 'react-redux';
+import {getActiveOfferCoord} from '../../reducers/app/selectors.js';
 
 const ZOOM = 12;
 const ICON_SIZE = [27, 39];
@@ -124,7 +125,7 @@ class OffersMap extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  activeCoord: state.activeOffer ? state.activeOffer.coord : null
+  activeCoord: getActiveOfferCoord(state)
 });
 
 OffersMap.propTypes = {

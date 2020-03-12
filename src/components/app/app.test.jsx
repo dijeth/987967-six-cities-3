@@ -2,8 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {App} from './app.jsx';
-import {ScreenType, SortType} from '../../const.js';
+import App from './app.jsx';
+import {SortType} from '../../const/const.js';
+import NameSpace from '../../reducers/name-space.js';
 
 const mockStore = configureStore([]);
 
@@ -99,24 +100,27 @@ const offers = [{
 }
 ];
 
-
 const store = mockStore({
-  offers,
-  activeOffer: null,
-  activeCity: `Amsterdam`,
-  screenType: ScreenType.MAIN,
-  sortType: SortType.POPULAR,
-  cities: [`Amsterdam`]
+  [NameSpace.DATA]: {
+    offers,
+    cities: [{name: `Amsterdam`, centerCoord: [1, 2]}]
+  },
+
+  [NameSpace.APP]: {
+    activeOffer: null,
+    activeCity: {name: `Amsterdam`, centerCoord: [1, 2]},
+    sortType: SortType.POPULAR
+  },
+
+  [NameSpace.USER]: {
+    isAuthorized: false
+  }
 });
 
-it(`should render <Main /> when screenType === ScreenType.MAIN`, () => {
+it(`<App /> snapshot test`, () => {
   const tree = renderer.create(
       <Provider store={store}>
-        <App
-          offers = {offers}
-          screenType = {ScreenType.MAIN}
-          activeOffer = {null}
-        />
+        <App />
       </Provider>, {createNodeMock: () => document.createElement(`div`)}
   ).toJSON();
 

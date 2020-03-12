@@ -1,22 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {compareObjects} from '../../util.js';
+
+const NO_ACTIVE_INDEX = -1;
 
 const getChildIndex = (targetElement, parentElement) => {
   const index = Array.from(parentElement.children).findIndex((it) => it.contains(targetElement));
 
-  return index === -1 ? null : index;
-};
-
-const normalizeHandlerProp = (handlerProp) => {
-  if (handlerProp === undefined || handlerProp === null) {
-    return null;
-  }
-
-  if (handlerProp.constructor.name) {
-    return [handlerProp];
-  }
-
-  return handlerProp;
+  return index === -1 ? NO_ACTIVE_INDEX : index;
 };
 
 const withActiveItem = (ListComponent, clickTargetSelector) => {
@@ -25,7 +16,7 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
       super(props);
 
       this.state = {
-        activeIndex: props.activeItem ? props.items.findIndex((it) => it === props.activeItem) : null
+        activeIndex: props.activeItem ? props.items.findIndex((it) => compareObjects(it, props.activeItem)) : NO_ACTIVE_INDEX
       };
 
       this._handleClick = this._handleClick.bind(this);
@@ -36,28 +27,31 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
       const element = evt.target;
       const activeIndex = getChildIndex(element, parentElement);
 
-      if (activeIndex === null) {
+      if (activeIndex === NO_ACTIVE_INDEX) {
         return;
       }
 
-      if (clickTargetSelector && !parentElement.children[activeIndex].querySelector(clickTargetSelector).contains(element)) {
+      const activeItem = parentElement.children[activeIndex];
+
+
+      if (clickTargetSelector && !activeItem.querySelector(clickTargetSelector).contains(element)) {
         return;
       }
+
+      evt.preventDefault();
 
       this.setState({activeIndex});
 
-      const handlers = normalizeHandlerProp(this.props.onActiveItemChange);
+      const handler = this.props.onActiveItemChange;
 
-      if (handlers !== null) {
-        handlers.forEach((it) => {
-          it(this.props.items[activeIndex]);
-        });
+      if (handler !== null) {
+        handler(this.props.items[activeIndex]);
       }
     }
 
     render() {
       const {items} = this.props;
-      const activeItem = this.state.activeIndex !== null ? items[this.state.activeIndex] : null;
+      const activeItem = this.state.activeIndex !== NO_ACTIVE_INDEX ? items[this.state.activeIndex] : null;
 
       return <ListComponent {...this.props} activeItem={activeItem} onListClick={this._handleClick} />;
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import {Route, Switch, BrowserRouter} from 'react-router-dom';
 import {PlaceCardList} from './place-card-list.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
@@ -62,12 +63,17 @@ describe(`When isNearPlaces === false>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
-      <PlaceCardList
-        items={mocks}
-        isNearPlaces={false}
-        onOfferHover={handleOfferHover}
-        onListClick={handleListClick}
-      />);
+      <BrowserRouter>
+        <PlaceCardList
+          items={mocks}
+          isNearPlaces={false}
+          onOfferHover={handleOfferHover}
+          onListClick={handleListClick}
+        />
+        <Switch>
+          <Route exact path="/offer/:id" />
+        </Switch>
+      </BrowserRouter>);
 
   const card = tree.find(`article`).at(0);
 
@@ -98,12 +104,17 @@ describe(`When isNearPlaces === true>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
-      <PlaceCardList
-        items={mocks}
-        isNearPlaces={true}
-        onOfferHover={handleOfferHover}
-        onListClick={handleListClick}
-      />);
+      <BrowserRouter>
+        <PlaceCardList
+          items={mocks}
+          isNearPlaces={true}
+          onOfferHover={handleOfferHover}
+          onListClick={handleListClick}
+        />
+        <Switch>
+          <Route exact path="/offer/:id" />
+        </Switch>
+      </BrowserRouter>);
 
   const card = tree.find(`article`).at(0);
 
@@ -121,24 +132,26 @@ describe(`When isNearPlaces === true>`, () => {
 describe(`When place-card-list with-active-item`, () => {
   const handleActiveItemChange = jest.fn();
   const PlaceCardListWithActiveItem = withActiveItem(PlaceCardList, `.place-card__name`);
-  const div = global.document.createElement(`div`);
-  global.document.body.appendChild(div);
 
   const tree = Enzyme.mount(
-      <PlaceCardListWithActiveItem
-        items={mocks}
-        isNearPlaces={false}
-        onOfferHover={() => {}}
-        onActiveItemChange={handleActiveItemChange}
-      />, {attachTo: div});
+      <BrowserRouter>
+        <PlaceCardListWithActiveItem
+          items={mocks}
+          isNearPlaces={false}
+          onOfferHover={() => {}}
+          onActiveItemChange={handleActiveItemChange}
+        />
+        <Switch>
+          <Route exact path="/offer/:id" />
+        </Switch>
+      </BrowserRouter>);
 
   const card = tree.find(`article`).at(2);
   const cardTitle = card.find(`.place-card__name a`);
 
-  it(`should call onActiveItemChange once with mocks[2]`, () => {
+  it(`should call onActiveItemChange once`, () => {
     cardTitle.simulate(`click`);
     expect(handleActiveItemChange).toHaveBeenCalledTimes(1);
-    expect(handleActiveItemChange).toHaveBeenCalledWith(mocks[2]);
   });
 
   it(`should not call onActiveItemChange`, () => {

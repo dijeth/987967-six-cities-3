@@ -1,4 +1,4 @@
-import {MONTHS, /* MAX_CITY_COUNT, */SortType, CITIES} from './const.js';
+import {MONTHS, /* MAX_CITY_COUNT, */SortType, CITIES} from './const/const.js';
 
 const PERCENT_STEP = 20;
 export const ratingToPercent = (rating) => Math.round(rating) * PERCENT_STEP;
@@ -36,4 +36,8 @@ export const sortOffers = (offers, sortType) => {
     default:
       return offers;
   }
+};
+
+export const compareObjects = (object1, object2) => {
+  return JSON.stringify(object1) === JSON.stringify(object2);
 };

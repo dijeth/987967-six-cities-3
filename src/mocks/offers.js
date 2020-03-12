@@ -1,4 +1,4 @@
-import {OfferType, CITIES, InsideFeature, CityCoord} from '../const.js';
+import {OfferType, CITIES, InsideFeature, CityCoord} from '../const/const.js';
 
 const MOCK_COUNT = 30;
 
@@ -106,7 +106,7 @@ const getNeighbourhoods = (offer, offers) => {
 
   do {
     const neighbourhood = getRandomElement(offers);
-    if (neighbourhood.id !== offer.id && neighbourhood.city === offer.city) {
+    if (neighbourhood.id !== offer.id && neighbourhood.city.name === offer.city.name) {
       neighbourhoods.add(neighbourhood);
     }
 

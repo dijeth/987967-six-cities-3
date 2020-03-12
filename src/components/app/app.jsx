@@ -1,58 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Main from '../main/main.jsx';
-import CardProperty from '../card-property/card-property.jsx';
-import {getNeighbourhoods} from '../../mocks/offers.js';
-import {connect} from 'react-redux';
-import {ScreenType} from '../../const.js';
-import {offerPropType} from '../place-card/place-card.jsx';
-import withSort from '../../hocs/with-sort/with-sort.jsx';
+import PageMain from '../page-main/page-main.jsx';
+import PageProperties from '../page-properties/page-properties.jsx';
+import PageSignIn from '../page-sign-in/page-sign-in.jsx';
 
-const MainWithSort = withSort(Main);
+import withPathName from '../../hocs/with-pathname/with-pathname.jsx';
 
-const App = ({screenType, activeOffer, offers}) => {
-  const isNearPlaces = screenType === ScreenType.PROPERTY;
+const PagePropertiesWithPathName = withPathName(PageProperties);
 
-  if (screenType === ScreenType.PROPERTY) {
-    const neighbourhoods = getNeighbourhoods(activeOffer, offers);
-    return <CardProperty
-      offer={activeOffer}
-      neighbourhoods={neighbourhoods}
-      isNearPlaces={isNearPlaces}
-    />;
-  }
-
+const App = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/offer/:id" render={({match}) => {
+          return <PagePropertiesWithPathName pathID={match.params.id} />;
+        }} />
+        <Route exact path="/login" render={() => <PageSignIn />} />
         <Route exact path="/">
-          <MainWithSort
-            isNearPlaces={screenType === ScreenType.PROPERTY}
-          />
-        </Route>
-        <Route exact path="/dev-card-property">
-          <CardProperty
-            offer={offers[0]}
-            neighbourhoods={getNeighbourhoods(offers[0], offers)}
-            isNearPlaces={isNearPlaces}
-          />
+          <PageMain />
         </Route>
       </Switch>
     </BrowserRouter>);
 };
 
-App.propTypes = {
-  screenType: PropTypes.oneOf([ScreenType.MAIN, ScreenType.PROPERTY]).isRequired,
-  activeOffer: offerPropType,
-  offers: PropTypes.arrayOf(offerPropType)
-};
+App.propTypes = {};
 
-const mapStateToProps = (state) => ({
-  screenType: state.screenType,
-  activeOffer: state.activeOffer,
-  offers: state.offers
-});
-
-export {App};
-export default connect(mapStateToProps)(App);
+export default App;

@@ -38,7 +38,11 @@ it(`should not call onActiveItemChange when click on <ul>`, () => {
   const div = global.document.createElement(`div`);
   global.document.body.appendChild(div);
 
-  const tree = Enzyme.mount(<ListComponentWithActiveItem items={items} onActiveItemChange={handleActiveItemChange} />, {attachTo: div});
+  const tree = Enzyme.mount(
+      <ListComponentWithActiveItem
+        items={items}
+        onActiveItemChange={handleActiveItemChange}
+      />, {attachTo: div});
 
   tree.simulate(`click`);
   expect(handleActiveItemChange).toHaveBeenCalledTimes(0);

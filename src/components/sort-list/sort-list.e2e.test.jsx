@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {SortList} from './sort-list.jsx';
-import {SortType, SORT_LIST} from '../../const.js';
+import {SortType, SORT_LIST} from '../../const/const.js';
 
 Enzyme.configure({
   adapter: new Adapter()

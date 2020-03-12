@@ -93,7 +93,8 @@ exports[`<PlaceCard /> should be render correctly with isFavorite === false 1`] 
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/id-1"
+        onClick={[Function]}
       >
         title-1
       </a>
@@ -193,7 +194,8 @@ exports[`<PlaceCard /> should be render correctly with isNearPlaces === false 1`
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/id-1"
+        onClick={[Function]}
       >
         title-1
       </a>
@@ -293,7 +295,8 @@ exports[`<PlaceCard /> should be render correctly with isNearPlaces === true 1`]
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/id-1"
+        onClick={[Function]}
       >
         title-1
       </a>
@@ -400,7 +403,8 @@ exports[`<PlaceCard /> should be render correctly with isPremium === true 1`] = 
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/id-1"
+        onClick={[Function]}
       >
         title-1
       </a>

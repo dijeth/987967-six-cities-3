@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ActionCreator from '../../action-creator.js';
+import ActionCreator from '../../reducers/app/action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import {cityPropType} from '../../const/props.js';
 
 const CityList = ({items, activeItem, onListClick}) => {
+  if (!items.length) {
+    return null;
+  }
+
+  const cityName = activeItem !== null ? activeItem.name : null;
   const cityList = items.map((it, i) => {
     return (
       <li className="locations__item" key={`${it}-${i}`}>
-        <a className={`locations__item-link tabs__item ${it === activeItem ? `tabs__item--active` : ``}`} href="#">
-          <span data-index={i}>{it}</span>
+        <a className={`locations__item-link tabs__item ${it.name === cityName ? `tabs__item--active` : ``}`} href="#">
+          <span data-index={i}>{it.name}</span>
         </a>
       </li>);
   });
@@ -18,8 +24,8 @@ const CityList = ({items, activeItem, onListClick}) => {
 };
 
 CityList.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeItem: PropTypes.string,
+  items: PropTypes.arrayOf(cityPropType).isRequired,
+  activeItem: cityPropType,
   onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func
 };

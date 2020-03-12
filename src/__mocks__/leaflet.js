@@ -1,5 +1,3 @@
-
-
 const leaflet = jest.genMockFromModule(`leaflet`);
 
 leaflet.fn = {

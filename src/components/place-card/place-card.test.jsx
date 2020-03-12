@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import PlaceCard from './place-card.jsx';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 const mock = {
   id: `id-1`,
@@ -18,24 +19,36 @@ const mock = {
 describe(`<PlaceCard /> should be render correctly`, () => {
   it(`with isNearPlaces === false`, () => {
     const card = renderer.create(
-        <PlaceCard
-          offer={mock}
-          offsetIndex={0}
-          onHover={() => {}}
-          isNearPlaces={false}
-        />).toJSON();
+        <BrowserRouter>
+          <PlaceCard
+            offer={mock}
+            offsetIndex={0}
+            onHover={() => {}}
+            isNearPlaces={false}
+          />
+          <Switch>
+            <Route exact path="/offer/:id" />
+          </Switch>
+        </BrowserRouter>
+    ).toJSON();
 
     expect(card).toMatchSnapshot();
   });
 
   it(`with isNearPlaces === true`, () => {
     const card = renderer.create(
-        <PlaceCard
-          offer={mock}
-          offsetIndex={0}
-          onHover={() => {}}
-          isNearPlaces = {true}
-        />).toJSON();
+        <BrowserRouter>
+          <PlaceCard
+            offer={mock}
+            offsetIndex={0}
+            onHover={() => {}}
+            isNearPlaces={true}
+          />
+          <Switch>
+            <Route exact path="/offer/:id" />
+          </Switch>
+        </BrowserRouter>
+    ).toJSON();
 
     expect(card).toMatchSnapshot();
   });
@@ -43,12 +56,18 @@ describe(`<PlaceCard /> should be render correctly`, () => {
   it(`with isPremium === true`, () => {
     mock.isPremium = true;
     const card = renderer.create(
-        <PlaceCard
-          offer={mock}
-          offsetIndex={0}
-          onHover={() => {}}
-          isNearPlaces = {true}
-        />).toJSON();
+        <BrowserRouter>
+          <PlaceCard
+            offer={mock}
+            offsetIndex={0}
+            onHover={() => {}}
+            isNearPlaces={true}
+          />
+          <Switch>
+            <Route exact path="/offer/:id" />
+          </Switch>
+        </BrowserRouter>
+    ).toJSON();
 
     expect(card).toMatchSnapshot();
   });
@@ -56,12 +75,18 @@ describe(`<PlaceCard /> should be render correctly`, () => {
   it(`with isFavorite === false`, () => {
     mock.isFavorite = false;
     const card = renderer.create(
-        <PlaceCard
-          offer={mock}
-          offsetIndex={0}
-          onHover={() => {}}
-          isNearPlaces = {true}
-        />).toJSON();
+        <BrowserRouter>
+          <PlaceCard
+            offer={mock}
+            offsetIndex={0}
+            onHover={() => {}}
+            isNearPlaces={true}
+          />
+          <Switch>
+            <Route exact path="/offer/:id" />
+          </Switch>
+        </BrowserRouter>
+    ).toJSON();
 
     expect(card).toMatchSnapshot();
   });
