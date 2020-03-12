@@ -10,7 +10,7 @@ import {offerPropType} from '../../const/props.js';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {getOffers} from '../../reducers/data/selectors.js';
+import {getOffers, getNearbyList} from '../../reducers/data/selectors.js';
 import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 
@@ -230,11 +230,7 @@ const mapStateToProps = (state) => ({
   offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
   activeCityCoord: getActiveOfferCoord(state),
-
-  neighbourhoods: ((storeState) => {
-    const offers = getOffers(storeState);
-    return offers.length ? getNeighbourhoods(offers[0], offers) : [];
-  })(state)
+  neighbourhoods: getNearbyList(state)
 });
 
 export {PageProperties};

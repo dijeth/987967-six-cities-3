@@ -3,6 +3,8 @@ import ActionType from '../action-type.js';
 const initialState = {
   cities: [],
   offers: [],
+	nearbyList: [],
+	comments: [],  
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,6 +14,12 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.LOAD_CITIES:
       return Object.assign({}, state, {cities: action.payload});
+
+    case ActionType.LOAD_NEARBY:
+      return Object.assign({}, state, {nearbyList: action.payload});
+
+    case ActionType.LOAD_COMMENTS:
+      return Object.assign({}, state, {comments: action.payload});
   }
 
   return state;

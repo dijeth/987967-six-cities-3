@@ -7,6 +7,8 @@ const ActionType = {
   CHANGE_AUTH_INFO: `CHANGE_AUTH_INFO`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_CITIES: `LOAD_CITIES`,
+  LOAD_NEARBY: `LOAD_NEARBY`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
 };
 
 export default ActionType;

@@ -86,6 +86,8 @@ const Adapter = {
     isSuperUser: raw[`is_pro`]
   }),
 
+  rawCommentToData: (rawData) => rawData,
+
   dataToRaw: () => {}
 };
 

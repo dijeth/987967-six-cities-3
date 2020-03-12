@@ -13,7 +13,8 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/offer/:id" render={({match}) => {
-          return <PagePropertiesWithPathName pathID={match.params.id} />;
+          const id = match.params.id;
+          return <PagePropertiesWithPathName pathID={id} />;
         }} />
         <Route exact path="/login" render={() => <PageSignIn />} />
         <Route exact path="/">

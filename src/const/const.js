@@ -68,7 +68,7 @@ export const AppRoute = {
   getLogin: () => `/login`,
   getOffer: (id) => `/offer/${id}`,
   getFavorites: () => `/favorites`,
-  getRoot: () => `/`,
+  getRoot: () => `/`
 };
 
 export const MAX_IMAGE_COUNT = 6;
