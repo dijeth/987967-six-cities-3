@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render "Loading..." when isLoading === true 1`] = `
+<h1>
+  Loading...
+</h1>
+`;
+
+exports[`should render Component when isLoading === false 1`] = `
+<div>
+  Mock
+</div>
+`;
