@@ -42,7 +42,7 @@ class ReviewForm extends React.PureComponent {
     const comment = formData.get(`review`);
     const offerID = Number(this.props.offerID);
 
-    this.props.onSubmit({ comment, rating } , offerID );
+    this.props.onSubmit({ comment, rating }, offerID );
   }
 
   _setDisableStatus(isDisable) {
@@ -59,7 +59,6 @@ class ReviewForm extends React.PureComponent {
       this._setDisableStatus(true);
       return
     };
-
     if (!this.props.sendingError) {
       this.form.current.reset();
       return

@@ -11,6 +11,7 @@ const ActionType = {
   LOAD_NEARBY: `LOAD_NEARBY`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
   SET_COMMENT_ERROR: `SET_COMMENT_ERROR`,
+  SET_PAGE_ERROR: `SET_PAGE_ERROR`,
 };
 
 export default ActionType;

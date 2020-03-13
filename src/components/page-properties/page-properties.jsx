@@ -15,6 +15,7 @@ import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getOffers, getNearbyList, getComments} from '../../reducers/data/selectors.js';
 import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
+import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
 import {Link} from 'react-router-dom';
 import {getNeighbourhoods} from '../../mocks/offers.js';
@@ -192,4 +193,4 @@ const mapStateToProps = (state) => ({
 });
 
 export {PageProperties};
-export default withLoading(connect(mapStateToProps)(PageProperties));
+export default withPageError(withLoading(connect(mapStateToProps)(PageProperties)));

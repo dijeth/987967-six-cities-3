@@ -7,7 +7,8 @@ const initialState = {
   sortType: SortType.POPULAR,
   isLoading: false,
   isCommentSending: false,
-  commentError: false
+  commentError: false,
+  pageError: ``
 };
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +30,9 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.SET_COMMENT_ERROR:
       return Object.assign({}, state, {commentError: action.payload});
+
+    case ActionType.SET_PAGE_ERROR:
+      return Object.assign({}, state, {pageError: action.payload});
   }
 
   return state;

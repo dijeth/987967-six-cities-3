@@ -1,6 +1,7 @@
 import {SortType} from '../../const/const.js';
 import NameSpace from '../name-space.js';
 
+export const getPageError = (state) => state[NameSpace.APP].pageError;
 export const getCommentError = (state) => state[NameSpace.APP].commentError;
 export const getLoadingStatus = (state) => state[NameSpace.APP].isLoading;
 export const getCommentSendingStatus = (state) => state[NameSpace.APP].isCommentSending;

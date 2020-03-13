@@ -27,9 +27,10 @@ export const Operation = {
           document.location.pathname = newPath;
         }
       })
-      .catch(() => {
+      .catch((error) => {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
         dispatch(UserActionCreator.changeAuthInfo(null));
+        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`))
       });
   },
 
@@ -43,6 +44,7 @@ export const Operation = {
       })
       .catch((error) => {
         dispatch(AppActionCreator.setCommentError(true))
+        dispatch(AppActionCreator.setPageError(`Ошибка при отправке комментария`))
       })
       .finally(() => {
         dispatch(AppActionCreator.changeCommentSendingStatus(false));
