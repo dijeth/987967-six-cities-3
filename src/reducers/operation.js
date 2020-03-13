@@ -4,14 +4,14 @@ import Adapter from '../adapter/adapter.js';
 import {AppRoute} from '../const/const.js';
 import axios from 'axios';
 
-const getNearby = (id, api) => api.get(`/hotels/${id}/nearby`);
-const getComments = (id, api) => api.get(`/comments/${id}`);
+const getNearby = (id, api) => api.get(AppRoute.getNearby(id));
+const getComments = (id, api) => api.get(AppRoute.getComments(id));
 
 export const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     dispatch(AppActionCreator.changeLoadingStatus(true));
 
-    return api.get(`/hotels`)
+    return api.get(AppRoute.getHotels())
       .then((response) => {
         const data = Adapter.getData(response.data);
 

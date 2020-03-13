@@ -177,7 +177,7 @@ PageProperties.propTypes = {
     coord: PropTypes.arrayOf(PropTypes.number)
   }),
 
-  reviews: PropTypes.arrayOf(reviewPropTypes),
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes)),
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
 

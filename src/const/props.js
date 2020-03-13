@@ -19,11 +19,11 @@ export const cityPropType = PropTypes.shape({
   centerCoord: PropTypes.arrayOf(PropTypes.number)
 });
 
-export const reviewPropTypes = PropTypes.shape({
+export const reviewPropTypes = {
   id: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   userPicture: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired
-})
+}

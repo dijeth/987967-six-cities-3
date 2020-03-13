@@ -29,7 +29,7 @@ const ReviewList = ({reviews}) => {
 };
 
 ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(reviewPropTypes)
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes))
 };
 
 export default ReviewList;
