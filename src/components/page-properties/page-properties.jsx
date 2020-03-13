@@ -39,7 +39,8 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
     userPicture,
     isSuperUser,
     description,
-    descriptionTitle
+    descriptionTitle,
+    id
   } = offer;
 
   const gallery = pictures.slice(1, 1 + MAX_IMAGE_COUNT).map((it, i) => {
@@ -133,7 +134,7 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
               </div>
               <section className="property__reviews reviews">
                 {reviews && <ReviewList reviews={reviews} />}
-                {isAuthorized && <ReviewForm />}
+                {isAuthorized && <ReviewForm offerID={id} />}
               </section>
             </div>
           </div>

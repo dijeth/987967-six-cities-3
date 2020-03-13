@@ -1,38 +1,76 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ReviewLength} from '../../const/const.js';
+import { connect } from 'react-redux';
+import { ReviewLength } from '../../const/const.js';
+import { Operation } from '../../reducers/user/operation.js';
+import { getCommentSendingStatus, getCommentError } from '../../reducers/app/selectors.js';
 
 class ReviewForm extends React.PureComponent {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.submit = React.createRef();
-		this.form = React.createRef();
+    this.submit = React.createRef();
+    this.form = React.createRef();
 
-		this._handleFormChange = this._handleFormChange.bind(this);
-	}
+    this._handleFormChange = this._handleFormChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+  }
 
-	_handleFormChange() {
-		const formData = new FormData(this.form.current);
-		const submitElement = this.submit.current;
+  _handleFormChange() {
+    const formData = new FormData(this.form.current);
+    const submitElement = this.submit.current;
 
-		if (formData.get(`rating`) === null) {
-			submitElement.disabled = true;
-			return
-		};
+    if (formData.get(`rating`) === null) {
+      submitElement.disabled = true;
+      return
+    };
 
-		const review = formData.get(`review`);
-		if (review.length < ReviewLength.MIN || review.length > ReviewLength.MAX) {
-			submitElement.disabled = true;
-			return
-		};
+    const review = formData.get(`review`);
+    if (review.length < ReviewLength.MIN || review.length > ReviewLength.MAX) {
+      submitElement.disabled = true;
+      return
+    };
 
-		submitElement.disabled = false;
-	}
+    submitElement.disabled = false;
+  }
+
+  _handleSubmit(evt) {
+    evt.preventDefault();
+
+    const formData = new FormData(this.form.current);
+    const rating = formData.get(`rating`);
+    const comment = formData.get(`review`);
+    const offerID = Number(this.props.offerID);
+
+    this.props.onSubmit({ comment, rating } , offerID );
+  }
+
+  _setDisableStatus(isDisable) {
+    const elements = Array.from(this.form.current.elements);
+    elements.forEach((it) => { it.disabled = isDisable });
+
+    if (!isDisable) {
+      this._handleFormChange()
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.isSending) {
+      this._setDisableStatus(true);
+      return
+    };
+
+    if (!this.props.sendingError) {
+      this.form.current.reset();
+      return
+    };
+
+    this._setDisableStatus(false);
+  }
 
   render() {
     return (
-      <form className="reviews__form form" action="#" method="post" ref={this.form}>
+      <form className="reviews__form form" action="#" method="post" onSubmit={this._handleSubmit} ref={this.form}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating" onClick={this._handleFormChange}>
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
@@ -88,4 +126,22 @@ class ReviewForm extends React.PureComponent {
   }
 };
 
-export default ReviewForm
+ReviewForm.propTypes = {
+  onSubmit: PropTypes.func,
+  offerID: PropTypes.string,
+  isSending: PropTypes.bool,
+  sendingError: PropTypes.bool
+};
+
+const mapStateToProps = (state) => ({
+  isSending: getCommentSendingStatus(state),
+  sendingError: getCommentError(state),
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(commentData, offerID) {
+    dispatch(Operation.submitComment(commentData, offerID))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);
