@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import ActionCreator from '../../reducers/app/action-creator.js';
-import {Operation} from '../../reducers/operation.js';
+// import {Operation} from '../../reducers/operation.js';
 import {connect} from 'react-redux';
 import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
@@ -42,7 +42,7 @@ PlaceCardList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeItem) {
-    handleActiveOfferChange(dispatch, activeItem.id)
+    handleActiveOfferChange(dispatch, activeItem.id);
   },
 
   onOfferHover(offer) {
