@@ -31,6 +31,6 @@ const Review = ({userName, userPicture, rating, description, date: isoDate}) => 
     </React.Fragment>);
 };
 
-// Review.propTypes = reviewPropTypes;
+Review.propTypes = reviewPropTypes;
 
 export default Review;

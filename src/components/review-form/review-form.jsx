@@ -59,9 +59,9 @@ class ReviewForm extends React.PureComponent {
       this._setDisableStatus(true);
       return
     };
+
     if (!this.props.sendingError) {
       this.form.current.reset();
-      return
     };
 
     this._setDisableStatus(false);
