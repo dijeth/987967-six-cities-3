@@ -280,23 +280,11 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
           <section
             className="property__reviews reviews"
           >
-            <h2
-              className="reviews__title"
-            >
-              Reviews · 
-              <span
-                className="reviews__amount"
-              >
-                0
-              </span>
-            </h2>
-            <ul
-              className="reviews__list"
-            />
             <form
               action="#"
               className="reviews__form form"
               method="post"
+              onSubmit={[Function]}
             >
               <label
                 className="reviews__label form__label"
@@ -306,6 +294,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
               </label>
               <div
                 className="reviews__rating-form form__rating"
+                onClick={[Function]}
               >
                 <input
                   className="form__rating-input visually-hidden"
@@ -422,6 +411,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                 className="reviews__textarea form__textarea"
                 id="review"
                 name="review"
+                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
               />
               <div
@@ -446,7 +436,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                 </p>
                 <button
                   className="reviews__submit form__submit button"
-                  disabled=""
+                  disabled={true}
                   type="submit"
                 >
                   Submit
@@ -1063,21 +1053,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
           </div>
           <section
             className="property__reviews reviews"
-          >
-            <h2
-              className="reviews__title"
-            >
-              Reviews · 
-              <span
-                className="reviews__amount"
-              >
-                0
-              </span>
-            </h2>
-            <ul
-              className="reviews__list"
-            />
-          </section>
+          />
         </div>
       </div>
       <section

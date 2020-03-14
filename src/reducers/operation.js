@@ -24,7 +24,7 @@ export const Operation = {
       .then((response) => {
         const nearbyData = Adapter.getData(response.data).offers;
         dispatch(DataActionCreator.loadNearby(nearbyData));
-      })
+      });
   },
 
   loadComments: (id) => (dispatch, getState, api) => {
@@ -32,6 +32,6 @@ export const Operation = {
       .then((response) => {
         const commentData = Adapter.getComments(response.data);
         dispatch(DataActionCreator.loadComments(commentData));
-      })
+      });
   }
 };

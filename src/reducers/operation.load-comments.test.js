@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
-import { createAPI } from '../api.js';
-import { Operation } from './operation.js';
+import {createAPI} from '../api.js';
+import {Operation} from './operation.js';
 import ActionType from './action-type.js';
 import Adapter from '../adapter/adapter.js';
 
@@ -8,39 +8,39 @@ const api = createAPI(() => {});
 const apiMock = new MockAdapter(api);
 const dispatch = jest.fn();
 const response = [{
-  "comment": "comment-1",
-  "date": "2019-05-08T14:13:56.569Z",
+  "comment": `comment-1`,
+  "date": `2019-05-08T14:13:56.569Z`,
   "id": 1,
   "rating": 4,
   "user": {
-    "avatar_url": "picture-1",
+    "avatar_url": `picture-1`,
     "id": 14,
     "is_pro": false,
-    "name": "Max-1"
+    "name": `Max-1`
   }
 },
 {
-  "comment": "comment-2",
-  "date": "2019-05-08T14:13:56.569Z",
+  "comment": `comment-2`,
+  "date": `2019-05-08T14:13:56.569Z`,
   "id": 2,
   "rating": 4,
   "user": {
-    "avatar_url": "picture-2",
+    "avatar_url": `picture-2`,
     "id": 24,
     "is_pro": false,
-    "name": "Max-2"
+    "name": `Max-2`
   }
 },
 {
-  "comment": "comment-3",
-  "date": "2019-05-08T14:13:56.569Z",
+  "comment": `comment-3`,
+  "date": `2019-05-08T14:13:56.569Z`,
   "id": 3,
   "rating": 4,
   "user": {
-    "avatar_url": "picture-3",
+    "avatar_url": `picture-3`,
     "id": 34,
     "is_pro": false,
-    "name": "Max-3"
+    "name": `Max-3`
   }
 }];
 
