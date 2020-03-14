@@ -4,6 +4,8 @@ import ActionType from '../action-type.js';
 const initialState = {
   cities: [],
   offers: [],
+  nearbyList: [],
+  comments: [],
 };
 
 describe(`Test App reducer`, () => {

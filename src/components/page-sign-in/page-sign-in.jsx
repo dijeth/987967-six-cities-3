@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Header from '../header/header.jsx';
 import {Operation} from '../../reducers/user/operation.js';
 import {AppRoute} from '../../const/const.js';
+import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
 class PageSignIn extends React.PureComponent {
   constructor(props) {
@@ -70,4 +71,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {PageSignIn};
-export default connect(null, mapDispatchToProps)(PageSignIn);
+export default withPageError(connect(null, mapDispatchToProps)(PageSignIn));

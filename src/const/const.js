@@ -69,6 +69,14 @@ export const AppRoute = {
   getOffer: (id) => `/offer/${id}`,
   getFavorites: () => `/favorites`,
   getRoot: () => `/`,
+  getComments: (id) => `/comments/${id}`,
+  getHotels: () => `/hotels`,
+  getNearby: (id) => `/hotels/${id}/nearby`
 };
 
 export const MAX_IMAGE_COUNT = 6;
+
+export const ReviewLength = {
+  MIN: 5,
+  MAX: 30
+};

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const.js';
+import {reviewPropTypes} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
-import ReviewList, {reviewListPropTypes} from '../review-list/review-list.jsx';
+import ReviewList from '../review-list/review-list.jsx';
+import ReviewForm from '../review-form/review-form.jsx';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
 import {AppRoute} from '../../const/const.js';
@@ -10,14 +12,14 @@ import {offerPropType} from '../../const/props.js';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {getOffers} from '../../reducers/data/selectors.js';
+import {getNearbyList, getComments} from '../../reducers/data/selectors.js';
 import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
+import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
 import {Link} from 'react-router-dom';
-import {getNeighbourhoods} from '../../mocks/offers.js';
 
-const PageProperties = ({offer, isAuthorized, neighbourhoods, activeCityCoord}) => {
+const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCityCoord}) => {
   if (offer === null) {
     return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
   }
@@ -35,10 +37,10 @@ const PageProperties = ({offer, isAuthorized, neighbourhoods, activeCityCoord}) 
     insideFeatures,
     userName,
     userPicture,
-    isUserSuper,
+    isSuperUser,
     description,
     descriptionTitle,
-    reviews
+    id
   } = offer;
 
   const gallery = pictures.slice(1, 1 + MAX_IMAGE_COUNT).map((it, i) => {
@@ -119,7 +121,7 @@ const PageProperties = ({offer, isAuthorized, neighbourhoods, activeCityCoord}) 
               <div className="property__host">
                 <h2 className="property__host-title">{descriptionTitle}</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${isUserSuper ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                  <div className={`property__avatar-wrapper ${isSuperUser ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
                     <img className="property__avatar user__avatar" src={`/${userPicture}`} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
@@ -132,53 +134,7 @@ const PageProperties = ({offer, isAuthorized, neighbourhoods, activeCityCoord}) 
               </div>
               <section className="property__reviews reviews">
                 {reviews && <ReviewList reviews={reviews} />}
-                {isAuthorized && (
-                  <form className="reviews__form form" action="#" method="post">
-                    <label className="reviews__label form__label" htmlFor="review">Your review</label>
-                    <div className="reviews__rating-form form__rating">
-                      <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
-                      <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio" />
-                      <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio" />
-                      <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio" />
-                      <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" />
-                      <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-                    </div>
-                    <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
-                    <div className="reviews__button-wrapper">
-                      <p className="reviews__help">
-                        To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-                      </p>
-                      <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
-                    </div>
-                  </form>)}
+                {isAuthorized && <ReviewForm offerID={id} />}
               </section>
             </div>
           </div>
@@ -214,12 +170,13 @@ PageProperties.propTypes = {
     insideFeatures: PropTypes.arrayOf(PropTypes.string),
     userName: PropTypes.string.isRequired,
     userPicture: PropTypes.string,
-    isUserSuper: PropTypes.bool,
+    isSuperUser: PropTypes.bool,
     descriptionTitle: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    reviews: reviewListPropTypes,
     coord: PropTypes.arrayOf(PropTypes.number)
   }),
+
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes)),
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
 
@@ -230,12 +187,9 @@ const mapStateToProps = (state) => ({
   offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
   activeCityCoord: getActiveOfferCoord(state),
-
-  neighbourhoods: ((storeState) => {
-    const offers = getOffers(storeState);
-    return offers.length ? getNeighbourhoods(offers[0], offers) : [];
-  })(state)
+  neighbourhoods: getNearbyList(state),
+  reviews: getComments(state)
 });
 
 export {PageProperties};
-export default withLoading(connect(mapStateToProps)(PageProperties));
+export default withPageError(withLoading(connect(mapStateToProps)(PageProperties)));

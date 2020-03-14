@@ -5,7 +5,10 @@ const initialState = {
   activeCity: null,
   activeOffer: null,
   sortType: SortType.POPULAR,
-  isLoading: false
+  isLoading: false,
+  isCommentSending: false,
+  commentError: false,
+  pageError: ``
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +24,15 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.CHANGE_LOADING_STATUS:
       return Object.assign({}, state, {isLoading: action.payload});
+
+    case ActionType.CHANGE_COMMENT_SENDING_STATUS:
+      return Object.assign({}, state, {isCommentSending: action.payload});
+
+    case ActionType.SET_COMMENT_ERROR:
+      return Object.assign({}, state, {commentError: action.payload});
+
+    case ActionType.SET_PAGE_ERROR:
+      return Object.assign({}, state, {pageError: action.payload});
   }
 
   return state;

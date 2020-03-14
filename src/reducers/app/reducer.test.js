@@ -6,7 +6,10 @@ const initialState = {
   activeCity: null,
   activeOffer: null,
   sortType: SortType.POPULAR,
-  isLoading: false
+  isLoading: false,
+  isCommentSending: false,
+  commentError: false,
+  pageError: ``
 };
 
 describe(`Test App reducer`, () => {
