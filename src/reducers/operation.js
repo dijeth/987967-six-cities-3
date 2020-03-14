@@ -2,10 +2,6 @@ import DataActionCreator from './data/action-creator.js';
 import AppActionCreator from './app/action-creator.js';
 import Adapter from '../adapter/adapter.js';
 import {AppRoute} from '../const/const.js';
-import axios from 'axios';
-
-const getNearby = (id, api) => api.get(AppRoute.getNearby(id));
-const getComments = (id, api) => api.get(AppRoute.getComments(id));
 
 export const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
@@ -23,18 +19,19 @@ export const Operation = {
       });
   },
 
-  loadAddData: (id) => (dispatch, getState, api) => {
-    dispatch(AppActionCreator.changeLoadingStatus(true));
-
-    axios.all([getNearby(id, api), getComments(id, api)])
-      .then(axios.spread((nearbyList, commentList) => {
-        const nearbyData = Adapter.getData(nearbyList.data).offers;
-        const commentData = Adapter.getComments(commentList.data);
-
+  loadNearby: (id) => (dispatch, getState, api) => {
+    return api.get(AppRoute.getNearby(id))
+      .then((response) => {
+        const nearbyData = Adapter.getData(response.data).offers;
         dispatch(DataActionCreator.loadNearby(nearbyData));
-        dispatch(DataActionCreator.loadComments(commentData));
+      })
+  },
 
-        dispatch(AppActionCreator.changeLoadingStatus(false));
-      }));
+  loadComments: (id) => (dispatch, getState, api) => {
+    return api.get(AppRoute.getComments(id))
+      .then((response) => {
+        const commentData = Adapter.getComments(response.data);
+        dispatch(DataActionCreator.loadComments(commentData));
+      })
   }
 };
