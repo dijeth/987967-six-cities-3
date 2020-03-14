@@ -1,9 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getActiveOfferID } from '../../reducers/app/selectors.js';
+import {connect} from 'react-redux';
+import {getActiveOfferID} from '../../reducers/app/selectors.js';
 import ActionCreator from '../../reducers/app/action-creator.js';
-import { Operation } from '../../reducers/operation.js';
+import {Operation} from '../../reducers/operation.js';
+
+const handleActiveOfferChange = (dispatch, id) => {
+  dispatch(ActionCreator.changeActiveOffer(id));
+  dispatch(ActionCreator.changeLoadingStatus(true));
+  return Promise.all([
+    dispatch(Operation.loadNearby(id)),
+    dispatch(Operation.loadComments(id))
+  ])
+    .then(() => {
+      dispatch(ActionCreator.changeLoadingStatus(false));
+    });
+};
 
 const withPathName = (Component) => {
   const WithPathName = (props) => {
@@ -27,19 +39,12 @@ const withPathName = (Component) => {
 
   const mapDispatchToProps = (dispatch) => ({
     onActiveOfferChange(id) {
-      dispatch(ActionCreator.changeActiveOffer(id));
-      dispatch(ActionCreator.changeLoadingStatus(true));
-      Promise.all([
-          dispatch(Operation.loadNearby(id)),
-          dispatch(Operation.loadComments(id))
-        ])
-        .then(() => {
-          dispatch(ActionCreator.changeLoadingStatus(false));
-        })
+      handleActiveOfferChange(dispatch, id);
     }
   });
 
   return connect(mapStateToProps, mapDispatchToProps)(WithPathName);
 };
 
+export {handleActiveOfferChange};
 export default withPathName;

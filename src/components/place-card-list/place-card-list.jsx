@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import ActionCreator from '../../reducers/app/action-creator.js';
-import { Operation } from '../../reducers/operation.js';
-import { connect } from 'react-redux';
-import { offerPropType } from '../../const/props.js';
+import {Operation} from '../../reducers/operation.js';
+import {connect} from 'react-redux';
+import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import {handleActiveOfferChange} from '../../hocs/with-pathname/with-pathname.jsx';
 
-const PlaceCardList = ({ items, isNearPlaces, onOfferHover, onListClick }) => {
+const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick}) => {
   const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
 
   const placeCardList = items.map((offer, i) => {
@@ -41,15 +42,7 @@ PlaceCardList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeItem) {
-    dispatch(ActionCreator.changeActiveOffer(activeItem.id));
-    dispatch(ActionCreator.changeLoadingStatus(true)); 
-    Promise.all([
-        dispatch(Operation.loadNearby(activeItem.id)),
-        dispatch(Operation.loadComments(activeItem.id))
-      ])
-      .then(() => {
-        dispatch(ActionCreator.changeLoadingStatus(false));
-      })
+    handleActiveOfferChange(dispatch, activeItem.id)
   },
 
   onOfferHover(offer) {
@@ -57,5 +50,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export { PlaceCardList };
+export {PlaceCardList};
 export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList, `.place-card__name`));
