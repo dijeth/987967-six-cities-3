@@ -16,6 +16,19 @@ class ReviewForm extends React.PureComponent {
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
+  componentDidUpdate() {
+    if (this.props.isSending) {
+      this._setDisableStatus(true);
+      return;
+    }
+
+    if (!this.props.sendingError) {
+      this.form.current.reset();
+    }
+
+    this._setDisableStatus(false);
+  }
+
   _handleFormChange() {
     const formData = new FormData(this.form.current);
     const submitElement = this.submit.current;
@@ -54,19 +67,6 @@ class ReviewForm extends React.PureComponent {
     if (!isDisable) {
       this._handleFormChange();
     }
-  }
-
-  componentDidUpdate() {
-    if (this.props.isSending) {
-      this._setDisableStatus(true);
-      return;
-    }
-
-    if (!this.props.sendingError) {
-      this.form.current.reset();
-    }
-
-    this._setDisableStatus(false);
   }
 
   render() {
@@ -110,11 +110,11 @@ class ReviewForm extends React.PureComponent {
           </label>
         </div>
         <textarea
-      	className="reviews__textarea form__textarea"
-      	id="review"
-      	name="review"
-      	placeholder="Tell how was your stay, what you like and what can be improved"
-      	onChange={this._handleFormChange}
+          className="reviews__textarea form__textarea"
+          id="review"
+          name="review"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+          onChange={this._handleFormChange}
         ></textarea>
 
         <div className="reviews__button-wrapper">

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {ratingToPercent, getReviewDate, getDateTime} from '../../util.js';
 import {reviewPropTypes} from '../../const/props.js';
 

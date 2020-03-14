@@ -12,7 +12,7 @@ import {offerPropType} from '../../const/props.js';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {getOffers, getNearbyList, getComments} from '../../reducers/data/selectors.js';
+import {getNearbyList, getComments} from '../../reducers/data/selectors.js';
 import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';

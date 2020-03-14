@@ -27,7 +27,7 @@ export const Operation = {
           document.location.pathname = newPath;
         }
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
         dispatch(UserActionCreator.changeAuthInfo(null));
         dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
@@ -38,11 +38,11 @@ export const Operation = {
     dispatch(AppActionCreator.changeCommentSendingStatus(true));
     return api.post(AppRoute.getComments(offerID), commentData)
       .then((response) => {
-        const commentData = Adapter.getComments(response.data);
-        dispatch(DataActionCreator.loadComments(commentData));
+        const comments = Adapter.getComments(response.data);
+        dispatch(DataActionCreator.loadComments(comments));
         dispatch(AppActionCreator.setCommentError(false));
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch(AppActionCreator.setCommentError(true));
         dispatch(AppActionCreator.setPageError(`Ошибка при отправке комментария`));
       })
