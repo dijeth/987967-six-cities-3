@@ -79,4 +79,4 @@ export const MAX_IMAGE_COUNT = 6;
 export const ReviewLength = {
   MIN: 5,
   MAX: 30
-}
+};

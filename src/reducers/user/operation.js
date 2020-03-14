@@ -1,7 +1,7 @@
 import UserActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import DataActionCreator from '../data/action-creator.js';
-import { AuthorizationStatus, AppRoute } from '../../const/const.js';
+import {AuthorizationStatus, AppRoute} from '../../const/const.js';
 import Adapter from '../../adapter/adapter.js';
 
 export const Operation = {
@@ -30,24 +30,24 @@ export const Operation = {
       .catch((error) => {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
         dispatch(UserActionCreator.changeAuthInfo(null));
-        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`))
+        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
       });
   },
 
   submitComment: (commentData, offerID) => (dispatch, getState, api) => {
-    dispatch(AppActionCreator.changeCommentSendingStatus(true))
+    dispatch(AppActionCreator.changeCommentSendingStatus(true));
     return api.post(AppRoute.getComments(offerID), commentData)
       .then((response) => {
         const commentData = Adapter.getComments(response.data);
         dispatch(DataActionCreator.loadComments(commentData));
-        dispatch(AppActionCreator.setCommentError(false))
+        dispatch(AppActionCreator.setCommentError(false));
       })
       .catch((error) => {
-        dispatch(AppActionCreator.setCommentError(true))
-        dispatch(AppActionCreator.setPageError(`Ошибка при отправке комментария`))
+        dispatch(AppActionCreator.setCommentError(true));
+        dispatch(AppActionCreator.setPageError(`Ошибка при отправке комментария`));
       })
       .finally(() => {
         dispatch(AppActionCreator.changeCommentSendingStatus(false));
-      })
+      });
   }
 };

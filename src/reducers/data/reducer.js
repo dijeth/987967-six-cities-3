@@ -3,8 +3,8 @@ import ActionType from '../action-type.js';
 const initialState = {
   cities: [],
   offers: [],
-	nearbyList: [],
-	comments: [],  
+  nearbyList: [],
+  comments: [],
 };
 
 const reducer = (state = initialState, action) => {

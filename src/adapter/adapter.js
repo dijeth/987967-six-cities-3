@@ -42,7 +42,7 @@ const Converter = {
   getCity: (raw) => ({
     name: raw.city.name,
     zoom: raw.location.zoom,
-    centerCoord: [raw.location.latitude, raw.location.longitude]    
+    centerCoord: [raw.location.latitude, raw.location.longitude]
   })
 };
 
@@ -58,7 +58,7 @@ const Adapter = {
       cities[city.name] = city;
     });
 
-    return {offers, cities: Array.from(Object.values(cities))}
+    return {offers, cities: Array.from(Object.values(cities))};
   },
 
   getUser: (rawData) => Converter.getUser(rawData),

@@ -11,7 +11,7 @@ import {createAPI} from './api.js';
 import {AuthorizationStatus} from './const/const.js';
 import ActionCreator from './reducers/user/action-creator.js';
 
-import PageError from './components/page-error/page-error.jsx'
+import PageError from './components/page-error/page-error.jsx';
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));

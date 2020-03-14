@@ -26,4 +26,4 @@ export const reviewPropTypes = {
   rating: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired
-}
+};

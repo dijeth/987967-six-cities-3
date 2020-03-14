@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const PageError = ({message, onClose}) => {
 
-	return (
-		<div className="page page--gray page--login" style={
+  return (
+    <div className="page page--gray page--login" style={
       {
         position: `fixed`,
         top: 0,
@@ -19,12 +19,12 @@ const PageError = ({message, onClose}) => {
           </section>
         </div>
       </div>
-    </div>)
+    </div>);
 };
 
 PageError.propTypes = {
-	onClose: PropTypes.func.isRequired,
-	message: PropTypes.string.isRequired
-}
+  onClose: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired
+};
 
-export default PageError
+export default PageError;

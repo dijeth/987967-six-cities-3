@@ -34,7 +34,7 @@ export const Operation = {
         dispatch(DataActionCreator.loadNearby(nearbyData));
         dispatch(DataActionCreator.loadComments(commentData));
 
-        dispatch(AppActionCreator.changeLoadingStatus(false))
+        dispatch(AppActionCreator.changeLoadingStatus(false));
       }));
   }
 };

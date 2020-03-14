@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getPageError } from '../../reducers/app/selectors.js';
+import {connect} from 'react-redux';
+import {getPageError} from '../../reducers/app/selectors.js';
 import AppActionCreator from '../../reducers/app/action-creator.js';
 import PageError from '../../components/page-error/page-error.jsx';
 
 const withPageError = (Component) => {
   const WithPageError = (props) => {
-  const { pageError, onClearError } = props;
-  const isError = pageError !== ``;
-  return (
-    <React.Fragment>
-      <Component {...props} />
-      {isError && <PageError message={pageError} onClose={onClearError} />}
-    </React.Fragment>);
+    const {pageError, onClearError} = props;
+    const isError = pageError !== ``;
+    return (
+      <React.Fragment>
+        <Component {...props} />
+        {isError && <PageError message={pageError} onClose={onClearError} />}
+      </React.Fragment>);
   };
 
   WithPageError.propTypes = {
@@ -27,9 +27,9 @@ const withPageError = (Component) => {
 
   const mapDispatchToProps = (dispatch) => ({
     onClearError() {
-      dispatch(AppActionCreator.setPageError(``))
+      dispatch(AppActionCreator.setPageError(``));
     }
-  })
+  });
 
   return connect(mapStateToProps, mapDispatchToProps)(WithPageError);
 };

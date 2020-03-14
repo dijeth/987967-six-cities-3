@@ -18,7 +18,6 @@ import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
 import {Link} from 'react-router-dom';
-import {getNeighbourhoods} from '../../mocks/offers.js';
 
 const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCityCoord}) => {
   if (offer === null) {
