@@ -1,7 +1,7 @@
 import UserActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import DataActionCreator from '../data/action-creator.js';
-import {AuthorizationStatus, AppRoute, ServerRoute} from '../../const/const.js';
+import { AuthorizationStatus, AppRoute, ServerRoute } from '../../const/const.js';
 import Adapter from '../../adapter/adapter.js';
 
 export const Operation = {
@@ -15,7 +15,9 @@ export const Operation = {
       });
   },
 
-  authorizeUser: (userData, newPath) => (dispatch, getState, api) => {
+  authorizeUser: (userData, path) => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.changeLoadingStatus(true));
+
     return api.post(ServerRoute.getLogin(), userData)
       .then((response) => {
         const authData = Adapter.getUser(response.data);
@@ -23,15 +25,16 @@ export const Operation = {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.AUTH));
         dispatch(UserActionCreator.changeAuthInfo(authData));
 
-        // if (newPath) {
-        //   document.location.pathname = newPath;
-        // }
+        document.location.pathname = path;
       })
-      // .catch(() => {
-      //   dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
-      //   dispatch(UserActionCreator.changeAuthInfo(null));
-      //   dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
-      // });
+      .catch(() => {
+        dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+        dispatch(UserActionCreator.changeAuthInfo(null));
+        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
+      })
+      .finally(() => {
+        dispatch(AppActionCreator.changeLoadingStatus(false));
+      })
   },
 
   submitComment: (commentData, offerID) => (dispatch, getState, api) => {

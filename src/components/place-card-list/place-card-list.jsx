@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import ActionCreator from '../../reducers/app/action-creator.js';
-// import {Operation} from '../../reducers/data/operation.js';
+import {Operation} from '../../reducers/data/operation.js';
 import {connect} from 'react-redux';
 import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import {handleActiveOfferChange} from '../../hocs/with-pathname/with-pathname.jsx';
+// import {handleActiveOfferChange} from '../../hocs/with-pathname/with-pathname.jsx';
 
 const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick}) => {
   const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
@@ -42,7 +42,7 @@ PlaceCardList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeItem) {
-    handleActiveOfferChange(dispatch, activeItem.id);
+    console.log(activeItem.id)
   },
 
   onOfferHover(offer) {
@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {PlaceCardList};
-export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList, `.place-card__name`));
+export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList, `.place-card__bookmark-button`));

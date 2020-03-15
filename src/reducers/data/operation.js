@@ -1,7 +1,10 @@
 import DataActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import Adapter from '../../adapter/adapter.js';
-import {ServerRoute, AppRoute} from '../../const/const.js';
+import { ServerRoute, AppRoute } from '../../const/const.js';
+
+const loadNearby = (id, api) => api.get(ServerRoute.getNearby(id));
+const loadComments = (id, api) => api.get(ServerRoute.getComments(id));
 
 export const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
@@ -15,19 +18,19 @@ export const Operation = {
       });
   },
 
-  loadNearby: (id) => (dispatch, getState, api) => {
-    return api.get(ServerRoute.getNearby(id))
-      .then((response) => {
-        const nearbyData = Adapter.getData(response.data).offers;
-        dispatch(DataActionCreator.loadNearby(nearbyData));
-      });
-  },
+  loadProperties: (id) => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.changeLoadingStatus(true));
 
-  loadComments: (id) => (dispatch, getState, api) => {
-    return api.get(ServerRoute.getComments(id))
-      .then((response) => {
-        const commentData = Adapter.getComments(response.data);
-        dispatch(DataActionCreator.loadComments(commentData));
+    return Promise.all([loadNearby(id, api), loadComments(id, api)])
+      .then(([nearbyData, commentData]) => {
+        const nearbyList = Adapter.getData(nearbyData.data).offers;
+        dispatch(DataActionCreator.loadNearby(nearbyList));
+
+        const commentList = Adapter.getComments(commentData.data);
+        dispatch(DataActionCreator.loadComments(commentList));
+      })
+      .finally(() => {
+        dispatch(AppActionCreator.changeLoadingStatus(false));
       });
   },
 

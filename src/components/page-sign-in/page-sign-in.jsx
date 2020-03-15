@@ -69,15 +69,7 @@ PageSignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(userData) {
-    dispatch(AppActionCreator.changeLoadingStatus(true));
-    dispatch(UserOperation.authorizeUser(userData))
-      .then(() => {document.location.pathname = AppRoute.getRoot()})
-      .catch(() => {
-        dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
-        dispatch(UserActionCreator.changeAuthInfo(null));
-        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
-      })
-      .finally(() => {dispatch(AppActionCreator.changeLoadingStatus(false))});
+    dispatch(UserOperation.authorizeUser(userData, AppRoute.getRoot()))
   }
 });
 
