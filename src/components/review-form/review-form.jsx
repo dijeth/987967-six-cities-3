@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {ReviewLength} from '../../const/const.js';
-import {Operation} from '../../reducers/user/operation.js';
-import {getCommentSendingStatus, getCommentError} from '../../reducers/app/selectors.js';
+import { connect } from 'react-redux';
+import { ReviewLength } from '../../const/const.js';
+import { Operation } from '../../reducers/user/operation.js';
+import { getCommentSendingStatus, getCommentError } from '../../reducers/app/selectors.js';
 
 class ReviewForm extends React.PureComponent {
   constructor(props) {
@@ -55,7 +55,7 @@ class ReviewForm extends React.PureComponent {
     const comment = formData.get(`review`);
     const offerID = Number(this.props.offerID);
 
-    this.props.onSubmit({comment, rating}, offerID);
+    this.props.onSubmit({ comment, rating }, offerID);
   }
 
   _setDisableStatus(isDisable) {
@@ -141,7 +141,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(commentData, offerID) {
-    dispatch(Operation.submitComment(commentData, offerID));
+    dispatch(Operation.submitComment(commentData, offerID))
   }
 });
 

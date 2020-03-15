@@ -1,7 +1,7 @@
 import UserActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import DataActionCreator from '../data/action-creator.js';
-import { AuthorizationStatus, AppRoute, ServerRoute } from '../../const/const.js';
+import { AuthorizationStatus, AppRoute, ServerRoute, ServerError } from '../../const/const.js';
 import Adapter from '../../adapter/adapter.js';
 import history from '../../history.js'
 
@@ -25,8 +25,7 @@ export const Operation = {
 
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.AUTH));
         dispatch(UserActionCreator.changeAuthInfo(authData));
-
-        history.goBack();
+        history.goBack()
       })
       .catch(() => {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
@@ -45,8 +44,11 @@ export const Operation = {
         dispatch(DataActionCreator.loadComments(comments));
         dispatch(AppActionCreator.setCommentError(false));
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch(AppActionCreator.setCommentError(true));
+        if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
+          history.push(AppRoute.getLogin())
+        }
       })
       .finally(() => {
         dispatch(AppActionCreator.changeCommentSendingStatus(false));

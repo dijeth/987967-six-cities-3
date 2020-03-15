@@ -86,3 +86,9 @@ export const ReviewLength = {
   MIN: 5,
   MAX: 30
 };
+
+export const ServerError = {
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
+  NOT_FOUND: 404
+}

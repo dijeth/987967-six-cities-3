@@ -8,12 +8,10 @@ import reducer from './reducers/reducer.js';
 import { Operation as DataOperation } from './reducers/data/operation.js';
 import { Operation as UserOperation } from './reducers/user/operation.js';
 import { createAPI } from './api.js';
-import { AuthorizationStatus, AppRoute } from './const/const.js';
+import { AuthorizationStatus, AppRoute, ServerError } from './const/const.js';
 import UserActionCreator from './reducers/user/action-creator.js';
 import AppActionCreator from './reducers/app/action-creator.js';
 import history from './history.js';
-
-const UNAUTHORIZED = 401;
 
 const loadData = () => {
   store.dispatch(AppActionCreator.changeLoadingStatus(true));
@@ -26,17 +24,21 @@ const loadData = () => {
     })
 }
 
-const onUnauthorized = (response) => {
-  if (response.status === UNAUTHORIZED) {
-    store.dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH))
-  } else {
-    store.dispatch(AppActionCreator.setPageError(response.data.error));
-  }
+const onFail = (response, status) => {
+  if (status === ServerError.UNAUTHORIZED) {
+    store.dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+    return
+  };
 
-  // history.push(AppRoute.getLogin())
+  if (status !== null) {
+    store.dispatch(AppActionCreator.setPageError(response.data.error));
+    return
+  };
+
+  store.dispatch(AppActionCreator.setPageError(`No internet`));
 };
 
-const api = createAPI(onUnauthorized);
+const api = createAPI(onFail);
 
 const rootElement = document.getElementById(`root`);
 

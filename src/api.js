@@ -11,8 +11,13 @@ export const createAPI = (onFail) => {
 
   const onSuccess = (response) => response;
   const onError = (err) => {
-    console.log(err.response);
-    onFail(err.response);
+    if (err.response) {
+      onFail(err.response, err.response.status);
+    } else if (err.request) {
+      onFail(err.request, null);
+    } else {
+      onFail(err.message, null);
+    }
 
     throw err;
   };

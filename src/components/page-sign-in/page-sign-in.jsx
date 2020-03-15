@@ -8,6 +8,7 @@ import { AppRoute, AuthorizationStatus } from '../../const/const.js';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 import UserActionCreator from '../../reducers/user/action-creator.js';
 import AppActionCreator from '../../reducers/app/action-creator.js';
+import history from '../../history.js';
 
 class PageSignIn extends React.PureComponent {
   constructor(props) {
@@ -69,7 +70,7 @@ PageSignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(userData) {
-    dispatch(UserOperation.authorizeUser(userData, AppRoute.getRoot()))
+    dispatch(UserOperation.authorizeUser(userData))
   }
 });
 
