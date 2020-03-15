@@ -9,8 +9,7 @@ import SortList from '../sort-list/sort-list.jsx';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
 import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';
-import {getCities} from '../../reducers/data/selectors.js';
-import {getSortedOffers} from '../../reducers/selectors.js';
+import {getCities, getSortedOffers} from '../../reducers/data/selectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 

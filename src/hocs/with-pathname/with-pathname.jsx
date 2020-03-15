@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getActiveOfferID} from '../../reducers/app/selectors.js';
 import ActionCreator from '../../reducers/app/action-creator.js';
-import {Operation} from '../../reducers/operation.js';
+import {Operation} from '../../reducers/data/operation.js';
 
 const handleActiveOfferChange = (dispatch, id) => {
   dispatch(ActionCreator.changeActiveOffer(id));

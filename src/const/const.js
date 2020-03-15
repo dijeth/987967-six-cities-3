@@ -69,10 +69,16 @@ export const AppRoute = {
   getOffer: (id) => `/offer/${id}`,
   getFavorites: () => `/favorites`,
   getRoot: () => `/`,
-  getComments: (id) => `/comments/${id}`,
-  getHotels: () => `/hotels`,
-  getNearby: (id) => `/hotels/${id}/nearby`
 };
+
+export const ServerRoute = {
+  getLogin: () => `/login`,
+  getFavorites: () => `/favorite`,
+  postFavorites: (id, status) => `/favorite/${id}/${status}`,
+  getNearby: (id) => `/hotels/${id}/nearby`,
+  getHotels: () => `/hotels`,
+  getComments: (id) => `/comments/${id}`,
+}
 
 export const MAX_IMAGE_COUNT = 6;
 

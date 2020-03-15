@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Header from '../header/header.jsx';
-import {Operation} from '../../reducers/user/operation.js';
-import {AppRoute} from '../../const/const.js';
+import { Operation as DataOperation } from '../../reducers/data/operation.js';
+import { Operation as UserOperation } from '../../reducers/user/operation.js';
+import { AppRoute, AuthorizationStatus } from '../../const/const.js';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
+import UserActionCreator from '../../reducers/user/action-creator.js';
+import AppActionCreator from '../../reducers/app/action-creator.js';
 
 class PageSignIn extends React.PureComponent {
   constructor(props) {
@@ -66,9 +69,17 @@ PageSignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(userData) {
-    dispatch(Operation.authorizeUser(userData, AppRoute.getRoot()));
+    dispatch(AppActionCreator.changeLoadingStatus(true));
+    dispatch(UserOperation.authorizeUser(userData))
+      .then(() => {document.location.pathname = AppRoute.getRoot()})
+      .catch(() => {
+        dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+        dispatch(UserActionCreator.changeAuthInfo(null));
+        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
+      })
+      .finally(() => {dispatch(AppActionCreator.changeLoadingStatus(false))});
   }
 });
 
-export {PageSignIn};
+export { PageSignIn };
 export default withPageError(connect(null, mapDispatchToProps)(PageSignIn));
