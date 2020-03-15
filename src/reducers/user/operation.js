@@ -3,6 +3,7 @@ import AppActionCreator from '../app/action-creator.js';
 import DataActionCreator from '../data/action-creator.js';
 import { AuthorizationStatus, AppRoute, ServerRoute } from '../../const/const.js';
 import Adapter from '../../adapter/adapter.js';
+import history from '../../history.js'
 
 export const Operation = {
   getAuthorizationStatus: () => (dispatch, getState, api) => {
@@ -25,12 +26,11 @@ export const Operation = {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.AUTH));
         dispatch(UserActionCreator.changeAuthInfo(authData));
 
-        document.location.pathname = path;
+        history.goBack();
       })
       .catch(() => {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
         dispatch(UserActionCreator.changeAuthInfo(null));
-        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
       })
       .finally(() => {
         dispatch(AppActionCreator.changeLoadingStatus(false));
@@ -47,7 +47,6 @@ export const Operation = {
       })
       .catch(() => {
         dispatch(AppActionCreator.setCommentError(true));
-        dispatch(AppActionCreator.setPageError(`Ошибка при отправке комментария`));
       })
       .finally(() => {
         dispatch(AppActionCreator.changeCommentSendingStatus(false));

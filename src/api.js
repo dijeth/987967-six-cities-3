@@ -6,16 +6,13 @@ const config = {
   withCredentials: true
 };
 
-const UNAUTHORIZED = 401;
-
-export const createAPI = (onUnauthorized) => {
+export const createAPI = (onFail) => {
   const api = axios.create(config);
 
   const onSuccess = (response) => response;
   const onError = (err) => {
-    if (err.response.status === UNAUTHORIZED) {
-      onUnauthorized();
-    }
+    console.log(err.response);
+    onFail(err.response);
 
     throw err;
   };

@@ -8,9 +8,12 @@ import reducer from './reducers/reducer.js';
 import { Operation as DataOperation } from './reducers/data/operation.js';
 import { Operation as UserOperation } from './reducers/user/operation.js';
 import { createAPI } from './api.js';
-import { AuthorizationStatus } from './const/const.js';
+import { AuthorizationStatus, AppRoute } from './const/const.js';
 import UserActionCreator from './reducers/user/action-creator.js';
 import AppActionCreator from './reducers/app/action-creator.js';
+import history from './history.js';
+
+const UNAUTHORIZED = 401;
 
 const loadData = () => {
   store.dispatch(AppActionCreator.changeLoadingStatus(true));
@@ -23,8 +26,14 @@ const loadData = () => {
     })
 }
 
-const onUnauthorized = () => {
-  store.dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+const onUnauthorized = (response) => {
+  if (response.status === UNAUTHORIZED) {
+    store.dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH))
+  } else {
+    store.dispatch(AppActionCreator.setPageError(response.data.error));
+  }
+
+  // history.push(AppRoute.getLogin())
 };
 
 const api = createAPI(onUnauthorized);
