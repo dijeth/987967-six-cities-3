@@ -8,6 +8,7 @@ import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';
 import {getCities, getSortedOffers} from '../../reducers/data/selectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
@@ -15,7 +16,7 @@ import withLoading from '../../hocs/with-loading/with-loading.jsx';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const PageMain = ({offers, cities, activeCity, sortType}) => {
+const PageMain = ({offers, cities, activeCity, sortType, isAuth}) => {
 
   if (offers.length === 0 || activeCity === null) {
     return null;
@@ -41,7 +42,8 @@ const PageMain = ({offers, cities, activeCity, sortType}) => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{placesCount} places to stay in {cityName}</b>
               <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
-              <PlaceCardList items={ offers } isNearPlaces={false} />
+              <PlaceCardList items={ offers } isNearPlaces={false} isAuth={isAuth}/>
+              }
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
@@ -60,6 +62,7 @@ PageMain.propTypes = {
   cities: PropTypes.arrayOf(cityPropType).isRequired,
   offers: PropTypes.array.isRequired,
   sortType: PropTypes.string,
+  isAuth: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -67,6 +70,7 @@ const mapStateToProps = (state) => ({
   activeCity: getActiveCity(state),
   cities: getCities(state),
   offers: getSortedOffers(state),
+  isAuth: getAuthorizationStatus(state)
 });
 
 export {PageMain};

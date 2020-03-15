@@ -6,6 +6,7 @@ const ActionCreator = {
   loadNearby: (nearbyList) => ({type: ActionType.LOAD_NEARBY, payload: nearbyList}),
   loadComments: (comments) => ({type: ActionType.LOAD_COMMENTS, payload: comments}),
   loadFavorites: (offers) => ({type: ActionType.LOAD_FAVORITES, payload: offers}),
+  replaceOffer: (offer) => ({type: ActionType.REPLACE_OFFER, payload: offer}),
 };
 
 export default ActionCreator;
