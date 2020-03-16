@@ -1,3 +1,8 @@
+const FavoriteStatus = {
+  ON: `1`,
+  OFF: `0`,
+}
+
 const Converter = {
   getComment: (raw) => ({
     id: String(raw.id),
@@ -58,12 +63,16 @@ const Adapter = {
       cities[city.name] = city;
     });
 
-    return {offers, cities: Array.from(Object.values(cities))};
+    return { offers, cities: Array.from(Object.values(cities)) };
   },
+
+  getOffer: (raw) => Converter.getOffer(raw),
 
   getUser: (rawData) => Converter.getUser(rawData),
 
-  getComments: (rawData) => rawData.map((it) => Converter.getComment(it))
+  getComments: (rawData) => rawData.map((it) => Converter.getComment(it)),
+
+  postFavorite: (isFavorite) => isFavorite ? FavoriteStatus.ON : FavoriteStatus.OFF,
 };
 
 export default Adapter;

@@ -146,7 +146,7 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList items={neighbourhoods} isNearPlaces={true} />
+              <PlaceCardList items={neighbourhoods} isNearPlaces={true} isAuth={isAuthorized} />
             </div>
           </section>
         </div>

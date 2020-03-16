@@ -1,7 +1,8 @@
 import DataActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import Adapter from '../../adapter/adapter.js';
-import { ServerRoute, AppRoute } from '../../const/const.js';
+import { ServerRoute, AppRoute, ServerError } from '../../const/const.js';
+import history from '../../history.js';
 
 const loadNearby = (id, api) => api.get(ServerRoute.getNearby(id));
 const loadComments = (id, api) => api.get(ServerRoute.getComments(id));
@@ -40,5 +41,18 @@ export const Operation = {
         const data = Adapter.getData(response.data).offers;
         dispatch(DataActionCreator.loadFavorites(data));
       });
+  },
+
+  changeFavorite: (id, status) => (dispatch, getState, api) => {
+    return api.post(ServerRoute.postFavorites(id, status))
+      .then((response) => {
+        const offer = Adapter.getOffer(response.data);
+        dispatch(DataActionCreator.replaceOffer(offer))
+      })
+      .catch((err) => {
+        if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
+          history.push(AppRoute.getLogin())
+        }
+      })
   }
 };

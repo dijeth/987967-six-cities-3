@@ -7,7 +7,7 @@ import {Operation} from '../../reducers/data/operation.js';
 import {connect} from 'react-redux';
 import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-// import {handleActiveOfferChange} from '../../hocs/with-pathname/with-pathname.jsx';
+import Adapter from '../../adapter/adapter.js';
 
 const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick, isAuth}) => {
   const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
@@ -45,10 +45,7 @@ PlaceCardList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onActiveItemChange(activeItem) {
-    const activeItem2 = Object.assign({}, activeItem);
-    activeItem2.isFavorite = !activeItem2.isFavorite;
-    //!!!!!!!!!!!!!!!!!
-    dispatch(DataActionCreator.replaceOffer(activeItem2))
+    dispatch(Operation.changeFavorite(activeItem.id, Adapter.postFavorite(!activeItem.isFavorite)))
   },
 
   onOfferHover(offer) {
