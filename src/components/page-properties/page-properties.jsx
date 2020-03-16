@@ -13,12 +13,14 @@ import Header from '../header/header.jsx';
 import { connect } from 'react-redux';
 import { getAuthorizationStatus } from '../../reducers/user/selectors.js';
 import { getNearbyList, getComments, getNearbyCoordList } from '../../reducers/data/selectors.js';
+import { Operation as DataOperation } from '../../reducers/data/operation.js';
 import { getActiveOffer, getActiveOfferCoord } from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 import { Link } from 'react-router-dom';
+import Adapter from '../../adapter/adapter.js';
 
-const PageProperties = ({ offer, reviews, isAuthorized, activeCityCoord, offersCoord }) => {
+const PageProperties = ({ offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange }) => {
   if (offer === null) {
     return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
   }
@@ -64,6 +66,26 @@ const PageProperties = ({ offer, reviews, isAuthorized, activeCityCoord, offersC
 
   const centerCoord = activeCityCoord;
 
+  const favoriteButtonBlock = (
+    <button
+      className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`}
+      type="button"
+      onClick={() => {onFavoriteChange(offer)}}
+    >
+      <svg className="property__bookmark-icon" width="31" height="33">
+        <use xlinkHref="#icon-bookmark"></use>
+      </svg>
+      <span className="visually-hidden">To bookmarks</span>
+    </button>);
+
+  const linkToLoginBlock = (
+    <Link to={AppRoute.getLogin()} className={`property__bookmark-button button`} type="button">
+      <svg className="property__bookmark-icon" width="31" height="33">
+        <use xlinkHref="#icon-bookmark"></use>
+      </svg>
+      <span className="visually-hidden">To bookmarks</span>
+    </Link>);
+
   return (
     <div className="page">
       <Header isActiveLogo={false} />
@@ -81,12 +103,7 @@ const PageProperties = ({ offer, reviews, isAuthorized, activeCityCoord, offersC
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`} type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                {isAuthorized ? favoriteButtonBlock : linkToLoginBlock}
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -177,6 +194,7 @@ PageProperties.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes)),
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
+  onFavoriteChange: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -187,5 +205,11 @@ const mapStateToProps = (state) => ({
   offersCoord: getNearbyCoordList(state)
 });
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFavoriteChange(offer) {dispatch(DataOperation.changeFavorite(offer.id, Adapter.postFavorite(!offer.isFavorite)))}
+  }
+}
+
 export { PageProperties };
-export default withPageError(withLoading(connect(mapStateToProps)(PageProperties)));
+export default withPageError(withLoading(connect(mapStateToProps, mapDispatchToProps)(PageProperties)));
