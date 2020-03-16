@@ -12,14 +12,13 @@ import { offerPropType } from '../../const/props.js';
 import Header from '../header/header.jsx';
 import { connect } from 'react-redux';
 import { getAuthorizationStatus } from '../../reducers/user/selectors.js';
-import { getNearbyList, getComments } from '../../reducers/data/selectors.js';
+import { getNearbyList, getComments, getNearbyCoordList } from '../../reducers/data/selectors.js';
 import { getActiveOffer, getActiveOfferCoord } from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
-
 import { Link } from 'react-router-dom';
 
-const PageProperties = ({ offer, reviews, isAuthorized, neighbourhoods, activeCityCoord }) => {
+const PageProperties = ({ offer, reviews, isAuthorized, activeCityCoord, offersCoord }) => {
   if (offer === null) {
     return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
   }
@@ -64,7 +63,6 @@ const PageProperties = ({ offer, reviews, isAuthorized, neighbourhoods, activeCi
   });
 
   const centerCoord = activeCityCoord;
-  // const offersCoord = neighbourhoods.map((it) => it.coord);
 
   return (
     <div className="page">
@@ -138,9 +136,9 @@ const PageProperties = ({ offer, reviews, isAuthorized, neighbourhoods, activeCi
               </section>
             </div>
           </div>
-          {/*<section className="property__map map">
+          <section className="property__map map">
             <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
-          </section>*/}
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -179,16 +177,14 @@ PageProperties.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes)),
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
-
-  // neighbourhoods: PropTypes.arrayOf(offerPropType)
 };
 
 const mapStateToProps = (state) => ({
   offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
   activeCityCoord: getActiveOfferCoord(state),
-  // neighbourhoods: getNearbyList(state),
-  reviews: getComments(state)
+  reviews: getComments(state),
+  offersCoord: getNearbyCoordList(state)
 });
 
 export { PageProperties };

@@ -9,6 +9,8 @@ export const getNearbyList = (state) => state[NameSpace.DATA].nearbyList || [];
 export const getComments = (state) => state[NameSpace.DATA].comments || [];
 export const getFavorites = (state) => state[NameSpace.DATA].favorites || [];
 
+export const getNearbyCoordList = (state) => getNearbyList(state).map((it) => it.coord);
+
 export const getSortedOffers = createSelector(
   [
     getOffers,
