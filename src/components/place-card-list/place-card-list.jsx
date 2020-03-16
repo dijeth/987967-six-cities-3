@@ -9,7 +9,8 @@ import {offerPropType} from '../../const/props.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import Adapter from '../../adapter/adapter.js';
 
-const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick, isAuth}) => {
+const PlaceCardList = ({items, nearPlacesFor, onOfferHover, onListClick, isAuth}) => {
+  const isNearPlaces = nearPlacesFor !== undefined;
   const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
 
   const placeCardList = items.map((offer, i) => {
@@ -35,7 +36,7 @@ const PlaceCardList = ({items, isNearPlaces, onOfferHover, onListClick, isAuth})
 
 PlaceCardList.propTypes = {
   items: PropTypes.arrayOf(offerPropType).isRequired,
-  isNearPlaces: PropTypes.bool.isRequired,
+  nearPlacesFor: PropTypes.string,
   onOfferHover: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func,
@@ -43,9 +44,12 @@ PlaceCardList.propTypes = {
   isAuth: PropTypes.bool.isRequired
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, props) => ({
   onActiveItemChange(activeItem) {
-    dispatch(Operation.changeFavorite(activeItem.id, Adapter.postFavorite(!activeItem.isFavorite)))
+    dispatch(Operation.changeFavorite(activeItem.id, Adapter.postFavorite(!activeItem.isFavorite)));
+    if (props.nearPlacesFor !== undefined) {
+      dispatch(Operation.loadProperties(props.nearPlacesFor))
+    }
   },
 
   onOfferHover(offer) {

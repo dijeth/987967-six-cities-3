@@ -138,15 +138,15 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
               </section>
             </div>
           </div>
-          <section className="property__map map">
-            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
-          </section>
+          {/*<section className="property__map map">
+                      <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
+                    </section>*/}
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList items={neighbourhoods} isNearPlaces={true} isAuth={isAuthorized} />
+              <PlaceCardList items={neighbourhoods} nearPlacesFor={id} isAuth={isAuthorized} />
             </div>
           </section>
         </div>

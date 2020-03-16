@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITES:
       return Object.assign({}, state, {favorites: action.payload});
 
-    case ActionType.REPLACE_OFFER:
+    case ActionType.REPLACE_OFFER: 
       const offers = state.offers;
       const index = offers.findIndex((it) => it.id === action.payload.id);
       const length = offers.length;

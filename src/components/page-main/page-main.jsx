@@ -43,7 +43,7 @@ const PageMain = ({offers, cities, activeCity, sortType, isAuth}) => {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{placesCount} places to stay in {cityName}</b>
               <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
-              <PlaceCardList items={ offers } isNearPlaces={false} isAuth={isAuth}/>
+              <PlaceCardList items={ offers } isAuth={isAuth}/>
               }
             </section>
             <div className="cities__right-section">
