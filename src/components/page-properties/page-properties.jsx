@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const.js';
-import {reviewPropTypes} from '../../const/props.js';
-import {ratingToPercent} from '../../util.js';
+import { BREAK_STRING, MAX_IMAGE_COUNT } from '../../const/const.js';
+import { reviewPropTypes } from '../../const/props.js';
+import { ratingToPercent } from '../../util.js';
 import ReviewList from '../review-list/review-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
-import PlaceCardList from '../place-card-list/place-card-list.jsx';
+import OffersNearby from '../offers-nearby/offers-nearby.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import {AppRoute} from '../../const/const.js';
-import {offerPropType} from '../../const/props.js';
+import { AppRoute } from '../../const/const.js';
+import { offerPropType } from '../../const/props.js';
 import Header from '../header/header.jsx';
-import {connect} from 'react-redux';
-import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {getNearbyList, getComments} from '../../reducers/data/selectors.js';
-import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
+import { connect } from 'react-redux';
+import { getAuthorizationStatus } from '../../reducers/user/selectors.js';
+import { getNearbyList, getComments } from '../../reducers/data/selectors.js';
+import { getActiveOffer, getActiveOfferCoord } from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCityCoord}) => {
+const PageProperties = ({ offer, reviews, isAuthorized, neighbourhoods, activeCityCoord }) => {
   if (offer === null) {
     return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
   }
@@ -64,7 +64,7 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
   });
 
   const centerCoord = activeCityCoord;
-  const offersCoord = neighbourhoods.map((it) => it.coord);
+  // const offersCoord = neighbourhoods.map((it) => it.coord);
 
   return (
     <div className="page">
@@ -139,14 +139,14 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
             </div>
           </div>
           {/*<section className="property__map map">
-                      <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
-                    </section>*/}
+            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
+          </section>*/}
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList items={neighbourhoods} nearPlacesFor={id} isAuth={isAuthorized} />
+              <OffersNearby nearPlacesFor={id} isAuth={isAuthorized} />
             </div>
           </section>
         </div>
@@ -180,16 +180,16 @@ PageProperties.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
 
-  neighbourhoods: PropTypes.arrayOf(offerPropType)
+  // neighbourhoods: PropTypes.arrayOf(offerPropType)
 };
 
 const mapStateToProps = (state) => ({
   offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
   activeCityCoord: getActiveOfferCoord(state),
-  neighbourhoods: getNearbyList(state),
+  // neighbourhoods: getNearbyList(state),
   reviews: getComments(state)
 });
 
-export {PageProperties};
+export { PageProperties };
 export default withPageError(withLoading(connect(mapStateToProps)(PageProperties)));

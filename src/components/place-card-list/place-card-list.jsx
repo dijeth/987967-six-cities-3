@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch, props) => ({
   onActiveItemChange(activeItem) {
     dispatch(Operation.changeFavorite(activeItem.id, Adapter.postFavorite(!activeItem.isFavorite)));
     if (props.nearPlacesFor !== undefined) {
-      dispatch(Operation.loadProperties(props.nearPlacesFor))
+      dispatch(Operation.loadNearbyList(props.nearPlacesFor))
     }
   },
 

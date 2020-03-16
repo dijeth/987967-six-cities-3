@@ -35,6 +35,14 @@ export const Operation = {
       });
   },
 
+  loadNearbyList: (id) => (dispatch, getState, api) => {
+    return loadNearby(id, api)
+      .then((nearbyData) => {
+        const nearbyList = Adapter.getData(nearbyData.data).offers;
+        dispatch(DataActionCreator.loadNearby(nearbyList));
+      })
+  },
+
   loadFavorites: () => (dispatch, getState, api) => {
     return api.get(ServerRoute.getFavorites())
       .then((response) => {
