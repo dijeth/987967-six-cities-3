@@ -1,16 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerPropType} from '../../const/props.js';
-import {AppRoute} from '../../const/const.js';
+import {AppRoute, PlaceCardType} from '../../const/const.js';
 import {ratingToPercent} from '../../util.js';
 import {Link} from 'react-router-dom';
 
-const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
+const PlaceCardProperties = {
+  [PlaceCardType.DEFAULT]: {
+    articleClass: `cities__place-card`,
+    imageWrapperClass: `cities__image-wrapper`,
+    cardInfoClass: ``,
+  },
+
+  [PlaceCardType.FAVORITE]: {
+    articleClass: `favorites__card`,
+    imageWrapperClass: `favorites__image-wrapper`,
+    cardInfoClass: `favorites__card-info`,
+  },
+
+  [PlaceCardType.NEARBY]: {
+    articleClass: `near-places__card`,
+    imageWrapperClass: `near-places__image-wrapper`,
+    cardInfoClass: ``,
+  }
+}
+
+const PlaceCard = ({offer, onHover, isAuth, type}) => {
   const {title, type, pictures, cost, rating, isPremium, isFavorite, id} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
-  const renderType = isNearPlaces ? `near-places` : `cities`;
   const link = AppRoute.getOffer(id);
+
   const handleMouseEnter = () => {
     onHover(offer);
   };
@@ -18,6 +38,10 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
   const handleMouseLeave = () => {
     onHover(null);
   };
+
+  const articleClass = PlaceCardProperties[type].articleClass;
+  const imageWrapperClass = PlaceCardProperties[type].imageWrapperClass;
+  const cardInfoClass = PlaceCardProperties[type].cardInfoClass;
 
   const favoriteButtonBlock = (
     <button className={`place-card__bookmark-button ${isFavorite ? `place-card__bookmark-button--active` : ``} button`} type="button">
@@ -37,17 +61,17 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
 
   return (
     <article
-      className={`${renderType}__place-card place-card`}
+      className={`${articleClass} place-card`}
       onMouseEnter={onHover ? handleMouseEnter : null}
       onMouseLeave={onHover ? handleMouseLeave : null}
     >
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
-      <div className={`${renderType}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${imageWrapperClass} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={picture} width="260" height="200" alt="Place image"/>
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${cardInfoClass} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{cost}</b>
@@ -72,8 +96,9 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onHover: PropTypes.func,
-  isNearPlaces: PropTypes.bool.isRequired,
-  isAuth: PropTypes.bool.isRequired
+  isAuth: PropTypes.bool.isRequired,
+  type: PropTypes.oneOf([Array.from(Object.values(PlaceCardType))]).isRequired
 };
 
+export {PlaceCardType};
 export default React.memo(PlaceCard);

@@ -5,18 +5,32 @@ import AppActionCreator from '../../reducers/app/action-creator.js';
 import {Operation} from '../../reducers/data/operation.js';
 import {connect} from 'react-redux';
 import {offerPropType} from '../../const/props.js';
+import {PlaceCardType} from '../../const/const.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import Adapter from '../../adapter/adapter.js';
 
-const PlaceCardList = ({items, nearPlacesFor, onOfferHover, onListClick, isAuth}) => {
+const getClassList = (type) => {
+  switch (type) {
+    case PlaceCardType.FAVORITE:
+      return `favorites__places`
+
+    case PlaceCardType.NEARBY:
+      return `near-places__list places__list`
+
+    default:
+    case PlaceCardType.DEFAULT:
+      return `cities__places-list tabs__content places__list`
+  }
+}
+
+const PlaceCardList = ({items, nearPlacesFor, onOfferHover, onListClick, isAuth, type}) => {
   const isNearPlaces = nearPlacesFor !== undefined;
-  const classList = isNearPlaces ? `near-places__list places__list` : `cities__places-list places__list tabs__content`;
+  const classList = getClassList(type);
 
   const placeCardList = items.map((offer, i) => {
     return (
       <PlaceCard
         offer={offer}
-        isNearPlaces={isNearPlaces}
         key={offer.id}
         onHover={isNearPlaces ? null : onOfferHover}
         offsetIndex={i}
@@ -40,7 +54,8 @@ PlaceCardList.propTypes = {
   onActiveItemChange: PropTypes.func,
   onListClick: PropTypes.func,
   activeItem: offerPropType,
-  isAuth: PropTypes.bool.isRequired
+  isAuth: PropTypes.bool.isRequired,
+  type: PropTypes.oneOf([Array.from(Object.values(PlaceCardType))]).isRequired
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
