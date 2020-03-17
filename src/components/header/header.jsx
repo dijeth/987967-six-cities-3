@@ -34,7 +34,7 @@ const Header = ({isAuthorized, userPicture, email, isSuperUser, isActiveLogo}) =
               <li className="header__nav-item user">
                 <Link to={link} className="header__nav-link header__nav-link--profile" href="#">
                   <div className={`header__avatar-wrapper ${isSuperUser ? `header__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    {userPicture && <img className="header__avatar user__avatar" src={`https://htmlacademy-react-3.appspot.com/six-cities${userPicture}`} width="74" height="74" alt="User avatar" />}
+                    {isAuthorized && userPicture && <img className="header__avatar user__avatar" src={`https://htmlacademy-react-3.appspot.com/six-cities${userPicture}`} width="74" height="74" alt="User avatar" />}
                   </div>
                   {userNameBlock}
                 </Link>

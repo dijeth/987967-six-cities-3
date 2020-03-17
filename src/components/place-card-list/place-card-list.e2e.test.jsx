@@ -59,16 +59,16 @@ const mocks = [{
 }
 ];
 
-describe(`When isNearPlaces === false>`, () => {
+describe(`When nearPlacesFor === undefined>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <BrowserRouter>
         <PlaceCardList
           items={mocks}
-          isNearPlaces={false}
           onOfferHover={handleOfferHover}
           onListClick={handleListClick}
+          isAuth={true}
         />
         <Switch>
           <Route exact path="/offer/:id" />
@@ -100,16 +100,17 @@ describe(`When isNearPlaces === false>`, () => {
   });
 });
 
-describe(`When isNearPlaces === true>`, () => {
+describe(`When nearPlacesFor === 1>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
       <BrowserRouter>
         <PlaceCardList
           items={mocks}
-          isNearPlaces={true}
+          nearPlacesFor={`1`}
           onOfferHover={handleOfferHover}
           onListClick={handleListClick}
+          isAuth={true}
         />
         <Switch>
           <Route exact path="/offer/:id" />
@@ -137,9 +138,9 @@ describe(`When place-card-list with-active-item`, () => {
       <BrowserRouter>
         <PlaceCardListWithActiveItem
           items={mocks}
-          isNearPlaces={false}
           onOfferHover={() => {}}
           onActiveItemChange={handleActiveItemChange}
+          isAuth={true}
         />
         <Switch>
           <Route exact path="/offer/:id" />

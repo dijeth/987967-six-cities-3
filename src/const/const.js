@@ -69,9 +69,15 @@ export const AppRoute = {
   getOffer: (id) => `/offer/${id}`,
   getFavorites: () => `/favorites`,
   getRoot: () => `/`,
-  getComments: (id) => `/comments/${id}`,
+};
+
+export const ServerRoute = {
+  getLogin: () => `/login`,
+  getFavorites: () => `/favorite`,
+  postFavorites: (id, status) => `/favorite/${id}/${status}`,
+  getNearby: (id) => `/hotels/${id}/nearby`,
   getHotels: () => `/hotels`,
-  getNearby: (id) => `/hotels/${id}/nearby`
+  getComments: (id) => `/comments/${id}`,
 };
 
 export const MAX_IMAGE_COUNT = 6;
@@ -79,4 +85,10 @@ export const MAX_IMAGE_COUNT = 6;
 export const ReviewLength = {
   MIN: 5,
   MAX: 30
+};
+
+export const ServerError = {
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
+  NOT_FOUND: 404
 };

@@ -1,12 +1,13 @@
 import UserActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import DataActionCreator from '../data/action-creator.js';
-import {AuthorizationStatus, AppRoute} from '../../const/const.js';
+import {AuthorizationStatus, AppRoute, ServerRoute, ServerError} from '../../const/const.js';
 import Adapter from '../../adapter/adapter.js';
+import history from '../../history.js';
 
 export const Operation = {
   getAuthorizationStatus: () => (dispatch, getState, api) => {
-    return api.get(AppRoute.getLogin())
+    return api.get(ServerRoute.getLogin())
       .then((response) => {
         const authData = Adapter.getUser(response.data);
 
@@ -15,36 +16,39 @@ export const Operation = {
       });
   },
 
-  authorizeUser: (userData, newPath) => (dispatch, getState, api) => {
-    return api.post(AppRoute.getLogin(), userData)
+  authorizeUser: (userData) => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.increaseLoad());
+
+    return api.post(ServerRoute.getLogin(), userData)
       .then((response) => {
         const authData = Adapter.getUser(response.data);
 
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.AUTH));
         dispatch(UserActionCreator.changeAuthInfo(authData));
-
-        if (newPath) {
-          document.location.pathname = newPath;
-        }
+        history.goBack();
       })
       .catch(() => {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
         dispatch(UserActionCreator.changeAuthInfo(null));
-        dispatch(AppActionCreator.setPageError(`Введен некорректный e-mail`));
+      })
+      .finally(() => {
+        dispatch(AppActionCreator.decreaseLoad());
       });
   },
 
   submitComment: (commentData, offerID) => (dispatch, getState, api) => {
     dispatch(AppActionCreator.changeCommentSendingStatus(true));
-    return api.post(AppRoute.getComments(offerID), commentData)
+    return api.post(ServerRoute.getComments(offerID), commentData)
       .then((response) => {
         const comments = Adapter.getComments(response.data);
         dispatch(DataActionCreator.loadComments(comments));
         dispatch(AppActionCreator.setCommentError(false));
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch(AppActionCreator.setCommentError(true));
-        dispatch(AppActionCreator.setPageError(`Ошибка при отправке комментария`));
+        if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
+          history.push(AppRoute.getLogin());
+        }
       })
       .finally(() => {
         dispatch(AppActionCreator.changeCommentSendingStatus(false));

@@ -5,21 +5,21 @@ import {reviewPropTypes} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
 import ReviewList from '../review-list/review-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
-import PlaceCardList from '../place-card-list/place-card-list.jsx';
+import OffersNearby from '../offers-nearby/offers-nearby.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
 import {AppRoute} from '../../const/const.js';
-import {offerPropType} from '../../const/props.js';
 import Header from '../header/header.jsx';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {getNearbyList, getComments} from '../../reducers/data/selectors.js';
+import {getComments, getNearbyCoordList} from '../../reducers/data/selectors.js';
+import {Operation as DataOperation} from '../../reducers/data/operation.js';
 import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
-
 import {Link} from 'react-router-dom';
+import Adapter from '../../adapter/adapter.js';
 
-const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCityCoord}) => {
+const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange}) => {
   if (offer === null) {
     return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
   }
@@ -64,7 +64,28 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
   });
 
   const centerCoord = activeCityCoord;
-  const offersCoord = neighbourhoods.map((it) => it.coord);
+
+  const favoriteButtonBlock = (
+    <button
+      className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`}
+      type="button"
+      onClick={() => {
+        onFavoriteChange(offer);
+      }}
+    >
+      <svg className="property__bookmark-icon" width="31" height="33">
+        <use xlinkHref="#icon-bookmark"></use>
+      </svg>
+      <span className="visually-hidden">To bookmarks</span>
+    </button>);
+
+  const linkToLoginBlock = (
+    <Link to={AppRoute.getLogin()} className={`property__bookmark-button button`} type="button">
+      <svg className="property__bookmark-icon" width="31" height="33">
+        <use xlinkHref="#icon-bookmark"></use>
+      </svg>
+      <span className="visually-hidden">To bookmarks</span>
+    </Link>);
 
   return (
     <div className="page">
@@ -83,12 +104,7 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`} type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                {isAuthorized ? favoriteButtonBlock : linkToLoginBlock}
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -146,7 +162,7 @@ const PageProperties = ({offer, reviews, isAuthorized, neighbourhoods, activeCit
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardList items={neighbourhoods} isNearPlaces={true} />
+              <OffersNearby nearPlacesFor={id} isAuth={isAuthorized} />
             </div>
           </section>
         </div>
@@ -179,17 +195,25 @@ PageProperties.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes)),
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
-
-  neighbourhoods: PropTypes.arrayOf(offerPropType)
+  onFavoriteChange: PropTypes.func,
+  offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
 };
 
 const mapStateToProps = (state) => ({
   offer: getActiveOffer(state),
   isAuthorized: getAuthorizationStatus(state),
   activeCityCoord: getActiveOfferCoord(state),
-  neighbourhoods: getNearbyList(state),
-  reviews: getComments(state)
+  reviews: getComments(state),
+  offersCoord: getNearbyCoordList(state)
 });
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFavoriteChange(offer) {
+      dispatch(DataOperation.changeFavorite(offer.id, Adapter.postFavorite(!offer.isFavorite)));
+    }
+  };
+};
+
 export {PageProperties};
-export default withPageError(withLoading(connect(mapStateToProps)(PageProperties)));
+export default withPageError(withLoading(connect(mapStateToProps, mapDispatchToProps)(PageProperties)));

@@ -131,7 +131,8 @@ const store = mockStore({
     }
   },
   [NameSpace.DATA]: {
-    offers
+    offers,
+    nearbyList: neighbourhoods
   }
 });
 
@@ -142,9 +143,10 @@ describe(`<PageProperties /> snapshot test`, () => {
           <BrowserRouter>
             <PageProperties
               isAuthorized={false}
-              neighbourhoods={neighbourhoods}
               offer={activeOffer}
               activeCityCoord={[1, 2]}
+              reviews={[]}
+              offersCoord={neighbourhoods.map((it) => it.coord)}
             />
           </BrowserRouter>
         </Provider>, {createNodeMock: () => document.createElement(`div`)}).toJSON();
@@ -158,9 +160,10 @@ describe(`<PageProperties /> snapshot test`, () => {
           <BrowserRouter>
             <PageProperties
               isAuthorized={true}
-              neighbourhoods={neighbourhoods}
               offer={activeOffer}
               activeCityCoord={[1, 2]}
+              reviews={[]}
+              offersCoord={neighbourhoods.map((it) => it.coord)}
             />
           </BrowserRouter>
         </Provider>, {createNodeMock: () => document.createElement(`div`)}).toJSON();

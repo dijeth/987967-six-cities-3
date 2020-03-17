@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getLoadingStatus} from '../../reducers/app/selectors.js';
+import {getLoading} from '../../reducers/app/selectors.js';
 
 const withLoading = (Component) => {
   const WithLoading = (props) => {
-    if (props.isLoading) {
+    if (props.loading !== 0) {
       return <h1>Loading...</h1>;
     }
 
@@ -13,11 +13,11 @@ const withLoading = (Component) => {
   };
 
   WithLoading.propTypes = {
-    isLoading: PropTypes.bool
+    loading: PropTypes.number
   };
 
   const mapStateToProps = (state) => ({
-    isLoading: getLoadingStatus(state)
+    loading: getLoading(state)
   });
 
   return connect(mapStateToProps)(WithLoading);

@@ -24,10 +24,15 @@ describe(`App ActionCreator Test`, () => {
     });
   });
 
-  it(`should return a correct action for changeLoadingStatus`, () => {
-    expect(ActionCreator.changeLoadingStatus(`isLoading`)).toEqual({
-      type: ActionType.CHANGE_LOADING_STATUS,
-      payload: `isLoading`
+  it(`should return a correct action for increaseLoad`, () => {
+    expect(ActionCreator.increaseLoad()).toEqual({
+      type: ActionType.INCREASE_LOAD
+    });
+  });
+
+  it(`should return a correct action for decreaseLoad`, () => {
+    expect(ActionCreator.decreaseLoad()).toEqual({
+      type: ActionType.DECREASE_LOAD
     });
   });
 });

@@ -5,7 +5,7 @@ import {AppRoute} from '../../const/const.js';
 import {ratingToPercent} from '../../util.js';
 import {Link} from 'react-router-dom';
 
-const PlaceCard = ({offer, isNearPlaces, onHover}) => {
+const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
   const {title, type, pictures, cost, rating, isPremium, isFavorite, id} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
@@ -18,6 +18,22 @@ const PlaceCard = ({offer, isNearPlaces, onHover}) => {
   const handleMouseLeave = () => {
     onHover(null);
   };
+
+  const favoriteButtonBlock = (
+    <button className={`place-card__bookmark-button ${isFavorite ? `place-card__bookmark-button--active` : ``} button`} type="button">
+      <svg className="place-card__bookmark-icon" width="18" height="19">
+        <use xlinkHref="#icon-bookmark"></use>
+      </svg>
+      <span className="visually-hidden">To bookmarks</span>
+    </button>);
+
+  const linkToLogin = (
+    <Link to={AppRoute.getLogin()} className="place-card__bookmark-button button">
+      <svg className="place-card__bookmark-icon" width="18" height="19">
+        <use xlinkHref="#icon-bookmark"></use>
+      </svg>
+      <span className="visually-hidden">To bookmarks</span>
+    </Link>);
 
   return (
     <article
@@ -37,12 +53,7 @@ const PlaceCard = ({offer, isNearPlaces, onHover}) => {
             <b className="place-card__price-value">&euro;{cost}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${isFavorite ? `place-card__bookmark-button--active` : ``} button`} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          {isAuth ? favoriteButtonBlock : linkToLogin}
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -61,7 +72,8 @@ const PlaceCard = ({offer, isNearPlaces, onHover}) => {
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onHover: PropTypes.func,
-  isNearPlaces: PropTypes.bool.isRequired
+  isNearPlaces: PropTypes.bool.isRequired,
+  isAuth: PropTypes.bool.isRequired
 };
 
-export default PlaceCard;
+export default React.memo(PlaceCard);

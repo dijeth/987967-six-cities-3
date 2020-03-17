@@ -4,7 +4,8 @@ import Review from '../review/review.jsx';
 import {reviewPropTypes} from '../../const/props.js';
 
 const ReviewList = ({reviews}) => {
-  const reviewList = reviews.map((it) => {
+  const sortedList = reviews.slice(0, 9).sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+  const reviewList = sortedList.map((it) => {
     const {id} = it;
     return (
       <li className="reviews__item" key={id}>

@@ -5,17 +5,39 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import reducer from './reducers/reducer.js';
-import {Operation as DataOperation} from './reducers/operation.js';
+import {Operation as DataOperation} from './reducers/data/operation.js';
 import {Operation as UserOperation} from './reducers/user/operation.js';
 import {createAPI} from './api.js';
-import {AuthorizationStatus} from './const/const.js';
-import ActionCreator from './reducers/user/action-creator.js';
+import {AuthorizationStatus, ServerError} from './const/const.js';
+import UserActionCreator from './reducers/user/action-creator.js';
+import AppActionCreator from './reducers/app/action-creator.js';
 
-const onUnauthorized = () => {
-  store.dispatch(ActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+const loadData = () => {
+  store.dispatch(AppActionCreator.increaseLoad());
+  Promise.all([
+    store.dispatch(DataOperation.loadOffers()),
+    store.dispatch(UserOperation.getAuthorizationStatus()),
+  ])
+    .finally(() => {
+      store.dispatch(AppActionCreator.decreaseLoad());
+    });
 };
 
-const api = createAPI(onUnauthorized);
+const onFail = (response, status) => {
+  if (status === ServerError.UNAUTHORIZED) {
+    store.dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+    return;
+  }
+
+  if (status !== null) {
+    store.dispatch(AppActionCreator.setPageError(response.data.error));
+    return;
+  }
+
+  store.dispatch(AppActionCreator.setPageError(`No internet`));
+};
+
+const api = createAPI(onFail);
 
 const rootElement = document.getElementById(`root`);
 
@@ -27,8 +49,7 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.loadOffers());
-store.dispatch(UserOperation.getAuthorizationStatus());
+loadData();
 
 ReactDom.render(
     <Provider store={store}>

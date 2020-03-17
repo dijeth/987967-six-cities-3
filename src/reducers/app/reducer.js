@@ -5,7 +5,7 @@ const initialState = {
   activeCity: null,
   activeOffer: null,
   sortType: SortType.POPULAR,
-  isLoading: false,
+  loading: 0,
   isCommentSending: false,
   commentError: false,
   pageError: ``
@@ -22,8 +22,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_SORT_TYPE:
       return Object.assign({}, state, {sortType: action.payload});
 
-    case ActionType.CHANGE_LOADING_STATUS:
-      return Object.assign({}, state, {isLoading: action.payload});
+    case ActionType.INCREASE_LOAD:
+      return Object.assign({}, state, {loading: state.loading + 1});
+
+    case ActionType.DECREASE_LOAD:
+      return Object.assign({}, state, {loading: state.loading - 1});
 
     case ActionType.CHANGE_COMMENT_SENDING_STATUS:
       return Object.assign({}, state, {isCommentSending: action.payload});

@@ -6,6 +6,7 @@ const initialState = {
   offers: [],
   nearbyList: [],
   comments: [],
+  favorites: [],
 };
 
 describe(`Test App reducer`, () => {

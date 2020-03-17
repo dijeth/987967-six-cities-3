@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Header from '../header/header.jsx';
-import {Operation} from '../../reducers/user/operation.js';
-import {AppRoute} from '../../const/const.js';
+import {Operation as UserOperation} from '../../reducers/user/operation.js';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
 class PageSignIn extends React.PureComponent {
@@ -66,7 +65,7 @@ PageSignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(userData) {
-    dispatch(Operation.authorizeUser(userData, AppRoute.getRoot()));
+    dispatch(UserOperation.authorizeUser(userData));
   }
 });
 
