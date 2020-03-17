@@ -16,12 +16,12 @@ import {Operation as DataOperation} from '../../reducers/data/operation.js';
 import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import Adapter from '../../adapter/adapter.js';
 
 const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange}) => {
   if (offer === null) {
-    return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
+    return <Redirect to={AppRoute.getRoot()} />
   }
 
   const {
