@@ -12,18 +12,18 @@ import Adapter from '../../adapter/adapter.js';
 const getClassList = (type) => {
   switch (type) {
     case PlaceCardType.FAVORITE:
-      return `favorites__places`
+      return `favorites__places`;
 
     case PlaceCardType.NEARBY:
-      return `near-places__list places__list`
+      return `near-places__list places__list`;
 
     default:
     case PlaceCardType.DEFAULT:
-      return `cities__places-list tabs__content places__list`
+      return `cities__places-list tabs__content places__list`;
   }
-}
+};
 
-const PlaceCardList = ({items, nearPlacesFor, onOfferHover, onListClick, isAuth, type}) => {
+const PlaceCardList = ({items, onOfferHover, onListClick, isAuth, type}) => {
   const classList = getClassList(type);
 
   const placeCardList = items.map((offer, i) => {

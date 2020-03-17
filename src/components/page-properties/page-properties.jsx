@@ -21,7 +21,7 @@ import Adapter from '../../adapter/adapter.js';
 
 const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange}) => {
   if (offer === null) {
-    return <Redirect to={AppRoute.getRoot()} />
+    return <Redirect to={AppRoute.getRoot()} />;
   }
 
   const {

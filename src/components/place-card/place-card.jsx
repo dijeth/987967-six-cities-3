@@ -29,7 +29,7 @@ const PlaceCardProperties = {
     imageWidth: 260,
     imageHeight: 200,
   }
-}
+};
 
 const PlaceCard = ({offer, onHover, isAuth, type}) => {
   const {title, type: offerType, pictures, cost, rating, isPremium, isFavorite, id} = offer;

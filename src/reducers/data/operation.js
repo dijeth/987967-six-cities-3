@@ -52,7 +52,9 @@ export const Operation = {
     return api.get(ServerRoute.getFavorites())
       .then((response) => {
         const data = Adapter.getData(response.data).offers;
-        data.forEach((it) => {dispatch(DataActionCreator.replaceOffer(it))})
+        data.forEach((it) => {
+          dispatch(DataActionCreator.replaceOffer(it));
+        });
       })
       .finally(() => {
         dispatch(AppActionCreator.decreaseLoad());

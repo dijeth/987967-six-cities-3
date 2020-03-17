@@ -23,8 +23,8 @@ export const getActiveCityName = (state) => state[NameSpace.APP].activeCity;
 export const getActiveCity = (state) => {
   const activeCity = getActiveCityName(state);
   if (activeCity === null) {
-  	return null
-  };
+    return null;
+  }
 
   const cities = getCities(state);
 

@@ -35,6 +35,6 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuth: getAuthorizationStatus(state)
-})
+});
 
 export default connect(mapStateToProps)(App);
