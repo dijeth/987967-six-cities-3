@@ -5,7 +5,6 @@ const initialState = {
   offers: [],
   nearbyList: [],
   comments: [],
-  favorites: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,9 +20,6 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.LOAD_COMMENTS:
       return Object.assign({}, state, {comments: action.payload});
-
-    case ActionType.LOAD_FAVORITES:
-      return Object.assign({}, state, {favorites: action.payload});
 
     case ActionType.REPLACE_OFFER:
       const offers = state.offers;
