@@ -18,13 +18,13 @@ const App = ({isAuth}) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/offer/:id" render={({match}) => {
+        <Route exact path={AppRoute.getOffer(`:id`)} render={({match}) => {
           const id = match.params.id;
           return <PagePropertiesWithPathName pathID={id} />;
         }} />
-        <PrivateRoute path="/login" require={!isAuth} render={() => <PageSignIn />} to={AppRoute.getRoot()} />
-        <PrivateRoute path="/favorites" require={isAuth} render={() => <PageFavotites />} to={AppRoute.getLogin()} />
-        <Route exact path="/" component={PageMain} />
+        <PrivateRoute path={AppRoute.getLogin()} require={!isAuth} render={() => <PageSignIn />} to={AppRoute.getRoot()} />
+        <PrivateRoute path={AppRoute.getFavorites()} require={isAuth} render={() => <PageFavotites />} to={AppRoute.getLogin()} />
+        <Route exact path={AppRoute.getRoot()} component={PageMain} />
       </Switch>
     </Router>);
 };
