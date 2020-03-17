@@ -141,6 +141,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
             </h1>
             <button
               className="property__bookmark-button  button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -280,6 +281,19 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
           <section
             className="property__reviews reviews"
           >
+            <h2
+              className="reviews__title"
+            >
+              Reviews · 
+              <span
+                className="reviews__amount"
+              >
+                0
+              </span>
+            </h2>
+            <ul
+              className="reviews__list"
+            />
             <form
               action="#"
               className="reviews__form form"
@@ -913,8 +927,10 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
             >
               title
             </h1>
-            <button
-              className="property__bookmark-button  button"
+            <a
+              className="property__bookmark-button button"
+              href="/login"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -931,7 +947,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
               >
                 To bookmarks
               </span>
-            </button>
+            </a>
           </div>
           <div
             className="property__rating rating"
@@ -1053,7 +1069,21 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
           </div>
           <section
             className="property__reviews reviews"
-          />
+          >
+            <h2
+              className="reviews__title"
+            >
+              Reviews · 
+              <span
+                className="reviews__amount"
+              >
+                0
+              </span>
+            </h2>
+            <ul
+              className="reviews__list"
+            />
+          </section>
         </div>
       </div>
       <section
@@ -1123,9 +1153,10 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                       / night
                     </span>
                   </div>
-                  <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
-                    type="button"
+                  <a
+                    className="place-card__bookmark-button button"
+                    href="/login"
+                    onClick={[Function]}
                   >
                     <svg
                       className="place-card__bookmark-icon"
@@ -1141,7 +1172,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                     >
                       To bookmarks
                     </span>
-                  </button>
+                  </a>
                 </div>
                 <div
                   className="place-card__rating rating"
@@ -1221,9 +1252,10 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                       / night
                     </span>
                   </div>
-                  <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
-                    type="button"
+                  <a
+                    className="place-card__bookmark-button button"
+                    href="/login"
+                    onClick={[Function]}
                   >
                     <svg
                       className="place-card__bookmark-icon"
@@ -1239,7 +1271,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                     >
                       To bookmarks
                     </span>
-                  </button>
+                  </a>
                 </div>
                 <div
                   className="place-card__rating rating"
@@ -1319,9 +1351,10 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                       / night
                     </span>
                   </div>
-                  <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
-                    type="button"
+                  <a
+                    className="place-card__bookmark-button button"
+                    href="/login"
+                    onClick={[Function]}
                   >
                     <svg
                       className="place-card__bookmark-icon"
@@ -1337,7 +1370,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                     >
                       To bookmarks
                     </span>
-                  </button>
+                  </a>
                 </div>
                 <div
                   className="place-card__rating rating"

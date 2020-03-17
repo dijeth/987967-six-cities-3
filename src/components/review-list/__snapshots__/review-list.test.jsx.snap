@@ -28,65 +28,6 @@ Array [
             alt="Reviews avatar"
             className="reviews__avatar user__avatar"
             height="54"
-            src="userPicture-1"
-            width="54"
-          />
-        </div>
-        <span
-          className="reviews__user-name"
-        >
-          userName-1
-        </span>
-      </div>
-      <div
-        className="reviews__info"
-      >
-        <div
-          className="reviews__rating rating"
-        >
-          <div
-            className="reviews__stars rating__stars"
-          >
-            <span
-              style={
-                Object {
-                  "width": "100%",
-                }
-              }
-            />
-            <span
-              className="visually-hidden"
-            >
-              Rating
-            </span>
-          </div>
-        </div>
-        <p
-          className="reviews__text"
-        >
-          description-1
-        </p>
-        <time
-          className="reviews__time"
-          dateTime="2020-02-20"
-        >
-          February 2020
-        </time>
-      </div>
-    </li>
-    <li
-      className="reviews__item"
-    >
-      <div
-        className="reviews__user user"
-      >
-        <div
-          className="reviews__avatar-wrapper user__avatar-wrapper"
-        >
-          <img
-            alt="Reviews avatar"
-            className="reviews__avatar user__avatar"
-            height="54"
             src="userPicture-2"
             width="54"
           />
@@ -128,6 +69,65 @@ Array [
         <time
           className="reviews__time"
           dateTime="2020-02-29"
+        >
+          February 2020
+        </time>
+      </div>
+    </li>
+    <li
+      className="reviews__item"
+    >
+      <div
+        className="reviews__user user"
+      >
+        <div
+          className="reviews__avatar-wrapper user__avatar-wrapper"
+        >
+          <img
+            alt="Reviews avatar"
+            className="reviews__avatar user__avatar"
+            height="54"
+            src="userPicture-1"
+            width="54"
+          />
+        </div>
+        <span
+          className="reviews__user-name"
+        >
+          userName-1
+        </span>
+      </div>
+      <div
+        className="reviews__info"
+      >
+        <div
+          className="reviews__rating rating"
+        >
+          <div
+            className="reviews__stars rating__stars"
+          >
+            <span
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            />
+            <span
+              className="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <p
+          className="reviews__text"
+        >
+          description-1
+        </p>
+        <time
+          className="reviews__time"
+          dateTime="2020-02-20"
         >
           February 2020
         </time>

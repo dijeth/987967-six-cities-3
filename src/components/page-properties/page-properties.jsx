@@ -196,7 +196,7 @@ PageProperties.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
   onFavoriteChange: PropTypes.func,
-  offersCoord: PropTypes.arrayOf(PropTypes.number)
+  offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
 };
 
 const mapStateToProps = (state) => ({

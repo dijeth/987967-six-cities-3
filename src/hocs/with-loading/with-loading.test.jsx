@@ -9,10 +9,10 @@ const mockStore = configureStore([]);
 const Component = () => <div>Mock</div>;
 const ComponentWithLoading = withLoading(Component);
 
-it(`should render "Loading..." when isLoading === true`, () => {
+it(`should render "Loading..." when "loading" === 1`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
-      isLoading: true
+      loading: 1
     }
   });
 
@@ -25,10 +25,10 @@ it(`should render "Loading..." when isLoading === true`, () => {
   expect(tree).toMatchSnapshot();
 });
 
-it(`should render Component when isLoading === false`, () => {
+it(`should render Component when loading === 0`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
-      isLoading: false
+      loading: 0
     }
   });
 

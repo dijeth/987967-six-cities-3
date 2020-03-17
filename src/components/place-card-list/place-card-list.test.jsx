@@ -30,14 +30,13 @@ const mocks = [{
 ];
 
 describe(`<PlaceCardList /> should be render correctly`, () => {
-  it(`when isNearPlaces === false`, () => {
+  it(`when nearPlacesFor === undefined, isAuth === false`, () => {
     const tree = renderer.create(
         <BrowserRouter>
           <PlaceCardList
             items={mocks}
-            isNearPlaces={false}
             onOfferHover={()=>{}}
-            onOfferClick={()=>{}}
+            isAuth={false}
           />
           <Switch>
             <Route exact path="/offer/:id" />
@@ -48,14 +47,31 @@ describe(`<PlaceCardList /> should be render correctly`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`when isNearPlaces === true`, () => {
+  it(`when nearPlacesFor === undefined, isAuth === true`, () => {
     const tree = renderer.create(
         <BrowserRouter>
           <PlaceCardList
             items={mocks}
-            isNearPlaces={true}
             onOfferHover={()=>{}}
-            onOfferClick={()=>{}}
+            isAuth={true}
+          />
+          <Switch>
+            <Route exact path="/offer/:id" />
+          </Switch>
+        </BrowserRouter>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`when nearPlacesFor === 1`, () => {
+    const tree = renderer.create(
+        <BrowserRouter>
+          <PlaceCardList
+            items={mocks}
+            nearPlacesFor={`1`}
+            onOfferHover={()=>{}}
+            isAuth={true}
           />
           <Switch>
             <Route exact path="/offer/:id" />

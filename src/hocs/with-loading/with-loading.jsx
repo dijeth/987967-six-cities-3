@@ -13,7 +13,7 @@ const withLoading = (Component) => {
   };
 
   WithLoading.propTypes = {
-    loading: PropTypes.bool
+    loading: PropTypes.number
   };
 
   const mapStateToProps = (state) => ({

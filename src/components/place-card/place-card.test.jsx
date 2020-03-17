@@ -25,6 +25,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
             offsetIndex={0}
             onHover={() => {}}
             isNearPlaces={false}
+            isAuth={true}
           />
           <Switch>
             <Route exact path="/offer/:id" />
@@ -43,6 +44,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
             offsetIndex={0}
             onHover={() => {}}
             isNearPlaces={true}
+            isAuth={true}
           />
           <Switch>
             <Route exact path="/offer/:id" />
@@ -62,6 +64,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
             offsetIndex={0}
             onHover={() => {}}
             isNearPlaces={true}
+            isAuth={true}
           />
           <Switch>
             <Route exact path="/offer/:id" />
@@ -81,6 +84,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
             offsetIndex={0}
             onHover={() => {}}
             isNearPlaces={true}
+            isAuth={true}
           />
           <Switch>
             <Route exact path="/offer/:id" />

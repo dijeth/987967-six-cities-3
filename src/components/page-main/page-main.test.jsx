@@ -86,6 +86,7 @@ it(`<PageMain /> should be rendered correctly`, () => {
             cities={cities}
             offers={offers}
             sortType={SortType.POPULAR}
+            isAuth={true}
           />
         </BrowserRouter>
       </Provider>, {createNodeMock: () => document.createElement(`div`)}).toJSON();
