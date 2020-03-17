@@ -48,7 +48,7 @@ const PlaceCard = ({offer, onHover, isAuth, type}) => {
       <svg className="place-card__bookmark-icon" width="18" height="19">
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
-      <span className="visually-hidden">To bookmarks</span>
+      <span className="visually-hidden">{`${isFavorite ? `From` : `To`} bookmarks`}</span>
     </button>);
 
   const linkToLogin = (
@@ -100,5 +100,4 @@ PlaceCard.propTypes = {
   type: PropTypes.oneOf(Array.from(Object.values(PlaceCardType))).isRequired
 };
 
-export {PlaceCardType};
 export default React.memo(PlaceCard);
