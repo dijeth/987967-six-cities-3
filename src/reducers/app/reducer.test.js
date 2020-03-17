@@ -6,7 +6,7 @@ const initialState = {
   activeCity: null,
   activeOffer: null,
   sortType: SortType.POPULAR,
-  isLoading: false,
+  loading: 0,
   isCommentSending: false,
   commentError: false,
   pageError: ``
@@ -22,7 +22,7 @@ describe(`Test App reducer`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      isLoading: false,
+      loading: 0,
       sortType: SortType.POPULAR
     }, {
       type: ActionType.CHANGE_CITY,
@@ -30,7 +30,7 @@ describe(`Test App reducer`, () => {
     })).toEqual({
       activeCity: `London`,
       activeOffer: null,
-      isLoading: false,
+      loading: 0,
       sortType: SortType.POPULAR
     });
   });
@@ -39,7 +39,7 @@ describe(`Test App reducer`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      isLoading: false,
+      loading: 0,
       sortType: SortType.POPULAR
     }, {
       type: ActionType.CHANGE_ACTIVE_OFFER,
@@ -47,24 +47,39 @@ describe(`Test App reducer`, () => {
     })).toEqual({
       activeCity: null,
       activeOffer: `A new offer`,
-      isLoading: false,
+      loading: 0,
       sortType: SortType.POPULAR
     });
   });
 
-  it(`should change a isLoading by payload`, () => {
+  it(`should increment a "loading" by 1`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      isLoading: false,
+      loading: 0,
       sortType: SortType.POPULAR
     }, {
-      type: ActionType.CHANGE_LOADING_STATUS,
-      payload: true
+      type: ActionType.INCREASE_LOAD
     })).toEqual({
       activeCity: null,
       activeOffer: null,
-      isLoading: true,
+      loading: 1,
+      sortType: SortType.POPULAR
+    });
+  });
+
+  it(`should decrement a "loading" by 1`, () => {
+    expect(reducer({
+      activeCity: null,
+      activeOffer: null,
+      loading: 1,
+      sortType: SortType.POPULAR
+    }, {
+      type: ActionType.DECREASE_LOAD
+    })).toEqual({
+      activeCity: null,
+      activeOffer: null,
+      loading: 0,
       sortType: SortType.POPULAR
     });
   });
@@ -73,7 +88,7 @@ describe(`Test App reducer`, () => {
     expect(reducer({
       activeCity: null,
       activeOffer: null,
-      isLoading: false,
+      loading: 0,
       sortType: SortType.POPULAR
     }, {
       type: ActionType.CHANGE_SORT_TYPE,
@@ -81,7 +96,7 @@ describe(`Test App reducer`, () => {
     })).toEqual({
       activeCity: null,
       activeOffer: null,
-      isLoading: false,
+      loading: 0,
       sortType: SortType.PRICE_LOW_TO_HIGH
     });
   });

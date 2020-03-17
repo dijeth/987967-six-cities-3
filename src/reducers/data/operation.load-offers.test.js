@@ -1,8 +1,8 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../api.js';
+import {createAPI} from '../../api.js';
 import {Operation} from './operation.js';
-import ActionType from './action-type.js';
-import Adapter from '../adapter/adapter.js';
+import ActionType from '../action-type.js';
+import Adapter from '../../adapter/adapter.js';
 
 const api = createAPI(() => {});
 const apiMock = new MockAdapter(api);
@@ -91,8 +91,7 @@ it(`should call a dispatch for 5 times`, () => {
       expect(dispatch).toHaveBeenCalledTimes(5);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.CHANGE_LOADING_STATUS,
-        payload: true
+        type: ActionType.INCREASE_LOAD,
       });
 
       expect(dispatch).toHaveBeenNthCalledWith(2, {
@@ -111,8 +110,7 @@ it(`should call a dispatch for 5 times`, () => {
       });
 
       expect(dispatch).toHaveBeenNthCalledWith(5, {
-        type: ActionType.CHANGE_LOADING_STATUS,
-        payload: false
+        type: ActionType.DECREASE_LOAD,
       });
     });
 });
