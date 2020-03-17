@@ -10,18 +10,24 @@ const PlaceCardProperties = {
     articleClass: `cities__place-card`,
     imageWrapperClass: `cities__image-wrapper`,
     cardInfoClass: ``,
+    imageWidth: 260,
+    imageHeight: 200,
   },
 
   [PlaceCardType.FAVORITE]: {
     articleClass: `favorites__card`,
     imageWrapperClass: `favorites__image-wrapper`,
     cardInfoClass: `favorites__card-info`,
+    imageWidth: 150,
+    imageHeight: 110,
   },
 
   [PlaceCardType.NEARBY]: {
     articleClass: `near-places__card`,
     imageWrapperClass: `near-places__image-wrapper`,
     cardInfoClass: ``,
+    imageWidth: 260,
+    imageHeight: 200,
   }
 }
 
@@ -42,6 +48,8 @@ const PlaceCard = ({offer, onHover, isAuth, type}) => {
   const articleClass = PlaceCardProperties[type].articleClass;
   const imageWrapperClass = PlaceCardProperties[type].imageWrapperClass;
   const cardInfoClass = PlaceCardProperties[type].cardInfoClass;
+  const imageWidth = PlaceCardProperties[type].imageWidth;
+  const imageHeight = PlaceCardProperties[type].imageHeight;
 
   const favoriteButtonBlock = (
     <button className={`place-card__bookmark-button ${isFavorite ? `place-card__bookmark-button--active` : ``} button`} type="button">
@@ -68,7 +76,7 @@ const PlaceCard = ({offer, onHover, isAuth, type}) => {
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className={`${imageWrapperClass} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={picture} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={picture} width={imageWidth} height={imageHeight} alt="Place image"/>
         </a>
       </div>
       <div className={`${cardInfoClass} place-card__info`}>

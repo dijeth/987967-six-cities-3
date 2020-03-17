@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import {connect} from 'react-redux';
 import {getFavorites} from '../../reducers/data/selectors.js';
-import {PlaceCardType} from '../../const/const.js';
+import ActionCreator from '../../reducers/app/action-creator.js';
+import {PlaceCardType, AppRoute} from '../../const/const.js';
+import {Link} from 'react-router-dom';
 
 const splitOffersByCity = (offers) => {
 	const splittedOffers = {};
@@ -24,16 +26,16 @@ const splitOffersByCity = (offers) => {
 	}
 }
 
-const OffersFavorite = ({favoriteItems, isAuth}) => {
+const OffersFavorite = ({favoriteItems, isAuth, onCityClick}) => {
 	const {cities, offers} = splitOffersByCity(favoriteItems);
 	const items = cities.map((city) => {
 		return (
 			<li className="favorites__locations-items" key={city}>
 	      <div className="favorites__locations locations locations--current">
 	        <div className="locations__item">
-	          <a className="locations__item-link" href="#">
+	          <Link to={AppRoute.getRoot()} className="locations__item-link" onClick={() => {onCityClick(city)}}>
 	            <span>{city}</span>
-	          </a>
+	          </Link>
 	        </div>
 	      </div>
 	      <PlaceCardList items={offers[city]} isAuth={isAuth} type={PlaceCardType.FAVORITE} />
@@ -46,11 +48,18 @@ const OffersFavorite = ({favoriteItems, isAuth}) => {
 
 OffersFavorite.propTypes = {
   favoriteItems: PropTypes.array,
-  isAuth: PropTypes.bool
+  isAuth: PropTypes.bool,
+  onCityClick: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   favoriteItems: getFavorites(state)
 });
 
-export default connect(mapStateToProps)(OffersFavorite);
+const mapDispatchToProps = (dispatch) => ({
+	onCityClick(city) {
+		dispatch(ActionCreator.changeCity(city))
+	}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(OffersFavorite);

@@ -16,7 +16,7 @@ export const Operation = {
 
         dispatch(DataActionCreator.loadOffers(data.offers));
         dispatch(DataActionCreator.loadCities(data.cities));
-        dispatch(AppActionCreator.changeCity(data.cities[0]));
+        dispatch(AppActionCreator.changeCity(data.cities[0].name));
       })
       .finally(() => {
         dispatch(AppActionCreator.decreaseLoad());
