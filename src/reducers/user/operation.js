@@ -17,7 +17,7 @@ export const Operation = {
   },
 
   authorizeUser: (userData, path) => (dispatch, getState, api) => {
-    dispatch(AppActionCreator.changeLoadingStatus(true));
+    dispatch(AppActionCreator.increaseLoad());
 
     return api.post(ServerRoute.getLogin(), userData)
       .then((response) => {
@@ -32,7 +32,7 @@ export const Operation = {
         dispatch(UserActionCreator.changeAuthInfo(null));
       })
       .finally(() => {
-        dispatch(AppActionCreator.changeLoadingStatus(false));
+        dispatch(AppActionCreator.decreaseLoad());
       })
   },
 

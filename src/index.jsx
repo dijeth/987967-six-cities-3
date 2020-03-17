@@ -14,13 +14,13 @@ import AppActionCreator from './reducers/app/action-creator.js';
 import history from './history.js';
 
 const loadData = () => {
-  store.dispatch(AppActionCreator.changeLoadingStatus(true));
+  store.dispatch(AppActionCreator.increaseLoad());
   Promise.all([
       store.dispatch(DataOperation.loadOffers()),
       store.dispatch(UserOperation.getAuthorizationStatus()),
     ])
     .finally(() => {
-      store.dispatch(AppActionCreator.changeLoadingStatus(false));
+      store.dispatch(AppActionCreator.decreaseLoad());
     })
 }
 

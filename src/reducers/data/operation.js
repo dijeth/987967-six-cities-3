@@ -9,6 +9,7 @@ const loadComments = (id, api) => api.get(ServerRoute.getComments(id));
 
 export const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.increaseLoad());
     return api.get(ServerRoute.getHotels())
       .then((response) => {
         const data = Adapter.getData(response.data);
@@ -16,11 +17,14 @@ export const Operation = {
         dispatch(DataActionCreator.loadOffers(data.offers));
         dispatch(DataActionCreator.loadCities(data.cities));
         dispatch(AppActionCreator.changeCity(data.cities[0]));
+      })
+      .finally(() => {
+        dispatch(AppActionCreator.decreaseLoad());
       });
   },
 
   loadProperties: (id) => (dispatch, getState, api) => {
-    dispatch(AppActionCreator.changeLoadingStatus(true));
+    dispatch(AppActionCreator.increaseLoad());
 
     return Promise.all([loadNearby(id, api), loadComments(id, api)])
       .then(([nearbyData, commentData]) => {
@@ -31,7 +35,7 @@ export const Operation = {
         dispatch(DataActionCreator.loadComments(commentList));
       })
       .finally(() => {
-        dispatch(AppActionCreator.changeLoadingStatus(false));
+        dispatch(AppActionCreator.decreaseLoad());
       });
   },
 
