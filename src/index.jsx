@@ -18,9 +18,12 @@ const loadData = () => {
     store.dispatch(DataOperation.loadOffers()),
     store.dispatch(UserOperation.getAuthorizationStatus()),
   ])
-    .finally(() => {
-      store.dispatch(AppActionCreator.decreaseLoad());
-    });
+  .then(() => {
+    store.dispatch(DataOperation.updateFavorites())
+  })
+  .finally(() => {
+    store.dispatch(AppActionCreator.decreaseLoad());
+  });
 };
 
 const onFail = (response, status) => {

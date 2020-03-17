@@ -47,11 +47,15 @@ export const Operation = {
       });
   },
 
-  loadFavorites: () => (dispatch, getState, api) => {
+  updateFavorites: () => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.increaseLoad());
     return api.get(ServerRoute.getFavorites())
       .then((response) => {
         const data = Adapter.getData(response.data).offers;
-        dispatch(DataActionCreator.loadFavorites(data));
+        data.forEach((it) => {dispatch(DataActionCreator.replaceOffer(it))})
+      })
+      .finally(() => {
+        dispatch(AppActionCreator.decreaseLoad());
       });
   },
 

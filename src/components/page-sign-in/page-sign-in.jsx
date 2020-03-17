@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Header from '../header/header.jsx';
-import {Operation as UserOperation} from '../../reducers/user/operation.js';
+import { Operation as UserOperation } from '../../reducers/user/operation.js';
+import { Operation as DataOperation } from '../../reducers/data/operation.js';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
 class PageSignIn extends React.PureComponent {
@@ -65,9 +66,12 @@ PageSignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(userData) {
-    dispatch(UserOperation.authorizeUser(userData));
+    dispatch(UserOperation.authorizeUser(userData))
+      .then(() => {
+        dispatch(DataOperation.updateFavorites());
+      });
   }
 });
 
-export {PageSignIn};
+export { PageSignIn };
 export default withPageError(connect(null, mapDispatchToProps)(PageSignIn));
