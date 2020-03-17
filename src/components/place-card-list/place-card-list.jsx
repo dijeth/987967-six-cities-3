@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import AppActionCreator from '../../reducers/app/action-creator.js';
-import DataActionCreator from '../../reducers/data/action-creator.js';
 import {Operation} from '../../reducers/data/operation.js';
 import {connect} from 'react-redux';
 import {offerPropType} from '../../const/props.js';
@@ -48,7 +47,7 @@ const mapDispatchToProps = (dispatch, props) => ({
   onActiveItemChange(activeItem) {
     dispatch(Operation.changeFavorite(activeItem.id, Adapter.postFavorite(!activeItem.isFavorite)));
     if (props.nearPlacesFor !== undefined) {
-      dispatch(Operation.loadNearbyList(props.nearPlacesFor))
+      dispatch(Operation.loadNearbyList(props.nearPlacesFor));
     }
   },
 

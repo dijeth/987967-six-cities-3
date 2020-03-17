@@ -1,7 +1,7 @@
 const FavoriteStatus = {
   ON: `1`,
   OFF: `0`,
-}
+};
 
 const Converter = {
   getComment: (raw) => ({
@@ -63,7 +63,7 @@ const Adapter = {
       cities[city.name] = city;
     });
 
-    return { offers, cities: Array.from(Object.values(cities)) };
+    return {offers, cities: Array.from(Object.values(cities))};
   },
 
   getOffer: (raw) => Converter.getOffer(raw),

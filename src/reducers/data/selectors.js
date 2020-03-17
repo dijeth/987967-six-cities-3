@@ -1,6 +1,6 @@
-import { createSelector } from 'reselect';
-import { sortOffers } from '../../util.js';
-import { getActiveCityName, getSortType } from '../app/selectors.js';
+import {createSelector} from 'reselect';
+import {sortOffers} from '../../util.js';
+import {getActiveCityName, getSortType} from '../app/selectors.js';
 import NameSpace from '../name-space.js';
 
 export const getOffers = (state) => state[NameSpace.DATA].offers || [];
@@ -12,19 +12,19 @@ export const getFavorites = (state) => state[NameSpace.DATA].favorites || [];
 export const getNearbyCoordList = (state) => getNearbyList(state).map((it) => it.coord);
 
 export const getSortedOffers = createSelector(
-  [
-    getOffers,
-    getActiveCityName,
-    getSortType
-  ],
+    [
+      getOffers,
+      getActiveCityName,
+      getSortType
+    ],
 
-  (offers, activeCityName, sortType) => {
-    if (offers.length === 0) {
-      return [];
+    (offers, activeCityName, sortType) => {
+      if (offers.length === 0) {
+        return [];
+      }
+
+      const selectedOffers = activeCityName !== null ? offers.filter((it) => it.city === activeCityName) : offers;
+
+      return sortOffers(selectedOffers, sortType);
     }
-
-    const selectedOffers = activeCityName !== null ? offers.filter((it) => it.city === activeCityName) : offers;
-
-    return sortOffers(selectedOffers, sortType);
-  }
 );

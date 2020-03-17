@@ -44,11 +44,10 @@ const PageMain = ({offers, cities, activeCity, sortType, isAuth}) => {
               <b className="places__found">{placesCount} places to stay in {cityName}</b>
               <SortListWithOpenState items={SORT_LIST} activeItem={sortType} />
               <PlaceCardList items={ offers } isAuth={isAuth}/>
-              }
             </section>
             <div className="cities__right-section">
               <section className='cities__map map'>
-                {<OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />}
+                <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />
               </section>
             </div>
           </div>

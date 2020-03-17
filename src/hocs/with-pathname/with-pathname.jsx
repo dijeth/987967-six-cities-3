@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getActiveOfferID} from '../../reducers/app/selectors.js';
-import {getOffers} from '../../reducers/data/selectors.js';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import {Operation} from '../../reducers/data/operation.js';
 
@@ -20,7 +18,7 @@ const withPathName = (Component) => {
   const mapDispatchToProps = (dispatch) => ({
     onActiveOfferChange(id) {
       dispatch(ActionCreator.changeActiveOffer(id));
-      dispatch(Operation.loadProperties(id))
+      dispatch(Operation.loadProperties(id));
     }
   });
 

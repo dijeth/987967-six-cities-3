@@ -78,7 +78,7 @@ export const ServerRoute = {
   getNearby: (id) => `/hotels/${id}/nearby`,
   getHotels: () => `/hotels`,
   getComments: (id) => `/comments/${id}`,
-}
+};
 
 export const MAX_IMAGE_COUNT = 6;
 
@@ -91,4 +91,4 @@ export const ServerError = {
   UNAUTHORIZED: 401,
   BAD_REQUEST: 400,
   NOT_FOUND: 404
-}
+};

@@ -23,10 +23,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {sortType: action.payload});
 
     case ActionType.INCREASE_LOAD:
-      return Object.assign({}, state, {loading: state.loading+1});
+      return Object.assign({}, state, {loading: state.loading + 1});
 
     case ActionType.DECREASE_LOAD:
-      return Object.assign({}, state, {loading: state.loading-1});
+      return Object.assign({}, state, {loading: state.loading - 1});
 
     case ActionType.CHANGE_COMMENT_SENDING_STATUS:
       return Object.assign({}, state, {isCommentSending: action.payload});

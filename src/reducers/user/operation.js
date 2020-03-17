@@ -1,9 +1,9 @@
 import UserActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import DataActionCreator from '../data/action-creator.js';
-import { AuthorizationStatus, AppRoute, ServerRoute, ServerError } from '../../const/const.js';
+import {AuthorizationStatus, AppRoute, ServerRoute, ServerError} from '../../const/const.js';
 import Adapter from '../../adapter/adapter.js';
-import history from '../../history.js'
+import history from '../../history.js';
 
 export const Operation = {
   getAuthorizationStatus: () => (dispatch, getState, api) => {
@@ -16,7 +16,7 @@ export const Operation = {
       });
   },
 
-  authorizeUser: (userData, path) => (dispatch, getState, api) => {
+  authorizeUser: (userData) => (dispatch, getState, api) => {
     dispatch(AppActionCreator.increaseLoad());
 
     return api.post(ServerRoute.getLogin(), userData)
@@ -25,7 +25,7 @@ export const Operation = {
 
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.AUTH));
         dispatch(UserActionCreator.changeAuthInfo(authData));
-        history.goBack()
+        history.goBack();
       })
       .catch(() => {
         dispatch(UserActionCreator.changeAuthorizationStatus(AuthorizationStatus.NO_AUTH));
@@ -33,7 +33,7 @@ export const Operation = {
       })
       .finally(() => {
         dispatch(AppActionCreator.decreaseLoad());
-      })
+      });
   },
 
   submitComment: (commentData, offerID) => (dispatch, getState, api) => {
@@ -47,7 +47,7 @@ export const Operation = {
       .catch((err) => {
         dispatch(AppActionCreator.setCommentError(true));
         if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
-          history.push(AppRoute.getLogin())
+          history.push(AppRoute.getLogin());
         }
       })
       .finally(() => {

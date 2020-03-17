@@ -1,7 +1,7 @@
 import DataActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import Adapter from '../../adapter/adapter.js';
-import { ServerRoute, AppRoute, ServerError } from '../../const/const.js';
+import {ServerRoute, AppRoute, ServerError} from '../../const/const.js';
 import history from '../../history.js';
 
 const loadNearby = (id, api) => api.get(ServerRoute.getNearby(id));
@@ -44,7 +44,7 @@ export const Operation = {
       .then((nearbyData) => {
         const nearbyList = Adapter.getData(nearbyData.data).offers;
         dispatch(DataActionCreator.loadNearby(nearbyList));
-      })
+      });
   },
 
   loadFavorites: () => (dispatch, getState, api) => {
@@ -59,12 +59,12 @@ export const Operation = {
     return api.post(ServerRoute.postFavorites(id, status))
       .then((response) => {
         const offer = Adapter.getOffer(response.data);
-        dispatch(DataActionCreator.replaceOffer(offer))
+        dispatch(DataActionCreator.replaceOffer(offer));
       })
       .catch((err) => {
         if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
-          history.push(AppRoute.getLogin())
+          history.push(AppRoute.getLogin());
         }
-      })
+      });
   }
 };

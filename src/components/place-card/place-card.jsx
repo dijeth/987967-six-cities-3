@@ -33,7 +33,7 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">To bookmarks</span>
-    </Link>)
+    </Link>);
 
   return (
     <article

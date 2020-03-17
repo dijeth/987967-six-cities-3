@@ -25,13 +25,13 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITES:
       return Object.assign({}, state, {favorites: action.payload});
 
-    case ActionType.REPLACE_OFFER: 
+    case ActionType.REPLACE_OFFER:
       const offers = state.offers;
       const index = offers.findIndex((it) => it.id === action.payload.id);
       const length = offers.length;
 
       const offersLeft = index === 0 ? [] : offers.slice(0, index);
-      const offersRight = index === length-1 ? [] : offers.slice(index+1, length);
+      const offersRight = index === length - 1 ? [] : offers.slice(index + 1, length);
 
       return Object.assign({}, state, {offers: offersLeft.concat(action.payload).concat(offersRight)});
   }

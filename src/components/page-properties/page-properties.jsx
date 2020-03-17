@@ -1,26 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BREAK_STRING, MAX_IMAGE_COUNT } from '../../const/const.js';
-import { reviewPropTypes } from '../../const/props.js';
-import { ratingToPercent } from '../../util.js';
+import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const.js';
+import {reviewPropTypes} from '../../const/props.js';
+import {ratingToPercent} from '../../util.js';
 import ReviewList from '../review-list/review-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import OffersNearby from '../offers-nearby/offers-nearby.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import { AppRoute } from '../../const/const.js';
-import { offerPropType } from '../../const/props.js';
+import {AppRoute} from '../../const/const.js';
 import Header from '../header/header.jsx';
-import { connect } from 'react-redux';
-import { getAuthorizationStatus } from '../../reducers/user/selectors.js';
-import { getNearbyList, getComments, getNearbyCoordList } from '../../reducers/data/selectors.js';
-import { Operation as DataOperation } from '../../reducers/data/operation.js';
-import { getActiveOffer, getActiveOfferCoord } from '../../reducers/app/selectors.js';
+import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
+import {getComments, getNearbyCoordList} from '../../reducers/data/selectors.js';
+import {Operation as DataOperation} from '../../reducers/data/operation.js';
+import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Adapter from '../../adapter/adapter.js';
 
-const PageProperties = ({ offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange }) => {
+const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange}) => {
   if (offer === null) {
     return (<div>Ничего не найдено. <br></br><Link to={AppRoute.getRoot()}>Вернуться на главную</Link></div>);
   }
@@ -70,7 +69,9 @@ const PageProperties = ({ offer, reviews, isAuthorized, activeCityCoord, offersC
     <button
       className={`property__bookmark-button ${isFavorite ? `property__bookmark-button--active` : ``} button`}
       type="button"
-      onClick={() => {onFavoriteChange(offer)}}
+      onClick={() => {
+        onFavoriteChange(offer);
+      }}
     >
       <svg className="property__bookmark-icon" width="31" height="33">
         <use xlinkHref="#icon-bookmark"></use>
@@ -195,6 +196,7 @@ PageProperties.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
   activeCityCoord: PropTypes.arrayOf(PropTypes.number),
   onFavoriteChange: PropTypes.func,
+  offersCoord: PropTypes.arrayOf(PropTypes.number)
 };
 
 const mapStateToProps = (state) => ({
@@ -207,9 +209,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFavoriteChange(offer) {dispatch(DataOperation.changeFavorite(offer.id, Adapter.postFavorite(!offer.isFavorite)))}
-  }
-}
+    onFavoriteChange(offer) {
+      dispatch(DataOperation.changeFavorite(offer.id, Adapter.postFavorite(!offer.isFavorite)));
+    }
+  };
+};
 
-export { PageProperties };
+export {PageProperties};
 export default withPageError(withLoading(connect(mapStateToProps, mapDispatchToProps)(PageProperties)));
