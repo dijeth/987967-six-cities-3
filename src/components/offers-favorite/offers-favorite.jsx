@@ -52,14 +52,10 @@ OffersFavorite.propTypes = {
   onCityClick: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  favoriteItems: getFavorites(state)
-});
-
 const mapDispatchToProps = (dispatch) => ({
 	onCityClick(city) {
 		dispatch(ActionCreator.changeCity(city))
 	}
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(OffersFavorite);
+export default connect(null, mapDispatchToProps)(OffersFavorite);
