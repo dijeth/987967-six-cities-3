@@ -26,7 +26,7 @@ const PlaceCardProperties = {
 }
 
 const PlaceCard = ({offer, onHover, isAuth, type}) => {
-  const {title, type, pictures, cost, rating, isPremium, isFavorite, id} = offer;
+  const {title, type: offerType, pictures, cost, rating, isPremium, isFavorite, id} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
   const link = AppRoute.getOffer(id);
@@ -88,7 +88,7 @@ const PlaceCard = ({offer, onHover, isAuth, type}) => {
         <h2 className="place-card__name">
           <Link to={link}>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{offerType}</p>
       </div>
     </article>);
 };
@@ -97,7 +97,7 @@ PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onHover: PropTypes.func,
   isAuth: PropTypes.bool.isRequired,
-  type: PropTypes.oneOf([Array.from(Object.values(PlaceCardType))]).isRequired
+  type: PropTypes.oneOf(Array.from(Object.values(PlaceCardType))).isRequired
 };
 
 export {PlaceCardType};

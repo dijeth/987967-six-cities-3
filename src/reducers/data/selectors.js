@@ -7,7 +7,7 @@ export const getOffers = (state) => state[NameSpace.DATA].offers || [];
 export const getCities = (state) => state[NameSpace.DATA].cities || [];
 export const getNearbyList = (state) => state[NameSpace.DATA].nearbyList || [];
 export const getComments = (state) => state[NameSpace.DATA].comments || [];
-export const getFavorites = (state) => state[NameSpace.DATA].offers.filter((it) => it.isFavorite) || [];
+export const getFavorites = (state) => state[NameSpace.DATA].offers.filter((it) => it.isFavorite);
 
 export const getNearbyCoordList = (state) => getNearbyList(state).map((it) => it.coord);
 
@@ -26,5 +26,22 @@ export const getSortedOffers = createSelector(
       const selectedOffers = activeCityName !== null ? offers.filter((it) => it.city === activeCityName) : offers;
 
       return sortOffers(selectedOffers, sortType);
+    }
+);
+
+export const getCityOffersCoords = createSelector(
+    [
+      getOffers,
+      getActiveCityName,
+    ],
+
+    (offers, activeCityName) => {
+      if (offers.length === 0) {
+        return [];
+      }
+
+      const selectedOffers = activeCityName !== null ? offers.filter((it) => it.city === activeCityName) : offers;
+
+      return selectedOffers.map((it) => it.coord);
     }
 );

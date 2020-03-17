@@ -24,7 +24,6 @@ const getClassList = (type) => {
 }
 
 const PlaceCardList = ({items, nearPlacesFor, onOfferHover, onListClick, isAuth, type}) => {
-  const isNearPlaces = nearPlacesFor !== undefined;
   const classList = getClassList(type);
 
   const placeCardList = items.map((offer, i) => {
@@ -32,9 +31,10 @@ const PlaceCardList = ({items, nearPlacesFor, onOfferHover, onListClick, isAuth,
       <PlaceCard
         offer={offer}
         key={offer.id}
-        onHover={isNearPlaces ? null : onOfferHover}
+        onHover={type === PlaceCardType.DEFAULT ? onOfferHover : null}
         offsetIndex={i}
         isAuth={isAuth}
+        type={type}
       />);
   });
 
@@ -55,7 +55,7 @@ PlaceCardList.propTypes = {
   onListClick: PropTypes.func,
   activeItem: offerPropType,
   isAuth: PropTypes.bool.isRequired,
-  type: PropTypes.oneOf([Array.from(Object.values(PlaceCardType))]).isRequired
+  type: PropTypes.oneOf(Array.from(Object.values(PlaceCardType))).isRequired
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
