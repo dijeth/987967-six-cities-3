@@ -78,7 +78,7 @@ it(`<OffersFavorite /> should be rendered correctly`, () => {
 
 console.log(link.debug())
 
-  link.simulate(`click`);
+  link[0].simulate(`click`);
 
   expect(handleCityClick).toHaveBeenCalledTimes(1);
 })
