@@ -487,7 +487,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
             onClick={[Function]}
           >
             <article
-              className="near-places__place-card place-card"
+              className="near-places__card place-card"
               onMouseEnter={null}
               onMouseLeave={null}
             >
@@ -500,14 +500,14 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="picture-1"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -543,7 +543,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                     <span
                       className="visually-hidden"
                     >
-                      To bookmarks
+                      From bookmarks
                     </span>
                   </button>
                 </div>
@@ -585,7 +585,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
+              className="near-places__card place-card"
               onMouseEnter={null}
               onMouseLeave={null}
             >
@@ -598,14 +598,14 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="picture-2"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -641,7 +641,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                     <span
                       className="visually-hidden"
                     >
-                      To bookmarks
+                      From bookmarks
                     </span>
                   </button>
                 </div>
@@ -683,7 +683,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
+              className="near-places__card place-card"
               onMouseEnter={null}
               onMouseLeave={null}
             >
@@ -696,14 +696,14 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="picture-3"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -739,7 +739,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                     <span
                       className="visually-hidden"
                     >
-                      To bookmarks
+                      From bookmarks
                     </span>
                   </button>
                 </div>
@@ -1113,7 +1113,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
             onClick={[Function]}
           >
             <article
-              className="near-places__place-card place-card"
+              className="near-places__card place-card"
               onMouseEnter={null}
               onMouseLeave={null}
             >
@@ -1126,14 +1126,14 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="picture-1"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -1212,7 +1212,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
+              className="near-places__card place-card"
               onMouseEnter={null}
               onMouseLeave={null}
             >
@@ -1225,14 +1225,14 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="picture-2"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"
@@ -1311,7 +1311,7 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
+              className="near-places__card place-card"
               onMouseEnter={null}
               onMouseLeave={null}
             >
@@ -1324,14 +1324,14 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
+                    height={200}
                     src="picture-3"
-                    width="260"
+                    width={260}
                   />
                 </a>
               </div>
               <div
-                className="place-card__info"
+                className=" place-card__info"
               >
                 <div
                   className="place-card__price-wrapper"

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {getSortedOffers} from '../../reducers/data/reselectors.js';
 import {PlaceCardType} from '../../const/const.js';
 
-const OffersMain = ({offers, isAuth}) => {
+const OffersMain = ({offers, isAuth}) => { 
   return <PlaceCardList items={offers} isAuth={isAuth} type={PlaceCardType.DEFAULT} />;
 };
 
@@ -18,4 +18,5 @@ const mapStateToProps = (state) => ({
   offers: getSortedOffers(state)
 });
 
+export {OffersMain};
 export default connect(mapStateToProps)(OffersMain);

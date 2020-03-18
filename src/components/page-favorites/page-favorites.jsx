@@ -49,4 +49,5 @@ const mapStateToProps = (state) => ({
   favoriteItems: getFavorites(state)
 });
 
+export {PageFavorites};
 export default connect(mapStateToProps)(PageFavorites);

@@ -1,14 +1,15 @@
 import React from 'react';
 import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { BrowserRouter } from 'react-router-dom';
-import { OffersFavorite } from './offers-favorite.jsx';
+import Adapter from 'enzyme-adapter-react-16';
+import {PageFavorites} from './page-favorites.jsx';
 import NameSpace from '../../reducers/name-space.js';
+import {AuthorizationStatus} from '../../const/const.js';
+import {BrowserRouter} from 'react-router-dom';
 
 Enzyme.configure({
-	adapter: new Adapter()
+  adapter: new Adapter()
 });
 
 const mockStore = configureStore([]);
@@ -16,6 +17,10 @@ const mockStore = configureStore([]);
 const store = mockStore({
   [NameSpace.APP]: {
     activeOffer: null,
+  },
+
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH
   }
 });
 
@@ -58,26 +63,15 @@ const favorites = [{
     4.332697
   ],
   zoom: 16
-}]
+}];
 
-it(`<OffersFavorite /> should call onClick `, () => {
-	const div = document.createElement(`div`);
-	document.body.appendChild(div);
-
-	const handleCityClick = jest.fn();
-
+it(`<PageFavorites /> should be rendered correctly`, () => {
   const tree = Enzyme.mount(
-    <BrowserRouter>
-	  	<Provider store={store}>
-				<OffersFavorite isAuth={true} favoriteItems={favorites} onCityClick={handleCityClick} />
-	  	</Provider>
-  	</BrowserRouter>, { attachTo: div }
+  	<Provider store={store}>
+	    <BrowserRouter>
+	  		<PageFavorites isAuth={true} favoriteItems={favorites} />
+	  	</BrowserRouter>
+	  </Provider>
   );
-
-  const links = tree.find(`a.locations__item-link`);
-
-  links.at(0).simulate(`click`);
-
-  expect(handleCityClick).toHaveBeenCalledTimes(1);
-  expect(handleCityClick).toHaveBeenCalledWith(`Brussels`);
+  expect(tree.getDOMNode()).toMatchSnapshot();
 })

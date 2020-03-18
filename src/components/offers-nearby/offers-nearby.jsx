@@ -19,4 +19,5 @@ const mapStateToProps = (state) => ({
   nearbyItems: getNearbyList(state)
 });
 
+export {OffersNearby};
 export default connect(mapStateToProps)(OffersNearby);

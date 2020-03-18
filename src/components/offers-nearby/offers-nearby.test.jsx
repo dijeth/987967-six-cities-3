@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { BrowserRouter } from 'react-router-dom';
-import { OffersFavorite } from './offers-favorite.jsx';
+import { OffersNearby } from './offers-nearby.jsx';
 import NameSpace from '../../reducers/name-space.js';
 
 Enzyme.configure({
@@ -19,7 +19,7 @@ const store = mockStore({
   }
 });
 
-const favorites = [{
+const offers = [{
   id: `1`,
   city: `Dusseldorf`,
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
@@ -64,20 +64,13 @@ it(`<OffersFavorite /> should call onClick `, () => {
 	const div = document.createElement(`div`);
 	document.body.appendChild(div);
 
-	const handleCityClick = jest.fn();
-
   const tree = Enzyme.mount(
     <BrowserRouter>
 	  	<Provider store={store}>
-				<OffersFavorite isAuth={true} favoriteItems={favorites} onCityClick={handleCityClick} />
+				<OffersNearby isAuth={true} nearbyItems={offers} nearPlacesFor="3" />
 	  	</Provider>
   	</BrowserRouter>, { attachTo: div }
   );
 
-  const links = tree.find(`a.locations__item-link`);
-
-  links.at(0).simulate(`click`);
-
-  expect(handleCityClick).toHaveBeenCalledTimes(1);
-  expect(handleCityClick).toHaveBeenCalledWith(`Brussels`);
+  expect(tree.getDOMNode()).toMatchSnapshot();
 })
