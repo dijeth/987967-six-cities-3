@@ -59,4 +59,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {OffersFavorite};
 export default connect(null, mapDispatchToProps)(OffersFavorite);
