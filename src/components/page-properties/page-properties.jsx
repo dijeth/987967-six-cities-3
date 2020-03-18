@@ -40,7 +40,8 @@ const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCo
     isSuperUser,
     description,
     descriptionTitle,
-    id
+    id,
+    zoom
   } = offer;
 
   const gallery = pictures.slice(1, 1 + MAX_IMAGE_COUNT).map((it, i) => {
@@ -155,7 +156,7 @@ const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCo
             </div>
           </div>
           <section className="property__map map">
-            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} />
+            <OffersMap centerCoord={centerCoord} offersCoord={offersCoord} zoom={zoom} />
           </section>
         </section>
         <div className="container">
@@ -189,7 +190,8 @@ PageProperties.propTypes = {
     isSuperUser: PropTypes.bool,
     descriptionTitle: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    coord: PropTypes.arrayOf(PropTypes.number)
+    coord: PropTypes.arrayOf(PropTypes.number),
+    zoom: PropTypes.number
   }),
 
   reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes)),

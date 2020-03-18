@@ -22,9 +22,14 @@ const App = ({isAuth}) => {
           const id = match.params.id;
           return <PagePropertiesWithPathName pathID={id} />;
         }} />
-        <PrivateRoute path={AppRoute.getLogin()} require={!isAuth} render={() => <PageSignIn />} to={AppRoute.getRoot()} />
-        <PrivateRoute path={AppRoute.getFavorites()} require={isAuth} render={() => <PageFavotites />} to={AppRoute.getLogin()} />
+        <PrivateRoute path={AppRoute.getLogin()} require={!isAuth} to={AppRoute.getRoot()} render={
+          () => <PageSignIn />
+        } />
+        <PrivateRoute path={AppRoute.getFavorites()} require={isAuth} to={AppRoute.getLogin()} render={
+          () => <PageFavotites />
+        } />
         <Route exact path={AppRoute.getRoot()} component={PageMain} />
+        <PageMain />
       </Switch>
     </Router>);
 };
