@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Component when "pageError" === "" 1`] = `
+<div>
+  Mock
+</div>
+`;
+
+exports[`should render error message when "pageError" === "Error" 1`] = `
+Array [
+  <div>
+    Mock
+  </div>,
+  <div
+    className="page page--gray page--login"
+    style={
+      Object {
+        "position": "fixed",
+        "top": 0,
+        "width": "100vw",
+        "zIndex": 1000,
+      }
+    }
+  >
+    <div
+      className="page__main page__main--login"
+    >
+      <div
+        className="page__login-container container"
+      >
+        <section
+          className="login"
+        >
+          <h1
+            className="login__title"
+          >
+            Error
+          </h1>
+          <button
+            className="form__submit button"
+            onClick={[Function]}
+            type="button"
+          >
+            Продолжить
+          </button>
+        </section>
+      </div>
+    </div>
+  </div>,
+]
+`;
