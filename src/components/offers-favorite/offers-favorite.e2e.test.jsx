@@ -74,11 +74,11 @@ it(`<OffersFavorite /> should be rendered correctly`, () => {
   	</BrowserRouter>, { attachTo: div }
   );
 
-  const link = tree.find(`a.locations__item-link`);
+  const links = tree.find(`a.locations__item-link`);
 
-console.log(link.debug())
+console.log(links.debug())
 
-  link.simulate(`click`);
+  links[0].simutate(`click`);
 
   expect(handleCityClick).toHaveBeenCalledTimes(1);
 })
