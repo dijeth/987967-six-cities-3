@@ -13,7 +13,7 @@ describe(`Test User reducer`, () => {
       .toEqual(initialState);
   });
 
-  it(`should change an authorization status by payload`, () => {
+  it(`should change an "authorizationStatus" status by payload`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       authInfo: null
@@ -26,16 +26,16 @@ describe(`Test User reducer`, () => {
     });
   });
 
-  it(`should change an authInfo by payload`, () => {
+  it(`should change an "authInfo" status by payload`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       authInfo: null
     }, {
       type: ActionType.CHANGE_AUTH_INFO,
-      payload: {email: `aaa@ee.ee`}
+      payload: `email`
     })).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
-      authInfo: {email: `aaa@ee.ee`}
+      authInfo: `email`
     });
   });
 });

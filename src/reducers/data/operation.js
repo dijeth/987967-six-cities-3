@@ -70,7 +70,30 @@ export const Operation = {
       .catch((err) => {
         if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
           history.push(AppRoute.getLogin());
+        } else {
+          throw err;
         }
+      });
+  },
+
+  submitComment: (commentData, offerID) => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.changeCommentSendingStatus(true));
+    return api.post(ServerRoute.getComments(offerID), commentData)
+      .then((response) => {
+        const comments = Adapter.getComments(response.data);
+        dispatch(DataActionCreator.loadComments(comments));
+        dispatch(AppActionCreator.setCommentError(false));
+      })
+      .catch((err) => {
+        dispatch(AppActionCreator.setCommentError(true));
+        if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
+          history.push(AppRoute.getLogin());
+        } else {
+          throw err;
+        }
+      })
+      .finally(() => {
+        dispatch(AppActionCreator.changeCommentSendingStatus(false));
       });
   }
 };

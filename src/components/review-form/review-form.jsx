@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ReviewLength} from '../../const/const.js';
-import {Operation} from '../../reducers/user/operation.js';
+import {Operation} from '../../reducers/data/operation.js';
 import {getCommentSendingStatus, getCommentError} from '../../reducers/app/selectors.js';
 
 class ReviewForm extends React.PureComponent {

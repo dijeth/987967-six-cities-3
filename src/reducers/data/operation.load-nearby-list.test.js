@@ -7,42 +7,6 @@ import Adapter from '../../adapter/adapter.js';
 const api = createAPI(() => {});
 const apiMock = new MockAdapter(api);
 const dispatch = jest.fn();
-const responseComments = [{
-  "comment": `comment-1`,
-  "date": `2019-05-08T14:13:56.569Z`,
-  "id": 1,
-  "rating": 4,
-  "user": {
-    "avatar_url": `picture-1`,
-    "id": 14,
-    "is_pro": false,
-    "name": `Max-1`
-  }
-},
-{
-  "comment": `comment-2`,
-  "date": `2019-05-08T14:13:56.569Z`,
-  "id": 2,
-  "rating": 4,
-  "user": {
-    "avatar_url": `picture-2`,
-    "id": 24,
-    "is_pro": false,
-    "name": `Max-2`
-  }
-},
-{
-  "comment": `comment-3`,
-  "date": `2019-05-08T14:13:56.569Z`,
-  "id": 3,
-  "rating": 4,
-  "user": {
-    "avatar_url": `picture-3`,
-    "id": 34,
-    "is_pro": false,
-    "name": `Max-3`
-  }
-}];
 
 const responseNearbyList = [{
   "bedrooms": 11,
@@ -148,35 +112,20 @@ const responseNearbyList = [{
 },
 ];
 
-const comments = Adapter.getComments(responseComments);
 const nearbyList = Adapter.getData(responseNearbyList).offers;
 
-it(`should call a dispatch 4 times with correct payloads`, () => {
-  apiMock.onGet(`/comments/1`).reply(200, responseComments);
+it(`should call a dispatch once whith ActionType.LOAD_NEARBY`, () => {
   apiMock.onGet(`/hotels/1/nearby`).reply(200, responseNearbyList);
 
-  const loader = Operation.loadProperties(`1`);
+  const loader = Operation.loadNearbyList(`1`);
 
   return loader(dispatch, () => {}, api)
     .then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(4);
+      expect(dispatch).toHaveBeenCalledTimes(1);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.INCREASE_LOAD
-      });
-
-      expect(dispatch).toHaveBeenNthCalledWith(2, {
         type: ActionType.LOAD_NEARBY,
         payload: nearbyList
-      });
-
-      expect(dispatch).toHaveBeenNthCalledWith(3, {
-        type: ActionType.LOAD_COMMENTS,
-        payload: comments
-      });
-
-      expect(dispatch).toHaveBeenNthCalledWith(4, {
-        type: ActionType.DECREASE_LOAD
       });
     });
 });

@@ -5,49 +5,49 @@ const FavoriteStatus = {
 
 const Converter = {
   getComment: (raw) => ({
-    id: String(raw.id),
-    userName: raw.user.name,
-    userPicture: raw.user[`avatar_url`],
-    userID: raw.user.id,
-    isSuperUser: raw.user[`is_pro`],
-    rating: raw.rating,
-    description: raw.comment,
-    date: raw.date,
+    id: String(raw.id) || ``,
+    userName: raw.user && raw.user.name || ``,
+    userPicture: raw.user && raw.user[`avatar_url`] || ``,
+    userID: raw.user && raw.user.id || ``,
+    isSuperUser: raw.user && raw.user[`is_pro`] || false,
+    rating: raw.rating || 0,
+    description: raw.comment || ``,
+    date: raw.date || ``,
   }),
 
   getUser: (raw) => ({
-    id: String(raw.id),
-    userPic: raw[`avatar_url`],
-    email: raw.email,
-    isSuperUser: raw[`is_pro`]
+    id: String(raw.id) || ``,
+    userPic: raw[`avatar_url`] || ``,
+    email: raw.email || ``,
+    isSuperUser: raw[`is_pro`] || false,
   }),
 
   getOffer: (raw) => ({
-    id: String(raw.id),
-    city: raw.city.name,
-    pictures: [raw[`preview_image`]].concat(raw.images),
-    title: raw.title,
-    descriptionTitle: raw.title,
-    isFavorite: raw[`is_favorite`],
-    isPremium: raw[`is_premium`],
-    rating: raw.rating,
-    type: raw.type,
-    bedroomCount: raw.bedrooms,
-    adultsCount: raw[`max_adults`],
-    cost: raw.price,
-    insideFeatures: raw.goods,
-    userName: raw.host.name,
-    userPicture: raw.host[`avatar_url`],
-    isSuperUser: raw.host[`is_pro`],
-    userID: String(raw.host.id),
-    description: raw.description,
-    coord: [raw.location.latitude, raw.location.longitude]
+    id: String(raw.id) || ``,
+    city: raw.city && raw.city.name || ``,
+    pictures: [raw[`preview_image`] || ``].concat(raw.images || []),
+    title: raw.title || ``,
+    descriptionTitle: `Meet the host`,
+    isFavorite: raw[`is_favorite`] || false,
+    isPremium: raw[`is_premium`] || false,
+    rating: raw.rating || 0,
+    type: raw.type || ``,
+    bedroomCount: raw.bedrooms || 0,
+    adultsCount: raw[`max_adults`] || 0,
+    cost: raw.price || 0,
+    insideFeatures: raw.goods || [],
+    userName: raw.host && raw.host.name || ``,
+    userPicture: raw.host && raw.host[`avatar_url`] || ``,
+    isSuperUser: raw.host && raw.host[`is_pro`] || ``,
+    userID: raw.host && String(raw.host.id) || ``,
+    description: raw.description || ``,
+    coord: raw.location && raw.location.latitude && raw.location.longitude && [raw.location.latitude, raw.location.longitude] || [0, 0],
   }),
 
   getCity: (raw) => ({
-    name: raw.city.name,
-    zoom: raw.location.zoom,
-    centerCoord: [raw.location.latitude, raw.location.longitude]
+    name: raw.city && raw.city.name || ``,
+    zoom: raw.location && raw.location.zoom || 0,
+    centerCoord: raw.location && raw.location.latitude && raw.location.longitude && [raw.location.latitude, raw.location.longitude] || [0, 0],
   })
 };
 
