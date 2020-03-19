@@ -11,7 +11,7 @@ export const getUserReviewRating = (state) => state[NameSpace.USER].userReviewRa
 export const getUserReviewOfferID = (state) => state[NameSpace.USER].userReviewOfferID || EMPTY_REVIEW.offerID;
 
 export const getUserReview = (state) => ({
-	text: getUserReviewText(state),
-	rating: getUserReviewRating(state),
-	offerID: getUserReviewOfferID(state),
-})
+  text: getUserReviewText(state),
+  rating: getUserReviewRating(state),
+  offerID: getUserReviewOfferID(state),
+});

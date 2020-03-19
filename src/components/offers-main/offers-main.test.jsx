@@ -1,14 +1,14 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { BrowserRouter } from 'react-router-dom';
-import { OffersMain } from './offers-main.jsx';
+import {BrowserRouter} from 'react-router-dom';
+import {OffersMain} from './offers-main.jsx';
 import NameSpace from '../../reducers/name-space.js';
 
 Enzyme.configure({
-	adapter: new Adapter()
+  adapter: new Adapter()
 });
 
 const mockStore = configureStore([]);
@@ -58,19 +58,19 @@ const offers = [{
     4.332697
   ],
   zoom: 16
-}]
+}];
 
 it(`<OffersFavorite /> should call onClick `, () => {
-	const div = document.createElement(`div`);
-	document.body.appendChild(div);
+  const div = document.createElement(`div`);
+  document.body.appendChild(div);
 
   const tree = Enzyme.mount(
-    <BrowserRouter>
-	  	<Provider store={store}>
-				<OffersMain isAuth={true} offers={offers} />
-	  	</Provider>
-  	</BrowserRouter>, { attachTo: div }
+      <BrowserRouter>
+        <Provider store={store}>
+          <OffersMain isAuth={true} offers={offers} />
+        </Provider>
+      </BrowserRouter>, {attachTo: div}
   );
 
   expect(tree.getDOMNode()).toMatchSnapshot();
-})
+});

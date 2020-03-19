@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === 1 1`] = `
+exports[`<PlaceCardList /> should be render correctly when type === DEFAULT, isAuth === false 1`] = `
 <div
-  className="near-places__list places__list"
+  className="cities__places-list tabs__content places__list"
 >
   <article
-    className="near-places__place-card place-card"
-    onMouseEnter={null}
-    onMouseLeave={null}
+    className="cities__place-card place-card"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
-      className="near-places__image-wrapper place-card__image-wrapper"
+      className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
         href="#"
@@ -18,14 +18,226 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === 1 1
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height={200}
           src="picture-1"
-          width="260"
+          width={260}
         />
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
+    >
+      <div
+        className="place-card__price-wrapper"
+      >
+        <div
+          className="place-card__price"
+        >
+          <b
+            className="place-card__price-value"
+          >
+            €
+            123
+          </b>
+          <span
+            className="place-card__price-text"
+          >
+            / night
+          </span>
+        </div>
+        <a
+          className="place-card__bookmark-button button"
+          href="/login"
+          onClick={[Function]}
+        >
+          <svg
+            className="place-card__bookmark-icon"
+            height="19"
+            width="18"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </a>
+      </div>
+      <div
+        className="place-card__rating rating"
+      >
+        <div
+          className="place-card__stars rating__stars"
+        >
+          <span
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          />
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <h2
+        className="place-card__name"
+      >
+        <a
+          href="/offer/id-1"
+          onClick={[Function]}
+        >
+          title-1
+        </a>
+      </h2>
+      <p
+        className="place-card__type"
+      >
+        Apartment
+      </p>
+    </div>
+  </article>
+  <article
+    className="cities__place-card place-card"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <div
+      className="place-card__mark"
+    >
+      <span>
+        Premium
+      </span>
+    </div>
+    <div
+      className="cities__image-wrapper place-card__image-wrapper"
+    >
+      <a
+        href="#"
+      >
+        <img
+          alt="Place image"
+          className="place-card__image"
+          height={200}
+          src="picture-2"
+          width={260}
+        />
+      </a>
+    </div>
+    <div
+      className=" place-card__info"
+    >
+      <div
+        className="place-card__price-wrapper"
+      >
+        <div
+          className="place-card__price"
+        >
+          <b
+            className="place-card__price-value"
+          >
+            €
+            456
+          </b>
+          <span
+            className="place-card__price-text"
+          >
+            / night
+          </span>
+        </div>
+        <a
+          className="place-card__bookmark-button button"
+          href="/login"
+          onClick={[Function]}
+        >
+          <svg
+            className="place-card__bookmark-icon"
+            height="19"
+            width="18"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </a>
+      </div>
+      <div
+        className="place-card__rating rating"
+      >
+        <div
+          className="place-card__stars rating__stars"
+        >
+          <span
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          />
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <h2
+        className="place-card__name"
+      >
+        <a
+          href="/offer/id-2"
+          onClick={[Function]}
+        >
+          title-2
+        </a>
+      </h2>
+      <p
+        className="place-card__type"
+      >
+        Apartment
+      </p>
+    </div>
+  </article>
+</div>
+`;
+
+exports[`<PlaceCardList /> should be render correctly when type === FAVORITE, isAuth === true 1`] = `
+<div
+  className="favorites__places"
+>
+  <article
+    className="favorites__card place-card"
+    onMouseEnter={null}
+    onMouseLeave={null}
+  >
+    <div
+      className="favorites__image-wrapper place-card__image-wrapper"
+    >
+      <a
+        href="#"
+      >
+        <img
+          alt="Place image"
+          className="place-card__image"
+          height={110}
+          src="picture-1"
+          width={150}
+        />
+      </a>
+    </div>
+    <div
+      className="favorites__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -61,7 +273,7 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === 1 1
           <span
             className="visually-hidden"
           >
-            To bookmarks
+            From bookmarks
           </span>
         </button>
       </div>
@@ -103,7 +315,7 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === 1 1
     </div>
   </article>
   <article
-    className="near-places__place-card place-card"
+    className="favorites__card place-card"
     onMouseEnter={null}
     onMouseLeave={null}
   >
@@ -115,7 +327,7 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === 1 1
       </span>
     </div>
     <div
-      className="near-places__image-wrapper place-card__image-wrapper"
+      className="favorites__image-wrapper place-card__image-wrapper"
     >
       <a
         href="#"
@@ -123,14 +335,14 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === 1 1
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height={110}
           src="picture-2"
-          width="260"
+          width={150}
         />
       </a>
     </div>
     <div
-      className="place-card__info"
+      className="favorites__card-info place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -210,17 +422,17 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === 1 1
 </div>
 `;
 
-exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === undefined, isAuth === false 1`] = `
+exports[`<PlaceCardList /> should be render correctly when type === NEARBY 1`] = `
 <div
-  className="cities__places-list places__list tabs__content"
+  className="near-places__list places__list"
 >
   <article
-    className="cities__place-card place-card"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    className="near-places__card place-card"
+    onMouseEnter={null}
+    onMouseLeave={null}
   >
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
         href="#"
@@ -228,226 +440,14 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === und
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height={200}
           src="picture-1"
-          width="260"
+          width={260}
         />
       </a>
     </div>
     <div
-      className="place-card__info"
-    >
-      <div
-        className="place-card__price-wrapper"
-      >
-        <div
-          className="place-card__price"
-        >
-          <b
-            className="place-card__price-value"
-          >
-            €
-            123
-          </b>
-          <span
-            className="place-card__price-text"
-          >
-            / night
-          </span>
-        </div>
-        <a
-          className="place-card__bookmark-button button"
-          href="/login"
-          onClick={[Function]}
-        >
-          <svg
-            className="place-card__bookmark-icon"
-            height="19"
-            width="18"
-          >
-            <use
-              xlinkHref="#icon-bookmark"
-            />
-          </svg>
-          <span
-            className="visually-hidden"
-          >
-            To bookmarks
-          </span>
-        </a>
-      </div>
-      <div
-        className="place-card__rating rating"
-      >
-        <div
-          className="place-card__stars rating__stars"
-        >
-          <span
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          />
-          <span
-            className="visually-hidden"
-          >
-            Rating
-          </span>
-        </div>
-      </div>
-      <h2
-        className="place-card__name"
-      >
-        <a
-          href="/offer/id-1"
-          onClick={[Function]}
-        >
-          title-1
-        </a>
-      </h2>
-      <p
-        className="place-card__type"
-      >
-        Apartment
-      </p>
-    </div>
-  </article>
-  <article
-    className="cities__place-card place-card"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
-    <div
-      className="cities__image-wrapper place-card__image-wrapper"
-    >
-      <a
-        href="#"
-      >
-        <img
-          alt="Place image"
-          className="place-card__image"
-          height="200"
-          src="picture-2"
-          width="260"
-        />
-      </a>
-    </div>
-    <div
-      className="place-card__info"
-    >
-      <div
-        className="place-card__price-wrapper"
-      >
-        <div
-          className="place-card__price"
-        >
-          <b
-            className="place-card__price-value"
-          >
-            €
-            456
-          </b>
-          <span
-            className="place-card__price-text"
-          >
-            / night
-          </span>
-        </div>
-        <a
-          className="place-card__bookmark-button button"
-          href="/login"
-          onClick={[Function]}
-        >
-          <svg
-            className="place-card__bookmark-icon"
-            height="19"
-            width="18"
-          >
-            <use
-              xlinkHref="#icon-bookmark"
-            />
-          </svg>
-          <span
-            className="visually-hidden"
-          >
-            To bookmarks
-          </span>
-        </a>
-      </div>
-      <div
-        className="place-card__rating rating"
-      >
-        <div
-          className="place-card__stars rating__stars"
-        >
-          <span
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          />
-          <span
-            className="visually-hidden"
-          >
-            Rating
-          </span>
-        </div>
-      </div>
-      <h2
-        className="place-card__name"
-      >
-        <a
-          href="/offer/id-2"
-          onClick={[Function]}
-        >
-          title-2
-        </a>
-      </h2>
-      <p
-        className="place-card__type"
-      >
-        Apartment
-      </p>
-    </div>
-  </article>
-</div>
-`;
-
-exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === undefined, isAuth === true 1`] = `
-<div
-  className="cities__places-list places__list tabs__content"
->
-  <article
-    className="cities__place-card place-card"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="cities__image-wrapper place-card__image-wrapper"
-    >
-      <a
-        href="#"
-      >
-        <img
-          alt="Place image"
-          className="place-card__image"
-          height="200"
-          src="picture-1"
-          width="260"
-        />
-      </a>
-    </div>
-    <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"
@@ -483,7 +483,7 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === und
           <span
             className="visually-hidden"
           >
-            To bookmarks
+            From bookmarks
           </span>
         </button>
       </div>
@@ -525,9 +525,9 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === und
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
+    className="near-places__card place-card"
+    onMouseEnter={null}
+    onMouseLeave={null}
   >
     <div
       className="place-card__mark"
@@ -537,7 +537,7 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === und
       </span>
     </div>
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
         href="#"
@@ -545,14 +545,14 @@ exports[`<PlaceCardList /> should be render correctly when nearPlacesFor === und
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
+          height={200}
           src="picture-2"
-          width="260"
+          width={260}
         />
       </a>
     </div>
     <div
-      className="place-card__info"
+      className=" place-card__info"
     >
       <div
         className="place-card__price-wrapper"

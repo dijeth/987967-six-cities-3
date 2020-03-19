@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { App } from './app.jsx';
+import {App} from './app.jsx';
 import NameSpace from '../../reducers/name-space.js';
-import { AuthorizationStatus, SortType } from '../../const/const.js';
+import {SortType} from '../../const/const.js';
 
 const mockStore = configureStore([]);
 
@@ -95,7 +95,7 @@ const store = mockStore({
   [NameSpace.APP]: {
     pageError: ``,
     loading: 0,
-    activeCity: "Dusseldorf",
+    activeCity: `Dusseldorf`,
     activeOffer: null,
     sortType: SortType.POPULAR,
   }
@@ -103,11 +103,11 @@ const store = mockStore({
 
 it(`1`, () => {
   const tree = renderer.create(
-    <Provider store={store}>
-			<App isAuth={true} />
-		</Provider>,
-		{createNodeMock: () => document.createElement(`div`)}
+      <Provider store={store}>
+        <App isAuth={true} />
+      </Provider>,
+      {createNodeMock: () => document.createElement(`div`)}
   ).toJSON();
 
-  expect(tree).toMatchSnapshot()
-})
+  expect(tree).toMatchSnapshot();
+});

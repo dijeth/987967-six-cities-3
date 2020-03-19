@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { BrowserRouter } from 'react-router-dom';
-import { OffersFavorite } from './offers-favorite.jsx';
+import {BrowserRouter} from 'react-router-dom';
+import {OffersFavorite} from './offers-favorite.jsx';
 import NameSpace from '../../reducers/name-space.js';
 
 const mockStore = configureStore([]);
@@ -53,16 +53,16 @@ const favorites = [{
     4.332697
   ],
   zoom: 16
-}]
+}];
 
 it(`<OffersFavorite /> should be rendered correctly`, () => {
   const tree = renderer.create(
-    <BrowserRouter>
-  	<Provider store={store}>
-			<OffersFavorite isAuth={true} favoriteItems={favorites} onCityClick={()=>{}} />
-  	</Provider>
-  	</BrowserRouter>, { createNodeMock: () => document.createElement(`div`) }
+      <BrowserRouter>
+        <Provider store={store}>
+          <OffersFavorite isAuth={true} favoriteItems={favorites} onCityClick={()=>{}} />
+        </Provider>
+      </BrowserRouter>, {createNodeMock: () => document.createElement(`div`)}
   ).toJSON();
 
-  expect(tree).toMatchSnapshot()
-})
+  expect(tree).toMatchSnapshot();
+});

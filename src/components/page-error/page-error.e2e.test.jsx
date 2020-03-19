@@ -8,8 +8,8 @@ Enzyme.configure({
 });
 
 it(`<PageError /> should call onClose callback`, () => {
-	const handleClose = jest.fn();
+  const handleClose = jest.fn();
   const tree = Enzyme.mount(<PageError message="Error" onClose={handleClose} />);
   tree.find(`button`).simulate(`click`);
   expect(handleClose).toHaveBeenCalledTimes(1);
-})
+});

@@ -41,11 +41,11 @@ const Converter = {
     isSuperUser: raw.host && raw.host[`is_pro`] || ``,
     userID: raw.host && String(raw.host.id) || ``,
     description: raw.description || ``,
-    coord: 
+    coord:
       raw.location
       && raw.location.latitude
       && raw.location.longitude
-      && [raw.location.latitude, raw.location.longitude] 
+      && [raw.location.latitude, raw.location.longitude]
       || [0, 0],
     zoom: raw.location && raw.location.zoom || 0
   }),
@@ -53,12 +53,12 @@ const Converter = {
   getCity: (raw) => ({
     name: raw.city && raw.city.name || ``,
     zoom: raw.city && raw.city.location && raw.city.location.zoom || 0,
-    centerCoord: 
-      raw.city 
+    centerCoord:
+      raw.city
       && raw.city.location
       && raw.city.location.latitude
       && raw.city.location.longitude
-      && [raw.city.location.latitude, raw.city.location.longitude] 
+      && [raw.city.location.latitude, raw.city.location.longitude]
       || [0, 0],
   })
 };

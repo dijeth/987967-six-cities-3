@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import PlaceCard from './place-card.jsx';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
+import {PlaceCardType} from '../../const/const.js';
 
 const mock = {
   id: `id-1`,
@@ -17,38 +18,45 @@ const mock = {
 };
 
 describe(`<PlaceCard /> should be render correctly`, () => {
-  it(`with isNearPlaces === false`, () => {
+  it(`with type === "DEFAULT"`, () => {
     const card = renderer.create(
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            offsetIndex={0}
             onHover={() => {}}
-            isNearPlaces={false}
+            type={PlaceCardType.DEFAULT}
             isAuth={true}
           />
-          <Switch>
-            <Route exact path="/offer/:id" />
-          </Switch>
         </BrowserRouter>
     ).toJSON();
 
     expect(card).toMatchSnapshot();
   });
 
-  it(`with isNearPlaces === true`, () => {
+  it(`with type === "FAVORITE"`, () => {
     const card = renderer.create(
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            offsetIndex={0}
             onHover={() => {}}
-            isNearPlaces={true}
+            type={PlaceCardType.FAVORITE}
             isAuth={true}
           />
-          <Switch>
-            <Route exact path="/offer/:id" />
-          </Switch>
+        </BrowserRouter>
+    ).toJSON();
+
+    expect(card).toMatchSnapshot();
+  });
+
+  it(`with type === "NEARBY"`, () => {
+    const card = renderer.create(
+        <BrowserRouter>
+          <PlaceCard
+            offer={mock}
+            onHover={() => {}}
+            type={PlaceCardType.NEARBY}
+            isAuth={true}
+          />
         </BrowserRouter>
     ).toJSON();
 
@@ -61,14 +69,10 @@ describe(`<PlaceCard /> should be render correctly`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            offsetIndex={0}
             onHover={() => {}}
-            isNearPlaces={true}
+            type={PlaceCardType.DEFAULT}
             isAuth={true}
           />
-          <Switch>
-            <Route exact path="/offer/:id" />
-          </Switch>
         </BrowserRouter>
     ).toJSON();
 
@@ -81,14 +85,10 @@ describe(`<PlaceCard /> should be render correctly`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            offsetIndex={0}
             onHover={() => {}}
-            isNearPlaces={true}
+            type={PlaceCardType.DEFAULT}
             isAuth={true}
           />
-          <Switch>
-            <Route exact path="/offer/:id" />
-          </Switch>
         </BrowserRouter>
     ).toJSON();
 

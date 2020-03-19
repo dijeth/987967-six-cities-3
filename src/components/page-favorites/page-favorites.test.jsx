@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme from 'enzyme';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import Adapter from 'enzyme-adapter-react-16';
 import {PageFavorites} from './page-favorites.jsx';
@@ -67,11 +67,11 @@ const favorites = [{
 
 it(`<PageFavorites /> should be rendered correctly`, () => {
   const tree = Enzyme.mount(
-  	<Provider store={store}>
-	    <BrowserRouter>
-	  		<PageFavorites isAuth={true} favoriteItems={favorites} />
-	  	</BrowserRouter>
-	  </Provider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PageFavorites isAuth={true} favoriteItems={favorites} />
+        </BrowserRouter>
+      </Provider>
   );
   expect(tree.getDOMNode()).toMatchSnapshot();
-})
+});

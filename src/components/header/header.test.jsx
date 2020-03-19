@@ -40,7 +40,6 @@ describe(`<Header /> snapshot test`, () => {
             isSuperUser={true}
             isAuthorized={true}
             isActiveLogo={true}
-            isActiveLogo={true}
           />
         </BrowserRouter>
     ).toJSON();
@@ -56,7 +55,6 @@ describe(`<Header /> snapshot test`, () => {
             email="aaa@ee.ee"
             isSuperUser={true}
             isAuthorized={true}
-            isActiveLogo={true}
             isActiveLogo={true}
           />
         </BrowserRouter>

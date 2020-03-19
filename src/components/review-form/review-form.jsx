@@ -5,7 +5,7 @@ import {ReviewLength, EMPTY_REVIEW} from '../../const/const.js';
 import {Operation} from '../../reducers/data/operation.js';
 import UserActionCreator from '../../reducers/user/action-creator.js';
 import {getUserReview} from '../../reducers/user/selectors.js';
-import {getCommentSendingStatus, getCommentError} from '../../reducers/app/selectors.js';
+import {getCommentSendingStatus} from '../../reducers/app/selectors.js';
 
 class ReviewForm extends React.PureComponent {
   constructor(props) {
@@ -20,7 +20,7 @@ class ReviewForm extends React.PureComponent {
   }
 
   componentDidMount() {
-    this._updateForm()
+    this._updateForm();
   }
 
   componentDidUpdate() {
@@ -29,7 +29,7 @@ class ReviewForm extends React.PureComponent {
       return;
     }
 
-    this._updateForm();    
+    this._updateForm();
     this._setFormDisableStatus(false);
   }
 
@@ -43,7 +43,7 @@ class ReviewForm extends React.PureComponent {
   }
 
   _setReviewValue(value) {
-    this.form.current.querySelector(`.reviews__textarea`).value = value
+    this.form.current.querySelector(`.reviews__textarea`).value = value;
   }
 
   _setRatingValue(value) {
@@ -52,16 +52,16 @@ class ReviewForm extends React.PureComponent {
 
     if (checkedElement.length) {
       checkedElement[0].checked = false;
-    };
+    }
 
     if (!value) {
-      return
-    };
+      return;
+    }
 
     const element = this.form.current.querySelector(`[value="${value}"]`);
 
     if (element) {
-      element.checked = true
+      element.checked = true;
     }
   }
 
@@ -73,7 +73,7 @@ class ReviewForm extends React.PureComponent {
       offerID: this.props.offerID
     };
 
-    this.props.onReviewChange(review)
+    this.props.onReviewChange(review);
   }
 
   _handleSubmitStatus() {
@@ -178,11 +178,11 @@ class ReviewForm extends React.PureComponent {
 }
 
 ReviewForm.propTypes = {
-  onFormSubmit: PropTypes.func,
   offerID: PropTypes.string,
   isSending: PropTypes.bool,
+  savedReview: PropTypes.object,
+  onFormSubmit: PropTypes.func,
   onReviewChange: PropTypes.func,
-  savedReview: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
@@ -192,7 +192,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFormSubmit(commentData, offerID) {
-    dispatch(Operation.submitComment(commentData, offerID))
+    dispatch(Operation.submitComment(commentData, offerID));
   },
 
   onReviewChange(review) {
@@ -202,4 +202,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {ReviewForm};
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

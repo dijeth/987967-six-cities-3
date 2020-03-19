@@ -60,6 +60,7 @@ const appHotels = [{
   description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
   pictures: [`img/1.png`, `img/1.png`, `img/2.png`],
   coord: [52.35514938496378, 4.673877537499948],
+  zoom: 8,
 },
 {
   adultsCount: 0,
@@ -81,13 +82,14 @@ const appHotels = [{
   userID: ``,
   userName: ``,
   userPicture: ``,
+  zoom: 0,
 }
 ];
 
 const appCities = [{
-  centerCoord: [52.35514938496378, 4.673877537499948],
+  centerCoord: [52.370216, 4.895168],
   name: `Amsterdam`,
-  zoom: 8,
+  zoom: 10,
 }, {
   centerCoord: [0, 0],
   name: ``,

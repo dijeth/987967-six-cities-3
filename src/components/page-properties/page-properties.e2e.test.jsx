@@ -146,29 +146,12 @@ const store = mockStore({
 });
 
 describe(`<PageProperties /> snapshot test`, () => {
-  it(`should be rendered correctly with an unauthorized user`, () => {
-    const div = document.createElement(`div`);
-    document.body.appendChild(div);
-
-    const tree = Enzyme.mount(
-        <Provider store={store}>
-          <BrowserRouter>
-            <PageProperties
-              isAuthorized={false}
-              offer={activeOffer}
-              activeCityCoord={[1, 2]}
-              reviews={[]}
-              offersCoord={neighbourhoods.map((it) => it.coord)}
-            />
-          </BrowserRouter>
-        </Provider>, {attachTo: div});
-
-    expect(tree.getDOMNode()).toMatchSnapshot();
-  });
 
   it(`should be rendered correctly with an authorized user`, () => {
     const div = document.createElement(`div`);
     document.body.appendChild(div);
+
+    const handleFavoriteChange = jest.fn();
 
     const tree = Enzyme.mount(
         <Provider store={store}>
@@ -179,10 +162,14 @@ describe(`<PageProperties /> snapshot test`, () => {
               activeCityCoord={[1, 2]}
               reviews={[]}
               offersCoord={neighbourhoods.map((it) => it.coord)}
+              onFavoriteChange={handleFavoriteChange}
             />
           </BrowserRouter>
         </Provider>, {attachTo: div});
 
-    expect(tree.getDOMNode()).toMatchSnapshot();
+    tree.find(`.property__bookmark-button`).at(0).simulate(`click`);
+
+    expect(handleFavoriteChange).toHaveBeenCalledTimes(1);
+    expect(handleFavoriteChange).toHaveBeenNthCalledWith(1, activeOffer);
   });
 });

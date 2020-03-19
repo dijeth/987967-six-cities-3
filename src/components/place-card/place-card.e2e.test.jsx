@@ -2,6 +2,7 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PlaceCard from './place-card.jsx';
+import {PlaceCardType} from '../../const/const.js';
 
 configure({
   adapter: new Adapter()
@@ -20,11 +21,17 @@ const mock = {
   coord: [123, 456]
 };
 
-describe(`When onHover was passed`, () => {
+describe(`<PlaceCard />`, () => {
   it(`should call onHover once with its offer-object`, () => {
     const onHover = jest.fn();
 
-    const placeCard = shallow(<PlaceCard onHover={onHover} offer={mock} isNearPlaces={false}/>);
+    const placeCard = shallow(
+        <PlaceCard
+          onHover={onHover}
+          offer={mock}
+          isAuth={false}
+          type={PlaceCardType.DEFAULT}
+        />);
     placeCard.simulate(`mouseenter`);
 
     expect(onHover).toHaveBeenCalledTimes(1);
@@ -34,7 +41,13 @@ describe(`When onHover was passed`, () => {
   it(`should call onHover once with null`, () => {
     const onHover = jest.fn();
 
-    const placeCard = shallow(<PlaceCard onHover={onHover} offer={mock} isNearPlaces={false}/>);
+    const placeCard = shallow(
+        <PlaceCard
+          onHover={onHover}
+          offer={mock}
+          isAuth={false}
+          type={PlaceCardType.DEFAULT}
+        />);
     placeCard.simulate(`mouseleave`);
 
     expect(onHover).toHaveBeenCalledTimes(1);

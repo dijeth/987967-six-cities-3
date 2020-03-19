@@ -88,9 +88,9 @@ it(`<PageMain /> should be rendered correctly`, () => {
             sortType={SortType.POPULAR}
             isAuth={true}
             offersCoord={[[11, 111],
-                          [22, 222],
-                          [33, 333],
-                          [44, 444],]}
+              [22, 222],
+              [33, 333],
+              [44, 444]]}
           />
         </BrowserRouter>
       </Provider>, {createNodeMock: () => document.createElement(`div`)}).toJSON();

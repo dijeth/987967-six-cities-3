@@ -42,5 +42,5 @@ const mapStateToProps = (state) => ({
   isAuth: getAuthorizationStatus(state)
 });
 
-export {App}
+export {App};
 export default connect(mapStateToProps)(App);

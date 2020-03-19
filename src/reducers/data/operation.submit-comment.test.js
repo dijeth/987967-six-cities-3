@@ -44,18 +44,17 @@ it(`should call a dispatch 4 times with correct payloads when user is authorized
       });
 
       expect(dispatch).toHaveBeenNthCalledWith(3, {
-        type: ActionType.SET_COMMENT_ERROR,
+        type: ActionType.CHANGE_COMMENT_SENDING_STATUS,
         payload: false
       });
 
       expect(dispatch).toHaveBeenNthCalledWith(4, {
-        type: ActionType.CHANGE_COMMENT_SENDING_STATUS,
-        payload: false
+        type: ActionType.RESET_USER_REVIEW,
       });
     });
 });
 
-it(`should call a dispatch 3 times with correct payloads when user is not authorized`, () => {
+it(`should call a dispatch 2 times with correct payloads when user is not authorized`, () => {
   const dispatch = jest.fn();
 
   apiMock.onPost(`/comments/1`, `test-comment`).reply(401);
@@ -63,8 +62,8 @@ it(`should call a dispatch 3 times with correct payloads when user is not author
   const loader = Operation.submitComment(`test-comment`, `1`);
 
   return loader(dispatch, () => {}, api)
-    .then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(3);
+    .catch(() => {
+      expect(dispatch).toHaveBeenCalledTimes(2);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.CHANGE_COMMENT_SENDING_STATUS,
@@ -72,11 +71,6 @@ it(`should call a dispatch 3 times with correct payloads when user is not author
       });
 
       expect(dispatch).toHaveBeenNthCalledWith(2, {
-        type: ActionType.SET_COMMENT_ERROR,
-        payload: true
-      });
-
-      expect(dispatch).toHaveBeenNthCalledWith(3, {
         type: ActionType.CHANGE_COMMENT_SENDING_STATUS,
         payload: false
       });

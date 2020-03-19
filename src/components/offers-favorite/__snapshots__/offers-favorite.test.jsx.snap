@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`1 1`] = `
+exports[`<OffersFavorite /> should be rendered correctly 1`] = `
 <ul
   className="favorites__list"
 >

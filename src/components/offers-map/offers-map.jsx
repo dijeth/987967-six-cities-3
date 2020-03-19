@@ -38,7 +38,7 @@ class OffersMap extends PureComponent {
 
     this._map = leaflet.map(this._mapWrapper.current, {
       center: centerCoord,
-      zoom: zoom,
+      zoom,
       zoomControl: false,
       marker: true
     });

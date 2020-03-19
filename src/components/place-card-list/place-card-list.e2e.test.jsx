@@ -1,9 +1,9 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Route, Switch, BrowserRouter} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import {PlaceCardList} from './place-card-list.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import {PlaceCardType} from '../../const/const.js';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -59,7 +59,7 @@ const mocks = [{
 }
 ];
 
-describe(`When nearPlacesFor === undefined>`, () => {
+describe(`<PlaceCardList /> when type === DEFAULT>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
@@ -69,10 +69,8 @@ describe(`When nearPlacesFor === undefined>`, () => {
           onOfferHover={handleOfferHover}
           onListClick={handleListClick}
           isAuth={true}
+          type={PlaceCardType.DEFAULT}
         />
-        <Switch>
-          <Route exact path="/offer/:id" />
-        </Switch>
       </BrowserRouter>);
 
   const card = tree.find(`article`).at(0);
@@ -100,7 +98,7 @@ describe(`When nearPlacesFor === undefined>`, () => {
   });
 });
 
-describe(`When nearPlacesFor === 1>`, () => {
+describe(`<PlaceCardList /> when type === NEARBY>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
@@ -111,10 +109,8 @@ describe(`When nearPlacesFor === 1>`, () => {
           onOfferHover={handleOfferHover}
           onListClick={handleListClick}
           isAuth={true}
+          type={PlaceCardType.NEARBY}
         />
-        <Switch>
-          <Route exact path="/offer/:id" />
-        </Switch>
       </BrowserRouter>);
 
   const card = tree.find(`article`).at(0);
@@ -127,36 +123,5 @@ describe(`When nearPlacesFor === 1>`, () => {
   it(`should call onListClick`, () => {
     tree.simulate(`click`);
     expect(handleListClick).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe(`When place-card-list with-active-item`, () => {
-  const handleActiveItemChange = jest.fn();
-  const PlaceCardListWithActiveItem = withActiveItem(PlaceCardList, `.place-card__name`);
-
-  const tree = Enzyme.mount(
-      <BrowserRouter>
-        <PlaceCardListWithActiveItem
-          items={mocks}
-          onOfferHover={() => {}}
-          onActiveItemChange={handleActiveItemChange}
-          isAuth={true}
-        />
-        <Switch>
-          <Route exact path="/offer/:id" />
-        </Switch>
-      </BrowserRouter>);
-
-  const card = tree.find(`article`).at(2);
-  const cardTitle = card.find(`.place-card__name a`);
-
-  it(`should call onActiveItemChange once`, () => {
-    cardTitle.simulate(`click`);
-    expect(handleActiveItemChange).toHaveBeenCalledTimes(1);
-  });
-
-  it(`should not call onActiveItemChange`, () => {
-    card.simulate(`click`);
-    expect(handleActiveItemChange).toHaveBeenCalledTimes(1);
   });
 });
