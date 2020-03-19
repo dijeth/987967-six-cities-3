@@ -1,5 +1,6 @@
 import DataActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
+import UserActionCreator from '../user/action-creator.js';
 import Adapter from '../../adapter/adapter.js';
 import {ServerRoute, AppRoute, ServerError} from '../../const/const.js';
 import history from '../../history.js';
@@ -83,17 +84,17 @@ export const Operation = {
         const comments = Adapter.getComments(response.data);
         dispatch(DataActionCreator.loadComments(comments));
         dispatch(AppActionCreator.setCommentError(false));
+        dispatch(AppActionCreator.changeCommentSendingStatus(false));
+        dispatch(UserActionCreator.resetUserReview());
       })
       .catch((err) => {
         dispatch(AppActionCreator.setCommentError(true));
+        dispatch(AppActionCreator.changeCommentSendingStatus(false));
         if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
           history.push(AppRoute.getLogin());
-        } else {
+        // } else {
           throw err;
         }
       })
-      .finally(() => {
-        dispatch(AppActionCreator.changeCommentSendingStatus(false));
-      });
   }
 };

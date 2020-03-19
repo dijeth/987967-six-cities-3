@@ -98,3 +98,9 @@ export const PlaceCardType = {
   FAVORITE: `FAVORITE`,
   NEARBY: `NEARBY`,
 };
+
+export const EMPTY_REVIEW = {
+  text: ``,
+  rating: 0,
+  offerID: null,
+};
