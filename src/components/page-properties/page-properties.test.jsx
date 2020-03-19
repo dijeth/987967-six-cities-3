@@ -1,10 +1,16 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
 import {PageProperties} from './page-properties.jsx';
 import NameSpace from '../../reducers/name-space.js';
+import {EMPTY_REVIEW} from '../../const/const.js';
+
+Enzyme.configure({
+  adapter: new Adapter()
+});
 
 const mockStore = configureStore([]);
 
@@ -120,7 +126,10 @@ const activeOffer = {
 
 const store = mockStore({
   [NameSpace.USER]: {
-    isAuthorized: false
+    isAuthorized: false,
+    userReviewText: EMPTY_REVIEW.text,
+    userReviewRating: EMPTY_REVIEW.rating,
+    userReviewOfferID: EMPTY_REVIEW.offerID,
   },
   [NameSpace.APP]: {
     activeOffer,
@@ -138,7 +147,10 @@ const store = mockStore({
 
 describe(`<PageProperties /> snapshot test`, () => {
   it(`should be rendered correctly with an unauthorized user`, () => {
-    const tree = renderer.create(
+    const div = document.createElement(`div`);
+    document.body.appendChild(div);
+
+    const tree = Enzyme.mount(
         <Provider store={store}>
           <BrowserRouter>
             <PageProperties
@@ -149,13 +161,16 @@ describe(`<PageProperties /> snapshot test`, () => {
               offersCoord={neighbourhoods.map((it) => it.coord)}
             />
           </BrowserRouter>
-        </Provider>, {createNodeMock: () => document.createElement(`div`)}).toJSON();
+        </Provider>, {attachTo: div});
 
-    expect(tree).toMatchSnapshot();
+    expect(tree.getDOMNode()).toMatchSnapshot();
   });
 
   it(`should be rendered correctly with an authorized user`, () => {
-    const tree = renderer.create(
+    const div = document.createElement(`div`);
+    document.body.appendChild(div);
+
+    const tree = Enzyme.mount(
         <Provider store={store}>
           <BrowserRouter>
             <PageProperties
@@ -166,8 +181,8 @@ describe(`<PageProperties /> snapshot test`, () => {
               offersCoord={neighbourhoods.map((it) => it.coord)}
             />
           </BrowserRouter>
-        </Provider>, {createNodeMock: () => document.createElement(`div`)}).toJSON();
+        </Provider>, {attachTo: div});
 
-    expect(tree).toMatchSnapshot();
+    expect(tree.getDOMNode()).toMatchSnapshot();
   });
 });

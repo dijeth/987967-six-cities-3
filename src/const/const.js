@@ -92,3 +92,15 @@ export const ServerError = {
   BAD_REQUEST: 400,
   NOT_FOUND: 404
 };
+
+export const PlaceCardType = {
+  DEFAULT: `DEFAULT`,
+  FAVORITE: `FAVORITE`,
+  NEARBY: `NEARBY`,
+};
+
+export const EMPTY_REVIEW = {
+  text: ``,
+  rating: 0,
+  offerID: null,
+};

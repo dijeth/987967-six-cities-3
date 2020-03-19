@@ -11,6 +11,9 @@ import {createAPI} from './api.js';
 import {AuthorizationStatus, ServerError} from './const/const.js';
 import UserActionCreator from './reducers/user/action-creator.js';
 import AppActionCreator from './reducers/app/action-creator.js';
+import {getPageError} from './reducers/app/selectors.js';
+
+const UNKNOWN_ERROR = `Looks like you ran out of internet`;
 
 const loadData = () => {
   store.dispatch(AppActionCreator.increaseLoad());
@@ -18,6 +21,10 @@ const loadData = () => {
     store.dispatch(DataOperation.loadOffers()),
     store.dispatch(UserOperation.getAuthorizationStatus()),
   ])
+    .then(() => {
+      store.dispatch(DataOperation.updateFavorites());
+    })
+    .catch(() => {})
     .finally(() => {
       store.dispatch(AppActionCreator.decreaseLoad());
     });
@@ -34,7 +41,10 @@ const onFail = (response, status) => {
     return;
   }
 
-  store.dispatch(AppActionCreator.setPageError(`No internet`));
+  const pageError = getPageError(store.getState());
+  if (pageError === ``) {
+    store.dispatch(AppActionCreator.setPageError(UNKNOWN_ERROR));
+  }
 };
 
 const api = createAPI(onFail);

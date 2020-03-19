@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PageError /> should be rendered correctly 1`] = `
+<div
+  class="page page--gray page--login"
+  style="position: fixed; top: 0px; width: 100vw; z-index: 1000;"
+>
+  <div
+    class="page__main page__main--login"
+  >
+    <div
+      class="page__login-container container"
+    >
+      <section
+        class="login"
+      >
+        <h1
+          class="login__title"
+        >
+          Error
+        </h1>
+        <button
+          class="form__submit button"
+          type="button"
+        >
+          Продолжить
+        </button>
+      </section>
+    </div>
+  </div>
+</div>
+`;

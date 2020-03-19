@@ -17,4 +17,31 @@ describe(`User ActionCreator Test`, () => {
       payload: {email: `aaa@ee.ee`}
     });
   });
+
+  it(`should return a correct action for resetUserReview`, () => {
+    expect(ActionCreator.resetUserReview()).toEqual({
+      type: ActionType.RESET_USER_REVIEW,
+    });
+  });
+
+  it(`should return a correct action for userReviewText`, () => {
+    expect(ActionCreator.userReviewText(`text`)).toEqual({
+      type: ActionType.USER_REVIEW_TEXT,
+      payload: `text`
+    });
+  });
+
+  it(`should return a correct action for userReviewRating`, () => {
+    expect(ActionCreator.userReviewRating(4)).toEqual({
+      type: ActionType.USER_REVIEW_RATING,
+      payload: 4
+    });
+  });
+
+  it(`should return a correct action for userReviewOfferID`, () => {
+    expect(ActionCreator.userReviewOfferID(`111`)).toEqual({
+      type: ActionType.USER_REVIEW_OFFER_ID,
+      payload: `111`
+    });
+  });
 });

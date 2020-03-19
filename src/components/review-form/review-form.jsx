@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ReviewLength} from '../../const/const.js';
-import {Operation} from '../../reducers/user/operation.js';
-import {getCommentSendingStatus, getCommentError} from '../../reducers/app/selectors.js';
+import {ReviewLength, EMPTY_REVIEW} from '../../const/const.js';
+import {Operation} from '../../reducers/data/operation.js';
+import UserActionCreator from '../../reducers/user/action-creator.js';
+import {getUserReview} from '../../reducers/user/selectors.js';
+import {getCommentSendingStatus} from '../../reducers/app/selectors.js';
 
 class ReviewForm extends React.PureComponent {
   constructor(props) {
@@ -12,24 +14,69 @@ class ReviewForm extends React.PureComponent {
     this.submit = React.createRef();
     this.form = React.createRef();
 
-    this._handleFormChange = this._handleFormChange.bind(this);
+    this._handleSubmitStatus = this._handleSubmitStatus.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleReviewChange = this._handleReviewChange.bind(this);
+  }
+
+  componentDidMount() {
+    this._updateForm();
   }
 
   componentDidUpdate() {
     if (this.props.isSending) {
-      this._setDisableStatus(true);
+      this._setFormDisableStatus(true);
       return;
     }
 
-    if (!this.props.sendingError) {
-      this.form.current.reset();
-    }
-
-    this._setDisableStatus(false);
+    this._updateForm();
+    this._setFormDisableStatus(false);
   }
 
-  _handleFormChange() {
+  _updateForm() {
+    const {savedReview, offerID} = this.props;
+    const {text, rating} = savedReview.offerID === offerID ? savedReview : EMPTY_REVIEW;
+
+    this._setReviewValue(text);
+    this._setRatingValue(rating);
+    this._handleSubmitStatus();
+  }
+
+  _setReviewValue(value) {
+    this.form.current.querySelector(`.reviews__textarea`).value = value;
+  }
+
+  _setRatingValue(value) {
+    const stars = this.form.current.querySelectorAll(`.form__rating .form__rating-input`);
+    const checkedElement = Array.from(stars).filter((it) => it.checked);
+
+    if (checkedElement.length) {
+      checkedElement[0].checked = false;
+    }
+
+    if (!value) {
+      return;
+    }
+
+    const element = this.form.current.querySelector(`[value="${value}"]`);
+
+    if (element) {
+      element.checked = true;
+    }
+  }
+
+  _handleReviewChange() {
+    const formData = new FormData(this.form.current);
+    const review = {
+      text: formData.get(`review`) || ``,
+      rating: formData.get(`rating`) || 0,
+      offerID: this.props.offerID
+    };
+
+    this.props.onReviewChange(review);
+  }
+
+  _handleSubmitStatus() {
     const formData = new FormData(this.form.current);
     const submitElement = this.submit.current;
 
@@ -55,17 +102,19 @@ class ReviewForm extends React.PureComponent {
     const comment = formData.get(`review`);
     const offerID = Number(this.props.offerID);
 
-    this.props.onSubmit({comment, rating}, offerID);
+    this._setFormDisableStatus(true);
+
+    this.props.onFormSubmit({comment, rating}, offerID);
   }
 
-  _setDisableStatus(isDisable) {
+  _setFormDisableStatus(isDisable) {
     const elements = Array.from(this.form.current.elements);
     elements.forEach((it) => {
       it.disabled = isDisable;
     });
 
     if (!isDisable) {
-      this._handleFormChange();
+      this._handleSubmitStatus();
     }
   }
 
@@ -73,7 +122,7 @@ class ReviewForm extends React.PureComponent {
     return (
       <form className="reviews__form form" action="#" method="post" onSubmit={this._handleSubmit} ref={this.form}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
-        <div className="reviews__rating-form form__rating" onClick={this._handleFormChange}>
+        <div className="reviews__rating-form form__rating" onClick={this._handleSubmitStatus} onBlur={this._handleReviewChange}>
           <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
           <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
             <svg className="form__star-image" width="37" height="33">
@@ -114,7 +163,8 @@ class ReviewForm extends React.PureComponent {
           id="review"
           name="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
-          onChange={this._handleFormChange}
+          onChange={this._handleSubmitStatus}
+          onBlur={this._handleReviewChange}
         ></textarea>
 
         <div className="reviews__button-wrapper">
@@ -128,21 +178,29 @@ class ReviewForm extends React.PureComponent {
 }
 
 ReviewForm.propTypes = {
-  onSubmit: PropTypes.func,
   offerID: PropTypes.string,
   isSending: PropTypes.bool,
-  sendingError: PropTypes.bool
+  savedReview: PropTypes.object,
+  onFormSubmit: PropTypes.func,
+  onReviewChange: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   isSending: getCommentSendingStatus(state),
-  sendingError: getCommentError(state),
+  savedReview: getUserReview(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(commentData, offerID) {
+  onFormSubmit(commentData, offerID) {
     dispatch(Operation.submitComment(commentData, offerID));
+  },
+
+  onReviewChange(review) {
+    dispatch(UserActionCreator.userReviewText(review.text));
+    dispatch(UserActionCreator.userReviewRating(review.rating));
+    dispatch(UserActionCreator.userReviewOfferID(review.offerID));
   }
 });
 
+export {ReviewForm};
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

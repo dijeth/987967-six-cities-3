@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {PlaceCardList} from './place-card-list.jsx';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
+import {PlaceCardType} from '../../const/const.js';
 
 const mocks = [{
   id: `id-1`,
@@ -30,52 +31,46 @@ const mocks = [{
 ];
 
 describe(`<PlaceCardList /> should be render correctly`, () => {
-  it(`when nearPlacesFor === undefined, isAuth === false`, () => {
+  it(`when type === DEFAULT, isAuth === false`, () => {
     const tree = renderer.create(
         <BrowserRouter>
           <PlaceCardList
+            type={PlaceCardType.DEFAULT}
             items={mocks}
             onOfferHover={()=>{}}
             isAuth={false}
           />
-          <Switch>
-            <Route exact path="/offer/:id" />
-          </Switch>
         </BrowserRouter>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it(`when nearPlacesFor === undefined, isAuth === true`, () => {
+  it(`when type === FAVORITE, isAuth === true`, () => {
     const tree = renderer.create(
         <BrowserRouter>
           <PlaceCardList
+            type={PlaceCardType.FAVORITE}
             items={mocks}
             onOfferHover={()=>{}}
             isAuth={true}
           />
-          <Switch>
-            <Route exact path="/offer/:id" />
-          </Switch>
         </BrowserRouter>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it(`when nearPlacesFor === 1`, () => {
+  it(`when type === NEARBY`, () => {
     const tree = renderer.create(
         <BrowserRouter>
           <PlaceCardList
+            type={PlaceCardType.NEARBY}
             items={mocks}
             nearPlacesFor={`1`}
             onOfferHover={()=>{}}
             isAuth={true}
           />
-          <Switch>
-            <Route exact path="/offer/:id" />
-          </Switch>
         </BrowserRouter>
     ).toJSON();
 

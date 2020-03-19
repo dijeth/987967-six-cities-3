@@ -151,7 +151,7 @@ const responseNearbyList = [{
 const comments = Adapter.getComments(responseComments);
 const nearbyList = Adapter.getData(responseNearbyList).offers;
 
-it(`should call a dispatch once whith ActionType.LOAD_COMMENTS`, () => {
+it(`should call a dispatch 4 times with correct payloads`, () => {
   apiMock.onGet(`/comments/1`).reply(200, responseComments);
   apiMock.onGet(`/hotels/1/nearby`).reply(200, responseNearbyList);
 

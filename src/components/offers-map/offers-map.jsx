@@ -5,7 +5,7 @@ import {isEqualCoords} from '../../util.js';
 import {connect} from 'react-redux';
 import {getActiveOfferCoord} from '../../reducers/app/selectors.js';
 
-const ZOOM = 12;
+// const ZOOM = 12;
 const ICON_SIZE = [27, 39];
 
 const ICON = leaflet.icon({
@@ -32,13 +32,13 @@ class OffersMap extends PureComponent {
   }
 
   componentDidMount() {
-    const {centerCoord, offersCoord, activeCoord} = this.props;
+    const {centerCoord, offersCoord, activeCoord, zoom} = this.props;
 
     this._mapWrapper.current.style.height = `100%`;
 
     this._map = leaflet.map(this._mapWrapper.current, {
       center: centerCoord,
-      zoom: ZOOM,
+      zoom,
       zoomControl: false,
       marker: true
     });
@@ -50,7 +50,7 @@ class OffersMap extends PureComponent {
           })
       .addTo(this._map);
 
-    this._setView(centerCoord);
+    this._setView(centerCoord, zoom);
 
     this._centerCoord = centerCoord;
     this._updateOffers(offersCoord);
@@ -58,12 +58,12 @@ class OffersMap extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {centerCoord, offersCoord, activeCoord} = this.props;
+    const {centerCoord, offersCoord, activeCoord, zoom} = this.props;
 
     if (this._shouldOfferMarkersBeChanged(centerCoord, offersCoord)) {
       this._centerCoord = centerCoord;
 
-      this._setView(centerCoord);
+      this._setView(centerCoord, zoom);
       this._updateOffers(offersCoord);
     }
 
@@ -90,8 +90,8 @@ class OffersMap extends PureComponent {
     return false;
   }
 
-  _setView(coords) {
-    this._map.setView(coords, ZOOM);
+  _setView(coords, zoom) {
+    this._map.setView(coords, zoom);
   }
 
   _addOffers(offersCoord) {
@@ -131,7 +131,8 @@ const mapStateToProps = (state) => ({
 OffersMap.propTypes = {
   centerCoord: PropTypes.arrayOf(PropTypes.number).isRequired,
   offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  activeCoord: PropTypes.arrayOf(PropTypes.number)
+  activeCoord: PropTypes.arrayOf(PropTypes.number),
+  zoom: PropTypes.number
 };
 
 export {OffersMap};

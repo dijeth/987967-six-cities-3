@@ -1,16 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerPropType} from '../../const/props.js';
-import {AppRoute} from '../../const/const.js';
+import {AppRoute, PlaceCardType} from '../../const/const.js';
 import {ratingToPercent} from '../../util.js';
 import {Link} from 'react-router-dom';
 
-const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
-  const {title, type, pictures, cost, rating, isPremium, isFavorite, id} = offer;
+const PlaceCardProperties = {
+  [PlaceCardType.DEFAULT]: {
+    articleClass: `cities__place-card`,
+    imageWrapperClass: `cities__image-wrapper`,
+    cardInfoClass: ``,
+    imageWidth: 260,
+    imageHeight: 200,
+  },
+
+  [PlaceCardType.FAVORITE]: {
+    articleClass: `favorites__card`,
+    imageWrapperClass: `favorites__image-wrapper`,
+    cardInfoClass: `favorites__card-info`,
+    imageWidth: 150,
+    imageHeight: 110,
+  },
+
+  [PlaceCardType.NEARBY]: {
+    articleClass: `near-places__card`,
+    imageWrapperClass: `near-places__image-wrapper`,
+    cardInfoClass: ``,
+    imageWidth: 260,
+    imageHeight: 200,
+  }
+};
+
+const PlaceCard = ({offer, onHover, isAuth, type}) => {
+  const {title, type: offerType, pictures, cost, rating, isPremium, isFavorite, id} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
-  const renderType = isNearPlaces ? `near-places` : `cities`;
   const link = AppRoute.getOffer(id);
+
   const handleMouseEnter = () => {
     onHover(offer);
   };
@@ -19,12 +45,18 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
     onHover(null);
   };
 
+  const articleClass = PlaceCardProperties[type].articleClass;
+  const imageWrapperClass = PlaceCardProperties[type].imageWrapperClass;
+  const cardInfoClass = PlaceCardProperties[type].cardInfoClass;
+  const imageWidth = PlaceCardProperties[type].imageWidth;
+  const imageHeight = PlaceCardProperties[type].imageHeight;
+
   const favoriteButtonBlock = (
     <button className={`place-card__bookmark-button ${isFavorite ? `place-card__bookmark-button--active` : ``} button`} type="button">
       <svg className="place-card__bookmark-icon" width="18" height="19">
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
-      <span className="visually-hidden">To bookmarks</span>
+      <span className="visually-hidden">{`${isFavorite ? `From` : `To`} bookmarks`}</span>
     </button>);
 
   const linkToLogin = (
@@ -37,17 +69,17 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
 
   return (
     <article
-      className={`${renderType}__place-card place-card`}
+      className={`${articleClass} place-card`}
       onMouseEnter={onHover ? handleMouseEnter : null}
       onMouseLeave={onHover ? handleMouseLeave : null}
     >
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
-      <div className={`${renderType}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${imageWrapperClass} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={picture} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={picture} width={imageWidth} height={imageHeight} alt="Place image"/>
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${cardInfoClass} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{cost}</b>
@@ -64,7 +96,7 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
         <h2 className="place-card__name">
           <Link to={link}>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{offerType}</p>
       </div>
     </article>);
 };
@@ -72,8 +104,8 @@ const PlaceCard = ({offer, isNearPlaces, onHover, isAuth}) => {
 PlaceCard.propTypes = {
   offer: offerPropType.isRequired,
   onHover: PropTypes.func,
-  isNearPlaces: PropTypes.bool.isRequired,
-  isAuth: PropTypes.bool.isRequired
+  isAuth: PropTypes.bool.isRequired,
+  type: PropTypes.oneOf(Array.from(Object.values(PlaceCardType))).isRequired
 };
 
 export default React.memo(PlaceCard);

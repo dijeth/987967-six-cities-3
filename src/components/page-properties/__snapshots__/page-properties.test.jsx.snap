@@ -2,28 +2,27 @@
 
 exports[`<PageProperties /> snapshot test should be rendered correctly with an authorized user 1`] = `
 <div
-  className="page"
+  class="page"
 >
   <header
-    className="header"
+    class="header"
   >
     <div
-      className="container"
+      class="container"
     >
       <div
-        className="header__wrapper"
+        class="header__wrapper"
       >
         <div
-          className="header__left"
+          class="header__left"
         >
           <a
-            className="header__logo-link"
+            class="header__logo-link"
             href="/"
-            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
-              className="header__logo"
+              class="header__logo"
               height="41"
               src="/img/logo.svg"
               width="81"
@@ -31,24 +30,23 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
           </a>
         </div>
         <nav
-          className="header__nav"
+          class="header__nav"
         >
           <ul
-            className="header__nav-list"
+            class="header__nav-list"
           >
             <li
-              className="header__nav-item user"
+              class="header__nav-item user"
             >
               <a
-                className="header__nav-link header__nav-link--profile"
+                class="header__nav-link header__nav-link--profile"
                 href="/login"
-                onClick={[Function]}
               >
                 <div
-                  className="header__avatar-wrapper  user__avatar-wrapper"
+                  class="header__avatar-wrapper  user__avatar-wrapper"
                 />
                 <span
-                  className="header__login"
+                  class="header__login"
                 >
                   Sign in
                 </span>
@@ -60,147 +58,142 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
     </div>
   </header>
   <main
-    className="page__main page__main--property"
+    class="page__main page__main--property"
   >
     <section
-      className="property"
+      class="property"
     >
       <div
-        className="property__gallery-container container"
+        class="property__gallery-container container"
       >
         <div
-          className="property__gallery"
+          class="property__gallery"
         >
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-2"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-3"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-4"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-5"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-6"
             />
           </div>
         </div>
       </div>
       <div
-        className="property__container container"
+        class="property__container container"
       >
         <div
-          className="property__wrapper"
+          class="property__wrapper"
         >
           <div
-            className="property__mark"
+            class="property__mark"
           >
             <span>
               Premium
             </span>
           </div>
           <div
-            className="property__name-wrapper"
+            class="property__name-wrapper"
           >
             <h1
-              className="property__name"
+              class="property__name"
             >
               title
             </h1>
             <button
-              className="property__bookmark-button  button"
-              onClick={[Function]}
+              class="property__bookmark-button  button"
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                class="property__bookmark-icon"
                 height="33"
                 width="31"
               >
                 <use
-                  xlinkHref="#icon-bookmark"
+                  xlink:href="#icon-bookmark"
                 />
               </svg>
               <span
-                className="visually-hidden"
+                class="visually-hidden"
               >
                 To bookmarks
               </span>
             </button>
           </div>
           <div
-            className="property__rating rating"
+            class="property__rating rating"
           >
             <div
-              className="property__stars rating__stars"
+              class="property__stars rating__stars"
             >
               <span
-                style={
-                  Object {
-                    "width": "20%",
-                  }
-                }
+                style="width: 20%;"
               />
               <span
-                className="visually-hidden"
+                class="visually-hidden"
               >
                 Rating
               </span>
             </div>
             <span
-              className="property__rating-value rating__value"
+              class="property__rating-value rating__value"
             >
               1
             </span>
           </div>
           <ul
-            className="property__features"
+            class="property__features"
           >
             <li
-              className="property__feature property__feature--entire"
+              class="property__feature property__feature--entire"
             >
               type
             </li>
             <li
-              className="property__feature property__feature--bedrooms"
+              class="property__feature property__feature--bedrooms"
             >
               1
                Bedrooms
             </li>
             <li
-              className="property__feature property__feature--adults"
+              class="property__feature property__feature--adults"
             >
               Max 
               1
@@ -208,249 +201,246 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
             </li>
           </ul>
           <div
-            className="property__price"
+            class="property__price"
           >
             <b
-              className="property__price-value"
+              class="property__price-value"
             >
               €
               123
             </b>
             <span
-              className="property__price-text"
+              class="property__price-text"
             >
                night
             </span>
           </div>
           <div
-            className="property__inside"
+            class="property__inside"
           >
             <h2
-              className="property__inside-title"
+              class="property__inside-title"
             >
               What's inside
             </h2>
             <ul
-              className="property__inside-list"
+              class="property__inside-list"
             >
               <li
-                className="property__inside-item"
+                class="property__inside-item"
               >
                 insideFeatures
               </li>
             </ul>
           </div>
           <div
-            className="property__host"
+            class="property__host"
           >
             <h2
-              className="property__host-title"
+              class="property__host-title"
             >
               descriptionTitle
             </h2>
             <div
-              className="property__host-user user"
+              class="property__host-user user"
             >
               <div
-                className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
+                class="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
               >
                 <img
                   alt="Host avatar"
-                  className="property__avatar user__avatar"
+                  class="property__avatar user__avatar"
                   height="74"
                   src="/userPicture"
                   width="74"
                 />
               </div>
               <span
-                className="property__user-name"
+                class="property__user-name"
               >
                 userName
               </span>
             </div>
             <div
-              className="property__description"
+              class="property__description"
             >
               <p
-                className="property__text"
+                class="property__text"
               >
                 description
               </p>
             </div>
           </div>
           <section
-            className="property__reviews reviews"
+            class="property__reviews reviews"
           >
             <h2
-              className="reviews__title"
+              class="reviews__title"
             >
               Reviews · 
               <span
-                className="reviews__amount"
+                class="reviews__amount"
               >
                 0
               </span>
             </h2>
             <ul
-              className="reviews__list"
+              class="reviews__list"
             />
             <form
               action="#"
-              className="reviews__form form"
+              class="reviews__form form"
               method="post"
-              onSubmit={[Function]}
             >
               <label
-                className="reviews__label form__label"
-                htmlFor="review"
+                class="reviews__label form__label"
+                for="review"
               >
                 Your review
               </label>
               <div
-                className="reviews__rating-form form__rating"
-                onClick={[Function]}
+                class="reviews__rating-form form__rating"
               >
                 <input
-                  className="form__rating-input visually-hidden"
+                  class="form__rating-input visually-hidden"
                   id="5-stars"
                   name="rating"
                   type="radio"
                   value="5"
                 />
                 <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="5-stars"
+                  class="reviews__rating-label form__rating-label"
+                  for="5-stars"
                   title="perfect"
                 >
                   <svg
-                    className="form__star-image"
+                    class="form__star-image"
                     height="33"
                     width="37"
                   >
                     <use
-                      xlinkHref="#icon-star"
+                      xlink:href="#icon-star"
                     />
                   </svg>
                 </label>
                 <input
-                  className="form__rating-input visually-hidden"
+                  class="form__rating-input visually-hidden"
                   id="4-stars"
                   name="rating"
                   type="radio"
                   value="4"
                 />
                 <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="4-stars"
+                  class="reviews__rating-label form__rating-label"
+                  for="4-stars"
                   title="good"
                 >
                   <svg
-                    className="form__star-image"
+                    class="form__star-image"
                     height="33"
                     width="37"
                   >
                     <use
-                      xlinkHref="#icon-star"
+                      xlink:href="#icon-star"
                     />
                   </svg>
                 </label>
                 <input
-                  className="form__rating-input visually-hidden"
+                  class="form__rating-input visually-hidden"
                   id="3-stars"
                   name="rating"
                   type="radio"
                   value="3"
                 />
                 <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="3-stars"
+                  class="reviews__rating-label form__rating-label"
+                  for="3-stars"
                   title="not bad"
                 >
                   <svg
-                    className="form__star-image"
+                    class="form__star-image"
                     height="33"
                     width="37"
                   >
                     <use
-                      xlinkHref="#icon-star"
+                      xlink:href="#icon-star"
                     />
                   </svg>
                 </label>
                 <input
-                  className="form__rating-input visually-hidden"
+                  class="form__rating-input visually-hidden"
                   id="2-stars"
                   name="rating"
                   type="radio"
                   value="2"
                 />
                 <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="2-stars"
+                  class="reviews__rating-label form__rating-label"
+                  for="2-stars"
                   title="badly"
                 >
                   <svg
-                    className="form__star-image"
+                    class="form__star-image"
                     height="33"
                     width="37"
                   >
                     <use
-                      xlinkHref="#icon-star"
+                      xlink:href="#icon-star"
                     />
                   </svg>
                 </label>
                 <input
-                  className="form__rating-input visually-hidden"
+                  class="form__rating-input visually-hidden"
                   id="1-star"
                   name="rating"
                   type="radio"
                   value="1"
                 />
                 <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="1-star"
+                  class="reviews__rating-label form__rating-label"
+                  for="1-star"
                   title="terribly"
                 >
                   <svg
-                    className="form__star-image"
+                    class="form__star-image"
                     height="33"
                     width="37"
                   >
                     <use
-                      xlinkHref="#icon-star"
+                      xlink:href="#icon-star"
                     />
                   </svg>
                 </label>
               </div>
               <textarea
-                className="reviews__textarea form__textarea"
+                class="reviews__textarea form__textarea"
                 id="review"
                 name="review"
-                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
               />
               <div
-                className="reviews__button-wrapper"
+                class="reviews__button-wrapper"
               >
                 <p
-                  className="reviews__help"
+                  class="reviews__help"
                 >
                   To submit review please make sure to set 
                   <span
-                    className="reviews__star"
+                    class="reviews__star"
                   >
                     rating
                   </span>
                    and describe your stay with at least 
                   <b
-                    className="reviews__text-amount"
+                    class="reviews__text-amount"
                   >
                     50 characters
                   </b>
                   .
                 </p>
                 <button
-                  className="reviews__submit form__submit button"
-                  disabled={true}
+                  class="reviews__submit form__submit button"
+                  disabled=""
                   type="submit"
                 >
                   Submit
@@ -461,45 +451,43 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
         </div>
       </div>
       <section
-        className="property__map map"
+        class="property__map map"
       >
         <div
           id="map"
+          style="height: 100%;"
         />
       </section>
     </section>
     <div
-      className="container"
+      class="container"
     >
       <section
-        className="near-places places"
+        class="near-places places"
       >
         <h2
-          className="near-places__title"
+          class="near-places__title"
         >
           Other places in the neighbourhood
         </h2>
         <div
-          className="near-places__list places__list"
+          class="near-places__list places__list"
         >
           <div
-            className="near-places__list places__list"
-            onClick={[Function]}
+            class="near-places__list places__list"
           >
             <article
-              className="near-places__place-card place-card"
-              onMouseEnter={null}
-              onMouseLeave={null}
+              class="near-places__card place-card"
             >
               <div
-                className="near-places__image-wrapper place-card__image-wrapper"
+                class="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
                 >
                   <img
                     alt="Place image"
-                    className="place-card__image"
+                    class="place-card__image"
                     height="200"
                     src="picture-1"
                     width="260"
@@ -507,97 +495,90 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                 </a>
               </div>
               <div
-                className="place-card__info"
+                class=" place-card__info"
               >
                 <div
-                  className="place-card__price-wrapper"
+                  class="place-card__price-wrapper"
                 >
                   <div
-                    className="place-card__price"
+                    class="place-card__price"
                   >
                     <b
-                      className="place-card__price-value"
+                      class="place-card__price-value"
                     >
                       €
                       1
                     </b>
                     <span
-                      className="place-card__price-text"
+                      class="place-card__price-text"
                     >
                       / night
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
+                    class="place-card__bookmark-button place-card__bookmark-button--active button"
                     type="button"
                   >
                     <svg
-                      className="place-card__bookmark-icon"
+                      class="place-card__bookmark-icon"
                       height="19"
                       width="18"
                     >
                       <use
-                        xlinkHref="#icon-bookmark"
+                        xlink:href="#icon-bookmark"
                       />
                     </svg>
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
-                      To bookmarks
+                      From bookmarks
                     </span>
                   </button>
                 </div>
                 <div
-                  className="place-card__rating rating"
+                  class="place-card__rating rating"
                 >
                   <div
-                    className="place-card__stars rating__stars"
+                    class="place-card__stars rating__stars"
                   >
                     <span
-                      style={
-                        Object {
-                          "width": "20%",
-                        }
-                      }
+                      style="width: 20%;"
                     />
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       Rating
                     </span>
                   </div>
                 </div>
                 <h2
-                  className="place-card__name"
+                  class="place-card__name"
                 >
                   <a
                     href="/offer/1"
-                    onClick={[Function]}
                   >
                     title-1
                   </a>
                 </h2>
                 <p
-                  className="place-card__type"
+                  class="place-card__type"
                 >
                   type-1
                 </p>
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
-              onMouseEnter={null}
-              onMouseLeave={null}
+              class="near-places__card place-card"
             >
               <div
-                className="near-places__image-wrapper place-card__image-wrapper"
+                class="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
                 >
                   <img
                     alt="Place image"
-                    className="place-card__image"
+                    class="place-card__image"
                     height="200"
                     src="picture-2"
                     width="260"
@@ -605,97 +586,90 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                 </a>
               </div>
               <div
-                className="place-card__info"
+                class=" place-card__info"
               >
                 <div
-                  className="place-card__price-wrapper"
+                  class="place-card__price-wrapper"
                 >
                   <div
-                    className="place-card__price"
+                    class="place-card__price"
                   >
                     <b
-                      className="place-card__price-value"
+                      class="place-card__price-value"
                     >
                       €
                       2
                     </b>
                     <span
-                      className="place-card__price-text"
+                      class="place-card__price-text"
                     >
                       / night
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
+                    class="place-card__bookmark-button place-card__bookmark-button--active button"
                     type="button"
                   >
                     <svg
-                      className="place-card__bookmark-icon"
+                      class="place-card__bookmark-icon"
                       height="19"
                       width="18"
                     >
                       <use
-                        xlinkHref="#icon-bookmark"
+                        xlink:href="#icon-bookmark"
                       />
                     </svg>
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
-                      To bookmarks
+                      From bookmarks
                     </span>
                   </button>
                 </div>
                 <div
-                  className="place-card__rating rating"
+                  class="place-card__rating rating"
                 >
                   <div
-                    className="place-card__stars rating__stars"
+                    class="place-card__stars rating__stars"
                   >
                     <span
-                      style={
-                        Object {
-                          "width": "20%",
-                        }
-                      }
+                      style="width: 20%;"
                     />
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       Rating
                     </span>
                   </div>
                 </div>
                 <h2
-                  className="place-card__name"
+                  class="place-card__name"
                 >
                   <a
                     href="/offer/2"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>
                 </h2>
                 <p
-                  className="place-card__type"
+                  class="place-card__type"
                 >
                   type-1
                 </p>
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
-              onMouseEnter={null}
-              onMouseLeave={null}
+              class="near-places__card place-card"
             >
               <div
-                className="near-places__image-wrapper place-card__image-wrapper"
+                class="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
                 >
                   <img
                     alt="Place image"
-                    className="place-card__image"
+                    class="place-card__image"
                     height="200"
                     src="picture-3"
                     width="260"
@@ -703,78 +677,73 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
                 </a>
               </div>
               <div
-                className="place-card__info"
+                class=" place-card__info"
               >
                 <div
-                  className="place-card__price-wrapper"
+                  class="place-card__price-wrapper"
                 >
                   <div
-                    className="place-card__price"
+                    class="place-card__price"
                   >
                     <b
-                      className="place-card__price-value"
+                      class="place-card__price-value"
                     >
                       €
                       3
                     </b>
                     <span
-                      className="place-card__price-text"
+                      class="place-card__price-text"
                     >
                       / night
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button place-card__bookmark-button--active button"
+                    class="place-card__bookmark-button place-card__bookmark-button--active button"
                     type="button"
                   >
                     <svg
-                      className="place-card__bookmark-icon"
+                      class="place-card__bookmark-icon"
                       height="19"
                       width="18"
                     >
                       <use
-                        xlinkHref="#icon-bookmark"
+                        xlink:href="#icon-bookmark"
                       />
                     </svg>
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
-                      To bookmarks
+                      From bookmarks
                     </span>
                   </button>
                 </div>
                 <div
-                  className="place-card__rating rating"
+                  class="place-card__rating rating"
                 >
                   <div
-                    className="place-card__stars rating__stars"
+                    class="place-card__stars rating__stars"
                   >
                     <span
-                      style={
-                        Object {
-                          "width": "20%",
-                        }
-                      }
+                      style="width: 20%;"
                     />
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       Rating
                     </span>
                   </div>
                 </div>
                 <h2
-                  className="place-card__name"
+                  class="place-card__name"
                 >
                   <a
                     href="/offer/3"
-                    onClick={[Function]}
                   >
                     title-3
                   </a>
                 </h2>
                 <p
-                  className="place-card__type"
+                  class="place-card__type"
                 >
                   type-1
                 </p>
@@ -790,28 +759,27 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an a
 
 exports[`<PageProperties /> snapshot test should be rendered correctly with an unauthorized user 1`] = `
 <div
-  className="page"
+  class="page"
 >
   <header
-    className="header"
+    class="header"
   >
     <div
-      className="container"
+      class="container"
     >
       <div
-        className="header__wrapper"
+        class="header__wrapper"
       >
         <div
-          className="header__left"
+          class="header__left"
         >
           <a
-            className="header__logo-link"
+            class="header__logo-link"
             href="/"
-            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
-              className="header__logo"
+              class="header__logo"
               height="41"
               src="/img/logo.svg"
               width="81"
@@ -819,24 +787,23 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
           </a>
         </div>
         <nav
-          className="header__nav"
+          class="header__nav"
         >
           <ul
-            className="header__nav-list"
+            class="header__nav-list"
           >
             <li
-              className="header__nav-item user"
+              class="header__nav-item user"
             >
               <a
-                className="header__nav-link header__nav-link--profile"
+                class="header__nav-link header__nav-link--profile"
                 href="/login"
-                onClick={[Function]}
               >
                 <div
-                  className="header__avatar-wrapper  user__avatar-wrapper"
+                  class="header__avatar-wrapper  user__avatar-wrapper"
                 />
                 <span
-                  className="header__login"
+                  class="header__login"
                 >
                   Sign in
                 </span>
@@ -848,148 +815,143 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
     </div>
   </header>
   <main
-    className="page__main page__main--property"
+    class="page__main page__main--property"
   >
     <section
-      className="property"
+      class="property"
     >
       <div
-        className="property__gallery-container container"
+        class="property__gallery-container container"
       >
         <div
-          className="property__gallery"
+          class="property__gallery"
         >
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-2"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-3"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-4"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-5"
             />
           </div>
           <div
-            className="property__image-wrapper"
+            class="property__image-wrapper"
           >
             <img
               alt="Photo studio"
-              className="property__image"
+              class="property__image"
               src="picture-6"
             />
           </div>
         </div>
       </div>
       <div
-        className="property__container container"
+        class="property__container container"
       >
         <div
-          className="property__wrapper"
+          class="property__wrapper"
         >
           <div
-            className="property__mark"
+            class="property__mark"
           >
             <span>
               Premium
             </span>
           </div>
           <div
-            className="property__name-wrapper"
+            class="property__name-wrapper"
           >
             <h1
-              className="property__name"
+              class="property__name"
             >
               title
             </h1>
             <a
-              className="property__bookmark-button button"
+              class="property__bookmark-button button"
               href="/login"
-              onClick={[Function]}
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                class="property__bookmark-icon"
                 height="33"
                 width="31"
               >
                 <use
-                  xlinkHref="#icon-bookmark"
+                  xlink:href="#icon-bookmark"
                 />
               </svg>
               <span
-                className="visually-hidden"
+                class="visually-hidden"
               >
                 To bookmarks
               </span>
             </a>
           </div>
           <div
-            className="property__rating rating"
+            class="property__rating rating"
           >
             <div
-              className="property__stars rating__stars"
+              class="property__stars rating__stars"
             >
               <span
-                style={
-                  Object {
-                    "width": "20%",
-                  }
-                }
+                style="width: 20%;"
               />
               <span
-                className="visually-hidden"
+                class="visually-hidden"
               >
                 Rating
               </span>
             </div>
             <span
-              className="property__rating-value rating__value"
+              class="property__rating-value rating__value"
             >
               1
             </span>
           </div>
           <ul
-            className="property__features"
+            class="property__features"
           >
             <li
-              className="property__feature property__feature--entire"
+              class="property__feature property__feature--entire"
             >
               type
             </li>
             <li
-              className="property__feature property__feature--bedrooms"
+              class="property__feature property__feature--bedrooms"
             >
               1
                Bedrooms
             </li>
             <li
-              className="property__feature property__feature--adults"
+              class="property__feature property__feature--adults"
             >
               Max 
               1
@@ -997,135 +959,133 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
             </li>
           </ul>
           <div
-            className="property__price"
+            class="property__price"
           >
             <b
-              className="property__price-value"
+              class="property__price-value"
             >
               €
               123
             </b>
             <span
-              className="property__price-text"
+              class="property__price-text"
             >
                night
             </span>
           </div>
           <div
-            className="property__inside"
+            class="property__inside"
           >
             <h2
-              className="property__inside-title"
+              class="property__inside-title"
             >
               What's inside
             </h2>
             <ul
-              className="property__inside-list"
+              class="property__inside-list"
             >
               <li
-                className="property__inside-item"
+                class="property__inside-item"
               >
                 insideFeatures
               </li>
             </ul>
           </div>
           <div
-            className="property__host"
+            class="property__host"
           >
             <h2
-              className="property__host-title"
+              class="property__host-title"
             >
               descriptionTitle
             </h2>
             <div
-              className="property__host-user user"
+              class="property__host-user user"
             >
               <div
-                className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
+                class="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
               >
                 <img
                   alt="Host avatar"
-                  className="property__avatar user__avatar"
+                  class="property__avatar user__avatar"
                   height="74"
                   src="/userPicture"
                   width="74"
                 />
               </div>
               <span
-                className="property__user-name"
+                class="property__user-name"
               >
                 userName
               </span>
             </div>
             <div
-              className="property__description"
+              class="property__description"
             >
               <p
-                className="property__text"
+                class="property__text"
               >
                 description
               </p>
             </div>
           </div>
           <section
-            className="property__reviews reviews"
+            class="property__reviews reviews"
           >
             <h2
-              className="reviews__title"
+              class="reviews__title"
             >
               Reviews · 
               <span
-                className="reviews__amount"
+                class="reviews__amount"
               >
                 0
               </span>
             </h2>
             <ul
-              className="reviews__list"
+              class="reviews__list"
             />
           </section>
         </div>
       </div>
       <section
-        className="property__map map"
+        class="property__map map"
       >
         <div
           id="map"
+          style="height: 100%;"
         />
       </section>
     </section>
     <div
-      className="container"
+      class="container"
     >
       <section
-        className="near-places places"
+        class="near-places places"
       >
         <h2
-          className="near-places__title"
+          class="near-places__title"
         >
           Other places in the neighbourhood
         </h2>
         <div
-          className="near-places__list places__list"
+          class="near-places__list places__list"
         >
           <div
-            className="near-places__list places__list"
-            onClick={[Function]}
+            class="near-places__list places__list"
           >
             <article
-              className="near-places__place-card place-card"
-              onMouseEnter={null}
-              onMouseLeave={null}
+              class="near-places__card place-card"
             >
               <div
-                className="near-places__image-wrapper place-card__image-wrapper"
+                class="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
                 >
                   <img
                     alt="Place image"
-                    className="place-card__image"
+                    class="place-card__image"
                     height="200"
                     src="picture-1"
                     width="260"
@@ -1133,98 +1093,90 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                 </a>
               </div>
               <div
-                className="place-card__info"
+                class=" place-card__info"
               >
                 <div
-                  className="place-card__price-wrapper"
+                  class="place-card__price-wrapper"
                 >
                   <div
-                    className="place-card__price"
+                    class="place-card__price"
                   >
                     <b
-                      className="place-card__price-value"
+                      class="place-card__price-value"
                     >
                       €
                       1
                     </b>
                     <span
-                      className="place-card__price-text"
+                      class="place-card__price-text"
                     >
                       / night
                     </span>
                   </div>
                   <a
-                    className="place-card__bookmark-button button"
+                    class="place-card__bookmark-button button"
                     href="/login"
-                    onClick={[Function]}
                   >
                     <svg
-                      className="place-card__bookmark-icon"
+                      class="place-card__bookmark-icon"
                       height="19"
                       width="18"
                     >
                       <use
-                        xlinkHref="#icon-bookmark"
+                        xlink:href="#icon-bookmark"
                       />
                     </svg>
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       To bookmarks
                     </span>
                   </a>
                 </div>
                 <div
-                  className="place-card__rating rating"
+                  class="place-card__rating rating"
                 >
                   <div
-                    className="place-card__stars rating__stars"
+                    class="place-card__stars rating__stars"
                   >
                     <span
-                      style={
-                        Object {
-                          "width": "20%",
-                        }
-                      }
+                      style="width: 20%;"
                     />
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       Rating
                     </span>
                   </div>
                 </div>
                 <h2
-                  className="place-card__name"
+                  class="place-card__name"
                 >
                   <a
                     href="/offer/1"
-                    onClick={[Function]}
                   >
                     title-1
                   </a>
                 </h2>
                 <p
-                  className="place-card__type"
+                  class="place-card__type"
                 >
                   type-1
                 </p>
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
-              onMouseEnter={null}
-              onMouseLeave={null}
+              class="near-places__card place-card"
             >
               <div
-                className="near-places__image-wrapper place-card__image-wrapper"
+                class="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
                 >
                   <img
                     alt="Place image"
-                    className="place-card__image"
+                    class="place-card__image"
                     height="200"
                     src="picture-2"
                     width="260"
@@ -1232,98 +1184,90 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                 </a>
               </div>
               <div
-                className="place-card__info"
+                class=" place-card__info"
               >
                 <div
-                  className="place-card__price-wrapper"
+                  class="place-card__price-wrapper"
                 >
                   <div
-                    className="place-card__price"
+                    class="place-card__price"
                   >
                     <b
-                      className="place-card__price-value"
+                      class="place-card__price-value"
                     >
                       €
                       2
                     </b>
                     <span
-                      className="place-card__price-text"
+                      class="place-card__price-text"
                     >
                       / night
                     </span>
                   </div>
                   <a
-                    className="place-card__bookmark-button button"
+                    class="place-card__bookmark-button button"
                     href="/login"
-                    onClick={[Function]}
                   >
                     <svg
-                      className="place-card__bookmark-icon"
+                      class="place-card__bookmark-icon"
                       height="19"
                       width="18"
                     >
                       <use
-                        xlinkHref="#icon-bookmark"
+                        xlink:href="#icon-bookmark"
                       />
                     </svg>
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       To bookmarks
                     </span>
                   </a>
                 </div>
                 <div
-                  className="place-card__rating rating"
+                  class="place-card__rating rating"
                 >
                   <div
-                    className="place-card__stars rating__stars"
+                    class="place-card__stars rating__stars"
                   >
                     <span
-                      style={
-                        Object {
-                          "width": "20%",
-                        }
-                      }
+                      style="width: 20%;"
                     />
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       Rating
                     </span>
                   </div>
                 </div>
                 <h2
-                  className="place-card__name"
+                  class="place-card__name"
                 >
                   <a
                     href="/offer/2"
-                    onClick={[Function]}
                   >
                     title-2
                   </a>
                 </h2>
                 <p
-                  className="place-card__type"
+                  class="place-card__type"
                 >
                   type-1
                 </p>
               </div>
             </article>
             <article
-              className="near-places__place-card place-card"
-              onMouseEnter={null}
-              onMouseLeave={null}
+              class="near-places__card place-card"
             >
               <div
-                className="near-places__image-wrapper place-card__image-wrapper"
+                class="near-places__image-wrapper place-card__image-wrapper"
               >
                 <a
                   href="#"
                 >
                   <img
                     alt="Place image"
-                    className="place-card__image"
+                    class="place-card__image"
                     height="200"
                     src="picture-3"
                     width="260"
@@ -1331,79 +1275,73 @@ exports[`<PageProperties /> snapshot test should be rendered correctly with an u
                 </a>
               </div>
               <div
-                className="place-card__info"
+                class=" place-card__info"
               >
                 <div
-                  className="place-card__price-wrapper"
+                  class="place-card__price-wrapper"
                 >
                   <div
-                    className="place-card__price"
+                    class="place-card__price"
                   >
                     <b
-                      className="place-card__price-value"
+                      class="place-card__price-value"
                     >
                       €
                       3
                     </b>
                     <span
-                      className="place-card__price-text"
+                      class="place-card__price-text"
                     >
                       / night
                     </span>
                   </div>
                   <a
-                    className="place-card__bookmark-button button"
+                    class="place-card__bookmark-button button"
                     href="/login"
-                    onClick={[Function]}
                   >
                     <svg
-                      className="place-card__bookmark-icon"
+                      class="place-card__bookmark-icon"
                       height="19"
                       width="18"
                     >
                       <use
-                        xlinkHref="#icon-bookmark"
+                        xlink:href="#icon-bookmark"
                       />
                     </svg>
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       To bookmarks
                     </span>
                   </a>
                 </div>
                 <div
-                  className="place-card__rating rating"
+                  class="place-card__rating rating"
                 >
                   <div
-                    className="place-card__stars rating__stars"
+                    class="place-card__stars rating__stars"
                   >
                     <span
-                      style={
-                        Object {
-                          "width": "20%",
-                        }
-                      }
+                      style="width: 20%;"
                     />
                     <span
-                      className="visually-hidden"
+                      class="visually-hidden"
                     >
                       Rating
                     </span>
                   </div>
                 </div>
                 <h2
-                  className="place-card__name"
+                  class="place-card__name"
                 >
                   <a
                     href="/offer/3"
-                    onClick={[Function]}
                   >
                     title-3
                   </a>
                 </h2>
                 <p
-                  className="place-card__type"
+                  class="place-card__type"
                 >
                   type-1
                 </p>

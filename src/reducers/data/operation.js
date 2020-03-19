@@ -1,5 +1,6 @@
 import DataActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
+import UserActionCreator from '../user/action-creator.js';
 import Adapter from '../../adapter/adapter.js';
 import {ServerRoute, AppRoute, ServerError} from '../../const/const.js';
 import history from '../../history.js';
@@ -16,7 +17,7 @@ export const Operation = {
 
         dispatch(DataActionCreator.loadOffers(data.offers));
         dispatch(DataActionCreator.loadCities(data.cities));
-        dispatch(AppActionCreator.changeCity(data.cities[0]));
+        dispatch(AppActionCreator.changeCity(data.cities[0].name));
       })
       .finally(() => {
         dispatch(AppActionCreator.decreaseLoad());
@@ -47,11 +48,17 @@ export const Operation = {
       });
   },
 
-  loadFavorites: () => (dispatch, getState, api) => {
+  updateFavorites: () => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.increaseLoad());
     return api.get(ServerRoute.getFavorites())
       .then((response) => {
         const data = Adapter.getData(response.data).offers;
-        dispatch(DataActionCreator.loadFavorites(data));
+        data.forEach((it) => {
+          dispatch(DataActionCreator.replaceOffer(it));
+        });
+      })
+      .finally(() => {
+        dispatch(AppActionCreator.decreaseLoad());
       });
   },
 
@@ -64,6 +71,29 @@ export const Operation = {
       .catch((err) => {
         if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
           history.push(AppRoute.getLogin());
+        } else {
+          throw err;
+        }
+      });
+  },
+
+  submitComment: (commentData, offerID) => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.changeCommentSendingStatus(true));
+    return api.post(ServerRoute.getComments(offerID), commentData)
+      .then((response) => {
+        const comments = Adapter.getComments(response.data);
+        dispatch(DataActionCreator.loadComments(comments));
+        // dispatch(AppActionCreator.setCommentError(false));
+        dispatch(AppActionCreator.changeCommentSendingStatus(false));
+        dispatch(UserActionCreator.resetUserReview());
+      })
+      .catch((err) => {
+        // dispatch(AppActionCreator.setCommentError(true));
+        dispatch(AppActionCreator.changeCommentSendingStatus(false));
+        if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
+          history.push(AppRoute.getLogin());
+          // } else {
+          throw err;
         }
       });
   }

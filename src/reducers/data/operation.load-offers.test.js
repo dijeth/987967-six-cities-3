@@ -106,7 +106,7 @@ it(`should call a dispatch for 5 times`, () => {
 
       expect(dispatch).toHaveBeenNthCalledWith(4, {
         type: ActionType.CHANGE_CITY,
-        payload: convertedCities[0]
+        payload: convertedCities[0].name
       });
 
       expect(dispatch).toHaveBeenNthCalledWith(5, {
