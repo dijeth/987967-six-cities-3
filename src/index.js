@@ -12,6 +12,7 @@ import {AuthorizationStatus, ServerError} from './const/const.js';
 import UserActionCreator from './reducers/user/action-creator.js';
 import AppActionCreator from './reducers/app/action-creator.js';
 import {getPageError} from './reducers/app/selectors.js';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 const UNKNOWN_ERROR = `Looks like you ran out of internet`;
 
@@ -53,9 +54,8 @@ const rootElement = document.getElementById(`root`);
 
 const store = createStore(
     reducer,
-    compose(
+    composeWithDevTools(
         applyMiddleware(thunk.withExtraArgument(api)),
-        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
     )
 );
 

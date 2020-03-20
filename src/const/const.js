@@ -104,3 +104,6 @@ export const EMPTY_REVIEW = {
   rating: 0,
   offerID: null,
 };
+
+export const BASE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
+export const TIME_OUT = 5000;
