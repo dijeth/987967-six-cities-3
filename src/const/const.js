@@ -83,8 +83,8 @@ export const ServerRoute = {
 export const MAX_IMAGE_COUNT = 6;
 
 export const ReviewLength = {
-  MIN: 5,
-  MAX: 30
+  MIN: 50,
+  MAX: 300
 };
 
 export const ServerError = {
