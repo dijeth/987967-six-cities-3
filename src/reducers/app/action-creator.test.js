@@ -43,13 +43,6 @@ describe(`App ActionCreator Test`, () => {
     });
   });
 
-  it(`should return a correct action for "setCommentError"`, () => {
-    expect(ActionCreator.setCommentError(false)).toEqual({
-      type: ActionType.SET_COMMENT_ERROR,
-      payload: false
-    });
-  });
-
   it(`should return a correct action for "setPageError"`, () => {
     expect(ActionCreator.setPageError(`Server error`)).toEqual({
       type: ActionType.SET_PAGE_ERROR,

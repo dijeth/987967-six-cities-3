@@ -3,7 +3,6 @@ import NameSpace from '../name-space.js';
 import {getCities} from '../data/selectors.js';
 
 export const getPageError = (state) => state[NameSpace.APP].pageError;
-export const getCommentError = (state) => state[NameSpace.APP].commentError;
 export const getLoading = (state) => state[NameSpace.APP].loading;
 export const getCommentSendingStatus = (state) => state[NameSpace.APP].isCommentSending;
 export const getSortType = (state) => state[NameSpace.APP].sortType || SortType.POPULAR;

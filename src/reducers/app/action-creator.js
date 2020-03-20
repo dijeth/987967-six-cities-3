@@ -7,7 +7,6 @@ const ActionCreator = {
   increaseLoad: () => ({type: ActionType.INCREASE_LOAD}),
   decreaseLoad: () => ({type: ActionType.DECREASE_LOAD}),
   changeCommentSendingStatus: (isCommentSending) => ({type: ActionType.CHANGE_COMMENT_SENDING_STATUS, payload: isCommentSending}),
-  setCommentError: (isError) => ({type: ActionType.SET_COMMENT_ERROR, payload: isError}),
   setPageError: (errorText) => ({type: ActionType.SET_PAGE_ERROR, payload: errorText}),
 };
 
