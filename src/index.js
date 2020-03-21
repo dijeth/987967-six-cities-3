@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import App from './components/app/app.jsx';
-import {createStore, applyMiddleware, compose} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import reducer from './reducers/reducer.js';
@@ -12,6 +12,7 @@ import {AuthorizationStatus, ServerError} from './const/const.js';
 import UserActionCreator from './reducers/user/action-creator.js';
 import AppActionCreator from './reducers/app/action-creator.js';
 import {getPageError} from './reducers/app/selectors.js';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 const UNKNOWN_ERROR = `Looks like you ran out of internet`;
 
@@ -53,9 +54,8 @@ const rootElement = document.getElementById(`root`);
 
 const store = createStore(
     reducer,
-    compose(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
     )
 );
 

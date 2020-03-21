@@ -83,8 +83,8 @@ export const ServerRoute = {
 export const MAX_IMAGE_COUNT = 6;
 
 export const ReviewLength = {
-  MIN: 5,
-  MAX: 30
+  MIN: 50,
+  MAX: 300
 };
 
 export const ServerError = {
@@ -104,3 +104,6 @@ export const EMPTY_REVIEW = {
   rating: 0,
   offerID: null,
 };
+
+export const BASE_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
+export const TIME_OUT = 5000;

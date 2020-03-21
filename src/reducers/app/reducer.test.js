@@ -8,7 +8,6 @@ const initialState = {
   sortType: SortType.POPULAR,
   loading: 0,
   isCommentSending: false,
-  commentError: false,
   pageError: ``
 };
 
@@ -25,7 +24,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     }, {
       type: ActionType.CHANGE_CITY,
@@ -36,7 +34,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     });
   });
@@ -48,7 +45,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     }, {
       type: ActionType.CHANGE_ACTIVE_OFFER,
@@ -59,7 +55,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     });
   });
@@ -71,7 +66,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     }, {
       type: ActionType.CHANGE_SORT_TYPE,
@@ -82,7 +76,6 @@ describe(`Test App reducer`, () => {
       sortType: `SortType`,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     });
   });
@@ -94,7 +87,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     }, {
       type: ActionType.INCREASE_LOAD,
@@ -104,7 +96,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 1,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     });
   });
@@ -116,7 +107,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 1,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     }, {
       type: ActionType.DECREASE_LOAD,
@@ -127,7 +117,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     });
   });
@@ -139,7 +128,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     }, {
       type: ActionType.CHANGE_COMMENT_SENDING_STATUS,
@@ -150,30 +138,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: true,
-      commentError: false,
-      pageError: ``
-    });
-  });
-
-  it(`should change an "commentError" by payload`, () => {
-    expect(reducer({
-      activeCity: null,
-      activeOffer: null,
-      sortType: SortType.POPULAR,
-      loading: 0,
-      isCommentSending: false,
-      commentError: false,
-      pageError: ``
-    }, {
-      type: ActionType.SET_COMMENT_ERROR,
-      payload: true
-    })).toEqual({
-      activeCity: null,
-      activeOffer: null,
-      sortType: SortType.POPULAR,
-      loading: 0,
-      isCommentSending: false,
-      commentError: true,
       pageError: ``
     });
   });
@@ -185,7 +149,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: ``
     }, {
       type: ActionType.SET_PAGE_ERROR,
@@ -196,7 +159,6 @@ describe(`Test App reducer`, () => {
       sortType: SortType.POPULAR,
       loading: 0,
       isCommentSending: false,
-      commentError: false,
       pageError: `Server error`
     });
   });

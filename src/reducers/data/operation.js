@@ -57,6 +57,7 @@ export const Operation = {
           dispatch(DataActionCreator.replaceOffer(it));
         });
       })
+      .catch(() => {})
       .finally(() => {
         dispatch(AppActionCreator.decreaseLoad());
       });
@@ -83,17 +84,13 @@ export const Operation = {
       .then((response) => {
         const comments = Adapter.getComments(response.data);
         dispatch(DataActionCreator.loadComments(comments));
-        // dispatch(AppActionCreator.setCommentError(false));
         dispatch(AppActionCreator.changeCommentSendingStatus(false));
         dispatch(UserActionCreator.resetUserReview());
       })
       .catch((err) => {
-        // dispatch(AppActionCreator.setCommentError(true));
         dispatch(AppActionCreator.changeCommentSendingStatus(false));
         if (err.response && err.response.status === ServerError.UNAUTHORIZED) {
           history.push(AppRoute.getLogin());
-          // } else {
-          throw err;
         }
       });
   }

@@ -1,8 +1,9 @@
 import axios from 'axios';
+import {BASE_URL, TIME_OUT} from './const/const.js';
 
 const config = {
-  baseURL: `https://htmlacademy-react-3.appspot.com/six-cities`,
-  timeout: 5000,
+  baseURL: BASE_URL,
+  timeout: TIME_OUT,
   withCredentials: true
 };
 

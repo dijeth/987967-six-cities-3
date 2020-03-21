@@ -180,7 +180,11 @@ class ReviewForm extends React.PureComponent {
 ReviewForm.propTypes = {
   offerID: PropTypes.string,
   isSending: PropTypes.bool,
-  savedReview: PropTypes.object,
+  savedReview: PropTypes.shape({
+    text: PropTypes.string,
+    rating: PropTypes.number,
+    offerID: PropTypes.string,
+  }),
   onFormSubmit: PropTypes.func,
   onReviewChange: PropTypes.func,
 };
