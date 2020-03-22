@@ -64,7 +64,7 @@ const appCities = [{
   centerCoord: [52.370216, 4.895168],
   name: `Amsterdam`,
   zoom: 10,
-}, ];
+}];
 
 const rawUser = {
   [`avatar_url`]: `img/1.png`,
@@ -132,7 +132,7 @@ const defaultCities = [{
   centerCoord: [0, 0],
   name: ``,
   zoom: 0,
-}]
+}];
 
 const defaultUser = {
   userPic: ``,
@@ -189,5 +189,13 @@ describe(`Adapter`, () => {
 
   it(`should return the default comment data when raw is invalid`, () => {
     expect(Adapter.getComments([{}])).toEqual(defaultComments);
+  });
+
+  it(`should return the empty hotel data when raw has wrong format`, () => {
+    expect(Adapter.getData(`wrong format`)).toEqual({offers: [], cities: []});
+  });
+
+  it(`should return the empty comment data when raw has wrong format`, () => {
+    expect(Adapter.getComments(`wrong format`)).toEqual([]);
   });
 });

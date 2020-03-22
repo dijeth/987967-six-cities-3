@@ -1,10 +1,10 @@
 const FavoriteStatus = {
   ON: `1`,
-  OFF: `0`,
+  OFF: `0`
 };
 
 const Converter = {
-  getComment: (raw) => ({
+  getComment: raw => ({
     id: String(raw.id || ``),
     userName: raw.user?.name || ``,
     userPicture: raw.user?.[`avatar_url`] || ``,
@@ -12,20 +12,22 @@ const Converter = {
     isSuperUser: raw.user?.[`is_pro`] || false,
     rating: raw.rating || 0,
     description: raw.comment || ``,
-    date: raw.date || ``,
+    date: raw.date || ``
   }),
 
-  getUser: (raw) => ({
+  getUser: raw => ({
     id: String(raw.id || ``),
     userPic: raw[`avatar_url`] || ``,
     email: raw.email || ``,
-    isSuperUser: raw[`is_pro`] || false,
+    isSuperUser: raw[`is_pro`] || false
   }),
 
-  getOffer: (raw) => ({
+  getOffer: raw => ({
     id: String(raw.id || ``),
     city: raw.city?.name || ``,
-    pictures: (raw[`preview_image`]? [raw[`preview_image`]] : []).concat(raw.images || []),
+    pictures: (raw[`preview_image`] ? [raw[`preview_image`]] : []).concat(
+      raw.images || []
+    ),
     title: raw.title || ``,
     descriptionTitle: `Meet the host`,
     isFavorite: raw[`is_favorite`] || false,
@@ -45,35 +47,49 @@ const Converter = {
     zoom: raw.location?.zoom || 0
   }),
 
-  getCity: (raw) => ({
+  getCity: raw => ({
     name: raw.city?.name || ``,
     zoom: raw.city?.location?.zoom || 0,
-    centerCoord: [raw.city?.location?.latitude || 0, raw.city?.location?.longitude || 0]
+    centerCoord: [
+      raw.city?.location?.latitude || 0,
+      raw.city?.location?.longitude || 0
+    ]
   })
 };
 
 const Adapter = {
-  getData: (rawData) => {
+  getData: rawData => {
+    if (!Array.isArray(rawData)) {
+      rawData = [];
+    }
+
     const offers = [];
     const cities = {};
 
-    rawData.forEach((it) => {
+    rawData.forEach(it => {
       offers.push(Converter.getOffer(it));
 
       const city = Converter.getCity(it);
       cities[city.name] = city;
     });
 
-    return {offers, cities: Array.from(Object.values(cities))};
+    return { offers, cities: Array.from(Object.values(cities)) };
   },
 
-  getOffer: (raw) => Converter.getOffer(raw),
+  getOffer: raw => Converter.getOffer(raw),
 
-  getUser: (rawData) => Converter.getUser(rawData),
+  getUser: rawData => Converter.getUser(rawData),
 
-  getComments: (rawData) => rawData.map((it) => Converter.getComment(it)),
+  getComments: rawData => {
+    if (! Array.isArray(rawData)) {
+      rawData = []
+    };
 
-  postFavorite: (isFavorite) => isFavorite ? FavoriteStatus.ON : FavoriteStatus.OFF,
+    return rawData.map(it => Converter.getComment(it));
+  },
+
+  postFavorite: isFavorite =>
+    isFavorite ? FavoriteStatus.ON : FavoriteStatus.OFF
 };
 
 export default Adapter;

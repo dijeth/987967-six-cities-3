@@ -12,6 +12,7 @@ export const getActiveOffer = (state) => {
   const activeOffer = state[NameSpace.DATA].offers.find((it) => it.id === state[NameSpace.APP].activeOffer);
   return activeOffer === undefined ? null : activeOffer;
 };
+
 export const getActiveOfferCoord = (state) => {
   const activeOffer = getActiveOffer(state);
   return activeOffer ? activeOffer.coord : null;

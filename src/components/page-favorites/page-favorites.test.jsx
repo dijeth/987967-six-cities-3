@@ -24,52 +24,61 @@ const store = mockStore({
   }
 });
 
-const favorites = [{
-  id: `1`,
-  city: `Dusseldorf`,
-  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
-    `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
-    `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
-  ],
-  title: `Nice, cozy, warm big bed apartment`,
-  isFavorite: true,
-  isPremium: true,
-  rating: 3.5,
-  type: `house`,
-  cost: 868,
-  isSuperUser: true,
-  userID: `25`,
-  coord: [51.237402,
-    6.797314
-  ],
-  zoom: 16
-}, {
-  id: `2`,
-  city: `Brussels`,
-  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/13.jpg`,
-    `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
-    `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/16.jpg`,
-    `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`
-  ],
-  title: `The Pondhouse - A Magical Place`,
-  isFavorite: true,
-  isPremium: false,
-  rating: 4.5,
-  type: `room`,
-  cost: 270,
-  isSuperUser: true,
-  userID: `25`,
-  coord: [50.869557,
-    4.332697
-  ],
-  zoom: 16
-}];
+const favorites = {
+  offers: {
+    [`Dusseldorf`]: [
+      {
+        id: `1`,
+        city: `Dusseldorf`,
+        pictures: [
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`
+        ],
+        title: `Nice, cozy, warm big bed apartment`,
+        isFavorite: true,
+        isPremium: true,
+        rating: 3.5,
+        type: `house`,
+        cost: 868,
+        isSuperUser: true,
+        userID: `25`,
+        coord: [51.237402, 6.797314],
+        zoom: 16
+      }
+    ],
+    [`Brussels`]: [
+      {
+        id: `2`,
+        city: `Brussels`,
+        pictures: [
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/13.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/16.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`
+        ],
+        title: `The Pondhouse - A Magical Place`,
+        isFavorite: true,
+        isPremium: false,
+        rating: 4.5,
+        type: `room`,
+        cost: 270,
+        isSuperUser: true,
+        userID: `25`,
+        coord: [50.869557, 4.332697],
+        zoom: 16
+      }
+    ]
+  },
+
+  cities: [`Brussels`, `Dusseldorf`]
+};
 
 it(`<PageFavorites /> should be rendered correctly`, () => {
   const tree = Enzyme.mount(
       <Provider store={store}>
         <BrowserRouter>
-          <PageFavorites isAuth={true} favoriteItems={favorites} />
+          <PageFavorites isAuth={true} favoriteData={favorites} />
         </BrowserRouter>
       </Provider>
   );

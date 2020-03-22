@@ -37,3 +37,4 @@ export const getCityOffersCoords = createSelector(
       return selectedOffers.map((it) => it.coord);
     }
 );
+

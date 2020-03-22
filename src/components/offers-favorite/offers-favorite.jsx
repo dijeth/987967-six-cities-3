@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, { string } from 'prop-types';
+import PropTypes, {string} from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
