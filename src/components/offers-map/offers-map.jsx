@@ -5,7 +5,6 @@ import {isEqualCoords} from '../../util.js';
 import {connect} from 'react-redux';
 import {getActiveOfferCoord} from '../../reducers/app/selectors.js';
 
-// const ZOOM = 12;
 const ICON_SIZE = [27, 39];
 
 const ICON = leaflet.icon({
