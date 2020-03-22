@@ -69,7 +69,7 @@ class ReviewForm extends React.PureComponent {
     const formData = new FormData(this.form.current);
     const review = {
       text: formData.get(`review`) || ``,
-      rating: formData.get(`rating`) || 0,
+      rating: Number(formData.get(`rating`) || 0),
       offerID: this.props.offerID
     };
 
