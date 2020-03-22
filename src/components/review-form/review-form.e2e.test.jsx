@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { ReviewForm } from "./review-form.jsx";
+import {ReviewForm} from "./review-form.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -12,11 +12,11 @@ describe(`<ReviewForm />`, () => {
     const handleFormSubmit = jest.fn();
 
     const tree = Enzyme.mount(
-      <ReviewForm
-        offerID={`1`}
-        savedReview={{}}
-        onFormSubmit={handleFormSubmit}
-      />
+        <ReviewForm
+          offerID={`1`}
+          savedReview={{}}
+          onFormSubmit={handleFormSubmit}
+        />
     );
 
     tree.simulate(`submit`);
@@ -27,11 +27,11 @@ describe(`<ReviewForm />`, () => {
     const handleReviewChange = jest.fn();
 
     const tree = Enzyme.mount(
-      <ReviewForm
-        offerID={`1`}
-        savedReview={{}}
-        onReviewChange={handleReviewChange}
-      />
+        <ReviewForm
+          offerID={`1`}
+          savedReview={{}}
+          onReviewChange={handleReviewChange}
+        />
     );
 
     tree
@@ -46,15 +46,15 @@ describe(`<ReviewForm />`, () => {
     const handleReviewChange = jest.fn();
 
     const tree = Enzyme.mount(
-      <ReviewForm
-        offerID={`1`}
-        savedReview={{
-          offerID: `1`,
-          rating: 4,
-          text: `test-text`
-        }}
-        onReviewChange={handleReviewChange}
-      />
+        <ReviewForm
+          offerID={`1`}
+          savedReview={{
+            offerID: `1`,
+            rating: 4,
+            text: `test-text`
+          }}
+          onReviewChange={handleReviewChange}
+        />
     );
 
     tree
@@ -75,15 +75,15 @@ it(`should fill the form elements correctly when the form was mounted & offerID 
   const handleReviewChange = jest.fn();
 
   const tree = Enzyme.mount(
-    <ReviewForm
-      offerID={`1`}
-      savedReview={{
-        offerID: `2`,
-        rating: 4,
-        text: `test-text`
-      }}
-      onReviewChange={handleReviewChange}
-    />
+      <ReviewForm
+        offerID={`1`}
+        savedReview={{
+          offerID: `2`,
+          rating: 4,
+          text: `test-text`
+        }}
+        onReviewChange={handleReviewChange}
+      />
   );
 
   tree
