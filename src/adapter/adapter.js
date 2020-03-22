@@ -1,13 +1,30 @@
+import { object } from "prop-types";
+
 const FavoriteStatus = {
   ON: `1`,
   OFF: `0`
 };
 
+const get = (object, path) => {
+  const paths = path.split(`.`);
+  let result = object;
+
+  path.forEach((it) => {
+    result = result[it];
+
+    if (result === undefined) {
+      return undefined
+    };
+  });
+
+  return result;
+}
+
 const Converter = {
   getComment: raw => ({
     id: String(raw.id || ``),
     userName: raw.user?.name || ``,
-    userPicture: raw.user?.[`avatar_url`] || ``,
+    userPicture: raw.user?.`avatar_url` || ``,
     userID: raw.user?.id || ``,
     isSuperUser: raw.user?.[`is_pro`] || false,
     rating: raw.rating || 0,
