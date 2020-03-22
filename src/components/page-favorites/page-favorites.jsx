@@ -8,8 +8,9 @@ import {getFavorites} from '../../reducers/data/selectors.js';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const/const.js';
 
-const PageFavorites = ({isAuth, favoriteItems}) => {
-  const classList = `page__main page__main--favorites ${favoriteItems.length === 0 ? `page__main--favorites-empty` : ``}`;
+const PageFavorites = ({isAuth, favoriteData}) => {
+  const {offers: favoriteOffers, cities} = favoriteData;
+  const classList = `page__main page__main--favorites ${favoriteOffers.length === 0 ? `page__main--favorites-empty` : ``}`;
 
   return (
     <div className="page">
@@ -17,7 +18,7 @@ const PageFavorites = ({isAuth, favoriteItems}) => {
 
       <main className={classList}>
         <div className="page__favorites-container container">
-          {favoriteItems.length === 0 ? (
+          {cities.length === 0 ? (
             <section className="favorites favorites--empty">
               <h1 className="visually-hidden">Favorites (empty)</h1>
               <div className="favorites__status-wrapper">
@@ -27,7 +28,7 @@ const PageFavorites = ({isAuth, favoriteItems}) => {
             </section>) : (
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
-              <OffersFavorite favoriteItems={favoriteItems} isAuth={isAuth} />
+              <OffersFavorite offers={favoriteOffers} cities={cities} isAuth={isAuth} />
             </section>)}
         </div>
       </main>
@@ -41,12 +42,15 @@ const PageFavorites = ({isAuth, favoriteItems}) => {
 
 PageFavorites.propTypes = {
   isAuth: PropTypes.bool,
-  favoriteItems: PropTypes.array,
+  favoriteData: PropTypes.shape({
+    offers: PropTypes.object,
+    cities: PropTypes.arrayOf(PropTypes.string),
+  }),
 };
 
 const mapStateToProps = (state) => ({
   isAuth: getAuthorizationStatus(state),
-  favoriteItems: getFavorites(state)
+  favoriteData: getFavorites(state)
 });
 
 export {PageFavorites};

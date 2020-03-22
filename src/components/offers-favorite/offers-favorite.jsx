@@ -1,32 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import {PlaceCardType, AppRoute} from '../../const/const.js';
 import {Link} from 'react-router-dom';
 
-const splitOffersByCity = (offers) => {
-  const splittedOffers = {};
-
-  offers.forEach((it) => {
-    const {city} = it;
-
-    if (splittedOffers[city] === undefined) {
-      splittedOffers[city] = [];
-    }
-
-    splittedOffers[city].push(it);
-  });
-
-  return {
-    cities: Object.keys(splittedOffers).sort(),
-    offers: splittedOffers
-  };
-};
-
-const OffersFavorite = ({favoriteItems, isAuth, onCityClick}) => {
-  const {cities, offers} = splitOffersByCity(favoriteItems);
+const OffersFavorite = ({offers, cities, isAuth, onCityClick}) => {
   const items = cities.map((city) => {
     return (
       <li className="favorites__locations-items" key={city}>
@@ -48,7 +28,8 @@ const OffersFavorite = ({favoriteItems, isAuth, onCityClick}) => {
 };
 
 OffersFavorite.propTypes = {
-  favoriteItems: PropTypes.array,
+  offers: PropTypes.object,
+  cities: PropTypes.arrayOf(string),
   isAuth: PropTypes.bool,
   onCityClick: PropTypes.func,
 };
