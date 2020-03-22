@@ -34,10 +34,6 @@ const rawHotels = [{
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 },
-{
-  id: 2,
-  title: `test title`,
-}
 ];
 
 const appHotels = [{
@@ -62,39 +58,13 @@ const appHotels = [{
   coord: [52.35514938496378, 4.673877537499948],
   zoom: 8,
 },
-{
-  adultsCount: 0,
-  bedroomCount: 0,
-  city: ``,
-  coord: [0, 0],
-  cost: 0,
-  description: ``,
-  descriptionTitle: `Meet the host`,
-  id: `2`,
-  insideFeatures: [],
-  isFavorite: false,
-  isPremium: false,
-  isSuperUser: ``,
-  pictures: [``],
-  rating: 0,
-  title: `test title`,
-  type: ``,
-  userID: ``,
-  userName: ``,
-  userPicture: ``,
-  zoom: 0,
-}
 ];
 
 const appCities = [{
   centerCoord: [52.370216, 4.895168],
   name: `Amsterdam`,
   zoom: 10,
-}, {
-  centerCoord: [0, 0],
-  name: ``,
-  zoom: 0,
-}];
+}, ];
 
 const rawUser = {
   [`avatar_url`]: `img/1.png`,
@@ -135,6 +105,54 @@ const appComments = [{
   userName: `Max`
 }];
 
+const defaultHotels = [{
+  id: ``,
+  city: ``,
+  isFavorite: false,
+  isPremium: false,
+  title: ``,
+  insideFeatures: [],
+  adultsCount: 0,
+  cost: 0,
+  rating: 0,
+  type: ``,
+  descriptionTitle: `Meet the host`,
+  bedroomCount: 0,
+  userPicture: ``,
+  userID: ``,
+  isSuperUser: false,
+  userName: ``,
+  description: ``,
+  pictures: [],
+  coord: [0, 0],
+  zoom: 0,
+}];
+
+const defaultCities = [{
+  centerCoord: [0, 0],
+  name: ``,
+  zoom: 0,
+}]
+
+const defaultUser = {
+  userPic: ``,
+  email: ``,
+  id: ``,
+  isSuperUser: false,
+};
+
+const defaultComments = [{
+  description: ``,
+  date: ``,
+  id: ``,
+  rating: 0,
+  userPicture: ``,
+  userID: ``,
+  isSuperUser: false,
+  userName: ``,
+}];
+
+
 describe(`Adapter`, () => {
   it(`should convert the raw hotel data into an internal application object`, () => {
     expect(Adapter.getData(rawHotels).offers).toEqual(appHotels);
@@ -155,5 +173,21 @@ describe(`Adapter`, () => {
   it(`should convert the raw favorite's flag into "0" or "1"`, () => {
     expect(Adapter.postFavorite(true)).toEqual(`1`);
     expect(Adapter.postFavorite(false)).toEqual(`0`);
+  });
+
+  it(`should return the default hotel data when raw is invalid`, () => {
+    expect(Adapter.getData([{}]).offers).toEqual(defaultHotels);
+  });
+
+  it(`should return the default city data when raw is invalid`, () => {
+    expect(Adapter.getData([{}]).cities).toEqual(defaultCities);
+  });
+
+  it(`should return the default user data when raw is invalid`, () => {
+    expect(Adapter.getUser({})).toEqual(defaultUser);
+  });
+
+  it(`should return the default comment data when raw is invalid`, () => {
+    expect(Adapter.getComments([{}])).toEqual(defaultComments);
   });
 });

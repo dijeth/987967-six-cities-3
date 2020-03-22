@@ -5,27 +5,27 @@ const FavoriteStatus = {
 
 const Converter = {
   getComment: (raw) => ({
-    id: String(raw.id) || ``,
-    userName: raw.user && raw.user.name || ``,
-    userPicture: raw.user && raw.user[`avatar_url`] || ``,
-    userID: raw.user && raw.user.id || ``,
-    isSuperUser: raw.user && raw.user[`is_pro`] || false,
+    id: String(raw.id || ``),
+    userName: raw.user?.name || ``,
+    userPicture: raw.user?.[`avatar_url`] || ``,
+    userID: raw.user?.id || ``,
+    isSuperUser: raw.user?.[`is_pro`] || false,
     rating: raw.rating || 0,
     description: raw.comment || ``,
     date: raw.date || ``,
   }),
 
   getUser: (raw) => ({
-    id: String(raw.id) || ``,
+    id: String(raw.id || ``),
     userPic: raw[`avatar_url`] || ``,
     email: raw.email || ``,
     isSuperUser: raw[`is_pro`] || false,
   }),
 
   getOffer: (raw) => ({
-    id: String(raw.id) || ``,
-    city: raw.city && raw.city.name || ``,
-    pictures: [raw[`preview_image`] || ``].concat(raw.images || []),
+    id: String(raw.id || ``),
+    city: raw.city?.name || ``,
+    pictures: (raw[`preview_image`]? [raw[`preview_image`]] : []).concat(raw.images || []),
     title: raw.title || ``,
     descriptionTitle: `Meet the host`,
     isFavorite: raw[`is_favorite`] || false,
@@ -36,30 +36,19 @@ const Converter = {
     adultsCount: raw[`max_adults`] || 0,
     cost: raw.price || 0,
     insideFeatures: raw.goods || [],
-    userName: raw.host && raw.host.name || ``,
-    userPicture: raw.host && raw.host[`avatar_url`] || ``,
-    isSuperUser: raw.host && raw.host[`is_pro`] || ``,
-    userID: raw.host && String(raw.host.id) || ``,
+    userName: raw.host?.name || ``,
+    userPicture: raw.host?.[`avatar_url`] || ``,
+    isSuperUser: raw.host?.[`is_pro`] || false,
+    userID: String(raw.host?.id || ``),
     description: raw.description || ``,
-    coord:
-      raw.location
-      && raw.location.latitude
-      && raw.location.longitude
-      && [raw.location.latitude, raw.location.longitude]
-      || [0, 0],
-    zoom: raw.location && raw.location.zoom || 0
+    coord: [raw.location?.latitude || 0, raw.location?.longitude || 0],
+    zoom: raw.location?.zoom || 0
   }),
 
   getCity: (raw) => ({
-    name: raw.city && raw.city.name || ``,
-    zoom: raw.city && raw.city.location && raw.city.location.zoom || 0,
-    centerCoord:
-      raw.city
-      && raw.city.location
-      && raw.city.location.latitude
-      && raw.city.location.longitude
-      && [raw.city.location.latitude, raw.city.location.longitude]
-      || [0, 0],
+    name: raw.city?.name || ``,
+    zoom: raw.city?.location?.zoom || 0,
+    centerCoord: [raw.city?.location?.latitude || 0, raw.city?.location?.longitude || 0]
   })
 };
 
