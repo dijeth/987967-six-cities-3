@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const';
 import {reviewPropTypes} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
@@ -18,8 +17,19 @@ import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 import {Link, Redirect} from 'react-router-dom';
 import Adapter from '../../adapter/adapter.js';
+import { Offer, Review, OfferMini } from '../../interfaces';
+import { coord } from '../../types';
 
-const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange}) => {
+type Props = {
+  offer: Offer;
+  reviews: Array<Review>;
+  isAuthorized: boolean;
+  activeCityCoord: coord;
+  onFavoriteChange: (offer: OfferMini) => void;
+  offersCoord: Array<coord>;
+};
+
+const PageProperties: React.FC<Props> = ({offer, reviews, isAuthorized, activeCityCoord, offersCoord, onFavoriteChange}) => {
   if (offer === null) {
     return <Redirect to={AppRoute.getRoot()} />;
   }
@@ -169,36 +179,6 @@ const PageProperties = ({offer, reviews, isAuthorized, activeCityCoord, offersCo
         </div>
       </main>
     </div>);
-};
-
-PageProperties.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    pictures: PropTypes.arrayOf(PropTypes.string),
-    cost: PropTypes.number.isRequired,
-    rating: PropTypes.number,
-    isPremium: PropTypes.bool,
-    isFavorite: PropTypes.bool,
-    city: PropTypes.string.isRequired,
-    bedroomCount: PropTypes.number,
-    adultsCount: PropTypes.number,
-    insideFeatures: PropTypes.arrayOf(PropTypes.string),
-    userName: PropTypes.string.isRequired,
-    userPicture: PropTypes.string,
-    isSuperUser: PropTypes.bool,
-    descriptionTitle: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    coord: PropTypes.arrayOf(PropTypes.number),
-    zoom: PropTypes.number
-  }),
-
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes)),
-  isAuthorized: PropTypes.bool.isRequired,
-  activeCityCoord: PropTypes.arrayOf(PropTypes.number),
-  onFavoriteChange: PropTypes.func,
-  offersCoord: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
 };
 
 const mapStateToProps = (state) => ({

@@ -1,11 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import {cityPropType} from '../../const/props.js';
+import { City } from '../../interfaces.js';
 
-const CityList = ({items, activeItem, onListClick}) => {
+type Props = {
+  items: Array<City>;
+  activeItem: City;
+  onListClick: (evt: React.MouseEvent<HTMLElement>) => void;
+};
+
+const CityList: React.FC<Props> = ({items, activeItem, onListClick}) => {
   if (!items.length) {
     return null;
   }
@@ -21,13 +27,6 @@ const CityList = ({items, activeItem, onListClick}) => {
   });
 
   return <ul className="locations__list tabs__list" onClick={onListClick ? onListClick : null}>{cityList}</ul>;
-};
-
-CityList.propTypes = {
-  items: PropTypes.arrayOf(cityPropType).isRequired,
-  activeItem: cityPropType,
-  onActiveItemChange: PropTypes.func,
-  onListClick: PropTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => ({

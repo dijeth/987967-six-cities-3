@@ -8,12 +8,12 @@ import { OfferMini, City } from '../../interfaces';
 
 type Props = {
   offers: Array<OfferMini>;
-  cities: Array<City>;
+  cities: Array<string>;
   isAuth: boolean;
-  onCityClick: (city: City) => void;
+  onCityClick: (city: string) => void;
 };
 
-const OffersFavorite = ({offers, cities, isAuth, onCityClick}) => {
+const OffersFavorite: React.FC<Props> = ({offers, cities, isAuth, onCityClick}) => {
   const items = cities.map((city) => {
     return (
       <li className="favorites__locations-items" key={city}>

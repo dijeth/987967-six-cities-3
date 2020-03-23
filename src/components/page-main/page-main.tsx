@@ -3,8 +3,8 @@ import OffersMain from '../offers-main/offers-main';
 import {SORT_LIST, SortType} from '../../const/const';
 import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
-import CityList from '../city-list/city-list.jsx';
-import SortList from '../sort-list/sort-list.jsx';
+import CityList from '../city-list/city-list';
+import SortList from '../sort-list/sort-list';
 import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
@@ -22,12 +22,12 @@ const SortListWithOpenState = withOpenState(SortList);
 type Props = {
   activeCity: City;
   cities: Array<City>;
-  offersCoord: coord;
+  offersCoord: Array<coord>;
   sortType: SortType;
   isAuth: boolean;
 };
 
-const PageMain = ({offersCoord, cities, activeCity, sortType, isAuth}) => {
+const PageMain: React.FC<Props> = ({offersCoord, cities, activeCity, sortType, isAuth}) => {
 
   const {name: cityName, centerCoord, zoom} = activeCity;
   const placesCount = offersCoord.length;
