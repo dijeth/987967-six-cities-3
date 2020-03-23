@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {Router, Route, Switch} from 'react-router-dom';
 import PageMain from '../page-main/page-main.jsx';
 import PageFavotites from '../page-favorites/page-favorites.jsx';
 import PageProperties from '../page-properties/page-properties.jsx';
-import PageSignIn from '../page-sign-in/page-sign-in.jsx';
+import PageSignIn from '../page-sign-in/page-sign-in';
 import history from '../../history.js';
 import withPathName from '../../hocs/with-pathname/with-pathname.jsx';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
@@ -14,7 +13,7 @@ import {AppRoute} from '../../const/const.js';
 
 const PagePropertiesWithPathName = withPathName(PageProperties);
 
-const App = ({isAuth}) => {
+const App: React.FC<{isAuth: boolean}> = ({isAuth}) => {
   return (
     <Router history={history}>
       <Switch>
@@ -32,10 +31,6 @@ const App = ({isAuth}) => {
         <PageMain />
       </Switch>
     </Router>);
-};
-
-App.propTypes = {
-  isAuth: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({

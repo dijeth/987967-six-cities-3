@@ -1,15 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import * as React from 'react';
+import { connect } from 'react-redux';
 import Header from '../header/header.jsx';
-import {Operation as UserOperation} from '../../reducers/user/operation.js';
-import {Operation as DataOperation} from '../../reducers/data/operation.js';
+import { Operation as UserOperation } from '../../reducers/user/operation.js';
+import { Operation as DataOperation } from '../../reducers/data/operation.js';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 
-class PageSignIn extends React.PureComponent {
+type User = {
+  email: string;
+  password: string;
+}
+
+class PageSignIn extends React.PureComponent<{ onSubmit: (userData: User) => void }> {
+  private form = React.createRef<HTMLFormElement>();
+
   constructor(props) {
     super(props);
-    this.form = React.createRef();
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
@@ -19,8 +24,8 @@ class PageSignIn extends React.PureComponent {
     const formData = new FormData(this.form.current);
 
     const userData = {
-      email: formData.get(`email`),
-      password: formData.get(`password`)
+      email: String(formData.get(`email`)),
+      password: String(formData.get(`password`))
     };
 
     this.props.onSubmit(userData);
@@ -38,11 +43,23 @@ class PageSignIn extends React.PureComponent {
               <form className="login__form form" action="#" method="post" ref={this.form} onSubmit={this._handleSubmit}>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
-                  <input className="login__input form__input" type="email" name="email" placeholder="Email" required="" />
+                  <input
+                    className="login__input form__input"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required={true}
+                  />
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">Password</label>
-                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required="" />
+                  <input
+                    className="login__input form__input"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required={true}
+                  />
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
               </form>
@@ -60,10 +77,6 @@ class PageSignIn extends React.PureComponent {
   }
 }
 
-PageSignIn.propTypes = {
-  onSubmit: PropTypes.func
-};
-
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(userData) {
     dispatch(UserOperation.authorizeUser(userData))
@@ -73,5 +86,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export {PageSignIn};
+export { PageSignIn };
 export default withPageError(connect(null, mapDispatchToProps)(PageSignIn));
