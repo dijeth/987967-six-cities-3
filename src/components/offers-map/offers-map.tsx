@@ -1,5 +1,5 @@
 import * as React from 'react';
-import leaflet from 'leaflet';
+import * as leaflet from 'leaflet';
 import {isEqualCoords} from '../../util.js';
 import {connect} from 'react-redux';
 import {getActiveOfferCoord} from '../../reducers/app/selectors.js';
