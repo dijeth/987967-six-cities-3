@@ -2,7 +2,7 @@ import * as React from 'react';
 import OffersMain from '../offers-main/offers-main';
 import {SORT_LIST, SortType} from '../../const/const';
 import {cityPropType} from '../../const/props.js';
-import OffersMap from '../offers-map/offers-map.jsx';
+import OffersMap from '../offers-map/offers-map';
 import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
 import Header from '../header/header';

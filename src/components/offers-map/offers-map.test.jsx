@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
-import {OffersMap} from './offers-map.jsx';
+import {OffersMap} from './offers-map';
 
 Enzyme.configure({
   adapter: new Adapter()

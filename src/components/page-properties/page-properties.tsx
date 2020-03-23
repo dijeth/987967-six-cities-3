@@ -4,7 +4,7 @@ import {ratingToPercent} from '../../util.js';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
 import OffersNearby from '../offers-nearby/offers-nearby';
-import OffersMap from '../offers-map/offers-map.jsx';
+import OffersMap from '../offers-map/offers-map';
 import {AppRoute} from '../../const/const';
 import Header from '../header/header';
 import {connect} from 'react-redux';
