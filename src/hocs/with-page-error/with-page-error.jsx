@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getPageError} from '../../reducers/app/selectors.js';
 import AppActionCreator from '../../reducers/app/action-creator.js';
-import PageError from '../../components/page-error/page-error.jsx';
+import PageError from '../../components/page-error/page-error';
 
 const withPageError = (Component) => {
   const WithPageError = (props) => {

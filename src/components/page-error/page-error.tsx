@@ -1,7 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const PageError = ({message, onClose}) => {
+type Props = {
+  message: string;
+  onClose: () => void;
+};
+
+const PageError: React.FC<Props> = ({message, onClose}) => {
 
   return (
     <div className="page page--gray page--login" style={
@@ -20,11 +24,6 @@ const PageError = ({message, onClose}) => {
         </div>
       </div>
     </div>);
-};
-
-PageError.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired
 };
 
 export default PageError;
