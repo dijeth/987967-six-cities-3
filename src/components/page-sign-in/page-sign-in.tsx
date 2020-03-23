@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Header from '../header/header.jsx';
+import Header from '../header/header';
 import { Operation as UserOperation } from '../../reducers/user/operation.js';
 import { Operation as DataOperation } from '../../reducers/data/operation.js';
-import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
+import withPageError from '../../hocs/with-page-error/with-page-error';
 
 type User = {
   email: string;
@@ -11,10 +11,12 @@ type User = {
 }
 
 class PageSignIn extends React.PureComponent<{ onSubmit: (userData: User) => void }> {
-  private form = React.createRef<HTMLFormElement>();
+  private form: React.RefObject<HTMLFormElement>;
 
   constructor(props) {
     super(props);
+
+    this.form = React.createRef();
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 

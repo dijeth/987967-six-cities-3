@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {Router, Route, Switch} from 'react-router-dom';
-import PageMain from '../page-main/page-main.jsx';
-import PageFavotites from '../page-favorites/page-favorites.jsx';
-import PageProperties from '../page-properties/page-properties.jsx';
+import PageMain from '../page-main/page-main';
+import PageFavotites from '../page-favorites/page-favorites';
+import PageProperties from '../page-properties/page-properties';
 import PageSignIn from '../page-sign-in/page-sign-in';
 import history from '../../history.js';
 import withPathName from '../../hocs/with-pathname/with-pathname.jsx';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {connect} from 'react-redux';
-import PrivateRoute from '../private-route/private-route.jsx';
-import {AppRoute} from '../../const/const.js';
+import PrivateRoute from '../private-route/private-route';
+import {AppRoute} from '../../const/const.ts';
 
 const PagePropertiesWithPathName = withPathName(PageProperties);
 

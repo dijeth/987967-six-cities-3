@@ -2,7 +2,7 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PlaceCard from './place-card.jsx';
-import {PlaceCardType} from '../../const/const.js';
+import {PlaceCardType} from '../../const/const';
 
 configure({
   adapter: new Adapter()

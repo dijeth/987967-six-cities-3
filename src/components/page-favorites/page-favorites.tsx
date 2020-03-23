@@ -1,14 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import OffersFavorite from '../offers-favorite/offers-favorite.jsx';
-import Header from '../header/header.jsx';
+import * as React from 'react';
+import OffersFavorite from '../offers-favorite/offers-favorite';
+import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getFavorites} from '../../reducers/data/selectors.js';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const/const.js';
+import {AppRoute} from '../../const/const';
+import { OfferMini } from '../../interfaces';
 
-const PageFavorites = ({isAuth, favoriteData}) => {
+type Props = {
+  isAuth: boolean;
+  favoriteData: {
+    offers: Array<OfferMini>;
+    cities: Array<string>;
+  };
+};
+
+const PageFavorites: React.FC<Props> = ({isAuth, favoriteData}) => {
   const {offers: favoriteOffers, cities} = favoriteData;
   const classList = `page__main page__main--favorites ${favoriteOffers.length === 0 ? `page__main--favorites-empty` : ``}`;
 
@@ -38,14 +46,6 @@ const PageFavorites = ({isAuth, favoriteData}) => {
         </Link>
       </footer>
     </div>);
-};
-
-PageFavorites.propTypes = {
-  isAuth: PropTypes.bool,
-  favoriteData: PropTypes.shape({
-    offers: PropTypes.object,
-    cities: PropTypes.arrayOf(PropTypes.string),
-  }),
 };
 
 const mapStateToProps = (state) => ({

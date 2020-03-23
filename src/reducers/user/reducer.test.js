@@ -1,6 +1,6 @@
 import reducer from './reducer.js';
 import ActionType from '../action-type.js';
-import {AuthorizationStatus, EMPTY_REVIEW} from '../../const/const.js';
+import {AuthorizationStatus, EMPTY_REVIEW} from '../../const/const';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,

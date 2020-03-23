@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {offerPropType} from '../../const/props.js';
-import {AppRoute, PlaceCardType} from '../../const/const.js';
+import * as React from 'react';
+import {AppRoute, PlaceCardType} from '../../const/const';
+import {OfferMini, Offer} from '../../interfaces';
 import {ratingToPercent} from '../../util.js';
 import {Link} from 'react-router-dom';
 
@@ -31,7 +30,14 @@ const PlaceCardProperties = {
   }
 };
 
-const PlaceCard = ({offer, onHover, isAuth, type}) => {
+type Props = {
+  offer: OfferMini;
+  type: PlaceCardType;
+  isAuth: boolean;
+  onHover: (offer: OfferMini | null) => void;
+};
+
+const PlaceCard: React.FC<Props> = ({offer, onHover, isAuth, type}) => {
   const {title, type: offerType, pictures, cost, rating, isPremium, isFavorite, id} = offer;
   const ratingPercent = ratingToPercent(rating);
   const picture = pictures[0];
@@ -99,13 +105,6 @@ const PlaceCard = ({offer, onHover, isAuth, type}) => {
         <p className="place-card__type">{offerType}</p>
       </div>
     </article>);
-};
-
-PlaceCard.propTypes = {
-  offer: offerPropType.isRequired,
-  onHover: PropTypes.func,
-  isAuth: PropTypes.bool.isRequired,
-  type: PropTypes.oneOf(Array.from(Object.values(PlaceCardType))).isRequired
 };
 
 export default React.memo(PlaceCard);

@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import Adapter from 'enzyme-adapter-react-16';
 import {PageFavorites} from './page-favorites.jsx';
 import NameSpace from '../../reducers/name-space.js';
-import {AuthorizationStatus} from '../../const/const.js';
+import {AuthorizationStatus} from '../../const/const';
 import {BrowserRouter} from 'react-router-dom';
 
 Enzyme.configure({

@@ -1,5 +1,5 @@
 import NameSpace from '../name-space.js';
-import {AuthorizationStatus, EMPTY_REVIEW} from '../../const/const.js';
+import {AuthorizationStatus, EMPTY_REVIEW} from '../../const/const';
 
 export const getAuthorizationStatus = (state) => state[NameSpace.USER].authorizationStatus === AuthorizationStatus.AUTH;
 export const getUserPicture = (state) => state[NameSpace.USER].authInfo && state[NameSpace.USER].authInfo.userPic;

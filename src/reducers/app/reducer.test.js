@@ -1,6 +1,6 @@
 import reducer from './reducer.js';
 import ActionType from '../action-type.js';
-import {SortType} from '../../const/const.js';
+import {SortType} from '../../const/const';
 
 const initialState = {
   activeCity: null,

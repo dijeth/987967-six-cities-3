@@ -1,4 +1,4 @@
-import {SortType} from '../../const/const.js';
+import {SortType} from '../../const/const';
 import NameSpace from '../name-space.js';
 import {getCities} from '../data/selectors.js';
 

@@ -1,12 +1,19 @@
-import React from 'react';
-import PropTypes, {string} from 'prop-types';
-import PlaceCardList from '../place-card-list/place-card-list.jsx';
+import * as React from 'react';
+import PlaceCardList from '../place-card-list/place-card-list';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
-import {PlaceCardType, AppRoute} from '../../const/const.js';
+import {PlaceCardType, AppRoute} from '../../const/const';
 import {Link} from 'react-router-dom';
+import { OfferMini, City } from '../../interfaces';
 
-const OffersFavorite = ({offers, cities, isAuth, onCityClick}) => {
+type Props = {
+  offers: Array<OfferMini>;
+  cities: Array<string>;
+  isAuth: boolean;
+  onCityClick: (city: string) => void;
+};
+
+const OffersFavorite: React.FC<Props> = ({offers, cities, isAuth, onCityClick}) => {
   const items = cities.map((city) => {
     return (
       <li className="favorites__locations-items" key={city}>
@@ -25,13 +32,6 @@ const OffersFavorite = ({offers, cities, isAuth, onCityClick}) => {
 
 
   return <ul className="favorites__list">{items}</ul>;
-};
-
-OffersFavorite.propTypes = {
-  offers: PropTypes.object,
-  cities: PropTypes.arrayOf(string),
-  isAuth: PropTypes.bool,
-  onCityClick: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({

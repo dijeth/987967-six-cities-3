@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
 import {PageMain} from './page-main.jsx';
-import {SortType} from '../../const/const.js';
+import {SortType} from '../../const/const';
 import NameSpace from '../../reducers/name-space.js';
 
 const mockStore = configureStore([]);

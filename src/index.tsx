@@ -8,7 +8,7 @@ import reducer from './reducers/reducer.js';
 import {Operation as DataOperation} from './reducers/data/operation.js';
 import {Operation as UserOperation} from './reducers/user/operation.js';
 import {createAPI} from './api.js';
-import {AuthorizationStatus, ServerError} from './const/const.js';
+import {AuthorizationStatus, ServerError} from './const/const';
 import UserActionCreator from './reducers/user/action-creator.js';
 import AppActionCreator from './reducers/app/action-creator.js';
 import {getPageError} from './reducers/app/selectors.js';

@@ -1,24 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {getPageError} from '../../reducers/app/selectors.js';
 import AppActionCreator from '../../reducers/app/action-creator.js';
 import PageError from '../../components/page-error/page-error';
 
+type Props = {
+  pageError: string;
+  onClearError: () => void;
+};
+
 const withPageError = (Component) => {
-  const WithPageError = (props) => {
+  const WithPageError: React.FC<Props> = (props) => {
     const {pageError, onClearError} = props;
     const isError = pageError !== ``;
     return (
       <React.Fragment>
         <Component {...props} />
         {isError && <PageError message={pageError} onClose={onClearError} />}
-      </React.Fragment>);
-  };
-
-  WithPageError.propTypes = {
-    pageError: PropTypes.string,
-    onClearError: PropTypes.func
+      </React.Fragment>);      
   };
 
   const mapStateToProps = (state) => ({
