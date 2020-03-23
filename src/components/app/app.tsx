@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Router, Route, Switch} from 'react-router-dom';
-import PageMain from '../page-main/page-main.jsx';
-import PageFavotites from '../page-favorites/page-favorites.jsx';
+import PageMain from '../page-main/page-main';
+import PageFavotites from '../page-favorites/page-favorites';
 import PageProperties from '../page-properties/page-properties.jsx';
 import PageSignIn from '../page-sign-in/page-sign-in';
 import history from '../../history.js';

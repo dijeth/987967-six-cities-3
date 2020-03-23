@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import OffersMain from '../offers-main/offers-main';
-import {SORT_LIST} from '../../const/const';
+import {SORT_LIST, SortType} from '../../const/const';
 import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
@@ -15,14 +14,20 @@ import {getCityOffersCoords} from '../../reducers/data/reselectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state.jsx';
 import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
+import { City } from '../../interfaces';
+import { coord } from '../../types';
 
 const SortListWithOpenState = withOpenState(SortList);
 
-const PageMain = ({offersCoord, cities, activeCity, sortType, isAuth}) => {
+type Props = {
+  activeCity: City;
+  cities: Array<City>;
+  offersCoord: coord;
+  sortType: SortType;
+  isAuth: boolean;
+};
 
-  // if (offersCoord.length === 0 || activeCity === null) {
-  //   return null;
-  // }
+const PageMain = ({offersCoord, cities, activeCity, sortType, isAuth}) => {
 
   const {name: cityName, centerCoord, zoom} = activeCity;
   const placesCount = offersCoord.length;
@@ -55,14 +60,6 @@ const PageMain = ({offersCoord, cities, activeCity, sortType, isAuth}) => {
       </main>
     </div>
   );
-};
-
-PageMain.propTypes = {
-  activeCity: cityPropType,
-  cities: PropTypes.arrayOf(cityPropType).isRequired,
-  offersCoord: PropTypes.array.isRequired,
-  sortType: PropTypes.string,
-  isAuth: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({

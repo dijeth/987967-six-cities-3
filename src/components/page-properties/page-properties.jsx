@@ -5,7 +5,7 @@ import {reviewPropTypes} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
 import ReviewList from '../review-list/review-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
-import OffersNearby from '../offers-nearby/offers-nearby.jsx';
+import OffersNearby from '../offers-nearby/offers-nearby';
 import OffersMap from '../offers-map/offers-map.jsx';
 import {AppRoute} from '../../const/const';
 import Header from '../header/header';
