@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import PlaceCard from '../place-card/place-card';
 import AppActionCreator from '../../reducers/app/action-creator.js';
 import {Operation} from '../../reducers/data/operation.js';
 import {connect} from 'react-redux';
-import {offerPropType} from '../../const/props.js';
 import {PlaceCardType} from '../../const/const';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import Adapter from '../../adapter/adapter.js';
+import { OfferMini, Offer } from '../../interfaces';
 
 const getClassList = (type) => {
   switch (type) {
@@ -23,7 +22,15 @@ const getClassList = (type) => {
   }
 };
 
-const PlaceCardList = ({items, onOfferHover, onListClick, isAuth, type}) => {
+type Props = {
+  items: Array<OfferMini>;
+  type: PlaceCardType;
+  isAuth: boolean;
+  onOfferHover: (offer: OfferMini | null) => void;
+  onListClick: (evt: React.MouseEvent<HTMLElement>) => void;
+};
+
+const PlaceCardList: React.FC<Props> = ({items, onOfferHover, onListClick, isAuth, type}) => {
   const classList = getClassList(type);
 
   const placeCardList = items.map((offer, i) => {
@@ -32,7 +39,6 @@ const PlaceCardList = ({items, onOfferHover, onListClick, isAuth, type}) => {
         offer={offer}
         key={offer.id}
         onHover={type === PlaceCardType.DEFAULT ? onOfferHover : null}
-        offsetIndex={i}
         isAuth={isAuth}
         type={type}
       />);
@@ -45,17 +51,6 @@ const PlaceCardList = ({items, onOfferHover, onListClick, isAuth, type}) => {
     >
       {placeCardList}
     </div>);
-};
-
-PlaceCardList.propTypes = {
-  items: PropTypes.arrayOf(offerPropType).isRequired,
-  nearPlacesFor: PropTypes.string,
-  onOfferHover: PropTypes.func.isRequired,
-  onActiveItemChange: PropTypes.func,
-  onListClick: PropTypes.func,
-  activeItem: offerPropType,
-  isAuth: PropTypes.bool.isRequired,
-  type: PropTypes.oneOf(Array.from(Object.values(PlaceCardType))).isRequired
 };
 
 const mapDispatchToProps = (dispatch, props) => ({

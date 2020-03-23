@@ -34,7 +34,7 @@ type Props = {
   offer: OfferMini;
   type: PlaceCardType;
   isAuth: boolean;
-  onHover: (Offer) => void;
+  onHover: (offer: OfferMini | null) => void;
 };
 
 const PlaceCard: React.FC<Props> = ({offer, onHover, isAuth, type}) => {

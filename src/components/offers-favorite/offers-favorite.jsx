@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes, {string} from 'prop-types';
-import PlaceCardList from '../place-card-list/place-card-list.jsx';
+import PlaceCardList from '../place-card-list/place-card-list';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import {PlaceCardType, AppRoute} from '../../const/const';

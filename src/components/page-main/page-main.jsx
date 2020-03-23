@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OffersMain from '../offers-main/offers-main.jsx';
+import OffersMain from '../offers-main/offers-main';
 import {SORT_LIST} from '../../const/const';
 import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';

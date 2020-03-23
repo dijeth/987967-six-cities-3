@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCardList from '../place-card-list/place-card-list.jsx';
+import PlaceCardList from '../place-card-list/place-card-list';
 import {connect} from 'react-redux';
 import {getNearbyList} from '../../reducers/data/selectors.js';
 import {PlaceCardType} from '../../const/const';
