@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
 import {PageProperties} from './page-properties.jsx';
 import NameSpace from '../../reducers/name-space.js';
-import {EMPTY_REVIEW} from '../../const/const.js';
+import {EMPTY_REVIEW} from '../../const/const';
 
 Enzyme.configure({
   adapter: new Adapter()

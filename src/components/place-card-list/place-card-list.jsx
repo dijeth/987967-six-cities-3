@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card.jsx';
+import PlaceCard from '../place-card/place-card';
 import AppActionCreator from '../../reducers/app/action-creator.js';
 import {Operation} from '../../reducers/data/operation.js';
 import {connect} from 'react-redux';
 import {offerPropType} from '../../const/props.js';
-import {PlaceCardType} from '../../const/const.js';
+import {PlaceCardType} from '../../const/const';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import Adapter from '../../adapter/adapter.js';
 

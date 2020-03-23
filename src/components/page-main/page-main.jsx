@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersMain from '../offers-main/offers-main.jsx';
-import {SORT_LIST} from '../../const/const.js';
+import {SORT_LIST} from '../../const/const';
 import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import SortList from '../sort-list/sort-list.jsx';
-import Header from '../header/header.jsx';
+import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';

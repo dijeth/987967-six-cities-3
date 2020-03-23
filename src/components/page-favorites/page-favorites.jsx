@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OffersFavorite from '../offers-favorite/offers-favorite.jsx';
-import Header from '../header/header.jsx';
+import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getFavorites} from '../../reducers/data/selectors.js';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const/const.js';
+import {AppRoute} from '../../const/const';
 
 const PageFavorites = ({isAuth, favoriteData}) => {
   const {offers: favoriteOffers, cities} = favoriteData;

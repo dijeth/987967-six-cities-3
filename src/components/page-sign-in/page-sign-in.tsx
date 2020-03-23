@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Header from '../header/header.jsx';
+import Header from '../header/header';
 import { Operation as UserOperation } from '../../reducers/user/operation.js';
 import { Operation as DataOperation } from '../../reducers/data/operation.js';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';

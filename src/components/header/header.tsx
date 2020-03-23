@@ -1,11 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {AppRoute} from '../../const/const.js';
+import * as React from 'react';
+import {AppRoute} from '../../const/const';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUserPicture, getEmail, getIsUserSuper, getAuthorizationStatus} from '../../reducers/user/selectors.js';
 
-const Header = ({isAuthorized, userPicture, email, isSuperUser, isActiveLogo}) => {
+type Props = {
+  isAuthorized: boolean;
+  userPicture: string;
+  email: string;
+  isSuperUser: boolean;
+  isActiveLogo: boolean;
+};
+
+const Header: React.FC<Props> = ({isAuthorized, userPicture, email, isSuperUser, isActiveLogo}) => {
   const userNameBlock = isAuthorized ?
     <span className="header__user-name user__name">{email}</span> :
     <span className="header__login">Sign in</span>;
@@ -44,14 +51,6 @@ const Header = ({isAuthorized, userPicture, email, isSuperUser, isActiveLogo}) =
         </div>
       </div>
     </header>);
-};
-
-Header.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired,
-  userPicture: PropTypes.string,
-  email: PropTypes.string,
-  isSuperUser: PropTypes.bool,
-  isActiveLogo: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({

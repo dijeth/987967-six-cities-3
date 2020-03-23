@@ -3,7 +3,7 @@ import {createAPI} from '../../api.js';
 import {Operation} from './operation.js';
 import ActionType from '../action-type.js';
 import Adapter from '../../adapter/adapter.js';
-import {AuthorizationStatus} from '../../const/const.js';
+import {AuthorizationStatus} from '../../const/const';
 
 const api = createAPI(() => {});
 const apiMock = new MockAdapter(api);

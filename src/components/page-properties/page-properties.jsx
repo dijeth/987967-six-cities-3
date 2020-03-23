@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const.js';
+import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const';
 import {reviewPropTypes} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
 import ReviewList from '../review-list/review-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import OffersNearby from '../offers-nearby/offers-nearby.jsx';
 import OffersMap from '../offers-map/offers-map.jsx';
-import {AppRoute} from '../../const/const.js';
-import Header from '../header/header.jsx';
+import {AppRoute} from '../../const/const';
+import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getComments, getNearbyCoordList} from '../../reducers/data/selectors.js';

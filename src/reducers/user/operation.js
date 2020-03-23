@@ -1,6 +1,6 @@
 import UserActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
-import {AuthorizationStatus, ServerRoute} from '../../const/const.js';
+import {AuthorizationStatus, ServerRoute} from '../../const/const';
 import Adapter from '../../adapter/adapter.js';
 import history from '../../history.js';
 

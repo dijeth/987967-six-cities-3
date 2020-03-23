@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import {connect} from 'react-redux';
 import {getSortedOffers} from '../../reducers/data/reselectors.js';
-import {PlaceCardType} from '../../const/const.js';
+import {PlaceCardType} from '../../const/const';
 
 const OffersMain = ({offers, isAuth}) => {
   return <PlaceCardList items={offers} isAuth={isAuth} type={PlaceCardType.DEFAULT} />;

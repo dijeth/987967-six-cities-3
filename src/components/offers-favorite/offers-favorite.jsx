@@ -3,7 +3,7 @@ import PropTypes, {string} from 'prop-types';
 import PlaceCardList from '../place-card-list/place-card-list.jsx';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
-import {PlaceCardType, AppRoute} from '../../const/const.js';
+import {PlaceCardType, AppRoute} from '../../const/const';
 import {Link} from 'react-router-dom';
 
 const OffersFavorite = ({offers, cities, isAuth, onCityClick}) => {

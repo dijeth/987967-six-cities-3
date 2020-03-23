@@ -1,6 +1,6 @@
 import ActionType from '../action-type.js';
 import ActionCreator from './action-creator.js';
-import {AuthorizationStatus} from '../../const/const.js';
+import {AuthorizationStatus} from '../../const/const';
 
 describe(`User ActionCreator Test`, () => {
 

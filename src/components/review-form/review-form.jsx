@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ReviewLength, EMPTY_REVIEW} from '../../const/const.js';
+import {ReviewLength, EMPTY_REVIEW} from '../../const/const';
 import {Operation} from '../../reducers/data/operation.js';
 import UserActionCreator from '../../reducers/user/action-creator.js';
 import {getUserReview} from '../../reducers/user/selectors.js';

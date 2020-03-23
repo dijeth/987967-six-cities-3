@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {PlaceCardList} from './place-card-list.jsx';
 import {BrowserRouter} from 'react-router-dom';
-import {PlaceCardType} from '../../const/const.js';
+import {PlaceCardType} from '../../const/const';
 
 const mocks = [{
   id: `id-1`,

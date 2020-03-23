@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {SORT_LIST} from '../../const/const.js';
+import {SORT_LIST} from '../../const/const';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';

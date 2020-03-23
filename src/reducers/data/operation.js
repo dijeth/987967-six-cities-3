@@ -2,7 +2,7 @@ import DataActionCreator from './action-creator.js';
 import AppActionCreator from '../app/action-creator.js';
 import UserActionCreator from '../user/action-creator.js';
 import Adapter from '../../adapter/adapter.js';
-import {ServerRoute, AppRoute, ServerError} from '../../const/const.js';
+import {ServerRoute, AppRoute, ServerError} from '../../const/const';
 import history from '../../history.js';
 
 const loadNearby = (id, api) => api.get(ServerRoute.getNearby(id));

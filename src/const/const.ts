@@ -12,15 +12,6 @@ export const CITIES = [
   `Dusseldorf`
 ];
 
-export const CityCoord = {
-  [`Paris`]: [48.860758, 2.343110],
-  [`Cologne`]: [50.937286, 6.952897],
-  [`Brussels`]: [50.859072, 4.352043],
-  [`Amsterdam`]: [52.38333, 4.9],
-  [`Hamburg`]: [53.540595, 9.995822],
-  [`Dusseldorf`]: [51.249977, 6.793917]
-};
-
 export const InsideFeature = {
   WI_FI: `Wi-Fi`,
   WASHING_MACHINE: `Washing machine`,
@@ -93,10 +84,10 @@ export const ServerError = {
   NOT_FOUND: 404
 };
 
-export const PlaceCardType = {
-  DEFAULT: `DEFAULT`,
-  FAVORITE: `FAVORITE`,
-  NEARBY: `NEARBY`,
+export enum PlaceCardType {
+  DEFAULT = `DEFAULT`,
+  FAVORITE = `FAVORITE`,
+  NEARBY = `NEARBY`,
 };
 
 export const EMPTY_REVIEW = {

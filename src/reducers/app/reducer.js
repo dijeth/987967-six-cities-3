@@ -1,4 +1,4 @@
-import {SortType} from '../../const/const.js';
+import {SortType} from '../../const/const';
 import ActionType from '../action-type.js';
 
 const initialState = {

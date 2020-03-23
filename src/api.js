@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BASE_URL, TIME_OUT} from './const/const.js';
+import {BASE_URL, TIME_OUT} from './const/const';
 
 const config = {
   baseURL: BASE_URL,
