@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Review from '../review/review.jsx';
-import {reviewPropTypes} from '../../const/props.js';
+import * as React from 'react';
+import Review from '../review/review';
+import { UserReview } from '../../interfaces';
 
-const ReviewList = ({reviews}) => {
+const ReviewList: React.FC<{reviews: Array<UserReview>}> = ({reviews}) => {
   const sortedList = reviews.slice(0, 9).sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   const reviewList = sortedList.map((it) => {
     const {id} = it;
@@ -27,10 +26,6 @@ const ReviewList = ({reviews}) => {
         {reviewList}
       </ul>
     </React.Fragment>);
-};
-
-ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewPropTypes))
 };
 
 export default React.memo(ReviewList);

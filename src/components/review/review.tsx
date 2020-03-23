@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import {ratingToPercent, getReviewDate, getDateTime} from '../../util.js';
-import {reviewPropTypes} from '../../const/props.js';
+import { UserReview } from '../../interfaces';
 
-const Review = ({userName, userPicture, rating, description, date: isoDate}) => {
+const Review: React.FC<UserReview> = ({userName, userPicture, rating, description, date: isoDate}) => {
   const date = new Date(Date.parse(isoDate));
 
   return (
@@ -29,7 +29,5 @@ const Review = ({userName, userPicture, rating, description, date: isoDate}) => 
       </div>
     </React.Fragment>);
 };
-
-Review.propTypes = reviewPropTypes;
 
 export default Review;

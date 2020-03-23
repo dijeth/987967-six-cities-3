@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {BREAK_STRING, MAX_IMAGE_COUNT} from '../../const/const';
-import {reviewPropTypes} from '../../const/props.js';
 import {ratingToPercent} from '../../util.js';
-import ReviewList from '../review-list/review-list.jsx';
-import ReviewForm from '../review-form/review-form.jsx';
+import ReviewList from '../review-list/review-list';
+import ReviewForm from '../review-form/review-form';
 import OffersNearby from '../offers-nearby/offers-nearby';
 import OffersMap from '../offers-map/offers-map.jsx';
 import {AppRoute} from '../../const/const';
@@ -17,12 +16,12 @@ import withLoading from '../../hocs/with-loading/with-loading.jsx';
 import withPageError from '../../hocs/with-page-error/with-page-error.jsx';
 import {Link, Redirect} from 'react-router-dom';
 import Adapter from '../../adapter/adapter.js';
-import { Offer, Review, OfferMini } from '../../interfaces';
+import { Offer, UserReview, OfferMini } from '../../interfaces';
 import { coord } from '../../types';
 
 type Props = {
   offer: Offer;
-  reviews: Array<Review>;
+  reviews: Array<UserReview>;
   isAuthorized: boolean;
   activeCityCoord: coord;
   onFavoriteChange: (offer: OfferMini) => void;

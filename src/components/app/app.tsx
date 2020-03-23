@@ -8,7 +8,7 @@ import history from '../../history.js';
 import withPathName from '../../hocs/with-pathname/with-pathname.jsx';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {connect} from 'react-redux';
-import PrivateRoute from '../private-route/private-route.jsx';
+import PrivateRoute from '../private-route/private-route';
 import {AppRoute} from '../../const/const.ts';
 
 const PagePropertiesWithPathName = withPathName(PageProperties);

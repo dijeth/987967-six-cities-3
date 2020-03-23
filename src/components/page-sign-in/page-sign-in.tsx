@@ -11,10 +11,12 @@ type User = {
 }
 
 class PageSignIn extends React.PureComponent<{ onSubmit: (userData: User) => void }> {
-  private form = React.createRef<HTMLFormElement>();
+  private form: React.RefObject<HTMLFormElement>;
 
   constructor(props) {
     super(props);
+
+    this.form = React.createRef();
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 

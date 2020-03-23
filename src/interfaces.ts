@@ -31,7 +31,7 @@ export interface City {
     centerCoord: coord;
 }
 
-export interface Review {
+export interface UserReview {
     readonly id: id;
     userName: string;
     userPicture: string;
