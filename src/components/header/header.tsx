@@ -6,10 +6,10 @@ import {getUserPicture, getEmail, getIsUserSuper, getAuthorizationStatus} from '
 
 type Props = {
   isAuthorized: boolean;
-  userPicture: string;
-  email: string;
-  isSuperUser: boolean;
-  isActiveLogo: boolean;
+  userPicture?: string;
+  email?: string;
+  isSuperUser?: boolean;
+  isActiveLogo?: boolean;
 };
 
 const Header: React.FC<Props> = ({isAuthorized, userPicture, email, isSuperUser, isActiveLogo}) => {

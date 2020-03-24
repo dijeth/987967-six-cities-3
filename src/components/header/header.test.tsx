@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
-import {Header} from './header.jsx';
+import {Header} from './header';
 
 describe(`<Header /> snapshot test`, () => {
   it(`should be rendered correctly when the user is not authorized`, () => {
