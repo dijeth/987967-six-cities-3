@@ -1,18 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import {Operation} from '../../reducers/data/operation.js';
 
+type Props = {
+  pathID: string;
+  onActiveOfferChange: (pathID: string) => void;
+}
+
 const withPathName = (Component) => {
-  const WithPathName = (props) => {
+  const WithPathName: React.FC<Props> = (props) => {
     props.onActiveOfferChange(props.pathID);
     return <Component {...props} />;
-  };
-
-  WithPathName.propTypes = {
-    pathID: PropTypes.string,
-    onActiveOfferChange: PropTypes.func
   };
 
   const mapDispatchToProps = (dispatch) => ({

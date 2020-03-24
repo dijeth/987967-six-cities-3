@@ -1,7 +1,7 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import PageError from './page-error.jsx';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
+import PageError from './page-error';
 
 Enzyme.configure({
   adapter: new Adapter()

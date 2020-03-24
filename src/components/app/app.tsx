@@ -5,11 +5,11 @@ import PageFavotites from '../page-favorites/page-favorites';
 import PageProperties from '../page-properties/page-properties';
 import PageSignIn from '../page-sign-in/page-sign-in';
 import history from '../../history.js';
-import withPathName from '../../hocs/with-pathname/with-pathname.jsx';
+import withPathName from '../../hocs/with-pathname/with-pathname';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {connect} from 'react-redux';
 import PrivateRoute from '../private-route/private-route';
-import {AppRoute} from '../../const/const.ts';
+import {AppRoute} from '../../const/const';
 
 const PagePropertiesWithPathName = withPathName(PageProperties);
 
