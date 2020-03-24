@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const connectedCityList = connect(null, mapDispatchToProps)(withActiveItem(CityList));
+const connectedCityList = connect(null, mapDispatchToProps)(withActiveItem<City>(CityList));
 
 export {CityList};
 export default connectedCityList;

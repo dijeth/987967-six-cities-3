@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {PlaceCardType} from '../../const/const';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import Adapter from '../../adapter/adapter.js';
-import { OfferMini, Offer } from '../../interfaces';
+import { OfferMini } from '../../interfaces';
 
 const getClassList = (type) => {
   switch (type) {
@@ -67,4 +67,4 @@ const mapDispatchToProps = (dispatch, props) => ({
 });
 
 export {PlaceCardList};
-export default connect(null, mapDispatchToProps)(withActiveItem(PlaceCardList, `.place-card__bookmark-button`));
+export default connect(null, mapDispatchToProps)(withActiveItem<OfferMini>(PlaceCardList, `.place-card__bookmark-button`));

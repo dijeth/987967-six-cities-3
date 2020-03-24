@@ -50,4 +50,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {SortList};
-export default connect(null, mapDispatchToProps)(withActiveItem(SortList));
+export default connect(null, mapDispatchToProps)(withActiveItem<SortType>(SortList));
