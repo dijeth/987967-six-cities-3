@@ -1,17 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {compareObjects} from '../../util.js';
 
 const NO_ACTIVE_INDEX = -1;
 
 const getChildIndex = (targetElement, parentElement) => {
-  const index = Array.from(parentElement.children).findIndex((it) => it.contains(targetElement));
+  const childrenElements: HTMLCollection = parentElement.children;
+  const index = Array.from(childrenElements).findIndex((it) => it.contains(targetElement));
 
   return index === -1 ? NO_ACTIVE_INDEX : index;
 };
 
-const withActiveItem = (ListComponent, clickTargetSelector) => {
-  class WithActiveItem extends React.PureComponent {
+const withActiveItem = (ListComponent, clickTargetSelector?) => {
+  type Props = {
+    items: Array<any>;
+    activeItem?: any | null;
+    onActiveItemChange: (activeItem: any | null) => void;
+  };
+  type State = {
+    activeIndex: number;
+  }
+
+  class WithActiveItem extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
 
@@ -56,15 +65,6 @@ const withActiveItem = (ListComponent, clickTargetSelector) => {
       return <ListComponent {...this.props} activeItem={activeItem} onListClick={this._handleClick} />;
     }
   }
-
-  WithActiveItem.propTypes = {
-    activeItem: PropTypes.any,
-    items: PropTypes.array,
-    onActiveItemChange: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.arrayOf(PropTypes.func)
-    ])
-  };
 
   return WithActiveItem;
 };

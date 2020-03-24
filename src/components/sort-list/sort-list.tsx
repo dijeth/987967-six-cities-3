@@ -2,7 +2,7 @@ import * as React from 'react';
 import {SORT_LIST, SortType} from '../../const/const';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
 type Props = {
   items: Array<SortType>;
