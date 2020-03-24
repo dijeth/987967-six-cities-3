@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {PlaceCardType} from '../../const/const';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import Adapter from '../../adapter/adapter.js';
-import { OfferMini, List } from '../../interfaces';
+import {OfferMini, List} from '../../interfaces';
 
 const getClassList = (type) => {
   switch (type) {
@@ -31,7 +31,7 @@ type Props = List<OfferMini> & {
 const PlaceCardList: React.FC<Props> = ({items, onOfferHover, onListClick, isAuth, type}) => {
   const classList = getClassList(type);
 
-  const placeCardList = items.map((offer, i) => {
+  const placeCardList = items.map((offer) => {
     return (
       <PlaceCard
         offer={offer}

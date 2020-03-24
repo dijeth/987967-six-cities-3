@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { ReviewLength, EMPTY_REVIEW } from '../../const/const';
-import { Operation } from '../../reducers/data/operation.js';
+import {connect} from 'react-redux';
+import {ReviewLength, EMPTY_REVIEW} from '../../const/const';
+import {Operation} from '../../reducers/data/operation.js';
 import UserActionCreator from '../../reducers/user/action-creator.js';
-import { getUserReview } from '../../reducers/user/selectors.js';
-import { getCommentSendingStatus } from '../../reducers/app/selectors.js';
-import { id } from '../../types';
+import {getUserReview} from '../../reducers/user/selectors.js';
+import {getCommentSendingStatus} from '../../reducers/app/selectors.js';
+import {id} from '../../types';
 
 type TSavedReview = {
   text: string;
@@ -50,8 +50,8 @@ class ReviewForm extends React.PureComponent<Props> {
   }
 
   _updateForm() {
-    const { savedReview, offerID } = this.props;
-    const { text, rating } = savedReview.offerID === offerID ? savedReview : EMPTY_REVIEW;
+    const {savedReview, offerID} = this.props;
+    const {text, rating} = savedReview.offerID === offerID ? savedReview : EMPTY_REVIEW;
 
     this._setReviewValue(text);
     this._setRatingValue(rating);
@@ -121,7 +121,7 @@ class ReviewForm extends React.PureComponent<Props> {
 
     this._setFormDisableStatus(true);
 
-    this.props.onFormSubmit({ comment, rating }, offerID);
+    this.props.onFormSubmit({comment, rating}, offerID);
   }
 
   _setFormDisableStatus(isDisable) {
@@ -212,5 +212,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export { ReviewForm };
+export {ReviewForm};
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

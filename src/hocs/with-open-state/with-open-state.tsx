@@ -3,7 +3,7 @@ import * as React from 'react';
 const withOpenState = (Component) => {
   type Props = React.ComponentProps<typeof Component>;
   type State = {
-    isOpen: boolean
+    isOpen: boolean;
   };
 
   class WithOpenState extends React.PureComponent<Props, State> {

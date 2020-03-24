@@ -25,7 +25,7 @@ const loadData = () => {
     .then(() => {
       store.dispatch(DataOperation.updateFavorites());
     })
-    .catch(() => {})
+    .catch(() => null)
     .finally(() => {
       store.dispatch(AppActionCreator.decreaseLoad());
     });

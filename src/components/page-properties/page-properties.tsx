@@ -16,8 +16,8 @@ import withLoading from '../../hocs/with-loading/with-loading';
 import withPageError from '../../hocs/with-page-error/with-page-error';
 import {Link, Redirect} from 'react-router-dom';
 import Adapter from '../../adapter/adapter.js';
-import { Offer, UserReview, OfferMini } from '../../interfaces';
-import { coord } from '../../types';
+import {Offer, UserReview, OfferMini} from '../../interfaces';
+import {coord} from '../../types';
 
 type Props = {
   offer: Offer;

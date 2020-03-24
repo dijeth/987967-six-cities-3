@@ -6,7 +6,7 @@ import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getFavorites} from '../../reducers/data/selectors.js';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const/const';
-import { OfferMini } from '../../interfaces';
+import {OfferMini} from '../../interfaces';
 
 type Props = {
   isAuth: boolean;

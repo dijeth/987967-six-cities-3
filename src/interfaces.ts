@@ -1,4 +1,4 @@
-import { id, roomType, coord } from "./types";
+import {id, roomType, coord} from "./types";
 
 export interface OfferMini {
     readonly id: id;
@@ -11,7 +11,7 @@ export interface OfferMini {
     isFavorite: boolean;
     city: string;
     coord: coord;
-};
+}
 
 export interface Offer extends OfferMini {
     bedroomCount: number;
@@ -40,7 +40,7 @@ export interface UserReview {
     date: string;
 }
 
-export interface List<T extends Object> {
+export interface List<T extends unknown> {
     items: Array<T>;
     activeItem: T | null;
     onActiveItemChange: (activeItem: T | null) => void;

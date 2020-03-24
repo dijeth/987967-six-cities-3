@@ -14,7 +14,7 @@ const withLoading = (Component) => {
 
     return <Component {...props} />;
   };
-  
+
   const mapStateToProps = (state) => ({
     loading: getLoading(state)
   });

@@ -3,7 +3,7 @@ import * as leaflet from 'leaflet';
 import {isEqualCoords} from '../../util.js';
 import {connect} from 'react-redux';
 import {getActiveOfferCoord} from '../../reducers/app/selectors.js';
-import { coord } from '../../types.js';
+import {coord} from '../../types.js';
 
 const ICON_SIZE = [27, 39];
 
@@ -110,7 +110,7 @@ class OffersMap extends React.PureComponent<Props> {
 
   addOffers(offersCoord) {
     this.offersCoord = offersCoord;
-    return offersCoord.map((coord) => leaflet.marker(coord, {icon: ICON}).addTo(this.map));
+    return offersCoord.map((it) => leaflet.marker(it, {icon: ICON}).addTo(this.map));
   }
 
   updateOffers(offersCoord) {
@@ -122,14 +122,14 @@ class OffersMap extends React.PureComponent<Props> {
     this.offerLayers = this.addOffers(offersCoord);
   }
 
-  updateActiveCoord(coord) {
+  updateActiveCoord(activeCoord) {
     if (this.activeLayer !== null) {
       this.map.removeLayer(this.activeLayer);
       this.activeLayer = null;
     }
 
-    if (coord) {
-      this.activeLayer = leaflet.marker(coord, {icon: ICON_ACTIVE}).addTo(this.map);
+    if (activeCoord) {
+      this.activeLayer = leaflet.marker(activeCoord, {icon: ICON_ACTIVE}).addTo(this.map);
     }
   }
 

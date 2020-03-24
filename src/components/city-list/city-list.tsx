@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import { City, List } from '../../interfaces.js';
+import {City, List} from '../../interfaces.js';
 
 type Props = List<City>;
 

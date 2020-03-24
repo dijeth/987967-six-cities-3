@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ratingToPercent, getReviewDate, getDateTime} from '../../util.js';
-import { UserReview } from '../../interfaces';
+import {UserReview} from '../../interfaces';
 
 const Review: React.FC<UserReview> = ({userName, userPicture, rating, description, date: isoDate}) => {
   const date = new Date(Date.parse(isoDate));

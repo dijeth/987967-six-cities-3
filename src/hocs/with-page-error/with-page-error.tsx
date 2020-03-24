@@ -17,7 +17,7 @@ const withPageError = (Component) => {
       <React.Fragment>
         <Component {...props} />
         {isError && <PageError message={pageError} onClose={onClearError} />}
-      </React.Fragment>);      
+      </React.Fragment>);
   };
 
   const mapStateToProps = (state) => ({

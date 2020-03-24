@@ -3,7 +3,7 @@ import PlaceCardList from '../place-card-list/place-card-list';
 import {connect} from 'react-redux';
 import {getNearbyList} from '../../reducers/data/selectors.js';
 import {PlaceCardType} from '../../const/const';
-import { OfferMini } from '../../interfaces';
+import {OfferMini} from '../../interfaces';
 
 type Props = {
   nearbyItems: OfferMini;

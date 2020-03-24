@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {AppRoute, PlaceCardType} from '../../const/const';
-import {OfferMini, Offer} from '../../interfaces';
+import {OfferMini} from '../../interfaces';
 import {ratingToPercent} from '../../util.js';
 import {Link} from 'react-router-dom';
 

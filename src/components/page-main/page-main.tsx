@@ -1,7 +1,6 @@
 import * as React from 'react';
 import OffersMain from '../offers-main/offers-main';
 import {SORT_LIST, SortType} from '../../const/const';
-import {cityPropType} from '../../const/props.js';
 import OffersMap from '../offers-map/offers-map';
 import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
@@ -14,8 +13,8 @@ import {getCityOffersCoords} from '../../reducers/data/reselectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state';
 import withLoading from '../../hocs/with-loading/with-loading';
 import withPageError from '../../hocs/with-page-error/with-page-error';
-import { City } from '../../interfaces';
-import { coord } from '../../types';
+import {City} from '../../interfaces';
+import {coord} from '../../types';
 
 const SortListWithOpenState = withOpenState(SortList);
 

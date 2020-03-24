@@ -41,7 +41,7 @@ export enum SortType {
   PRICE_LOW_TO_HIGH = `Price: low to high`,
   PRICE_HIGH_TO_LOW = `Price: high to low`,
   TOP_RATED_FIRST = `Top rated first`,
-};
+}
 
 export const SORT_LIST = [
   SortType.POPULAR,
@@ -88,7 +88,7 @@ export enum PlaceCardType {
   DEFAULT = `DEFAULT`,
   FAVORITE = `FAVORITE`,
   NEARBY = `NEARBY`,
-};
+}
 
 export const EMPTY_REVIEW = {
   text: ``,

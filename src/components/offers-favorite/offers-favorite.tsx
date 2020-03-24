@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import {PlaceCardType, AppRoute} from '../../const/const';
 import {Link} from 'react-router-dom';
-import { OfferMini, City } from '../../interfaces';
+import {OfferMini} from '../../interfaces';
 
 type Props = {
   offers: Array<OfferMini>;

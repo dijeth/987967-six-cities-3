@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Review from '../review/review';
-import { UserReview } from '../../interfaces';
+import {UserReview} from '../../interfaces';
 
 const ReviewList: React.FC<{reviews: Array<UserReview>}> = ({reviews}) => {
   const sortedList = reviews.slice(0, 9).sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
