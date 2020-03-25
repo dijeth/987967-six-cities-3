@@ -17,6 +17,8 @@ const ICON_ACTIVE = leaflet.icon({
   iconSize: ICON_SIZE
 });
 
+const LAYER_URL = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{@2x}.png`;
+
 type Props = {
   centerCoord: coord;
   offersCoord: Array<coord>;
@@ -25,115 +27,107 @@ type Props = {
 };
 
 class OffersMap extends React.PureComponent<Props> {
-  private centerCoord: coord | null;
-  private activeCoord: coord | null;
-  private offersCoord: Array<coord>;
-  private activeLayer: leaflet.Layer;
-  private offerLayers: Array<leaflet.Layer>;
-  private mapWrapper: React.RefObject<HTMLDivElement>;
+  private mapRef: React.RefObject<HTMLDivElement>;
   private map: leaflet.Map;
+  private layerGroup: leaflet.LayerGroup;
+  private activeLayer: leaflet.Marker;
+
+  private offersCoord: Array<coord>;
+  private activeCoord: coord;
+  private centerCoord: coord;
 
   constructor(props) {
     super(props);
+    this.mapRef = React.createRef();
+    this.map = null;
 
-    this.centerCoord = null;
-    this.activeCoord = null;
-    this.offersCoord = [];
+    this.layerGroup = null;
     this.activeLayer = null;
-    this.offerLayers = [];
 
-    this.mapWrapper = React.createRef();
+    this.offersCoord = null;
+    this.activeCoord = null;
+    this.centerCoord = null;
   }
 
-  componentDidMount() {
-    const {centerCoord, offersCoord, activeCoord, zoom} = this.props;
-
-    this.mapWrapper.current.style.height = `100%`;
-
-    this.map = leaflet.map(this.mapWrapper.current, {
-      center: centerCoord,
-      zoom,
-      zoomControl: false,
-    });
-
-    leaflet
-      .tileLayer(
-          `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-          })
-      .addTo(this.map);
-
-    this.setView(centerCoord, zoom);
-
-    this.centerCoord = centerCoord;
-    this.updateOffers(offersCoord);
-    this.updateActiveCoord(activeCoord);
-  }
-
-  componentDidUpdate() {
-    const {centerCoord, offersCoord, activeCoord, zoom} = this.props;
-
-    if (this.shouldOfferMarkersBeChanged(centerCoord, offersCoord)) {
-      this.centerCoord = centerCoord;
-
-      this.setView(centerCoord, zoom);
-      this.updateOffers(offersCoord);
+  updateActiveLayer() {
+    if (
+      JSON.stringify(this.activeCoord) ===
+      JSON.stringify(this.props.activeCoord)
+    ) {
+      return;
     }
 
-    this.updateActiveCoord(activeCoord);
-  }
+    this.activeCoord = this.props.activeCoord;
 
-  componentWillUnmount() {
-    this.map.remove();
-  }
-
-  shouldOfferMarkersBeChanged(centerCoord, offersCoord) {
-    if (!isEqualCoords(centerCoord, this.centerCoord)) {
-      return true;
-    }
-
-    if (offersCoord.length !== this.offersCoord.length) {
-      return true;
-    }
-
-    if (offersCoord.filter((it, i) => !isEqualCoords(it, this.offersCoord[i])).length) {
-      return true;
-    }
-
-    return false;
-  }
-
-  setView(coords, zoom) {
-    this.map.setView(coords, zoom);
-  }
-
-  addOffers(offersCoord) {
-    this.offersCoord = offersCoord;
-    return offersCoord.map((it) => leaflet.marker(it, {icon: ICON}).addTo(this.map));
-  }
-
-  updateOffers(offersCoord) {
-    this.offerLayers.forEach((it) => {
-      this.map.removeLayer(it);
-    });
-
-    this.offerLayers = null;
-    this.offerLayers = this.addOffers(offersCoord);
-  }
-
-  updateActiveCoord(activeCoord) {
     if (this.activeLayer !== null) {
-      this.map.removeLayer(this.activeLayer);
+      this.activeLayer.remove();
       this.activeLayer = null;
     }
 
-    if (activeCoord) {
-      this.activeLayer = leaflet.marker(activeCoord, {icon: ICON_ACTIVE}).addTo(this.map);
+    if (this.activeCoord !== null) {
+      this.activeLayer = leaflet
+        .marker(this.activeCoord, { icon: ICON_ACTIVE })
+        .addTo(this.map);
     }
   }
 
+  updateLayerGroup() {
+    if (
+      JSON.stringify(this.offersCoord) ===
+      JSON.stringify(this.props.offersCoord)
+    ) {
+      return;
+    }
+
+    this.offersCoord = this.props.offersCoord;
+    this.layerGroup.clearLayers();
+
+    this.offersCoord.forEach(it => {
+      leaflet.marker(it, { icon: ICON }).addTo(this.layerGroup);
+    });
+  }
+
+  updateView() {
+    if (
+      JSON.stringify(this.centerCoord) ===
+      JSON.stringify(this.props.centerCoord)
+    ) {
+      return;
+    };
+
+    this.centerCoord = this.props.centerCoord;
+    this.map.setView(this.centerCoord, this.props.zoom);
+  }
+
+  componentDidUpdate() {
+    this.updateActiveLayer();
+    this.updateLayerGroup();
+    this.updateView();
+  }
+
+  componentDidMount() {
+    this.map = leaflet.map(this.mapRef.current.id, {
+      zoomControl: false,
+      scrollWheelZoom: false
+    });
+
+    leaflet.tileLayer(LAYER_URL).addTo(this.map);
+    
+    this.layerGroup = leaflet.layerGroup().addTo(this.map);
+
+    this.updateActiveLayer();
+    this.updateLayerGroup();
+    this.updateView();
+  }
+
   render() {
-    return <div id='map' ref={this.mapWrapper}></div>;
+    return (
+      <div
+        ref={this.mapRef}
+        id="map"
+        style={{ width: `100%`, height: `100%` }}
+      ></div>
+    );
   }
 }
 
