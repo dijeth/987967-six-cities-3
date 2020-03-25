@@ -3,9 +3,9 @@ import * as leaflet from 'leaflet';
 import {isEqualCoords} from '../../util.js';
 import {connect} from 'react-redux';
 import {getActiveOfferCoord} from '../../reducers/app/selectors.js';
-import {coord} from '../../types.js';
+import {coord} from '../../types';
 
-const ICON_SIZE = [27, 39];
+const ICON_SIZE: [number, number] = [27, 39];
 
 const ICON = leaflet.icon({
   iconUrl: `img/pin.svg`,
@@ -28,8 +28,8 @@ class OffersMap extends React.PureComponent<Props> {
   private centerCoord: coord | null;
   private activeCoord: coord | null;
   private offersCoord: Array<coord>;
-  private activeLayer: leaflet.LayerGroup;
-  private offerLayers: Array<leaflet.LayerGroup>;
+  private activeLayer: leaflet.Layer;
+  private offerLayers: Array<leaflet.Layer>;
   private mapWrapper: React.RefObject<HTMLDivElement>;
   private map: leaflet.Map;
 
@@ -54,7 +54,6 @@ class OffersMap extends React.PureComponent<Props> {
       center: centerCoord,
       zoom,
       zoomControl: false,
-      marker: true
     });
 
     leaflet

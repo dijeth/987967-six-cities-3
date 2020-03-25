@@ -1,11 +1,12 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
-import {OffersMain} from './offers-main.jsx';
+import {OffersMain} from './offers-main';
 import NameSpace from '../../reducers/name-space.js';
+import { OfferMini } from '../../interfaces';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -19,7 +20,7 @@ const store = mockStore({
   }
 });
 
-const offers = [{
+const offers: Array<OfferMini> = [{
   id: `1`,
   city: `Dusseldorf`,
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
@@ -32,12 +33,9 @@ const offers = [{
   rating: 3.5,
   type: `house`,
   cost: 868,
-  isSuperUser: true,
-  userID: `25`,
   coord: [51.237402,
     6.797314
   ],
-  zoom: 16
 }, {
   id: `2`,
   city: `Brussels`,
@@ -52,12 +50,9 @@ const offers = [{
   rating: 4.5,
   type: `room`,
   cost: 270,
-  isSuperUser: true,
-  userID: `25`,
   coord: [50.869557,
     4.332697
   ],
-  zoom: 16
 }];
 
 it(`<OffersFavorite /> should call onClick `, () => {
