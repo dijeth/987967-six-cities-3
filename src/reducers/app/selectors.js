@@ -1,6 +1,6 @@
 import {SortType} from '../../const/const';
 import NameSpace from '../name-space.js';
-import {getCities} from '../data/selectors.js';
+import {getCities} from '../data/selectors';
 
 export const getPageError = (state) => state[NameSpace.APP].pageError;
 export const getLoading = (state) => state[NameSpace.APP].loading;

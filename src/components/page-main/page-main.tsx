@@ -8,7 +8,7 @@ import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getSortType, getActiveCity} from '../../reducers/app/selectors.js';
-import {getCities} from '../../reducers/data/selectors.js';
+import {getCities} from '../../reducers/data/selectors';
 import {getCityOffersCoords} from '../../reducers/data/reselectors.js';
 import withOpenState from '../../hocs/with-open-state/with-open-state';
 import withLoading from '../../hocs/with-loading/with-loading';

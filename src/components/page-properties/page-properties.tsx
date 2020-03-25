@@ -9,7 +9,7 @@ import {AppRoute} from '../../const/const';
 import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {getComments, getNearbyCoordList} from '../../reducers/data/selectors.js';
+import {getComments, getNearbyCoordList} from '../../reducers/data/selectors';
 import {Operation as DataOperation} from '../../reducers/data/operation.js';
 import {getActiveOffer, getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import withLoading from '../../hocs/with-loading/with-loading';

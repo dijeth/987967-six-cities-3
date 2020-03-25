@@ -46,3 +46,7 @@ export interface List<T extends unknown> {
     onActiveItemChange: (activeItem: T | null) => void;
     onListClick: (evt: React.MouseEvent<HTMLElement>) => void;
 }
+
+export interface FavoriteOffers {
+    [key: string]: Array<OfferMini>;
+}

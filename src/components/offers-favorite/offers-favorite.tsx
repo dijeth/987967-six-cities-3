@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../reducers/app/action-creator.js';
 import {PlaceCardType, AppRoute} from '../../const/const';
 import {Link} from 'react-router-dom';
-import {OfferMini} from '../../interfaces';
+import {FavoriteOffers} from '../../interfaces';
 
 type Props = {
-  offers: Array<OfferMini>;
+  offers: FavoriteOffers;
   cities: Array<string>;
   isAuth: boolean;
   onCityClick: (city: string) => void;

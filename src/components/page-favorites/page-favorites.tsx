@@ -3,7 +3,7 @@ import OffersFavorite from '../offers-favorite/offers-favorite';
 import Header from '../header/header';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
-import {getFavorites} from '../../reducers/data/selectors.js';
+import {getFavorites} from '../../reducers/data/selectors';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const/const';
 import {OfferMini} from '../../interfaces';

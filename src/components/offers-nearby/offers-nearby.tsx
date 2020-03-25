@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PlaceCardList from '../place-card-list/place-card-list';
 import {connect} from 'react-redux';
-import {getNearbyList} from '../../reducers/data/selectors.js';
+import {getNearbyList} from '../../reducers/data/selectors';
 import {PlaceCardType} from '../../const/const';
 import {OfferMini} from '../../interfaces';
 

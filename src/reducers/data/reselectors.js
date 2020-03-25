@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 import {sortOffers} from '../../util.js';
-import {getOffers} from '../data/selectors.js';
+import {getOffers} from '../data/selectors';
 import {getActiveCityName, getSortType} from '../app/selectors.js';
 
 export const getSortedOffers = createSelector(
