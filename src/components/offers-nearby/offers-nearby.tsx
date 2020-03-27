@@ -6,7 +6,7 @@ import {PlaceCardType} from '../../const/const';
 import {OfferMini} from '../../interfaces';
 
 type Props = {
-  nearbyItems: OfferMini;
+  nearbyItems: Array<OfferMini>; 
   nearPlacesFor: string;
   isAuth: boolean;
 }

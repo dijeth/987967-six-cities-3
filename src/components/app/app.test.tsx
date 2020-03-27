@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as renderer from 'react-test-renderer';
+import * as Enzyme from 'enzyme';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import {App} from './app';
@@ -102,12 +102,15 @@ const store = mockStore({
 });
 
 it(`1`, () => {
-  const tree = renderer.create(
+  const div = document.createElement(`div`);
+  document.body.appendChild(div);
+
+  const tree = Enzyme.mount(
       <Provider store={store}>
         <App isAuth={true} />
       </Provider>,
-      {createNodeMock: () => document.createElement(`div`)}
-  ).toJSON();
+      {attachTo: div}
+  );
 
-  expect(tree).toMatchSnapshot();
+  expect(tree.getDOMNode()).toMatchSnapshot();
 });

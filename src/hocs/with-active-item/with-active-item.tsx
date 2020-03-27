@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {compareObjects} from '../../util.js';
-import {List} from '../../interfaces.js';
+import {List} from '../../interfaces';
+import { ListItem } from '../../types';
 
 const NO_ACTIVE_INDEX = -1;
 
@@ -11,7 +12,7 @@ const getChildIndex = (targetElement, parentElement) => {
   return index === -1 ? NO_ACTIVE_INDEX : index;
 };
 
-const withActiveItem = <T extends unknown>(
+const withActiveItem = <T extends ListItem>(
   ListComponent: React.ComponentType<List<T>>,
   clickTargetSelector?) => {
 

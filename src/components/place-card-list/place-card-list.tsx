@@ -26,6 +26,7 @@ type Props = List<OfferMini> & {
   type: PlaceCardType;
   isAuth: boolean;
   onOfferHover: (offer: OfferMini | null) => void;
+  nearPlacesFor?: string;
 }
 
 const PlaceCardList: React.FC<Props> = ({items, onOfferHover, onListClick, isAuth, type}) => {

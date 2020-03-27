@@ -1,4 +1,5 @@
-import {id, roomType, coord} from "./types";
+import {id, roomType, coord, ListItem} from "./types";
+import { SortType } from "./const/const";
 
 export interface OfferMini {
     readonly id: id;
@@ -40,7 +41,7 @@ export interface UserReview {
     date: string;
 }
 
-export interface List<T extends unknown> {
+export interface List<T extends ListItem> {
     items: Array<T>;
     activeItem: T | null;
     onActiveItemChange: (activeItem: T | null) => void;

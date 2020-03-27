@@ -1,3 +1,5 @@
+import { TSavedReview } from "../types";
+
 export const OfferType = {
   APARTMENT: `Apartment`,
   PRIVATE_ROOM: `Private room`
@@ -90,7 +92,7 @@ export enum PlaceCardType {
   NEARBY = `NEARBY`,
 }
 
-export const EMPTY_REVIEW = {
+export const EMPTY_REVIEW: TSavedReview = {
   text: ``,
   rating: 0,
   offerID: null,

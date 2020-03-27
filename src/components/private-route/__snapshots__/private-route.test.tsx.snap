@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PrivateRoute /> should render Component when require is true 1`] = `
+<div>
+  london
+</div>
+`;
+
+exports[`<PrivateRoute /> should render null when require is false 1`] = `null`;

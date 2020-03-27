@@ -6,19 +6,19 @@ import {getAuthorizationStatus} from '../../reducers/user/selectors.js';
 import {getFavorites} from '../../reducers/data/selectors';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const/const';
-import {OfferMini} from '../../interfaces';
+import {FavoriteOffers} from '../../interfaces';
 
 type Props = {
   isAuth: boolean;
   favoriteData: {
-    offers: Array<OfferMini>;
+    offers: FavoriteOffers;
     cities: Array<string>;
   };
 };
 
 const PageFavorites: React.FC<Props> = ({isAuth, favoriteData}) => {
   const {offers: favoriteOffers, cities} = favoriteData;
-  const classList = `page__main page__main--favorites ${favoriteOffers.length === 0 ? `page__main--favorites-empty` : ``}`;
+  const classList = `page__main page__main--favorites ${cities.length === 0 ? `page__main--favorites-empty` : ``}`;
 
   return (
     <div className="page">

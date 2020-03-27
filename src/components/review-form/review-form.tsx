@@ -5,13 +5,7 @@ import {Operation} from '../../reducers/data/operation.js';
 import UserActionCreator from '../../reducers/user/action-creator.js';
 import {getUserReview} from '../../reducers/user/selectors.js';
 import {getCommentSendingStatus} from '../../reducers/app/selectors.js';
-import {id} from '../../types';
-
-type TSavedReview = {
-  text: string;
-  rating: number;
-  offerID: id;
-};
+import {id, TSavedReview} from '../../types';
 
 type Props = {
   offerID: id;

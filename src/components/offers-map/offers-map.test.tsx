@@ -3,8 +3,6 @@ import {mount} from 'enzyme';
 import {OffersMap} from './offers-map';
 import { coord } from '../../types';
 
-jest.unmock('leaflet');
-
 const props = {
   zoom: 16,
   activeCoord: [52.377304, 4.903076] as coord,
