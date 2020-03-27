@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
 import PlaceCard from './place-card';
-import { PlaceCardType } from '../../const/const';
-import { OfferMini } from '../../interfaces.js';
-import { BrowserRouter } from 'react-router-dom';
+import {PlaceCardType} from '../../const/const';
+import {OfferMini} from '../../interfaces.js';
+import {BrowserRouter} from 'react-router-dom';
 
 const mock: OfferMini = {
   id: `id-1`,
@@ -23,14 +23,14 @@ describe(`<PlaceCard />`, () => {
     const onHover = jest.fn();
 
     const placeCard = Enzyme.mount(
-      <BrowserRouter>
-        <PlaceCard
-          onHover={onHover}
-          offer={mock}
-          isAuth={false}
-          type={PlaceCardType.DEFAULT}
-        />
-      </BrowserRouter>);
+        <BrowserRouter>
+          <PlaceCard
+            onHover={onHover}
+            offer={mock}
+            isAuth={false}
+            type={PlaceCardType.DEFAULT}
+          />
+        </BrowserRouter>);
     placeCard.simulate(`mouseenter`);
 
     expect(onHover).toHaveBeenCalledTimes(1);
@@ -41,14 +41,14 @@ describe(`<PlaceCard />`, () => {
     const onHover = jest.fn();
 
     const placeCard = Enzyme.mount(
-      <BrowserRouter>
-        <PlaceCard
-          onHover={onHover}
-          offer={mock}
-          isAuth={false}
-          type={PlaceCardType.DEFAULT}
-        />
-      </BrowserRouter>
+        <BrowserRouter>
+          <PlaceCard
+            onHover={onHover}
+            offer={mock}
+            isAuth={false}
+            type={PlaceCardType.DEFAULT}
+          />
+        </BrowserRouter>
     );
     placeCard.simulate(`mouseleave`);
 

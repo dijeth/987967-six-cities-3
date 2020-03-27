@@ -1,5 +1,5 @@
-import { SortType } from "./const/const";
-import { OfferMini, City } from "./interfaces";
+import {SortType} from "./const/const";
+import {OfferMini, City} from "./interfaces";
 
 export type id = string;
 export type roomType = `apartment` | `room` | `house` | `hotel`;

@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {PlaceCardList} from './place-card-list';
 import {BrowserRouter} from 'react-router-dom';
 import {PlaceCardType} from '../../const/const';
-import { OfferMini } from '../../interfaces';
+import {OfferMini} from '../../interfaces';
 
 const mocks: Array<OfferMini> = [{
   id: `id-1`,
@@ -38,11 +38,11 @@ describe(`<PlaceCardList /> should be render correctly`, () => {
           <PlaceCardList
             type={PlaceCardType.DEFAULT}
             items={mocks}
-            onOfferHover={()=>{}}
+            onOfferHover={() => undefined}
             isAuth={false}
             activeItem={null}
-            onActiveItemChange={()=>{}}
-            onListClick={()=>{}}
+            onActiveItemChange={() => undefined}
+            onListClick={() => undefined}
           />
         </BrowserRouter>
     ).toJSON();
@@ -56,11 +56,11 @@ describe(`<PlaceCardList /> should be render correctly`, () => {
           <PlaceCardList
             type={PlaceCardType.FAVORITE}
             items={mocks}
-            onOfferHover={()=>{}}
+            onOfferHover={() => undefined}
             isAuth={true}
             activeItem={null}
-            onActiveItemChange={()=>{}}
-            onListClick={()=>{}}
+            onActiveItemChange={() => undefined}
+            onListClick={() => undefined}
           />
         </BrowserRouter>
     ).toJSON();
@@ -75,11 +75,11 @@ describe(`<PlaceCardList /> should be render correctly`, () => {
             type={PlaceCardType.NEARBY}
             items={mocks}
             nearPlacesFor="1"
-            onOfferHover={()=>{}}
+            onOfferHover={() => undefined}
             isAuth={true}
             activeItem={null}
-            onActiveItemChange={()=>{}}
-            onListClick={()=>{}}
+            onActiveItemChange={() => undefined}
+            onListClick={() => undefined}
           />
         </BrowserRouter>
     ).toJSON();

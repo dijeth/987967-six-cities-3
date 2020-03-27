@@ -4,7 +4,7 @@ import {Operation} from './operation.js';
 import ActionType from '../action-type.js';
 import Adapter from '../../adapter/adapter.js';
 
-const api = createAPI(() => {});
+const api = createAPI(() => undefined);
 const apiMock = new MockAdapter(api);
 const dispatch = jest.fn();
 
@@ -119,7 +119,7 @@ it(`should call a dispatch once whith ActionType.LOAD_NEARBY`, () => {
 
   const loader = Operation.loadNearbyList(`1`);
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
 

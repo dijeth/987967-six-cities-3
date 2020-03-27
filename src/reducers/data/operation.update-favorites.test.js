@@ -4,7 +4,7 @@ import {Operation} from './operation.js';
 import ActionType from '../action-type.js';
 import Adapter from '../../adapter/adapter.js';
 
-const api = createAPI(() => {});
+const api = createAPI(() => undefined);
 const apiMock = new MockAdapter(api);
 const dispatch = jest.fn();
 
@@ -84,7 +84,7 @@ it(`should call a dispatch 4 times with correct payloads`, () => {
 
   const loader = Operation.updateFavorites();
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(4);
 

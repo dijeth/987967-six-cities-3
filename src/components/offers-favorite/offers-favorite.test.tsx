@@ -66,7 +66,7 @@ it(`<OffersFavorite /> should be rendered correctly`, () => {
               isAuth={true}
               offers={favoriteOffers}
               cities={favoriteCities}
-              onCityClick={() => {}}
+              onCityClick={() => undefined}
             />
           </Provider>
         </BrowserRouter>,

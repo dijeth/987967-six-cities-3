@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {compareObjects} from '../../util.js';
 import {List} from '../../interfaces';
-import { ListItem } from '../../types';
+import {ListItem} from '../../types';
 
 const NO_ACTIVE_INDEX = -1;
 

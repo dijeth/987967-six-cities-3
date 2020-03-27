@@ -8,7 +8,7 @@ Enzyme.configure({
 });
 
 it(`<PageError /> should be rendered correctly`, () => {
-  const tree = Enzyme.mount(<PageError message="Error" onClose={()=>{}} />);
+  const tree = Enzyme.mount(<PageError message="Error" onClose={() => undefined} />);
 
   expect(tree.getDOMNode()).toMatchSnapshot();
 });

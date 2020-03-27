@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import {CityList} from './city-list';
-import { City } from '../../interfaces';
+import {City} from '../../interfaces';
 
 const cities: City[] = [{
   zoom: 1,
@@ -38,8 +38,8 @@ const activeCity: City = {
 const props = {
   items: cities,
   activeItem: activeCity,
-  onActiveItemChange: () => {},
-  onListClick: () => {},
+  onActiveItemChange: () => undefined,
+  onListClick: () => undefined,
 };
 
 it(`<CityList /> should be render correctly`, () => {

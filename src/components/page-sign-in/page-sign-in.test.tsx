@@ -19,7 +19,7 @@ describe(`<PageSignIn /> snapshot test`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <BrowserRouter>
-            <PageSignIn onSubmit={() => {}} />
+            <PageSignIn onSubmit={() => undefined} />
           </BrowserRouter>
         </Provider>
     ).toJSON();

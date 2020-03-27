@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
-import { BrowserRouter } from 'react-router-dom';
-import { PlaceCardList } from './place-card-list';
-import { PlaceCardType } from '../../const/const';
-import { OfferMini } from '../../interfaces.js';
+import {BrowserRouter} from 'react-router-dom';
+import {PlaceCardList} from './place-card-list';
+import {PlaceCardType} from '../../const/const';
+import {OfferMini} from '../../interfaces.js';
 
 const mocks: Array<OfferMini> = [{
   id: `id-1`,
@@ -59,18 +59,18 @@ describe(`<PlaceCardList /> when type === DEFAULT>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
-    <BrowserRouter>
-      <PlaceCardList
-        items={mocks}
-        onOfferHover={handleOfferHover}
-        onListClick={handleListClick}
-        isAuth={true}
-        type={PlaceCardType.DEFAULT}
-        activeItem={null}
-        onActiveItemChange={() => { }}
+      <BrowserRouter>
+        <PlaceCardList
+          items={mocks}
+          onOfferHover={handleOfferHover}
+          onListClick={handleListClick}
+          isAuth={true}
+          type={PlaceCardType.DEFAULT}
+          activeItem={null}
+          onActiveItemChange={() => undefined}
 
-      />
-    </BrowserRouter>);
+        />
+      </BrowserRouter>);
 
   const card = tree.find(`article`).at(0);
 
@@ -101,18 +101,18 @@ describe(`<PlaceCardList /> when type === NEARBY>`, () => {
   const handleOfferHover = jest.fn();
   const handleListClick = jest.fn();
   const tree = Enzyme.mount(
-    <BrowserRouter>
-      <PlaceCardList
-        items={mocks}
-        nearPlacesFor={`1`}
-        onOfferHover={handleOfferHover}
-        onListClick={handleListClick}
-        isAuth={true}
-        type={PlaceCardType.NEARBY}
-        activeItem={null}
-        onActiveItemChange={()=>{}}
-      />
-    </BrowserRouter>);
+      <BrowserRouter>
+        <PlaceCardList
+          items={mocks}
+          nearPlacesFor={`1`}
+          onOfferHover={handleOfferHover}
+          onListClick={handleListClick}
+          isAuth={true}
+          type={PlaceCardType.NEARBY}
+          activeItem={null}
+          onActiveItemChange={() => undefined}
+        />
+      </BrowserRouter>);
 
   const card = tree.find(`article`).at(0);
 

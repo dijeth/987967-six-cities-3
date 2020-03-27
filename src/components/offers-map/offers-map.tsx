@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as leaflet from 'leaflet';
-import {isEqualCoords} from '../../util.js';
 import {connect} from 'react-redux';
 import {getActiveOfferCoord} from '../../reducers/app/selectors.js';
 import {coord} from '../../types';
@@ -66,7 +65,7 @@ class OffersMap extends React.PureComponent<Props> {
 
     if (this.activeCoord !== null) {
       this.activeLayer = leaflet
-        .marker(this.activeCoord, { icon: ICON_ACTIVE })
+        .marker(this.activeCoord, {icon: ICON_ACTIVE})
         .addTo(this.map);
     }
   }
@@ -82,8 +81,8 @@ class OffersMap extends React.PureComponent<Props> {
     this.offersCoord = this.props.offersCoord;
     this.layerGroup.clearLayers();
 
-    this.offersCoord.forEach(it => {
-      leaflet.marker(it, { icon: ICON }).addTo(this.layerGroup);
+    this.offersCoord.forEach((it) => {
+      leaflet.marker(it, {icon: ICON}).addTo(this.layerGroup);
     });
   }
 
@@ -93,7 +92,7 @@ class OffersMap extends React.PureComponent<Props> {
       JSON.stringify(this.props.centerCoord)
     ) {
       return;
-    };
+    }
 
     this.centerCoord = this.props.centerCoord;
     this.map.setView(this.centerCoord, this.props.zoom);
@@ -112,7 +111,7 @@ class OffersMap extends React.PureComponent<Props> {
     });
 
     leaflet.tileLayer(LAYER_URL).addTo(this.map);
-    
+
     this.layerGroup = leaflet.layerGroup().addTo(this.map);
 
     this.updateActiveLayer();
@@ -125,7 +124,7 @@ class OffersMap extends React.PureComponent<Props> {
       <div
         ref={this.mapRef}
         id="map"
-        style={{ width: `100%`, height: `100%` }}
+        style={{width: `100%`, height: `100%`}}
       ></div>
     );
   }

@@ -8,7 +8,7 @@ import MockAdapter from 'axios-mock-adapter';
 import withPathName from './with-pathname';
 import NameSpace from '../../reducers/name-space.js';
 
-const api = createAPI(() => {});
+const api = createAPI(() => undefined);
 const apiMock = new MockAdapter(api);
 apiMock.onGet(`/hotels/2/nearby`).reply(200, []);
 apiMock.onGet(`/comments/2`).reply(200, []);

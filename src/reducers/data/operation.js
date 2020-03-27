@@ -57,7 +57,7 @@ export const Operation = {
           dispatch(DataActionCreator.replaceOffer(it));
         });
       })
-      .catch(() => {})
+      .catch(() => undefined)
       .finally(() => {
         dispatch(AppActionCreator.decreaseLoad());
       });

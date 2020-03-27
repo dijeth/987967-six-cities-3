@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import PlaceCard from './place-card';
 import {BrowserRouter} from 'react-router-dom';
 import {PlaceCardType} from '../../const/const';
-import { OfferMini } from '../../interfaces.js';
+import {OfferMini} from '../../interfaces.js';
 
 const mock: OfferMini = {
   id: `id-1`,
@@ -24,7 +24,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            onHover={() => {}}
+            onHover={() => undefined}
             type={PlaceCardType.DEFAULT}
             isAuth={true}
           />
@@ -39,7 +39,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            onHover={() => {}}
+            onHover={() => undefined}
             type={PlaceCardType.FAVORITE}
             isAuth={true}
           />
@@ -54,7 +54,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            onHover={() => {}}
+            onHover={() => undefined}
             type={PlaceCardType.NEARBY}
             isAuth={true}
           />
@@ -70,7 +70,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            onHover={() => {}}
+            onHover={() => undefined}
             type={PlaceCardType.DEFAULT}
             isAuth={true}
           />
@@ -86,7 +86,7 @@ describe(`<PlaceCard /> should be render correctly`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={mock}
-            onHover={() => {}}
+            onHover={() => undefined}
             type={PlaceCardType.DEFAULT}
             isAuth={true}
           />

@@ -5,7 +5,7 @@ import ActionType from '../action-type.js';
 import Adapter from '../../adapter/adapter.js';
 import {AuthorizationStatus} from '../../const/const';
 
-const api = createAPI(() => {});
+const api = createAPI(() => undefined);
 const apiMock = new MockAdapter(api);
 
 const responseUser = {
@@ -25,7 +25,7 @@ it(`should call a dispatch twice with correct payload when user is authorized`, 
 
   const loader = Operation.getAuthorizationStatus();
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
 
@@ -52,7 +52,7 @@ it(`should call a dispatch 4 times with correct payload when user is authorized`
 
   const loader = Operation.authorizeUser(user);
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .then(() => {
 
       expect(dispatch).toHaveBeenCalledTimes(4);
@@ -88,7 +88,7 @@ it(`should call a dispatch 4 times with correct payload when user is not authori
 
   const loader = Operation.authorizeUser(user);
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .then(() => {
 
       expect(dispatch).toHaveBeenCalledTimes(4);

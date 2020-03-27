@@ -6,7 +6,7 @@ import {PageFavorites} from './page-favorites';
 import NameSpace from '../../reducers/name-space.js';
 import {AuthorizationStatus} from '../../const/const';
 import {BrowserRouter} from 'react-router-dom';
-import { OfferMini, FavoriteOffers } from '../../interfaces.js';
+import {FavoriteOffers} from '../../interfaces.js';
 
 const mockStore = configureStore([]);
 

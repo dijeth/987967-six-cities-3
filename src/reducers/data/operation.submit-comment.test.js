@@ -4,7 +4,7 @@ import {Operation} from './operation.js';
 import ActionType from '../action-type.js';
 import Adapter from '../../adapter/adapter.js';
 
-const api = createAPI(() => {});
+const api = createAPI(() => undefined);
 const apiMock = new MockAdapter(api);
 
 const response = [{
@@ -29,7 +29,7 @@ it(`should call a dispatch 4 times with correct payloads when user is authorized
 
   const loader = Operation.submitComment(`test-comment`, `1`);
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(4);
 
@@ -61,7 +61,7 @@ it(`should call a dispatch 2 times with correct payloads when user is not author
 
   const loader = Operation.submitComment(`test-comment`, `1`);
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .catch(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
 

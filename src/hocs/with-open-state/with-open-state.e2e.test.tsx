@@ -6,7 +6,7 @@ import withOpenState from './with-open-state';
 const Component = ({onViewChange}) => (<div onClick={onViewChange}></div>);
 
 type Props = {
-  onViewChange: ()=>void
+  onViewChange: () => void;
 };
 
 const ComponentWithOpenState = withOpenState(Component);

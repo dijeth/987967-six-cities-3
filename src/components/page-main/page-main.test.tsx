@@ -6,8 +6,8 @@ import {BrowserRouter} from 'react-router-dom';
 import {PageMain} from './page-main';
 import {SortType} from '../../const/const';
 import NameSpace from '../../reducers/name-space.js';
-import { City, OfferMini } from '../../interfaces.js';
-import { coord } from '../../types';
+import {City, OfferMini} from '../../interfaces.js';
+import {coord} from '../../types';
 
 const mockStore = configureStore([]);
 

@@ -8,9 +8,9 @@ it(`<SortList /> should be correctly rendered when opened`, () => {
       <SortList
         items={SORT_LIST}
         activeItem={SortType.POPULAR}
-        onActiveItemChange={() => {}}
-        onListClick={() => {}}
-        onViewChange={() => {}}
+        onActiveItemChange={() => undefined}
+        onListClick={() => undefined}
+        onViewChange={() => undefined}
         isOpen={true}
       />);
   expect(tree.toJSON()).toMatchSnapshot();
@@ -21,9 +21,9 @@ it(`<SortList /> should be correctly rendered when closed`, () => {
       <SortList
         items={SORT_LIST}
         activeItem={SortType.POPULAR}
-        onActiveItemChange={() => {}}
-        onListClick={() => {}}
-        onViewChange={() => {}}
+        onActiveItemChange={() => undefined}
+        onListClick={() => undefined}
+        onViewChange={() => undefined}
         isOpen={false}
       />);
   expect(tree.toJSON()).toMatchSnapshot();

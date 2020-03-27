@@ -4,7 +4,7 @@ import {Operation} from './operation.js';
 import ActionType from '../action-type.js';
 import Adapter from '../../adapter/adapter.js';
 
-const api = createAPI(() => {});
+const api = createAPI(() => undefined);
 const apiMock = new MockAdapter(api);
 const dispatch = jest.fn();
 
@@ -50,7 +50,7 @@ it(`should call a dispatch once with ActionType.REPLACE_OFFER`, () => {
 
   const loader = Operation.changeFavorite(`5`, `0`);
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
 
@@ -66,7 +66,7 @@ it(`should not call a dispatch when user is not authorized`, () => {
 
   const loader = Operation.changeFavorite(`5`, `0`);
 
-  return loader(dispatch, () => {}, api)
+  return loader(dispatch, () => undefined, api)
     .catch(() => {
       expect(dispatch).toHaveBeenCalledTimes(0);
     });

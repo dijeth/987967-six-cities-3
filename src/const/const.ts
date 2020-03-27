@@ -1,4 +1,4 @@
-import { TSavedReview } from "../types";
+import {TSavedReview} from "../types";
 
 export const OfferType = {
   APARTMENT: `Apartment`,

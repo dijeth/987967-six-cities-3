@@ -1,5 +1,5 @@
 import NameSpace from "../name-space.js";
-import { FavoriteOffers } from "../../interfaces";
+import {FavoriteOffers} from "../../interfaces";
 
 export const getOffers = (state) => state[NameSpace.DATA].offers;
 export const getCities = (state) => state[NameSpace.DATA].cities;
@@ -11,13 +11,13 @@ export const getFavorites = (state) => {
   const splittedOffers: FavoriteOffers = {};
 
   favoriteOffers.forEach((it) => {
-    const { city } = it;
+    const {city} = it;
 
     if (splittedOffers[city] === undefined) {
       splittedOffers[city] = [it];
     } else {
-      splittedOffers[city].push(it)
-    };
+      splittedOffers[city].push(it);
+    }
   });
 
   return {

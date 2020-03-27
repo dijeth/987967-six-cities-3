@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
 import {OffersNearby} from './offers-nearby';
 import NameSpace from '../../reducers/name-space.js';
-import { OfferMini } from '../../interfaces.js';
+import {OfferMini} from '../../interfaces.js';
 
 const mockStore = configureStore([]);
 

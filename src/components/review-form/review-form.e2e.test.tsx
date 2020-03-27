@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Enzyme from "enzyme";
 import {ReviewForm} from "./review-form";
-import { EMPTY_REVIEW } from "../../const/const.js";
+import {EMPTY_REVIEW} from "../../const/const";
 
 describe(`<ReviewForm />`, () => {
   it(`should call onSubmit callback when the form was submitted`, () => {
@@ -13,8 +13,8 @@ describe(`<ReviewForm />`, () => {
           savedReview={EMPTY_REVIEW}
           onFormSubmit={handleFormSubmit}
           isSending={false}
-          onReviewChange={()=>{}}
-          />
+          onReviewChange={() => undefined}
+        />
     );
 
     tree.simulate(`submit`);
@@ -30,8 +30,8 @@ describe(`<ReviewForm />`, () => {
           savedReview={EMPTY_REVIEW}
           onReviewChange={handleReviewChange}
           isSending={false}
-          onFormSubmit={()=>{}}
-          />
+          onFormSubmit={() => undefined}
+        />
     );
 
     tree
@@ -55,8 +55,8 @@ describe(`<ReviewForm />`, () => {
           }}
           onReviewChange={handleReviewChange}
           isSending={false}
-          onFormSubmit={()=>{}}
-          />
+          onFormSubmit={() => undefined}
+        />
     );
 
     tree
@@ -86,7 +86,7 @@ it(`should fill the form elements correctly when the form was mounted & offerID 
         }}
         onReviewChange={handleReviewChange}
         isSending={false}
-        onFormSubmit={()=>{}}
+        onFormSubmit={() => undefined}
       />
   );
 

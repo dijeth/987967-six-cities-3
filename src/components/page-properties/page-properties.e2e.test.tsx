@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { BrowserRouter } from 'react-router-dom';
-import { PageProperties } from './page-properties';
+import {BrowserRouter} from 'react-router-dom';
+import {PageProperties} from './page-properties';
 import NameSpace from '../../reducers/name-space.js';
-import { EMPTY_REVIEW } from '../../const/const';
-import { Offer } from '../../interfaces';
-import { coord } from '../../types';
+import {EMPTY_REVIEW} from '../../const/const';
+import {Offer} from '../../interfaces';
+import {coord} from '../../types';
 
 const mockStore = configureStore([]);
 
@@ -149,21 +149,21 @@ it(`should call a onFavoriteChange when changing a favorite toggle`, () => {
   const handleFavoriteChange = jest.fn();
 
   const tree = Enzyme.mount(
-    <Provider store={store}>
-      <BrowserRouter>
-        <PageProperties
-          isAuthorized={true}
-          offer={activeOffer}
-          activeCityCoord={[1, 2]}
-          reviews={[]}
-          offersCoord={neighbourhoods.map((it) => it.coord) as Array<coord>}
-          onFavoriteChange={handleFavoriteChange}
-        />
-      </BrowserRouter>
-    </Provider>, { attachTo: div });
+      <Provider store={store}>
+        <BrowserRouter>
+          <PageProperties
+            isAuthorized={true}
+            offer={activeOffer}
+            activeCityCoord={[1, 2]}
+            reviews={[]}
+            offersCoord={neighbourhoods.map((it) => it.coord) as Array<coord>}
+            onFavoriteChange={handleFavoriteChange}
+          />
+        </BrowserRouter>
+      </Provider>, {attachTo: div});
 
   tree.find(`.property__bookmark-button`).at(0).simulate(`click`);
 
   expect(handleFavoriteChange).toHaveBeenCalledTimes(1);
   expect(handleFavoriteChange).toHaveBeenNthCalledWith(1, activeOffer);
-})
+});

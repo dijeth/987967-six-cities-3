@@ -6,7 +6,7 @@ import {BrowserRouter} from 'react-router-dom';
 import {PageProperties} from './page-properties';
 import NameSpace from '../../reducers/name-space.js';
 import {EMPTY_REVIEW} from '../../const/const';
-import { Offer, OfferMini } from '../../interfaces.js';
+import {Offer, OfferMini} from '../../interfaces.js';
 
 const mockStore = configureStore([]);
 
@@ -155,7 +155,7 @@ describe(`<PageProperties /> snapshot test`, () => {
               activeCityCoord={[1, 2]}
               reviews={[]}
               offersCoord={neighbourhoods.map((it) => it.coord)}
-              onFavoriteChange={()=>{}}
+              onFavoriteChange={() => undefined}
             />
           </BrowserRouter>
         </Provider>, {attachTo: div});

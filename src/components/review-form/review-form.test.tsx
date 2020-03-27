@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Enzyme from 'enzyme';
 import {ReviewForm} from './review-form';
-import { EMPTY_REVIEW } from '../../const/const';
+import {EMPTY_REVIEW} from '../../const/const';
 
 const savedReview = EMPTY_REVIEW;
 
@@ -11,8 +11,8 @@ it(`<ReviewForm /> should be rendered correctly`, () => {
         offerID={`1`}
         savedReview={savedReview}
         isSending={false}
-        onFormSubmit={()=>{}}
-        onReviewChange={()=>{}}
+        onFormSubmit={() => undefined}
+        onReviewChange={() => undefined}
       />
   );
 

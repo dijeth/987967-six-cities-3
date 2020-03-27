@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import ReviewList from './review-list';
-import { UserReview } from '../../interfaces';
+import {UserReview} from '../../interfaces';
 
 const mocks: Array<UserReview> = [{
   id: `id-1`,

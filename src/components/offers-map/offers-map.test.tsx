@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
 import {OffersMap} from './offers-map';
-import { coord } from '../../types';
+import {coord} from '../../types';
 
 const props = {
   zoom: 16,

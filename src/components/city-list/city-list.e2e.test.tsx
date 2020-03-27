@@ -43,14 +43,14 @@ const activeCity: City = {
 const props = {
   items: cities,
   activeItem: activeCity,
-  onActiveItemChange: () => {},
+  onActiveItemChange: () => undefined,
   onListClick: jest.fn(),
 };
 
 it(`should call onListClick when mouse click`, () => {
   const cityList = Enzyme.mount(<CityList {...props} />);
   const item = cityList.find(`span`).at(3);
-  item.simulate(`click`, {preventDefault: () => {}});
+  item.simulate(`click`, {preventDefault: () => undefined});
 
   expect(props.onListClick).toHaveBeenCalledTimes(1);
 });

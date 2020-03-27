@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import {BrowserRouter} from 'react-router-dom';
 import {OffersMain} from './offers-main';
 import NameSpace from '../../reducers/name-space.js';
-import { OfferMini } from '../../interfaces';
+import {OfferMini} from '../../interfaces';
 
 Enzyme.configure({
   adapter: new Adapter()

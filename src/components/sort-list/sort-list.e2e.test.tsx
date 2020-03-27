@@ -14,7 +14,7 @@ it(`should call onListClick and onViewChange`, () => {
         onListClick={handleTypeChange}
         onViewChange={handleViewChange}
         isOpen={true}
-        onActiveItemChange={()=>{}}
+        onActiveItemChange={() => undefined}
       />);
 
   tree.find(`ul`).simulate(`click`);
@@ -32,8 +32,8 @@ it(`should call onViewChange`, () => {
         activeItem={SortType.POPULAR}
         onViewChange={handleViewChange}
         isOpen={true}
-        onActiveItemChange={()=>{}}
-        onListClick={()=>{}}
+        onActiveItemChange={() => undefined}
+        onListClick={() => undefined}
       />);
 
   tree.find(`.places__sorting-type`).simulate(`click`);
