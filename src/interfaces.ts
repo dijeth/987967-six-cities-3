@@ -1,5 +1,4 @@
 import {id, roomType, coord, ListItem} from "./types";
-import { SortType } from "./const/const";
 
 export interface OfferMini {
     readonly id: id;

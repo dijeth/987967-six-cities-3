@@ -1,11 +1,11 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {createAPI} from '../../api.js';
 import MockAdapter from 'axios-mock-adapter';
-import withPathName from './with-pathname.jsx';
+import withPathName from './with-pathname';
 import NameSpace from '../../reducers/name-space.js';
 
 const api = createAPI(() => {});

@@ -1,17 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import withOpenState from './with-open-state.jsx';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
+import withOpenState from './with-open-state';
 
-Enzyme.configure({
-  adapter: new Adapter()
-});
 
 const Component = ({onViewChange}) => (<div onClick={onViewChange}></div>);
 
-Component.propTypes = {
-  onViewChange: PropTypes.func
+type Props = {
+  onViewChange: ()=>void
 };
 
 const ComponentWithOpenState = withOpenState(Component);

@@ -1,14 +1,9 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import withPageError from './with-page-error.jsx';
+import withPageError from './with-page-error';
 import NameSpace from '../../reducers/name-space.js';
-
-Enzyme.configure({
-  adapter: new Adapter()
-});
 
 const mockStore = configureStore([]);
 const Component = () => <div>Mock</div>;

@@ -1,40 +1,40 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import withLoading from './with-loading';
+import withPageError from './with-page-error';
 import NameSpace from '../../reducers/name-space.js';
 
 const mockStore = configureStore([]);
 const Component = () => <div>Mock</div>;
-const ComponentWithLoading = withLoading(Component);
+const ComponentWithPageError = withPageError(Component);
 
-it(`should render "Loading..." when "loading" === 1`, () => {
+it(`should render error message when "pageError" === "Error"`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
-      loading: 1
+      pageError: `Error`
     }
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <ComponentWithLoading />
+        <ComponentWithPageError />
       </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-it(`should render Component when loading === 0`, () => {
+it(`should render Component when "pageError" === ""`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
-      loading: 0
+      pageError: ``
     }
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <ComponentWithLoading />
+        <ComponentWithPageError />
       </Provider>
   ).toJSON();
 
